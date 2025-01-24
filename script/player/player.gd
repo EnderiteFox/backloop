@@ -52,7 +52,8 @@ func _physics_process(delta: float) -> void:
 			exhaustion = 5
 	else:
 		stamina += STAMINA_GAIN * delta
-		if exhaustion != 0:
+		stamina = clamp(stamina, 0, 100)
+		if exhaustion > 0:
 			exhaustion -= delta 
 
 	move_and_slide()
@@ -80,6 +81,6 @@ func _interact() -> void:
 	collisionObject.interacted.emit()
 	
 func get_speed():
-	if Input.is_action_pressed("sprint") and stamina >= 0 and exhaustion == 0:
+	if Input.is_action_pressed("sprint") and stamina >= 0 and exhaustion <= 0:
 		return SPRINTSPEED
 	return SPEED
