@@ -2,10 +2,15 @@ extends CharacterBody3D
 class_name Player
 
 
-const SPEED = 5.0
+const SPEED = 2.0
+const SENSIBILITY: float = 0.008
+
+const VIEW_BOBBLE_AMOUNT: float = 0.08
+const VIEW_BOBBLE_SPEED = 3.5
+var view_bobble_progress: float = 0.0
 
 func _ready() -> void:
-	pass
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -22,5 +27,21 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+		
+	# View bobble
+	if velocity.x != 0 || velocity.z != 0:
+		view_bobble_progress += delta * VIEW_BOBBLE_SPEED * SPEED
+	
+	%PlayerCamera.position.y = sin(view_bobble_progress) * VIEW_BOBBLE_AMOUNT
 
 	move_and_slide()
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		_mouse_motion(event)
+		
+func _mouse_motion(event: InputEventMouseMotion) -> void:
+	var motion: Vector2 = event.screen_relative
+	self.rotation.y -= motion.x * SENSIBILITY
+	%CamPivot.rotation.x -= motion.y * SENSIBILITY
+	%CamPivot.rotation.x = clamp(%CamPivot.rotation.x, -PI/2, PI/2)
