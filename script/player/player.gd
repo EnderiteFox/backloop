@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name Player
 
 const SPEED = 2.0
+const SPRINTSPEED = 5
 const SENSIBILITY: float = 0.008
 
 const VIEW_BOBBLE_AMOUNT: float = 0.08
@@ -9,6 +10,11 @@ const VIEW_BOBBLE_SPEED = 3.5
 var view_bobble_progress: float = 0.0
 
 const INTERACTION_RANGE: float = 2.0
+
+const STAMINA_DRAIN = 30
+const STAMINA_GAIN = 30
+var exhaustion = 0
+var stamina: float = 100.0
 
 @onready var camera: Camera3D = %PlayerCamera
 @onready var camPivot: Node3D = %CamPivot
@@ -27,17 +33,27 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * get_speed()
+		velocity.z = direction.z * get_speed()
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, get_speed())
+		velocity.z = move_toward(velocity.z, 0, get_speed())
 		
 	# View bobble
 	if velocity.x != 0 || velocity.z != 0:
-		view_bobble_progress += delta * VIEW_BOBBLE_SPEED * SPEED
+		view_bobble_progress += delta * VIEW_BOBBLE_SPEED * get_speed()
 	
 	%PlayerCamera.position.y = sin(view_bobble_progress) * VIEW_BOBBLE_AMOUNT
+	
+	if Input.is_action_pressed("sprint"):
+		if stamina > 0:
+			stamina -= STAMINA_DRAIN * delta
+		else:
+			exhaustion = 5
+	else:
+		stamina += STAMINA_GAIN * delta
+		if exhaustion != 0:
+			exhaustion -= delta 
 
 	move_and_slide()
 	
@@ -62,3 +78,8 @@ func _interact() -> void:
 	if collisionObject is not Interactable:
 		return
 	collisionObject.interacted.emit()
+	
+func get_speed():
+	if Input.is_action_pressed("sprint") and stamina >= 0 and exhaustion == 0:
+		return SPRINTSPEED
+	return SPEED
