@@ -21,6 +21,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60548, 0)
 
 [node name="PlayerCamera" type="Camera3D" parent="CamPivot"]
 unique_name_in_owner = true
+current = true
 
 [node name="InteractionRaycast" type="RayCast3D" parent="CamPivot/PlayerCamera"]
 unique_name_in_owner = true

@@ -10,7 +10,11 @@ var view_bobble_progress: float = 0.0
 
 const INTERACTION_RANGE: float = 2.0
 
+@onready var camera: Camera3D = %PlayerCamera
+@onready var camPivot: Node3D = %CamPivot
+
 func _ready() -> void:
+	Game.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta: float) -> void:
@@ -45,8 +49,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _mouse_motion(event: InputEventMouseMotion) -> void:
 	var motion: Vector2 = event.screen_relative
 	self.rotation.y -= motion.x * SENSIBILITY
-	%CamPivot.rotation.x -= motion.y * SENSIBILITY
-	%CamPivot.rotation.x = clamp(%CamPivot.rotation.x, -PI/2, PI/2)
+	camPivot.rotation.x -= motion.y * SENSIBILITY
+	camPivot.rotation.x = clamp(camPivot.rotation.x, -PI/2, PI/2)
 	
 func _interact() -> void:
 	var collisionObject: Object = %InteractionRaycast.get_collider()
