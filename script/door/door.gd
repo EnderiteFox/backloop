@@ -10,24 +10,22 @@ func _on_interact() -> void:
 	var camera: Camera3D = Camera3D.new()
 	self.add_child(camera)
 	camera.make_current()
-	camera.global_position = Game.player.camera.global_position
-	camera.global_rotation = Game.player.camera.global_rotation
 	var tween: Tween = get_tree().create_tween().set_parallel()
 	tween.tween_property(
 		camera,
 		"global_position",
 		%OpenCamera.global_position, CAMERA_TRANSITION_TIME
-	)
+	).from(Game.player.camera.global_position)
 	tween.tween_property(
 		camera,
 		"global_rotation",
 		%OpenCamera.global_rotation, CAMERA_TRANSITION_TIME
-	)
+	).from(Game.player.camera.global_rotation)
 	tween.set_parallel(false)
 	tween.tween_callback(
 		func():
-			camera.queue_free()
 			_on_camera_tween_finished()
+			camera.queue_free()
 	)
 
 func _on_camera_tween_finished() -> void:
