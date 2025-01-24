@@ -132,7 +132,7 @@ shape = SubResource("BoxShape3D_p4dlk")
 transform = Transform3D(1, 0, 0, 0, 1, 2.64698e-23, 0, -2.64698e-23, 1, 0.850496, 0.0166004, 0.78184)
 
 [node name="Circle_002" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002/Plane_001" index="3"]
-transform = Transform3D(0.999123, 1.08515e-19, -0.0418756, -1.0842e-19, 1, 4.54417e-21, 0.0418756, -3.19078e-26, 0.999123, 0.809703, 0.0427378, 0.802855)
+transform = Transform3D(0.999123, 1.08515e-19, -0.0418756, -1.0842e-19, 1, 4.54416e-21, 0.0418756, -2.54455e-26, 0.999123, 0.809703, 0.0427378, 0.802855)
 
 [node name="AnimationPlayer" parent="." index="1"]
 unique_name_in_owner = true
@@ -154,7 +154,7 @@ shape = SubResource("BoxShape3D_7djw8")
 
 [node name="OpenCamera" type="Camera3D" parent="." index="3"]
 unique_name_in_owner = true
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 1.58451, -0.596645)
+transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0, 1.58451, -0.596645)
 
 [node name="PlayerTeleport" type="Node3D" parent="." index="4"]
 unique_name_in_owner = true
