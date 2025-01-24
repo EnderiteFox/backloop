@@ -1,0 +1,11 @@
+Model Information:
+* title:	Room Door Animation
+* source:	https://sketchfab.com/3d-models/room-door-animation-e85909e80635445b92fb80772af80c84
+* author:	3DHaupt (https://sketchfab.com/dennish2010)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Room Door Animation" (https://sketchfab.com/3d-models/room-door-animation-e85909e80635445b92fb80772af80c84) by 3DHaupt (https://sketchfab.com/dennish2010) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

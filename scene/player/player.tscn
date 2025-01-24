@@ -21,3 +21,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60548, 0)
 
 [node name="PlayerCamera" type="Camera3D" parent="CamPivot"]
 unique_name_in_owner = true
+
+[node name="InteractionRaycast" type="RayCast3D" parent="CamPivot/PlayerCamera"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+collision_mask = 9
+hit_from_inside = true
+collide_with_areas = true
