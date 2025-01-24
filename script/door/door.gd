@@ -3,15 +3,39 @@ extends Node3D
 const CAMERA_TRANSITION_TIME: float = 0.2
 
 func _ready() -> void:
-	%InteractionHitbox.interacted.connect(_on_interact)
-	%AnimationPlayer.animation_finished.connect(func(animation): _on_fully_opened())
+	%InteractionHitbox.interacted.connect(_on_interact, ConnectFlags.CONNECT_ONE_SHOT)
+	%AnimationPlayer.animation_finished.connect(func(_animation): _on_fully_opened())
 
 func _on_interact() -> void:
+	var camera: Camera3D = Camera3D.new()
+	self.add_child(camera)
+	camera.make_current()
+	camera.global_position = Game.player.camera.global_position
+	camera.global_rotation = Game.player.camera.global_rotation
+	var tween: Tween = get_tree().create_tween().set_parallel()
+	tween.tween_property(
+		camera,
+		"global_position",
+		%OpenCamera.global_position, CAMERA_TRANSITION_TIME
+	)
+	tween.tween_property(
+		camera,
+		"global_rotation",
+		%OpenCamera.global_rotation, CAMERA_TRANSITION_TIME
+	)
+	tween.set_parallel(false)
+	tween.tween_callback(
+		func():
+			camera.queue_free()
+			_on_camera_tween_finished()
+	)
+
+func _on_camera_tween_finished() -> void:
 	%OpenCamera.make_current()
 	%AnimationPlayer.play("Door/open")
-
+	
 func _on_fully_opened() -> void:
-	%OpenCamera.clear_current()
+	Game.player.camera.make_current()
 	Game.player.position = %PlayerTeleport.global_position
 	Game.player.rotation = %PlayerTeleport.global_rotation
 	Game.player.camPivot.rotation.x = %OpenCamera.global_rotation.x
