@@ -1,8 +1,10 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://drloc77sjmf15"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://doxkul6taa17v"]
 
+[ext_resource type="Texture2D" uid="uid://dre7rmj8re52u" path="res://material/walls/wall_albedo.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://dowh53tnrkth1" path="res://material/walls/wall_normal.png" id="3"]
 
 [resource]
+albedo_texture = ExtResource("1")
 normal_enabled = true
 normal_texture = ExtResource("3")
 uv1_triplanar = true

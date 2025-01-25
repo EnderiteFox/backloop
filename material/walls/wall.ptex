@@ -7,6 +7,30 @@
 			"to_port": 0
 		},
 		{
+			"from": "uniform",
+			"from_port": 0,
+			"to": "blend2",
+			"to_port": 0
+		},
+		{
+			"from": "colorize",
+			"from_port": 0,
+			"to": "blend2",
+			"to_port": 1
+		},
+		{
+			"from": "perlin_2",
+			"from_port": 0,
+			"to": "colorize",
+			"to_port": 0
+		},
+		{
+			"from": "blend2",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 0
+		},
+		{
 			"from": "normal_map2",
 			"from_port": 0,
 			"to": "Material",
@@ -24,6 +48,7 @@
 		{
 			"export_last_target": "Godot/Godot 4 Standard",
 			"export_paths": {
+				"Godot/Godot 4": "C:/Users/theop/Desktop/Coding/godot/backloop/material/walls/wall",
 				"Godot/Godot 4 Standard": "C:/Users/theop/Desktop/Coding/godot/backloop/material/walls/wall"
 			},
 			"name": "Material",
@@ -45,10 +70,12 @@
 				"flags_transparent": true,
 				"metallic": 0,
 				"normal": 1,
-				"roughness": 1
+				"roughness": 1,
+				"size": 11,
+				"sss": 1
 			},
 			"seed_int": 0,
-			"type": "material_dynamic"
+			"type": "material"
 		},
 		{
 			"name": "perlin",
@@ -79,6 +106,84 @@
 			},
 			"seed_int": 0,
 			"type": "normal_map2"
+		},
+		{
+			"name": "perlin_2",
+			"node_position": {
+				"x": -461.834229,
+				"y": 107.404358
+			},
+			"parameters": {
+				"iterations": 3,
+				"persistence": 0.5,
+				"scale_x": 80,
+				"scale_y": 80
+			},
+			"seed_int": 0,
+			"type": "perlin"
+		},
+		{
+			"generic_size": 1,
+			"name": "blend2",
+			"node_position": {
+				"x": 272.165771,
+				"y": 124.404358
+			},
+			"parameters": {
+				"amount1": 1,
+				"blend_type1": 0
+			},
+			"seed_int": 0,
+			"type": "blend2"
+		},
+		{
+			"name": "uniform",
+			"node_position": {
+				"x": 42.165771,
+				"y": 9.404358
+			},
+			"parameters": {
+				"color": {
+					"a": 1,
+					"b": 1,
+					"g": 1,
+					"r": 1,
+					"type": "Color"
+				}
+			},
+			"seed_int": 0,
+			"type": "uniform"
+		},
+		{
+			"name": "colorize",
+			"node_position": {
+				"x": -76.834229,
+				"y": 143.404358
+			},
+			"parameters": {
+				"gradient": {
+					"interpolation": 1,
+					"points": [
+						{
+							"a": 0,
+							"b": 0,
+							"g": 0,
+							"pos": 0.545455,
+							"r": 0
+						},
+						{
+							"a": 1,
+							"b": 0.440079,
+							"g": 0.510281,
+							"pos": 1,
+							"r": 0.589844
+						}
+					],
+					"type": "Gradient"
+				}
+			},
+			"seed_int": 0,
+			"type": "colorize"
 		}
 	],
 	"parameters": {

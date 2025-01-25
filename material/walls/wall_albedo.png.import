@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://33uwep0ekcva"
-path.s3tc="res://.godot/imported/wall_texture_1.png-9287d7699bd7612266dec67ff2c7ad4b.s3tc.ctex"
+uid="uid://dre7rmj8re52u"
+path.s3tc="res://.godot/imported/wall_albedo.png-e6c30d5f71ba471c2a98d6ce67f3908b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://material/walls/wall_texture_1.png"
-dest_files=["res://.godot/imported/wall_texture_1.png-9287d7699bd7612266dec67ff2c7ad4b.s3tc.ctex"]
+source_file="res://material/walls/wall_albedo.png"
+dest_files=["res://.godot/imported/wall_albedo.png-e6c30d5f71ba471c2a98d6ce67f3908b.s3tc.ctex"]
 
 [params]
 
