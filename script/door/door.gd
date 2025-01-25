@@ -1,6 +1,6 @@
 extends Node3D
 
-const CAMERA_TRANSITION_TIME: float = 0.2
+const CAMERA_TRANSITION_TIME: float = 0.1
 
 func _ready() -> void:
 	%InteractionHitbox.interacted.connect(_on_interact, ConnectFlags.CONNECT_ONE_SHOT)

@@ -94,7 +94,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.2, 2.03333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 3.14159, 0), Vector3(-0.328052, 3.14159, 5.13914e-08), Vector3(0, 3.14159, 0)]
+"values": [Vector3(0, 3.14159, 0), Vector3(-0.244346, 3.14159, 0), Vector3(0, 3.14159, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4uson"]
@@ -132,7 +132,7 @@ shape = SubResource("BoxShape3D_p4dlk")
 transform = Transform3D(1, 0, 0, 0, 1, 2.64698e-23, 0, -2.64698e-23, 1, 0.850496, 0.0166004, 0.78184)
 
 [node name="Circle_002" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002/Plane_001" index="3"]
-transform = Transform3D(0.999123, 1.08515e-19, -0.0418756, -1.0842e-19, 1, 4.54416e-21, 0.0418756, -2.54455e-26, 0.999123, 0.809703, 0.0427378, 0.802855)
+transform = Transform3D(0.999123, 1.08515e-19, -0.0418756, -1.0842e-19, 1, 4.54417e-21, 0.0418756, -2.90806e-26, 0.999123, 0.809703, 0.0427378, 0.802855)
 
 [node name="AnimationPlayer" parent="." index="1"]
 unique_name_in_owner = true
@@ -140,6 +140,7 @@ libraries = {
 "": SubResource("AnimationLibrary_bqqq5"),
 "Door": SubResource("AnimationLibrary_4uson")
 }
+speed_scale = 2.0
 
 [node name="InteractionHitbox" type="Area3D" parent="." index="2"]
 unique_name_in_owner = true
