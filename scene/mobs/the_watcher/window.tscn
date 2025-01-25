@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://c470vup8fia17"]
+[gd_scene load_steps=14 format=3 uid="uid://c470vup8fia17"]
 
 [ext_resource type="PackedScene" uid="uid://cd1j5w4sb7i4w" path="res://model/window/scene.gltf" id="1_r2whe"]
 [ext_resource type="Script" path="res://script/mobs/the_watcher/window.gd" id="2_uicrv"]
+[ext_resource type="AudioStream" uid="uid://b3cjg1epneadq" path="res://sound/mobs/the_watcher/watcher_spawn_1.ogg" id="3_ra4c4"]
 [ext_resource type="AudioStream" uid="uid://cb72pbgqndtt" path="res://sound/mobs/the_watcher/window_open.ogg" id="3_tgfje"]
 [ext_resource type="Script" path="res://script/mobs/the_watcher/the_watcher_raycast.gd" id="3_wd4p8"]
+[ext_resource type="AudioStream" uid="uid://0uifhi7l7oba" path="res://sound/mobs/the_watcher/watcher_spawn_2.ogg" id="4_u4sul"]
 
 [sub_resource type="Animation" id="Animation_ds1dx"]
 resource_name = "open"
@@ -63,6 +65,7 @@ size = Vector2(2, 3.995)
 
 [node name="Window" instance=ExtResource("1_r2whe")]
 script = ExtResource("2_uicrv")
+watcherSpawnSounds = Array[AudioStream]([ExtResource("3_ra4c4"), ExtResource("4_u4sul")])
 
 [node name="Sketchfab_model" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 2.22045e-16, 1, 0, -1, 2.22045e-16, 0, 0.748782, 0)
@@ -129,27 +132,21 @@ skeleton = NodePath("../..")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.01657)
 
-[node name="TheWatcherViewLight" type="OmniLight3D" parent="TheWatcher" index="1"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50541, -0.511509)
-visible = false
-light_color = Color(1, 0, 0, 1)
-light_energy = 20.0
-light_indirect_energy = 20.0
-light_bake_mode = 1
-shadow_enabled = true
-
-[node name="TheWatcherRaycast" type="RayCast3D" parent="TheWatcher" index="2"]
+[node name="TheWatcherRaycast" type="RayCast3D" parent="TheWatcher" index="1"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50541, -0.511509)
 enabled = false
 collision_mask = 3
 script = ExtResource("3_wd4p8")
 
-[node name="EnterSound" type="AudioStreamPlayer3D" parent="TheWatcher" index="3"]
+[node name="EnterSound" type="AudioStreamPlayer3D" parent="TheWatcher" index="2"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.408554, 1.03263, 0)
 stream = ExtResource("3_tgfje")
+
+[node name="SpawnSound" type="AudioStreamPlayer3D" parent="TheWatcher" index="3"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5169, -0.639805)
 
 [node name="TheWatcherTimer" type="Timer" parent="TheWatcher" index="4"]
 unique_name_in_owner = true
