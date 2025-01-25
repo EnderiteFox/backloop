@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("sprint"):
 		if stamina > 0:
-			if exhaustion <= 1 and crouched == false:
+			if exhaustion <= 0 and crouched == false:
 				stamina -= STAMINA_DRAIN * delta
 		else:
 			exhaustion = EXHAUSTION
