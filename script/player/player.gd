@@ -12,7 +12,7 @@ var view_bobble_progress: float = 0.0
 
 const INTERACTION_RANGE: float = 2.0
 
-const EXHAUSTION = 6
+const EXHAUSTION = 4
 const STAMINA_DRAIN = 30
 const STAMINA_GAIN = 30
 var exhaustion = 0
