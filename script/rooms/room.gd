@@ -7,6 +7,7 @@ class_name Room
 var fullyGenerated = false;
 
 func _ready() -> void:
+	self.visible = false
 	Game.roomGenerator.rooms.append(self)
 
 func place_after_door(door: Door) -> void:

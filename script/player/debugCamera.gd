@@ -40,6 +40,6 @@ func get_speed() -> float:
 	
 func _mouse_motion(event: InputEventMouseMotion) -> void:
 	var motion: Vector2 = event.screen_relative
-	global_rotation.y -= motion.x * SENSIBILITY
-	global_rotation.x -= motion.y * SENSIBILITY
-	global_rotation.x = clamp(rotation.x, -PI/2, PI/2)
+	rotation.y -= motion.x * SENSIBILITY
+	rotation.x -= motion.y * SENSIBILITY
+	rotation.x = clamp(rotation.x, -PI/2, PI/2)

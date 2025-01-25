@@ -12,6 +12,7 @@ func pregenerate_after_door(_room: Room, door: Door) -> void:
 func fully_generate(room: Room) -> void:
 	if room == null:
 		return
+	room.visible = true
 	for door in room.doors:
 		pregenerate_after_door(room, door)
 		door.opened.connect(func(): fully_generate(door.nextRoom))
