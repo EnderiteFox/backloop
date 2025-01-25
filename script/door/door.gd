@@ -1,4 +1,7 @@
 extends Node3D
+class_name Door
+
+signal opened
 
 const CAMERA_TRANSITION_TIME: float = 0.1
 
@@ -7,6 +10,7 @@ func _ready() -> void:
 	%AnimationPlayer.animation_finished.connect(func(_animation): _on_fully_opened())
 
 func _on_interact() -> void:
+	opened.emit()
 	var camera: Camera3D = Camera3D.new()
 	self.add_child(camera)
 	camera.make_current()

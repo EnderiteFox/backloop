@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://cpivnlwdvvnpn"]
+[gd_scene load_steps=32 format=3 uid="uid://cpivnlwdvvnpn"]
 
 [ext_resource type="Material" uid="uid://doxkul6taa17v" path="res://material/walls/wall.tres" id="1_fi6s5"]
 [ext_resource type="PackedScene" uid="uid://b3wh7qyhhwb44" path="res://scene/player/player.tscn" id="1_gt58b"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/floor.tres" id="1_jyy7g"]
+[ext_resource type="Script" path="res://script/rooms/room.gd" id="1_s8f8f"]
 [ext_resource type="Texture2D" uid="uid://dre7rmj8re52u" path="res://material/walls/wall_albedo.png" id="2_maxba"]
 [ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://scene/door/door.tscn" id="3_m78sd"]
 [ext_resource type="Texture2D" uid="uid://dowh53tnrkth1" path="res://material/walls/wall_normal.png" id="3_trude"]
@@ -81,7 +82,13 @@ size = Vector3(0.1, 6.75419, 10.0538)
 material = SubResource("StandardMaterial3D_2rp6f")
 size = Vector3(0.1, 6.75419, 10.0538)
 
-[node name="Start" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ccfbk"]
+size = Vector3(6.96606, 4.47205, 10.0525)
+
+[node name="Start" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementHitbox")]
+script = ExtResource("1_s8f8f")
+doors = [NodePath("Door")]
+roomPlacementHitbox = NodePath("PlacementHitbox")
 
 [node name="Walls" type="StaticBody3D" parent="."]
 collision_mask = 14
@@ -168,7 +175,7 @@ mesh = SubResource("BoxMesh_o3u6c")
 [node name="Player" parent="." instance=ExtResource("1_gt58b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.393013, 0, 3.6887)
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("3_m78sd")]
+[node name="Door" parent="." instance=ExtResource("3_m78sd")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.906461, 0, -4.99951)
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
@@ -184,3 +191,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.21931, -2.38419e-07, 4.4374
 
 [node name="CeilingLight" parent="." instance=ExtResource("7_nwwm7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.802149, 3.16269, 0.430064)
+
+[node name="PlacementHitbox" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlacementHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74353, 1.18964, 0.121488)
+shape = SubResource("BoxShape3D_ccfbk")
