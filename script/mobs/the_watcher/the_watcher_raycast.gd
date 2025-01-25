@@ -9,6 +9,3 @@ func _physics_process(_delta: float) -> void:
 	if get_collider() is Player && self.enabled:
 		self.enabled = false
 		saw_player.emit()
-
-func is_seeing_player():
-	return get_collider() is Player

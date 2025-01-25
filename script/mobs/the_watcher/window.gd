@@ -10,8 +10,7 @@ extends RoomElement
 func _ready() -> void:
 	super._ready()
 	watcherRaycast.saw_player.connect(_on_watcher_see_player)
-	room.room_opened.connect(_watcher_spawn)
-	watcherTimer.wait_time = Game.theWatcher.ACTIVE_DURATION
+	room.room_opened.connect(_on_room_opened)
 	watcherTimer.timeout.connect(_watcher_deactivate)
 
 func _on_room_opened() -> void:
@@ -37,9 +36,7 @@ func _watcher_warn() -> void:
 func _watcher_spawn() -> void:
 	watcherRaycast.enabled = true
 	Game.theWatcher.isActive = true
-	%SpawnSound.stream = watcherSpawnSounds.pick_random()
-	%SpawnSound.play()
-	watcherTimer.start()
+	watcherTimer.start(Game.theWatcher.ACTIVE_DURATION)
 
 func _watcher_deactivate() -> void:
 	watcherRaycast.enabled = false
