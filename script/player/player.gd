@@ -25,6 +25,8 @@ var CROUCH_ANIM_TIME: float = 0.25
 
 var crouched = false
 
+var is_alive = true 
+
 @onready var hitbox: CollisionShape3D = %Hitbox
 @onready var hitboxCrouched: CollisionShape3D = %HitboxCrouched
 @onready var camera: Camera3D = %PlayerCamera
@@ -80,7 +82,6 @@ func _physics_process(delta: float) -> void:
 			hitboxCrouched.disabled = false
 			crouched = false
 			get_tree().create_tween().tween_property(self, "currentCrouchCamOffset", 0, CROUCH_ANIM_TIME)
-	
 
 	move_and_slide()
 	
