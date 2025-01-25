@@ -148,5 +148,6 @@ stream = ExtResource("3_tgfje")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5169, -0.639805)
 
-[node name="TheWatcherTimer" type="Timer" parent="TheWatcher" index="4"]
+[node name="TheWatcherActiveTimer" type="Timer" parent="TheWatcher" index="4"]
 unique_name_in_owner = true
+one_shot = true
