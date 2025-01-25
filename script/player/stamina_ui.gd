@@ -14,7 +14,7 @@ func _process(_delta: float) -> void:
 		)
 		exhausted = true
 	elif exhausted && Game.player.exhaustion <= 0:
-		%AnimationPlayer.stop()
 		var tween: Tween = get_tree().create_tween()
-		tween.tween_property(self, "modulate", Color.WHITE, TWEEN_TIME)
+		tween.tween_property(self, "modulate", Color.WHITE, TWEEN_TIME).from(self.modulate)
+		%AnimationPlayer.stop()
 		exhausted = false
