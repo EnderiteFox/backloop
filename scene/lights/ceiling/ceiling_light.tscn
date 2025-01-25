@@ -11,13 +11,15 @@ lights = [NodePath("OmniLight3D"), NodePath("OmniLight3D2")]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 1.41951, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.106, -0.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.153267, -0.3)
 light_color = Color(1, 1, 0.878431, 1)
 light_energy = 0.75
+shadow_enabled = true
 omni_attenuation = 2.0
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.106, 0.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.153267, 0.3)
 light_color = Color(1, 1, 0.878431, 1)
 light_energy = 0.75
+shadow_enabled = true
 omni_attenuation = 2.0

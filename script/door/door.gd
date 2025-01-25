@@ -5,11 +5,21 @@ signal opened
 
 const CAMERA_TRANSITION_TIME: float = 0.1
 
+var locked: bool = false:
+	set(new_locked):
+		locked = new_locked
+		%LockedModel.visible = new_locked
+		
+
+var nextRoom: Room = null
+
 func _ready() -> void:
 	%InteractionHitbox.interacted.connect(_on_interact, ConnectFlags.CONNECT_ONE_SHOT)
 	%AnimationPlayer.animation_finished.connect(func(_animation): _on_fully_opened())
 
 func _on_interact() -> void:
+	if locked:
+		return
 	opened.emit()
 	var camera: Camera3D = Camera3D.new()
 	self.add_child(camera)

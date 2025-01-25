@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmk1lv7xjcuob"]
+
+[ext_resource type="Script" path="res://script/player/debugCamera.gd" id="1_cbfnu"]
+
+[node name="DebugCamera" type="Camera3D"]
+script = ExtResource("1_cbfnu")
+
+[node name="DebugLight" type="OmniLight3D" parent="."]
+unique_name_in_owner = true
+visible = false
+light_bake_mode = 1
+shadow_enabled = true

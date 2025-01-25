@@ -7,7 +7,7 @@ signal flicker_end
 @export var lights: Array[Light3D]
 
 const MIN_ENERGY_MULT: float = 0
-const MAX_ENERGY_MULT: float = 0.8
+const MAX_ENERGY_MULT: float = 0.7
 const MIN_INTERVAL: float = 0.05
 const MAX_INTERVAL: float = 0.2
 

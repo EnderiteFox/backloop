@@ -126,11 +126,3 @@ collision_mask = 16
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomPlacementHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0432129, 1.11514, 0.00835037)
 shape = SubResource("BoxShape3D_7hg04")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23927, 3.62568)
-light_color = Color(1, 0, 0, 1)
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23927, -3.21184)
-light_color = Color(0, 0, 1, 1)

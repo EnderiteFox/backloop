@@ -2,7 +2,8 @@ extends Resource
 class_name RoomList
 
 var rooms: Dictionary = {
-	"straight_corridor": 1.0
+	"straight_corridor": 1.0,
+	"tShapeTwoWindows": 1.0
 }
 
 func load_rooms() -> void:
