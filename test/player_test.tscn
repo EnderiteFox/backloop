@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://4fde07yrrf11"]
+[gd_scene load_steps=8 format=3 uid="uid://4fde07yrrf11"]
 
 [ext_resource type="PackedScene" uid="uid://b3wh7qyhhwb44" path="res://scene/player/player.tscn" id="1_igr6a"]
 [ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://scene/door/door.tscn" id="2_n26qc"]
+[ext_resource type="PackedScene" uid="uid://be7v50cgm5s8m" path="res://scene/mobs/watcher.tscn" id="3_qbcit"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8xbcr"]
 size = Vector3(20, 1, 20)
@@ -44,3 +45,6 @@ omni_range = 8.44611
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("2_n26qc")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -3.80964)
+
+[node name="watcher" parent="." instance=ExtResource("3_qbcit")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.999397, 3.17212)
