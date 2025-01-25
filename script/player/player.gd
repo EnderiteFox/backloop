@@ -11,6 +11,7 @@ var view_bobble_progress: float = 0.0
 
 const INTERACTION_RANGE: float = 2.0
 
+const EXHAUSTION = 6
 const STAMINA_DRAIN = 30
 const STAMINA_GAIN = 30
 var exhaustion = 0
@@ -47,10 +48,11 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("sprint"):
 		if stamina > 0:
-			stamina -= STAMINA_DRAIN * delta
+			if exhaustion <= 1:
+				stamina -= STAMINA_DRAIN * delta
 		else:
-			exhaustion = 5
-	else:
+			exhaustion = EXHAUSTION
+	if not Input.is_action_pressed("sprint") or exhaustion > 0:
 		stamina += STAMINA_GAIN * delta
 		stamina = clamp(stamina, 0, 100)
 		if exhaustion > 0:
