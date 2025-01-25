@@ -4,14 +4,10 @@ class_name Room
 @export var doors: Array[Door]
 @export var roomPlacementHitbox: Area3D
 
+var fullyGenerated = false;
+
 func _ready() -> void:
-	for door in doors:
-		door.opened.connect(
-			func():
-				var room: Room = Game.roomList.get_random_room().instantiate()
-				self.add_sibling(room)
-				room.place_after_door(door)
-		)
+	Game.roomGenerator.rooms.append(self)
 
 func place_after_door(door: Door) -> void:
 	if door in doors:
@@ -26,4 +22,5 @@ func place_after_door(door: Door) -> void:
 	var posOffset: Vector3 = self.global_position - selfDoor.global_position
 	self.global_position = door.global_position + posOffset
 	
+	doors.erase(selfDoor)
 	selfDoor.queue_free()
