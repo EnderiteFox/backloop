@@ -18,6 +18,11 @@ const STAMINA_GAIN = 30
 var exhaustion = 0
 var stamina: float = 100.0
 
+var currentCrouchCamOffset: float = 0
+var CROUCH_CAM_OFFSET: float = 1
+var CROUCH_ANIM_TIME: float = 0.25
+@onready var defaultPivotHeight = %CamPivot.position.y;
+
 var crouched = false
 
 @onready var hitbox: CollisionShape3D = %Hitbox
@@ -50,7 +55,7 @@ func _physics_process(delta: float) -> void:
 	if velocity.x != 0 || velocity.z != 0:
 		view_bobble_progress += delta * VIEW_BOBBLE_SPEED * get_speed()
 	
-	%PlayerCamera.position.y = sin(view_bobble_progress) * VIEW_BOBBLE_AMOUNT
+	%CamPivot.position.y = defaultPivotHeight + sin(view_bobble_progress) * VIEW_BOBBLE_AMOUNT - currentCrouchCamOffset
 	
 	if Input.is_action_pressed("sprint"):
 		if stamina > 0:
@@ -69,10 +74,12 @@ func _physics_process(delta: float) -> void:
 			hitbox.disabled = false
 			hitboxCrouched.disabled = true
 			crouched = true
+			get_tree().create_tween().tween_property(self, "currentCrouchCamOffset", CROUCH_CAM_OFFSET, CROUCH_ANIM_TIME)
 		else:
 			hitbox.disabled = true
 			hitboxCrouched.disabled = false
 			crouched = false
+			get_tree().create_tween().tween_property(self, "currentCrouchCamOffset", 0, CROUCH_ANIM_TIME)
 	
 
 	move_and_slide()
