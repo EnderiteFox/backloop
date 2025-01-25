@@ -21,7 +21,7 @@ func place_after_door(door: Door) -> void:
 	var selfDoor: Door = doors.pick_random()
 	
 	var rotOffset: float = angle_difference(selfDoor.global_rotation.y, self.global_rotation.y) + PI
-	self.rotation.y = door.rotation.y + rotOffset
+	self.global_rotation.y = door.global_rotation.y + rotOffset
 	
 	var posOffset: Vector3 = self.global_position - selfDoor.global_position
 	self.global_position = door.global_position + posOffset

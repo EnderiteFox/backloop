@@ -67,7 +67,7 @@ func _physics_process(delta: float) -> void:
 		stamina += STAMINA_GAIN * delta
 		stamina = clamp(stamina, 0, 100)
 		if exhaustion > 0:
-			exhaustion -= delta 	
+			exhaustion -= delta
 		
 	if Input.is_action_just_pressed("crouch"):
 		if crouched == false:
