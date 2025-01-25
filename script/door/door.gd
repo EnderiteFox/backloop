@@ -1,4 +1,4 @@
-extends Node3D
+extends RoomElement
 class_name Door
 
 signal opened
@@ -21,6 +21,7 @@ func _on_interact() -> void:
 	if locked:
 		return
 	opened.emit()
+	nextRoom.room_opened.emit()
 	var camera: Camera3D = Camera3D.new()
 	self.add_child(camera)
 	camera.make_current()

@@ -1,6 +1,9 @@
 extends Node3D
 class_name Room
 
+@warning_ignore("unused_signal")
+signal room_opened
+
 @export var doors: Array[Door]
 @export var roomPlacementHitbox: Area3D
 

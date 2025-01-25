@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://be7v50cgm5s8m"]
 
 [ext_resource type="Script" path="res://scene/mobs/watcher.gd" id="1_e7www"]
-[ext_resource type="Script" path="res://script/mobs/watcher/watcher_raycast.gd" id="1_y1ggs"]
+[ext_resource type="Script" path="res://script/mobs/the_watcher/the_watcher_raycast.gd" id="1_y1ggs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t8dud"]
 

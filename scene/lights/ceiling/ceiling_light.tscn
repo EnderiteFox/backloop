@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2xt05xayiv6e"]
+[gd_scene load_steps=5 format=3 uid="uid://b2xt05xayiv6e"]
 
-[ext_resource type="Script" path="res://script/lights/light.gd" id="1_lqoup"]
 [ext_resource type="PackedScene" uid="uid://p0cu52kdlpm2" path="res://model/lights/ceiling/scene.gltf" id="1_qhgw6"]
+[ext_resource type="Script" path="res://script/lights/sound_light.gd" id="1_vprai"]
+[ext_resource type="AudioStream" uid="uid://pmq32fcqmnfp" path="res://sound/lights/neon.ogg" id="3_5m4j4"]
+[ext_resource type="AudioStream" uid="uid://btp3lytgmwhqu" path="res://sound/lights/neon_flicker.ogg" id="4_j2rl1"]
 
-[node name="CeilingLight" type="Node3D" node_paths=PackedStringArray("lights")]
-script = ExtResource("1_lqoup")
+[node name="CeilingLight" type="Node3D" node_paths=PackedStringArray("normalSound", "flickerSound", "lights")]
+script = ExtResource("1_vprai")
+normalSound = NodePath("NormalSound")
+flickerSound = NodePath("FlickerSound")
 lights = [NodePath("OmniLight3D"), NodePath("OmniLight3D2")]
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("1_qhgw6")]
@@ -23,3 +27,11 @@ light_color = Color(1, 1, 0.878431, 1)
 light_energy = 0.75
 shadow_enabled = true
 omni_attenuation = 2.0
+
+[node name="NormalSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_5m4j4")
+volume_db = -20.0
+
+[node name="FlickerSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_j2rl1")
+volume_db = -20.0
