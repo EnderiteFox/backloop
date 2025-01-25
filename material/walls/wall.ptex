@@ -1,0 +1,90 @@
+{
+	"connections": [
+		{
+			"from": "perlin",
+			"from_port": 0,
+			"to": "normal_map2",
+			"to_port": 0
+		},
+		{
+			"from": "normal_map2",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 4
+		}
+	],
+	"label": "Graph",
+	"longdesc": "",
+	"name": "@@322",
+	"node_position": {
+		"x": 0,
+		"y": 0
+	},
+	"nodes": [
+		{
+			"export_last_target": "Godot/Godot 4 Standard",
+			"export_paths": {
+				"Godot/Godot 4 Standard": "C:/Users/theop/Desktop/Coding/godot/backloop/material/walls/wall"
+			},
+			"name": "Material",
+			"node_position": {
+				"x": 581,
+				"y": 227
+			},
+			"parameters": {
+				"albedo_color": {
+					"a": 1,
+					"b": 1,
+					"g": 1,
+					"r": 1,
+					"type": "Color"
+				},
+				"ao": 1,
+				"depth_scale": 0.5,
+				"emission_energy": 1,
+				"flags_transparent": true,
+				"metallic": 0,
+				"normal": 1,
+				"roughness": 1
+			},
+			"seed_int": 0,
+			"type": "material_dynamic"
+		},
+		{
+			"name": "perlin",
+			"node_position": {
+				"x": -247.039978,
+				"y": 300.719971
+			},
+			"parameters": {
+				"iterations": 3,
+				"persistence": 0.5,
+				"scale_x": 100,
+				"scale_y": 100
+			},
+			"seed_int": 0,
+			"type": "perlin"
+		},
+		{
+			"name": "normal_map2",
+			"node_position": {
+				"x": 155.960022,
+				"y": 295.719971
+			},
+			"parameters": {
+				"buffer": 1,
+				"param2": 0,
+				"size": 10,
+				"strength": 0.5
+			},
+			"seed_int": 0,
+			"type": "normal_map2"
+		}
+	],
+	"parameters": {
+
+	},
+	"seed_int": 0,
+	"shortdesc": "",
+	"type": "graph"
+}

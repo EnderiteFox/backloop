@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2xt05xayiv6e"]
+
+[ext_resource type="Script" path="res://script/lights/light.gd" id="1_lqoup"]
+[ext_resource type="PackedScene" uid="uid://p0cu52kdlpm2" path="res://model/lights/ceiling/scene.gltf" id="1_qhgw6"]
+
+[node name="CeilingLight" type="Node3D" node_paths=PackedStringArray("lights")]
+script = ExtResource("1_lqoup")
+lights = [NodePath("OmniLight3D"), NodePath("OmniLight3D2")]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_qhgw6")]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 1.41951, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.106, -0.3)
+light_color = Color(1, 1, 0.878431, 1)
+light_energy = 0.75
+omni_attenuation = 2.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.106, 0.3)
+light_color = Color(1, 1, 0.878431, 1)
+light_energy = 0.75
+omni_attenuation = 2.0

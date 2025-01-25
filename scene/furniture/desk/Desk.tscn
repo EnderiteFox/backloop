@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://blxb0sqkunyi1"]
+
+[ext_resource type="PackedScene" uid="uid://bed0dbquna2an" path="res://model/desk/scene.gltf" id="1_li2ub"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_unkuo"]
+size = Vector3(0.895752, 0.797394, 0.697784)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4nu6c"]
+size = Vector3(0.895752, 0.260513, 0.752083)
+
+[node name="Desk" type="StaticBody3D"]
+collision_mask = 14
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_li2ub")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0194092, 0.398758, 0.722519)
+shape = SubResource("BoxShape3D_unkuo")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0194092, 0.398758, -0.720552)
+shape = SubResource("BoxShape3D_unkuo")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0194092, 0.667198, 0.000892878)
+shape = SubResource("BoxShape3D_4nu6c")

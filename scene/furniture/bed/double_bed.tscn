@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6oj44c4rgh2q"]
+
+[ext_resource type="PackedScene" uid="uid://bovbnho76hkw3" path="res://model/bed/double/scene.gltf" id="1_ndeav"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6pd3b"]
+size = Vector3(1.44092, 0.481079, 1.146)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5i8f0"]
+size = Vector3(0.0444336, 0.865601, 1.14508)
+
+[node name="DoubleBed" type="StaticBody3D"]
+transform = Transform3D(1.68705, 0, 0, 0, 1.68705, 0, 0, 0, 1.68705, 0, 0, 0)
+collision_mask = 14
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_ndeav")]
+transform = Transform3D(0.00292988, 0, 0, 0, 0.00292988, 0, 0, 0, 0.00292988, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00317383, 0.239563, 0.00170898)
+shape = SubResource("BoxShape3D_6pd3b")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.691162, 0.431824, -0.000152588)
+shape = SubResource("BoxShape3D_5i8f0")

@@ -14,12 +14,14 @@ func _on_interact() -> void:
 	tween.tween_property(
 		camera,
 		"global_position",
-		%OpenCamera.global_position, CAMERA_TRANSITION_TIME
+		%OpenCamera.global_position,
+		CAMERA_TRANSITION_TIME
 	).from(Game.player.camera.global_position)
 	tween.tween_property(
 		camera,
 		"global_rotation",
-		%OpenCamera.global_rotation, CAMERA_TRANSITION_TIME
+		%OpenCamera.global_rotation,
+		CAMERA_TRANSITION_TIME
 	).from(Game.player.camera.global_rotation)
 	tween.set_parallel(false)
 	tween.tween_callback(
