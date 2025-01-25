@@ -3,6 +3,7 @@ class_name Player
 
 const SPEED = 2.0
 const SPRINTSPEED = 5
+const CROUCHSPEED = 1
 const SENSIBILITY: float = 0.008
 
 const VIEW_BOBBLE_AMOUNT: float = 0.08
@@ -17,12 +18,17 @@ const STAMINA_GAIN = 30
 var exhaustion = 0
 var stamina: float = 100.0
 
+var crouched = false
+
+@onready var hitbox: CollisionShape3D = %Hitbox
+@onready var hitboxCrouched: CollisionShape3D = %HitboxCrouched
 @onready var camera: Camera3D = %PlayerCamera
 @onready var camPivot: Node3D = %CamPivot
 
 func _ready() -> void:
 	Game.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	hitboxCrouched.disabled = true
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -48,7 +54,7 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("sprint"):
 		if stamina > 0:
-			if exhaustion <= 1:
+			if exhaustion <= 1 and crouched == false:
 				stamina -= STAMINA_DRAIN * delta
 		else:
 			exhaustion = EXHAUSTION
@@ -56,7 +62,18 @@ func _physics_process(delta: float) -> void:
 		stamina += STAMINA_GAIN * delta
 		stamina = clamp(stamina, 0, 100)
 		if exhaustion > 0:
-			exhaustion -= delta 
+			exhaustion -= delta 	
+		
+	if Input.is_action_just_pressed("crouch"):
+		if crouched == false:
+			hitbox.disabled = false
+			hitboxCrouched.disabled = true
+			crouched = true
+		else:
+			hitbox.disabled = true
+			hitboxCrouched.disabled = false
+			crouched = false
+	
 
 	move_and_slide()
 	
@@ -83,6 +100,8 @@ func _interact() -> void:
 	collisionObject.interacted.emit()
 	
 func get_speed():
-	if Input.is_action_pressed("sprint") and stamina >= 0 and exhaustion <= 0:
+	if Input.is_action_pressed("sprint") and stamina >= 0 and exhaustion <= 0 and crouched == false:
 		return SPRINTSPEED
+	if crouched == true:
+		return CROUCHSPEED
 	return SPEED

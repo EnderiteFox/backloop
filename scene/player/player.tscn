@@ -15,14 +15,24 @@ ssil_enabled = true
 sdfgi_enabled = true
 glow_enabled = true
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_eojp2"]
+height = 0.935
+radius = 0.3
+
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_cwurn")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.935, 0)
 shape = SubResource("CylinderShape3D_5kqbu")
+
+[node name="HitboxCrouched" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46854, 0)
+shape = SubResource("CylinderShape3D_eojp2")
 
 [node name="CamPivot" type="Node3D" parent="."]
 unique_name_in_owner = true
