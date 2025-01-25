@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://be7v50cgm5s8m"]
+
+[ext_resource type="Script" path="res://script/mobs/watcher/watcher_raycast.gd" id="1_y1ggs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t8dud"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+
+[node name="watcher_hitbox" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_t8dud")
+
+[node name="watcher_window" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="watcher_window"]
+skeleton = NodePath("")
+
+[node name="watcher_raycast" type="RayCast3D" parent="watcher_window"]
+script = ExtResource("1_y1ggs")
+
+[node name="watcher_inside" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="watcher_inside"]
