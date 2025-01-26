@@ -5,6 +5,7 @@ signal opened
 
 const CAMERA_TRANSITION_TIME: float = 0.1
 
+var open: bool = false
 var locked: bool = false:
 	set(new_locked):
 		locked = new_locked
@@ -14,15 +15,16 @@ var locked: bool = false:
 var nextRoom: Room = null
 
 @onready var hitbox: StaticBody3D = %CollisionHitbox
+@onready var animationPlayer: AnimationPlayer = %AnimationPlayer
 
 func _ready() -> void:
 	%InteractionHitbox.interacted.connect(_on_interact, ConnectFlags.CONNECT_ONE_SHOT)
-	%AnimationPlayer.animation_finished.connect(func(_animation): _on_fully_opened())
 
 func _on_interact() -> void:
-	if locked:
+	if locked || open:
 		return
 	opened.emit()
+	open = true
 	nextRoom.room_opened.emit()
 	var camera: Camera3D = Camera3D.new()
 	self.add_child(camera)
@@ -49,10 +51,22 @@ func _on_interact() -> void:
 
 func _on_camera_tween_finished() -> void:
 	%OpenCamera.make_current()
-	%AnimationPlayer.play("Door/open")
+	animationPlayer.play("Door/open")
+	animationPlayer.animation_finished.connect(func(_animation): _on_fully_opened(), ConnectFlags.CONNECT_ONE_SHOT)
 	
 func _on_fully_opened() -> void:
 	Game.player.camera.make_current()
 	Game.player.position = %PlayerTeleport.global_position
 	Game.player.rotation = %PlayerTeleport.global_rotation
 	Game.player.camPivot.rotation.x = %OpenCamera.global_rotation.x
+	
+func close() -> void:
+	if !open:
+		return
+	animationPlayer.speed_scale = 2.0
+	animationPlayer.play_backwards("Door/open")
+	animationPlayer.animation_finished.connect(
+		func(_animationName):
+			open = false
+			animationPlayer.speed_scale = 1.0
+	)
