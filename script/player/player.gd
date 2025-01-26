@@ -1,6 +1,9 @@
 extends CharacterBody3D
 class_name Player
 
+@warning_ignore("unused_signal")
+signal died
+
 const SPEED = 2.0
 const SPRINTSPEED = 5
 const CROUCHSPEED = 1
@@ -36,6 +39,7 @@ func _ready() -> void:
 	Game.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	hitboxCrouched.disabled = true
+	died.connect(func(): is_alive = false)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -113,3 +117,7 @@ func get_speed():
 	if crouched == true:
 		return CROUCHSPEED
 	return SPEED
+
+func blackout(time: float) -> void:
+	%BlackoutRect.visible = true
+	get_tree().create_timer(time).timeout.connect(func(): %BlackoutRect.visible = false)

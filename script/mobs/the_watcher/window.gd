@@ -1,6 +1,5 @@
 extends RoomElement
 
-@onready var watcherSpawnPos: Vector3 = %TheWatcherInsideSpawn.global_position
 @onready var watcherRaycast: TheWatcherRaycast = %TheWatcherRaycast
 @onready var animationPlayer: AnimationPlayer = %AnimationPlayer2
 @onready var watcherTimer: Timer = %TheWatcherActiveTimer
@@ -16,7 +15,7 @@ func _ready() -> void:
 	watcherModel.visible = false
 
 func _on_room_opened() -> void:
-	if Game.theWatcher.isActive:
+	if Game.theWatcher.isActive || !Game.player.is_alive:
 		return
 	if randf() <= Game.theWatcher.SPAWN_CHANCE:
 		_watcher_activate()
@@ -52,3 +51,8 @@ func _on_watcher_see_player():
 	watcherTimer.stop()
 	animationPlayer.play("open")
 	%EnterSound.play()
+	Game.player.died.emit()
+	Game.player.blackout(Game.theWatcher.ENTER_BLACKOUT_TIME)
+	watcherModel.animationPlayer.play("RESET")
+	watcherModel.global_position = %TheWatcherInsideSpawn.global_position
+	watcherModel.look_at(Game.player.global_position, Vector3.UP, true)
