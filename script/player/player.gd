@@ -27,6 +27,8 @@ var CROUCH_ANIM_TIME: float = 0.25
 @onready var defaultPivotHeight = %CamPivot.position.y;
 
 var crouched = false
+var running = false
+var walking = false
 
 var is_alive = true 
 
@@ -57,10 +59,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, get_speed())
 		velocity.z = move_toward(velocity.z, 0, get_speed())
 		
-		%WalkSound.stop()
-		%RunSound.stop()
-		%CrouchSound.stop()
-
 	# View bobble
 	if velocity.x != 0 || velocity.z != 0:
 		view_bobble_progress += delta * VIEW_BOBBLE_SPEED * get_speed()
@@ -83,14 +81,31 @@ func _physics_process(delta: float) -> void:
 		if crouched == false:
 			hitbox.disabled = false
 			hitboxCrouched.disabled = true
+			#%CrouchSound.play()
 			crouched = true
 			get_tree().create_tween().tween_property(self, "currentCrouchCamOffset", CROUCH_CAM_OFFSET, CROUCH_ANIM_TIME)
 		else:
+			#%CrouchSound.stop()
 			hitbox.disabled = true
 			hitboxCrouched.disabled = false
 			crouched = false
 			get_tree().create_tween().tween_property(self, "currentCrouchCamOffset", 0, CROUCH_ANIM_TIME)
-
+	
+	if Input.is_action_just_pressed("sprint"):
+		running == true
+		#%RunSound.play()
+	
+	if Input.is_action_just_released("sprint"):
+		running = false
+		#%RunSound.stop()
+	
+	if Input.is_action_just_pressed("move_forward") or  Input.is_action_just_pressed("move_left") or  Input.is_action_just_pressed("move_right") or  Input.is_action_just_pressed("move_backward") and walking == false:
+		walking = true
+		#%WalkSound.play()
+	elif not Input.is_action_pressed("move_forward") and not  Input.is_action_pressed("move_backward") and not  Input.is_action_pressed("move_right") and not Input.is_action_pressed("move_left") and walking == true:
+		walking = false
+		#%WalkSound.stop()
+	
 	move_and_slide()
 	
 func _unhandled_input(event: InputEvent) -> void:
