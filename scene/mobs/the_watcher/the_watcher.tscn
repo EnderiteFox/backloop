@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://vyrvw5aiu106"]
+
+[ext_resource type="PackedScene" uid="uid://n5yhri112ipi" path="res://model/mobs/the_watcher/the_watcher.gltf" id="1_kqwgq"]
+
+[node name="TheWatcher" instance=ExtResource("1_kqwgq")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/3/scale = Vector3(1, 1, 1)
