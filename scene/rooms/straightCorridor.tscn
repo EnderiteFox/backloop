@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bmgkpyr0xa3pi"]
+[gd_scene load_steps=22 format=3 uid="uid://bmgkpyr0xa3pi"]
 
 [ext_resource type="Script" path="res://script/rooms/room.gd" id="1_2ddpk"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/floor.tres" id="2_a2gwc"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://scene/door/door.tscn" id="4_3ssjw"]
 [ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://scene/lights/ceiling/ceiling_light.tscn" id="5_3nswq"]
 [ext_resource type="PackedScene" uid="uid://c470vup8fia17" path="res://scene/mobs/the_watcher/window.tscn" id="6_aqddg"]
+[ext_resource type="Script" path="res://script/mobs/node_monsters/monster_node.gd" id="7_r81c3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2sw81"]
 size = Vector3(3, 1, 10.2)
@@ -55,9 +56,11 @@ size = Vector3(3.20459, 4.25958, 10.1487)
 [sub_resource type="BoxShape3D" id="BoxShape3D_rwtdb"]
 size = Vector3(2.1012, 4.36975, 2.09558)
 
-[node name="StraightCorridor" type="Node3D" node_paths=PackedStringArray("doors")]
+[node name="StraightCorridor" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementHitbox", "lastMonsterNode")]
 script = ExtResource("1_2ddpk")
 doors = [NodePath("Door"), NodePath("Door2")]
+roomPlacementHitbox = NodePath("RoomPlacementHitbox")
+lastMonsterNode = NodePath("MonsterNodes/MonsterNode2")
 
 [node name="Walls" type="StaticBody3D" parent="."]
 
@@ -180,3 +183,14 @@ shape = SubResource("BoxShape3D_rwtdb")
 
 [node name="Window" parent="." instance=ExtResource("6_aqddg")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.484, 0, 0)
+
+[node name="MonsterNodes" type="Node3D" parent="."]
+
+[node name="MonsterNode" type="Node3D" parent="MonsterNodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.00332)
+script = ExtResource("7_r81c3")
+
+[node name="MonsterNode2" type="Node3D" parent="MonsterNodes" node_paths=PackedStringArray("previousNodes")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.99513)
+script = ExtResource("7_r81c3")
+previousNodes = [NodePath("../MonsterNode")]

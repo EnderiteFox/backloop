@@ -121,3 +121,6 @@ func get_speed():
 func blackout(time: float) -> void:
 	%BlackoutRect.visible = true
 	get_tree().create_timer(time).timeout.connect(func(): %BlackoutRect.visible = false)
+
+func isMoving() -> bool:
+	return Input.get_vector("move_left", "move_right", "move_forward", "move_backward") != Vector2(0.0, 0.0)

@@ -3,9 +3,10 @@ class_name RoomGenerator
 
 var rooms: Array[Room]
 
-func pregenerate_after_door(_room: Room, door: Door) -> void:
+func pregenerate_after_door(room: Room, door: Door) -> void:
 	var newRoom: Room = Game.roomList.get_random_room().instantiate()
 	Game.get_tree().root.add_child(newRoom)
+	newRoom.previousRoom = room
 	newRoom.place_after_door(door)
 	door.nextRoom = newRoom
 	

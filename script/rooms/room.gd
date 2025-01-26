@@ -6,8 +6,11 @@ signal room_opened
 
 @export var doors: Array[Door]
 @export var roomPlacementHitbox: Area3D
+@export var lastMonsterNode: MonsterNode
 
 var fullyGenerated = false;
+
+var previousRoom: Room = null
 
 func _ready() -> void:
 	self.visible = false

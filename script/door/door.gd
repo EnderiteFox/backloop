@@ -13,6 +13,8 @@ var locked: bool = false:
 
 var nextRoom: Room = null
 
+@onready var hitbox: StaticBody3D = %CollisionHitbox
+
 func _ready() -> void:
 	%InteractionHitbox.interacted.connect(_on_interact, ConnectFlags.CONNECT_ONE_SHOT)
 	%AnimationPlayer.animation_finished.connect(func(_animation): _on_fully_opened())
