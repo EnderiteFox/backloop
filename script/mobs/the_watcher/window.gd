@@ -31,13 +31,13 @@ func _watcher_activate() -> void:
 	).timeout.connect(_watcher_warn)
 	
 func _watcher_warn() -> void:
+	watcherModel.visible = true
+	watcherModel.animationPlayer.play("peek")
 	%SpawnSound.stream = watcherSpawnSounds.pick_random()
 	%SpawnSound.play()
 	get_tree().create_timer(Game.theWatcher.REACT_TIME).timeout.connect(_watcher_spawn)
 
 func _watcher_spawn() -> void:
-	watcherModel.visible = true
-	watcherModel.animationPlayer.play("peek")
 	watcherRaycast.enabled = true
 	Game.theWatcher.isActive = true
 	watcherTimer.start(Game.theWatcher.ACTIVE_DURATION)

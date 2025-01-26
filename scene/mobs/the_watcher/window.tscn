@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cb72pbgqndtt" path="res://sound/mobs/the_watcher/window_open.ogg" id="3_tgfje"]
 [ext_resource type="Script" path="res://script/mobs/the_watcher/the_watcher_raycast.gd" id="3_wd4p8"]
 [ext_resource type="AudioStream" uid="uid://0uifhi7l7oba" path="res://sound/mobs/the_watcher/watcher_spawn_2.ogg" id="4_u4sul"]
-[ext_resource type="PackedScene" uid="uid://vyrvw5aiu106" path="res://scene/mobs/the_watcher/the_watcher.tscn" id="7_45wot"]
+[ext_resource type="PackedScene" uid="uid://c4k81y2s6w1fu" path="res://scene/mobs/the_watcher/the_watcher.tscn" id="7_45wot"]
 
 [sub_resource type="Animation" id="Animation_5w6ra"]
 length = 0.001
@@ -158,4 +158,4 @@ one_shot = true
 
 [node name="TheWatcherModel" parent="TheWatcher" index="5" instance=ExtResource("7_45wot")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.307574, 0.52057, -0.322462)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.456827)
