@@ -6,6 +6,8 @@ var playerStillTime: float = 0.0
 
 var triggered: bool = false
 
+@onready var jumpscareScene: PackedScene = load("res://scene/mobs/the_shade/jumpscare.tscn")
+
 func _ready() -> void:
 	%AnimationPlayer.play("idle")
 
@@ -36,5 +38,7 @@ func despawn() -> void:
 
 func kill_player() -> void:
 	Game.player.is_alive = false
-	print("You're dead")
-	despawn()
+	# TODO: Change that, and put the main game in its own scene to make it work
+	get_tree().change_scene_to_packed(jumpscareScene)
+	for child in get_tree().root.get_children():
+		child.queue_free()
