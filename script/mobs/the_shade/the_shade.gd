@@ -6,16 +6,22 @@ var playerStillTime: float = 0.0
 
 var triggered: bool = false
 
+func _ready() -> void:
+	%AnimationPlayer.play("idle")
+
 func _physics_process(delta: float) -> void:
 	%RayCast3D.target_position = %RayCast3D.to_local(Game.player.camera.global_position)
 	if %RayCast3D.get_collider() is Player:
 		triggered = true
+		%AnimationPlayer.play("seeing_player")
 	
 	if triggered:
 		if Game.player.isMoving():
 			playerMoveTime += delta
 		else:
 			playerStillTime += delta
+	else:
+		self.look_at(Game.player.camera.global_position)
 	
 	if playerStillTime >= Game.theShade.ACTIVE_TIME && Game.player.is_alive:
 		despawn()
