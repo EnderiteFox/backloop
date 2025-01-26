@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c470vup8fia17"]
+[gd_scene load_steps=15 format=3 uid="uid://c470vup8fia17"]
 
 [ext_resource type="PackedScene" uid="uid://cd1j5w4sb7i4w" path="res://model/window/scene.gltf" id="1_r2whe"]
 [ext_resource type="Script" path="res://script/mobs/the_watcher/window.gd" id="2_uicrv"]
@@ -6,6 +6,22 @@
 [ext_resource type="AudioStream" uid="uid://cb72pbgqndtt" path="res://sound/mobs/the_watcher/window_open.ogg" id="3_tgfje"]
 [ext_resource type="Script" path="res://script/mobs/the_watcher/the_watcher_raycast.gd" id="3_wd4p8"]
 [ext_resource type="AudioStream" uid="uid://0uifhi7l7oba" path="res://sound/mobs/the_watcher/watcher_spawn_2.ogg" id="4_u4sul"]
+[ext_resource type="PackedScene" uid="uid://vyrvw5aiu106" path="res://scene/mobs/the_watcher/the_watcher.tscn" id="7_45wot"]
+
+[sub_resource type="Animation" id="Animation_5w6ra"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sketchfab_model/955b5cf0327f4626a3bfcfe5545111d1_fbx/Object_2/RootNode/01/L:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(38.4415, -30.4682, 1.43592)]
+}
 
 [sub_resource type="Animation" id="Animation_ds1dx"]
 resource_name = "open"
@@ -21,21 +37,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(38.4415, -30.4682, 1.43592), Vector3(38.4415, 25.2949, 1.43592)]
-}
-
-[sub_resource type="Animation" id="Animation_5w6ra"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sketchfab_model/955b5cf0327f4626a3bfcfe5545111d1_fbx/Object_2/RootNode/01/L:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(38.4415, -30.4682, 1.43592)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0cv7h"]
@@ -78,6 +79,9 @@ cast_shadow = 0
 
 [node name="R_Glass_0" parent="Sketchfab_model/955b5cf0327f4626a3bfcfe5545111d1_fbx/Object_2/RootNode/01/R" index="1"]
 cast_shadow = 0
+
+[node name="L" parent="Sketchfab_model/955b5cf0327f4626a3bfcfe5545111d1_fbx/Object_2/RootNode/01" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.4415, -30.4682, 1.43592)
 
 [node name="L_Glass_0" parent="Sketchfab_model/955b5cf0327f4626a3bfcfe5545111d1_fbx/Object_2/RootNode/01/L" index="1"]
 cast_shadow = 0
@@ -151,3 +155,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5169, -0.639805)
 [node name="TheWatcherActiveTimer" type="Timer" parent="TheWatcher" index="4"]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="TheWatcherModel" parent="TheWatcher" index="5" instance=ExtResource("7_45wot")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.307574, 0.52057, -0.322462)

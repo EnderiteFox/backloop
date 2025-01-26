@@ -4,6 +4,7 @@ extends RoomElement
 @onready var watcherRaycast: TheWatcherRaycast = %TheWatcherRaycast
 @onready var animationPlayer: AnimationPlayer = %AnimationPlayer2
 @onready var watcherTimer: Timer = %TheWatcherActiveTimer
+@onready var watcherModel: TheWatcherModel = %TheWatcherModel
 
 @export var watcherSpawnSounds: Array[AudioStream]
 
@@ -12,6 +13,7 @@ func _ready() -> void:
 	watcherRaycast.saw_player.connect(_on_watcher_see_player)
 	room.room_opened.connect(_on_room_opened)
 	watcherTimer.timeout.connect(_watcher_deactivate)
+	watcherModel.visible = false
 
 func _on_room_opened() -> void:
 	if Game.theWatcher.isActive:
@@ -34,6 +36,8 @@ func _watcher_warn() -> void:
 	get_tree().create_timer(Game.theWatcher.REACT_TIME).timeout.connect(_watcher_spawn)
 
 func _watcher_spawn() -> void:
+	watcherModel.visible = true
+	watcherModel.animationPlayer.play("peek")
 	watcherRaycast.enabled = true
 	Game.theWatcher.isActive = true
 	watcherTimer.start(Game.theWatcher.ACTIVE_DURATION)
