@@ -56,3 +56,8 @@ func _on_watcher_see_player():
 	watcherModel.animationPlayer.play("RESET")
 	watcherModel.global_position = %TheWatcherInsideSpawn.global_position
 	watcherModel.look_at(Game.player.global_position, Vector3.UP, true)
+	if room.previousRoom != null:
+		for door in room.previousRoom.doors:
+			door.close()
+	for door in room.doors:
+		door.close()
