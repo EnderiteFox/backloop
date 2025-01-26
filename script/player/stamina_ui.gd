@@ -31,16 +31,8 @@ func _process(_delta: float) -> void:
 		staminaFull = true
 		var tween: Tween = get_tree().create_tween()
 		tween.tween_property(self, "self_modulate", Color.TRANSPARENT, STAMINA_FULL_TRANSITION)
-		tween.tween_callback(
-			func():
-				tween = null
-		)
 		
 	elif Game.player.stamina < 100 && staminaFull && Game.player.exhaustion <= 0:
 		staminaFull = false
 		var tween: Tween = get_tree().create_tween()
 		tween.tween_property(self, "self_modulate", Color.WHITE, STAMINA_NOT_FULL_TRANSITION)
-		tween.tween_callback(
-			func():
-				tween = null
-		) 

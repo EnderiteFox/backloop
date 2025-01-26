@@ -57,6 +57,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, get_speed())
 		velocity.z = move_toward(velocity.z, 0, get_speed())
 		
+		%WalkSound.stop()
+		%RunSound.stop()
+		%CrouchSound.stop()
+
 	# View bobble
 	if velocity.x != 0 || velocity.z != 0:
 		view_bobble_progress += delta * VIEW_BOBBLE_SPEED * get_speed()
