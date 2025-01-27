@@ -37,6 +37,7 @@ shape = SubResource("CylinderShape3D_5kqbu")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46854, 0)
 shape = SubResource("CylinderShape3D_eojp2")
+disabled = true
 
 [node name="CamPivot" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -74,6 +75,7 @@ color = Color(0, 0, 0, 1)
 [node name="WalkSound" type="AudioStreamPlayer3D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("4_h4sw0")
+pitch_scale = 0.53
 
 [node name="RunSound" type="AudioStreamPlayer3D" parent="."]
 unique_name_in_owner = true

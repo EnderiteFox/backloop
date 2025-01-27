@@ -37,6 +37,8 @@ var is_alive = true
 @onready var camera: Camera3D = %PlayerCamera
 @onready var camPivot: Node3D = %CamPivot
 
+@onready var activeWalkSound: AudioStreamPlayer3D = %WalkSound
+
 func _ready() -> void:
 	Game.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -55,9 +57,12 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = direction.x * get_speed()
 		velocity.z = direction.z * get_speed()
+		if !activeWalkSound.playing:
+			activeWalkSound.play()
 	else:
 		velocity.x = move_toward(velocity.x, 0, get_speed())
 		velocity.z = move_toward(velocity.z, 0, get_speed())
+		activeWalkSound.stop()
 		
 	# View bobble
 	if velocity.x != 0 || velocity.z != 0:
@@ -65,46 +70,39 @@ func _physics_process(delta: float) -> void:
 	
 	%CamPivot.position.y = defaultPivotHeight + sin(view_bobble_progress) * VIEW_BOBBLE_AMOUNT - currentCrouchCamOffset
 	
+	# Handle sprinting
 	if Input.is_action_pressed("sprint"):
+		if activeWalkSound != %RunSound && !crouched:
+			_set_active_walk_sound(%RunSound)
 		if stamina > 0:
 			if exhaustion <= 0 and crouched == false:
 				stamina -= STAMINA_DRAIN * delta
 		else:
 			exhaustion = EXHAUSTION
-	if not Input.is_action_pressed("sprint") or exhaustion > 0:
+	if !Input.is_action_pressed("sprint") || exhaustion > 0:
 		stamina += STAMINA_GAIN * delta
 		stamina = clamp(stamina, 0, 100)
 		if exhaustion > 0:
 			exhaustion -= delta
-		
+	
+	# Handle crouching
 	if Input.is_action_just_pressed("crouch"):
 		if crouched == false:
-			hitbox.disabled = false
-			hitboxCrouched.disabled = true
-			#%CrouchSound.play()
+			_set_active_walk_sound(%CrouchSound)
+			hitbox.disabled = true
+			hitboxCrouched.disabled = false
 			crouched = true
 			get_tree().create_tween().tween_property(self, "currentCrouchCamOffset", CROUCH_CAM_OFFSET, CROUCH_ANIM_TIME)
 		else:
-			#%CrouchSound.stop()
-			hitbox.disabled = true
-			hitboxCrouched.disabled = false
+			_set_active_walk_sound(%WalkSound)
+			hitbox.disabled = false
+			hitboxCrouched.disabled = true
 			crouched = false
 			get_tree().create_tween().tween_property(self, "currentCrouchCamOffset", 0, CROUCH_ANIM_TIME)
 	
-	if Input.is_action_just_pressed("sprint"):
-		running == true
-		#%RunSound.play()
-	
-	if Input.is_action_just_released("sprint"):
-		running = false
-		#%RunSound.stop()
-	
-	if Input.is_action_just_pressed("move_forward") or  Input.is_action_just_pressed("move_left") or  Input.is_action_just_pressed("move_right") or  Input.is_action_just_pressed("move_backward") and walking == false:
-		walking = true
-		#%WalkSound.play()
-	elif not Input.is_action_pressed("move_forward") and not  Input.is_action_pressed("move_backward") and not  Input.is_action_pressed("move_right") and not Input.is_action_pressed("move_left") and walking == true:
-		walking = false
-		#%WalkSound.stop()
+	# Handle starting walk sound
+	if !crouched && !Input.is_action_pressed("sprint") && activeWalkSound != %WalkSound:
+		_set_active_walk_sound(%WalkSound)
 	
 	move_and_slide()
 	
@@ -143,3 +141,9 @@ func blackout(time: float) -> void:
 
 func isMoving() -> bool:
 	return Input.get_vector("move_left", "move_right", "move_forward", "move_backward") != Vector2(0.0, 0.0)
+
+func _set_active_walk_sound(streamPlayer: AudioStreamPlayer3D) -> void:
+	%WalkSound.stop()
+	%RunSound.stop()
+	%CrouchSound.stop()
+	self.activeWalkSound = streamPlayer
