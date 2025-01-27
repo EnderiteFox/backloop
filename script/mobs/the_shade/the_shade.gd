@@ -38,7 +38,4 @@ func despawn() -> void:
 
 func kill_player() -> void:
 	Game.player.is_alive = false
-	# TODO: Change that, and put the main game in its own scene to make it work
 	get_tree().change_scene_to_packed(jumpscareScene)
-	for child in get_tree().root.get_children():
-		child.queue_free()

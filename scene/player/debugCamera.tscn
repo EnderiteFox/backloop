@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://script/player/debugCamera.gd" id="1_cbfnu"]
 
 [node name="DebugCamera" type="Camera3D"]
+process_mode = 3
 script = ExtResource("1_cbfnu")
 
 [node name="DebugLight" type="OmniLight3D" parent="."]

@@ -5,11 +5,6 @@ const FAST_SPEED: float = 7.0
 
 const SENSIBILITY: float = 0.008
 
-func _ready() -> void:
-	get_parent().remove_child.call_deferred(self)
-	get_tree().root.add_child.call_deferred(self)
-	
-
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		_mouse_motion(event)
@@ -17,6 +12,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("freecam"):
 		if !%DebugLight.visible:
 			self.global_position = Game.player.camera.global_position
+			self.global_rotation = Game.player.camera.global_rotation
 			self.make_current()
 			Game.player.process_mode = Node.PROCESS_MODE_DISABLED
 		else:

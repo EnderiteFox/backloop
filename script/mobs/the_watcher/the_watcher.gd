@@ -1,7 +1,7 @@
 extends Object
 class_name TheWatcher
 
-const SPAWN_CHANCE: float = 0.1
+const SPAWN_CHANCE: float = 0.2
 const REACT_TIME: float = 1.5
 const ACTIVE_DURATION: float = 2.0
 

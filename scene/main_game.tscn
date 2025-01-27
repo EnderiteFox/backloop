@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://of56mmim7b8x"]
+
+[ext_resource type="Script" path="res://script/main_game.gd" id="1_bt812"]
+[ext_resource type="PackedScene" uid="uid://cpivnlwdvvnpn" path="res://scene/rooms/start.tscn" id="1_y88l4"]
+[ext_resource type="PackedScene" uid="uid://b3wh7qyhhwb44" path="res://scene/player/player.tscn" id="2_tkkt2"]
+
+[node name="MainGame" type="Node3D"]
+script = ExtResource("1_bt812")
+
+[node name="Start" parent="." instance=ExtResource("1_y88l4")]
+unique_name_in_owner = true
+
+[node name="Player" parent="." instance=ExtResource("2_tkkt2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.398321, 0, 3.68787)

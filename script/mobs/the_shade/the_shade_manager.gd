@@ -1,7 +1,7 @@
 extends Object
 class_name TheShadeManager
 
-const SPAWN_CHANCE: float = 1.0
+const SPAWN_CHANCE: float = 0.15
 const LENIENCE_TIME: float = 1.0
 const ACTIVE_TIME: float = 2.0
 
