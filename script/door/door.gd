@@ -26,6 +26,7 @@ func _on_interact() -> void:
 	opened.emit()
 	open = true
 	nextRoom.room_opened.emit()
+	Game.player.set_crouched(false)
 	var camera: Camera3D = Camera3D.new()
 	self.add_child(camera)
 	camera.make_current()

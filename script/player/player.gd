@@ -72,12 +72,13 @@ func _physics_process(delta: float) -> void:
 	
 	# Handle sprinting
 	if Input.is_action_pressed("sprint"):
-		if activeWalkSound != %RunSound && !crouched:
+		if activeWalkSound != %RunSound && !crouched && exhaustion <= 0:
 			_set_active_walk_sound(%RunSound)
 		if stamina > 0:
 			if exhaustion <= 0 and crouched == false:
 				stamina -= STAMINA_DRAIN * delta
 		else:
+			_set_active_walk_sound(%WalkSound)
 			exhaustion = EXHAUSTION
 	if !Input.is_action_pressed("sprint") || exhaustion > 0:
 		stamina += STAMINA_GAIN * delta
@@ -87,18 +88,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Handle crouching
 	if Input.is_action_just_pressed("crouch"):
-		if crouched == false:
-			_set_active_walk_sound(%CrouchSound)
-			hitbox.disabled = true
-			hitboxCrouched.disabled = false
-			crouched = true
-			get_tree().create_tween().tween_property(self, "currentCrouchCamOffset", CROUCH_CAM_OFFSET, CROUCH_ANIM_TIME)
-		else:
-			_set_active_walk_sound(%WalkSound)
-			hitbox.disabled = false
-			hitboxCrouched.disabled = true
-			crouched = false
-			get_tree().create_tween().tween_property(self, "currentCrouchCamOffset", 0, CROUCH_ANIM_TIME)
+		set_crouched(!crouched)
 	
 	# Handle starting walk sound
 	if !crouched && !Input.is_action_pressed("sprint") && activeWalkSound != %WalkSound:
@@ -147,3 +137,19 @@ func _set_active_walk_sound(streamPlayer: AudioStreamPlayer3D) -> void:
 	%RunSound.stop()
 	%CrouchSound.stop()
 	self.activeWalkSound = streamPlayer
+	
+func set_crouched(crouch: bool) -> void:
+	if self.crouched == crouch:
+		return
+	if crouch:
+		_set_active_walk_sound(%CrouchSound)
+		hitbox.disabled = true
+		hitboxCrouched.disabled = false
+		self.crouched = true
+		get_tree().create_tween().tween_property(self, "currentCrouchCamOffset", CROUCH_CAM_OFFSET, CROUCH_ANIM_TIME)
+	else:
+		_set_active_walk_sound(%WalkSound)
+		hitbox.disabled = false
+		hitboxCrouched.disabled = true
+		self.crouched = false
+		get_tree().create_tween().tween_property(self, "currentCrouchCamOffset", 0, CROUCH_ANIM_TIME)

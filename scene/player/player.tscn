@@ -75,12 +75,14 @@ color = Color(0, 0, 0, 1)
 [node name="WalkSound" type="AudioStreamPlayer3D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("4_h4sw0")
-pitch_scale = 0.53
+pitch_scale = 0.52
 
 [node name="RunSound" type="AudioStreamPlayer3D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("5_feosj")
+pitch_scale = 0.75
 
 [node name="CrouchSound" type="AudioStreamPlayer3D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("6_3ebys")
+pitch_scale = 0.4
