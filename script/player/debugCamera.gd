@@ -1,7 +1,7 @@
 extends Camera3D
 
 const NORMAL_SPEED: float = 4.0
-const FAST_SPEED: float = 7.0
+const FAST_SPEED: float = 10.0
 
 const SENSIBILITY: float = 0.008
 

@@ -642,6 +642,11 @@ script/source = "extends AnimationPlayer
 func _ready() -> void:
 	get_tree().paused = false
 	play(\"jumpscare\")
+	
+	self.animation_finished.connect(
+		func():
+			get_tree().change_scene_to_file(\"res://scene/menus/game_over.tscn\")
+	)
 "
 
 [node name="Jumpscare" type="Node3D"]
