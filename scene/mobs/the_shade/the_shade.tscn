@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c75184mf0hfkg"]
+[gd_scene load_steps=8 format=3 uid="uid://c75184mf0hfkg"]
 
 [ext_resource type="PackedScene" uid="uid://d126kjjdvgakk" path="res://model/mobs/the_shade/the_shade.gltf" id="1_ppd8g"]
 [ext_resource type="Script" path="res://script/mobs/the_shade/the_shade.gd" id="1_qg38i"]
@@ -575,7 +575,11 @@ _data = {
 "seeing_player": SubResource("Animation_ulx28")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_34m82"]
+size = Vector3(2.9151, 2.68054, 3.38977)
+
 [node name="TheShade" instance=ExtResource("1_ppd8g")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 script = ExtResource("1_qg38i")
 
 [node name="Armature" parent="." index="0"]
@@ -610,7 +614,7 @@ bones/10/rotation = Quaternion(0.012957, -0.000214331, -0.0134423, 0.999826)
 bones/11/position = Vector3(4.78883e-13, 1.32459, 1.08331e-06)
 bones/11/rotation = Quaternion(-0.347878, 5.56883e-07, -1.83821e-07, 0.93754)
 bones/12/position = Vector3(-7.69658e-14, 2.23268, 1.52539e-07)
-bones/12/rotation = Quaternion(-0.116879, -6.43454e-10, -1.36806e-07, 0.993146)
+bones/12/rotation = Quaternion(-0.116879, -6.43452e-10, -1.36806e-07, 0.993146)
 bones/13/rotation = Quaternion(0.1795, -5.59512e-14, 2.13981e-07, 0.983758)
 bones/14/position = Vector3(-7.69658e-14, 2.23268, 1.52539e-07)
 bones/14/rotation = Quaternion(0.391266, 1.08608e-07, 4.99339e-07, 0.920278)
@@ -642,3 +646,14 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_4ibq1")
 }
+
+[node name="PlayerSafeSpot" type="Area3D" parent="." index="2"]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+input_ray_pickable = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerSafeSpot" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.114655, 0.840271, 1.80353)
+shape = SubResource("BoxShape3D_34m82")

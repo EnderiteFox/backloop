@@ -1,15 +1,29 @@
-extends Node3D
+extends RoomElement
 class_name TheShade
 
 var playerMoveTime: float = 0.0
 var playerStillTime: float = 0.0
 
 var triggered: bool = false
+var enabled: bool = true
 
 @onready var jumpscareScene: PackedScene = load("res://scene/mobs/the_shade/jumpscare.tscn")
 
 func _ready() -> void:
+	super._ready()
 	%AnimationPlayer.play("idle")
+	%PlayerSafeSpot.body_entered.connect(
+		func(_body):
+			if !triggered:
+				self.queue_free()
+				Game.theShade.isActive = false
+	)
+	for door in room.doors:
+		door.opened.connect(
+			func():
+				self.queue_free()
+				Game.theShade.isActive = false
+		)
 
 func _physics_process(delta: float) -> void:
 	%RayCast3D.target_position = %RayCast3D.to_local(Game.player.camera.global_position)
@@ -22,13 +36,13 @@ func _physics_process(delta: float) -> void:
 			playerMoveTime += delta
 		else:
 			playerStillTime += delta
-	else:
-		self.look_at(Game.player.camera.global_position)
 	
 	if playerStillTime >= Game.theShade.ACTIVE_TIME && Game.player.is_alive:
 		despawn()
 	if playerMoveTime >= Game.theShade.LENIENCE_TIME && Game.player.is_alive:
 		kill_player()
+	
+	set_enabled(to_local(Game.player.global_position).z < 0)
 
 
 func despawn() -> void:
@@ -39,3 +53,8 @@ func despawn() -> void:
 func kill_player() -> void:
 	Game.player.is_alive = false
 	get_tree().change_scene_to_packed(jumpscareScene)
+	
+func set_enabled(enable: bool) -> void:
+	self.enabled = enable
+	self.visible = enable
+	%RayCast3D.enabled = enable
