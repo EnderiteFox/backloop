@@ -36,13 +36,13 @@ func _physics_process(delta: float) -> void:
 			playerMoveTime += delta
 		else:
 			playerStillTime += delta
+			
+	set_enabled(to_local(Game.player.global_position).z < 0)
 	
 	if playerStillTime >= Game.theShade.ACTIVE_TIME && Game.player.is_alive:
 		despawn()
 	if playerMoveTime >= Game.theShade.LENIENCE_TIME && Game.player.is_alive:
 		kill_player()
-	
-	set_enabled(to_local(Game.player.global_position).z < 0)
 
 
 func despawn() -> void:

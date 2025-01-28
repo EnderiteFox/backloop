@@ -7,6 +7,9 @@ const TWEEN_TIME: float = 0.5
 const STAMINA_FULL_TRANSITION: float = 1
 const STAMINA_NOT_FULL_TRANSITION: float = 0.5
 
+var fadeOutTween: Tween = null
+var fadeInTween: Tween = null
+
 func _ready() -> void:
 	self.self_modulate = Color.TRANSPARENT
 	
@@ -26,13 +29,31 @@ func _process(_delta: float) -> void:
 		tween.tween_property(self, "modulate", Color.WHITE, TWEEN_TIME).from(self.modulate)
 		%AnimationPlayer.stop()
 		exhausted = false
-		
-	elif  Game.player.stamina == 100 && !staminaFull:
+	
+	if Game.player.stamina == 100 && !staminaFull:
 		staminaFull = true
-		var tween: Tween = get_tree().create_tween()
-		tween.tween_property(self, "self_modulate", Color.TRANSPARENT, STAMINA_FULL_TRANSITION)
+		if fadeInTween != null:
+			fadeInTween.kill()
+			fadeInTween = null
+		fadeOutTween = get_tree().create_tween()
+		fadeOutTween.tween_property(
+			self,
+			"self_modulate",
+			Color.TRANSPARENT,
+			STAMINA_FULL_TRANSITION
+		)
+		fadeOutTween.tween_callback(func(): fadeOutTween = null)
 		
-	elif Game.player.stamina < 100 && staminaFull && Game.player.exhaustion <= 0:
+	if Game.player.stamina < 100 && staminaFull && Game.player.exhaustion <= 0:
 		staminaFull = false
-		var tween: Tween = get_tree().create_tween()
-		tween.tween_property(self, "self_modulate", Color.WHITE, STAMINA_NOT_FULL_TRANSITION)
+		if fadeOutTween != null:
+			fadeOutTween.kill()
+			fadeOutTween = null
+		fadeInTween = get_tree().create_tween()
+		fadeInTween.tween_property(
+			self,
+			"self_modulate",
+			Color.WHITE,
+			STAMINA_NOT_FULL_TRANSITION
+		)
+		fadeInTween.tween_callback(func(): fadeInTween = null)
