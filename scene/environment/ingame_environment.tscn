@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cljvh2p7v80ll"]
+
+[sub_resource type="Environment" id="Environment_g14hv"]
+background_energy_multiplier = 0.0
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_read_sky_light = false
+glow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = SubResource("Environment_g14hv")
