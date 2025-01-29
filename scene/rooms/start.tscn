@@ -208,3 +208,4 @@ nextNodes = [NodePath("../MonsterNode2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.92956, 0, 3.79336)
 script = ExtResource("11_4hr7i")
 nextNodes = [NodePath("../MonsterNode")]
+nodeState = 1
