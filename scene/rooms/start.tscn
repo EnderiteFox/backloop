@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cpivnlwdvvnpn"]
+[gd_scene load_steps=32 format=3 uid="uid://cpivnlwdvvnpn"]
 
 [ext_resource type="Material" uid="uid://doxkul6taa17v" path="res://material/walls/wall.tres" id="1_fi6s5"]
 [ext_resource type="Script" path="res://script/rooms/room.gd" id="1_g2lga"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://blxb0sqkunyi1" path="res://scene/furniture/desk/Desk.tscn" id="5_dh7hh"]
 [ext_resource type="PackedScene" uid="uid://cfbluaw30yhp5" path="res://scene/lights/floor_lamp/floor_lamp.tscn" id="6_xkg01"]
 [ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://scene/lights/ceiling/ceiling_light.tscn" id="7_nwwm7"]
+[ext_resource type="Script" path="res://script/mobs/node_monsters/monster_node.gd" id="11_4hr7i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cr1do"]
 size = Vector3(6.80554, 1, 10)
@@ -195,3 +196,15 @@ collision_mask = 16
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlacementHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74353, 1.18964, 0.121488)
 shape = SubResource("BoxShape3D_ccfbk")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="MonsterNode" type="Marker3D" parent="Node3D" node_paths=PackedStringArray("nextNodes")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.92956, 0, -4.08576)
+script = ExtResource("11_4hr7i")
+nextNodes = [NodePath("../MonsterNode2")]
+
+[node name="MonsterNode2" type="Marker3D" parent="Node3D" node_paths=PackedStringArray("nextNodes")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.92956, 0, 3.79336)
+script = ExtResource("11_4hr7i")
+nextNodes = [NodePath("../MonsterNode")]
