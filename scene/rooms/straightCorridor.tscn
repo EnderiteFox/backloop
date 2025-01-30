@@ -1,8 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://bmgkpyr0xa3pi"]
+[gd_scene load_steps=23 format=3 uid="uid://bmgkpyr0xa3pi"]
 
 [ext_resource type="Script" path="res://script/rooms/room.gd" id="1_2ddpk"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/floor.tres" id="2_a2gwc"]
-[ext_resource type="Material" uid="uid://doxkul6taa17v" path="res://material/walls/wall.tres" id="3_xj1ox"]
+[ext_resource type="Material" uid="uid://mi3tsypobxge" path="res://material/walls/wallpaper/wallpaper.tres" id="3_70e8w"]
 [ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://scene/door/door.tscn" id="4_3ssjw"]
 [ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://scene/lights/ceiling/ceiling_light.tscn" id="5_3nswq"]
 [ext_resource type="PackedScene" uid="uid://c470vup8fia17" path="res://scene/mobs/the_watcher/window.tscn" id="6_aqddg"]
@@ -15,39 +15,43 @@ size = Vector3(3, 1, 10.2)
 material = ExtResource("2_a2gwc")
 size = Vector3(3, 1, 10.2)
 
+[sub_resource type="BoxMesh" id="BoxMesh_srtlu"]
+material = ExtResource("3_70e8w")
+size = Vector3(3, 1, 10.2)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_34a3o"]
 size = Vector3(0.1, 3.2, 4.33254)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ylxun"]
-material = ExtResource("3_xj1ox")
+material = ExtResource("3_70e8w")
 size = Vector3(0.1, 3.2, 4.33254)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7j5gt"]
 size = Vector3(0.1, 1.00848, 4.33254)
 
 [sub_resource type="BoxMesh" id="BoxMesh_w2liu"]
-material = ExtResource("3_xj1ox")
+material = ExtResource("3_70e8w")
 size = Vector3(0.1, 1.00848, 4.33254)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_icl4b"]
 size = Vector3(0.1, 3.2, 10.1905)
 
 [sub_resource type="BoxMesh" id="BoxMesh_j230o"]
-material = ExtResource("3_xj1ox")
+material = ExtResource("3_70e8w")
 size = Vector3(0.1, 3.2, 10.1905)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7vvul"]
 size = Vector3(0.1, 1.15566, 0.913478)
 
 [sub_resource type="BoxMesh" id="BoxMesh_h6r4f"]
-material = ExtResource("3_xj1ox")
+material = ExtResource("3_70e8w")
 size = Vector3(0.1, 1.15566, 0.913478)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ki6qk"]
 size = Vector3(0.1, 3.20039, 0.995703)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ankln"]
-material = ExtResource("3_xj1ox")
+material = ExtResource("3_70e8w")
 size = Vector3(0.1, 3.20039, 0.995703)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7hg04"]
@@ -71,6 +75,14 @@ metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Ground"]
 mesh = SubResource("BoxMesh_oxff1")
+
+[node name="Ceiling" type="CollisionShape3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.58737, 0)
+shape = SubResource("BoxShape3D_2sw81")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Ceiling"]
+mesh = SubResource("BoxMesh_srtlu")
 
 [node name="Wall" type="CollisionShape3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5025, 1.58348, 2.93272)
@@ -112,10 +124,6 @@ metadata/_edit_group_ = true
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall2"]
 mesh = SubResource("BoxMesh_j230o")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Walls/Wall2"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.45145, 1.5606, 0)
-mesh = SubResource("BoxMesh_j230o")
-
 [node name="Wall3" type="CollisionShape3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.00390196, 2.60564, 5.12701)
 shape = SubResource("BoxShape3D_7vvul")
@@ -125,15 +133,11 @@ metadata/_edit_group_ = true
 mesh = SubResource("BoxMesh_h6r4f")
 
 [node name="Wall4" type="CollisionShape3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.00390196, 2.60564, 5.12701)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.004, 2.606, -5.127)
 shape = SubResource("BoxShape3D_7vvul")
 metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall4"]
-mesh = SubResource("BoxMesh_h6r4f")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Walls/Wall4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2341, 0, 4.475e-07)
 mesh = SubResource("BoxMesh_h6r4f")
 
 [node name="Wall5" type="CollisionShape3D" parent="Walls"]
@@ -144,8 +148,12 @@ metadata/_edit_group_ = true
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall5"]
 mesh = SubResource("BoxMesh_ankln")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Walls/Wall5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2341, 0, 5.36442e-07)
+[node name="Wall10" type="CollisionShape3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.95, 1.583, -5.127)
+shape = SubResource("BoxShape3D_ki6qk")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall10"]
 mesh = SubResource("BoxMesh_ankln")
 
 [node name="Wall6" type="CollisionShape3D" parent="Walls"]
@@ -156,8 +164,12 @@ metadata/_edit_group_ = true
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall6"]
 mesh = SubResource("BoxMesh_ankln")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Walls/Wall6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2341, 0, 5.36442e-07)
+[node name="Wall11" type="CollisionShape3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.946, 1.583, -5.127)
+shape = SubResource("BoxShape3D_ki6qk")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall11"]
 mesh = SubResource("BoxMesh_ankln")
 
 [node name="Door" parent="." instance=ExtResource("4_3ssjw")]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://script/rooms/room.gd" id="1_3h7sh"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/floor.tres" id="2_24hvn"]
-[ext_resource type="Material" uid="uid://doxkul6taa17v" path="res://material/walls/wall.tres" id="3_ofsna"]
+[ext_resource type="Material" uid="uid://mi3tsypobxge" path="res://material/walls/wallpaper/wallpaper.tres" id="3_egf11"]
 [ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://scene/door/door.tscn" id="4_7ykeq"]
 [ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://scene/lights/ceiling/ceiling_light.tscn" id="5_qd417"]
 [ext_resource type="PackedScene" uid="uid://buw2uy5r4nepf" path="res://scene/mobs/the_shade/the_shade_spawn_point.tscn" id="6_b536d"]
@@ -23,39 +23,39 @@ material = ExtResource("2_24hvn")
 size = Vector3(3, 1, 3.6)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2fygv"]
-material = ExtResource("3_ofsna")
+material = ExtResource("3_egf11")
 size = Vector3(10.2, 1, 3)
 
 [sub_resource type="BoxMesh" id="BoxMesh_i36qe"]
-material = ExtResource("3_ofsna")
+material = ExtResource("3_egf11")
 size = Vector3(3, 1, 3.6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3g6ym"]
 size = Vector3(10.2358, 3.2, 0.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_75toi"]
-material = ExtResource("3_ofsna")
+material = ExtResource("3_egf11")
 size = Vector3(10.2358, 3.2, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bay1a"]
 size = Vector3(3.64484, 3.2, 0.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_orsbe"]
-material = ExtResource("3_ofsna")
+material = ExtResource("3_egf11")
 size = Vector3(3.64484, 3.2, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hll57"]
 size = Vector3(0.892166, 1.17115, 0.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_8okkt"]
-material = ExtResource("3_ofsna")
+material = ExtResource("3_egf11")
 size = Vector3(0.892166, 1.17115, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hdo0s"]
 size = Vector3(1.01284, 3.20734, 0.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_t0s7s"]
-material = ExtResource("3_ofsna")
+material = ExtResource("3_egf11")
 size = Vector3(1.01284, 3.20734, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4oab5"]
@@ -91,20 +91,20 @@ metadata/_edit_group_ = true
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Ground2"]
 mesh = SubResource("BoxMesh_gngcj")
 
-[node name="Ground3" type="CollisionShape3D" parent="Walls"]
+[node name="Ceiling" type="CollisionShape3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.17426, 0)
 shape = SubResource("BoxShape3D_stwc3")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Ground3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Ceiling"]
 mesh = SubResource("BoxMesh_2fygv")
 
-[node name="Ground4" type="CollisionShape3D" parent="Walls"]
+[node name="Ceiling2" type="CollisionShape3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.17426, -3.3)
 shape = SubResource("BoxShape3D_yxsoq")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Ground4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Ceiling2"]
 mesh = SubResource("BoxMesh_i36qe")
 
 [node name="Wall" type="CollisionShape3D" parent="Walls"]

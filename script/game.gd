@@ -8,6 +8,9 @@ var theWatcher := TheWatcher.new()
 var theShade := TheShadeManager.new()
 var outrun := OutrunManager.new()
 
+@warning_ignore("unused_signal")
+signal room_opened(room: Room)
+
 func _ready() -> void:
 	roomList.load_rooms()
 

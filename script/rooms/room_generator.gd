@@ -3,6 +3,11 @@ class_name RoomGenerator
 
 var rooms: Array[Room]
 
+var lastRoomOpened: Room = null
+
+func _ready() -> void:
+	Game.room_opened.connect(func(room): lastRoomOpened = room)
+
 func pregenerate_after_door(room: Room, door: Door) -> void:
 	var newRoom: Room = Game.roomList.get_random_room().instantiate()
 	room.add_sibling(newRoom)

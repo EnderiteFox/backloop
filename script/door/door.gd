@@ -20,8 +20,13 @@ var nextRoom: Room = null
 func _ready() -> void:
 	super._ready()
 	%InteractionHitbox.interacted.connect(_on_interact, ConnectFlags.CONNECT_ONE_SHOT)
-	opened.connect(_set_start_monster_node, ConnectFlags.CONNECT_ONE_SHOT)
-	opened.connect(_set_end_monster_node, ConnectFlags.CONNECT_ONE_SHOT)
+	opened.connect(_on_opened, ConnectFlags.CONNECT_ONE_SHOT)
+
+func _on_opened() -> void:
+	_set_start_monster_node()
+	_set_start_monster_node()
+	
+	Game.room_opened.emit(nextRoom)
 
 func _on_interact() -> void:
 	if locked || open:

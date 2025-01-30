@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://script/rooms/room.gd" id="1_swf72"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/floor.tres" id="2_3vwna"]
-[ext_resource type="Material" uid="uid://doxkul6taa17v" path="res://material/walls/wall.tres" id="3_oj80j"]
+[ext_resource type="Material" uid="uid://mi3tsypobxge" path="res://material/walls/wallpaper/wallpaper.tres" id="3_2n7te"]
 [ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://scene/door/door.tscn" id="4_ewkiy"]
 [ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://scene/lights/ceiling/ceiling_light.tscn" id="5_0wexn"]
 [ext_resource type="PackedScene" uid="uid://buw2uy5r4nepf" path="res://scene/mobs/the_shade/the_shade_spawn_point.tscn" id="6_kyg8a"]
@@ -31,46 +31,46 @@ material = ExtResource("2_3vwna")
 size = Vector3(3, 1, 9)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2sckr"]
-material = ExtResource("3_oj80j")
+material = ExtResource("3_2n7te")
 size = Vector3(15, 1, 3)
 
 [sub_resource type="BoxMesh" id="BoxMesh_oubkf"]
-material = ExtResource("3_oj80j")
+material = ExtResource("3_2n7te")
 size = Vector3(3, 1, 9)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_scdjp"]
 size = Vector3(13.062, 3.2, 0.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_jugsd"]
-material = ExtResource("3_oj80j")
+material = ExtResource("3_2n7te")
 size = Vector3(13.062, 3.2, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5miby"]
 size = Vector3(9.09502, 3.2, 0.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2taes"]
-material = ExtResource("3_oj80j")
+material = ExtResource("3_2n7te")
 size = Vector3(9.09502, 3.2, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1wdly"]
 size = Vector3(9.05386, 3.2, 0.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_j6kkc"]
-material = ExtResource("3_oj80j")
+material = ExtResource("3_2n7te")
 size = Vector3(9.05386, 3.2, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_harkp"]
 size = Vector3(1.04246, 3.2, 0.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1p34q"]
-material = ExtResource("3_oj80j")
+material = ExtResource("3_2n7te")
 size = Vector3(1.04246, 3.2, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7h1y8"]
 size = Vector3(1.04246, 1.16834, 0.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_i4nuw"]
-material = ExtResource("3_oj80j")
+material = ExtResource("3_2n7te")
 size = Vector3(1.04246, 1.16834, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uqdfj"]

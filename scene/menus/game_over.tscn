@@ -4,15 +4,30 @@
 [ext_resource type="Script" path="res://script/menus/game_over.gd" id="1_r16wo"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/floor.tres" id="2_1cpfb"]
 [ext_resource type="PackedScene" uid="uid://cm2rdqmhrouja" path="res://model/game_over/game_over_note.gltf" id="3_ug3lr"]
-[ext_resource type="Material" uid="uid://doxkul6taa17v" path="res://material/walls/wall.tres" id="4_m4c6w"]
+[ext_resource type="Material" uid="uid://mi3tsypobxge" path="res://material/walls/wallpaper/wallpaper.tres" id="5_lmxj4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2ma56"]
 material = ExtResource("2_1cpfb")
 size = Vector3(3, 1, 3)
 
 [sub_resource type="BoxMesh" id="BoxMesh_qf0ju"]
-material = ExtResource("4_m4c6w")
+material = ExtResource("5_lmxj4")
 size = Vector3(4, 3.2, 0.1)
+
+[sub_resource type="Animation" id="Animation_bfh2k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_jqhq8"]
 resource_name = "enter_game_over"
@@ -28,21 +43,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_bfh2k"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FadeRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n21pg"]
