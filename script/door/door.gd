@@ -18,7 +18,10 @@ var nextRoom: Room = null
 @onready var animationPlayer: AnimationPlayer = %AnimationPlayer
 
 func _ready() -> void:
+	super._ready()
 	%InteractionHitbox.interacted.connect(_on_interact, ConnectFlags.CONNECT_ONE_SHOT)
+	opened.connect(_set_start_monster_node, ConnectFlags.CONNECT_ONE_SHOT)
+	opened.connect(_set_end_monster_node, ConnectFlags.CONNECT_ONE_SHOT)
 
 func _on_interact() -> void:
 	if locked || open:
@@ -71,3 +74,39 @@ func close() -> void:
 			open = false
 			animationPlayer.speed_scale = 1.0
 	)
+
+func _set_start_monster_node() -> void:
+	if nextRoom == null:
+		return
+	
+	var graph: Array[MonsterNode] = nextRoom.anyMonsterNode.graph
+	
+	if graph.is_empty():
+		return
+	
+	if graph.any(func(node): return node.nodeState == MonsterNode.NodeState.ROOM_START):
+		return
+	
+	graph.sort_custom(
+		func(node1, node2):
+			return node1.global_position.distance_squared_to(self.global_position) \
+				< node2.global_position.distance_squared_to(self.global_position)
+	)
+	graph[0].nodeState = MonsterNode.NodeState.ROOM_START
+
+
+func _set_end_monster_node() -> void:
+	if room.anyMonsterNode.graph.is_empty():
+		return
+	
+	for node in room.anyMonsterNode.graph:
+		if node.nodeState == MonsterNode.NodeState.ROOM_END:
+			node.nodeState = MonsterNode.NodeState.NORMAL
+	
+	var graph: Array[MonsterNode] = room.anyMonsterNode.graph
+	graph.sort_custom(
+		func(node1, node2):
+			return node1.global_position.distance_squared_to(self.global_position) \
+				< node2.global_position.distance_squared_to(self.global_position)
+	)
+	graph[0].nodeState = MonsterNode.NodeState.ROOM_END

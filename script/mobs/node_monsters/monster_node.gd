@@ -4,9 +4,13 @@ class_name MonsterNode
 
 @export var nextNodes: Array[MonsterNode]
 @export var nodeState: NodeState = NodeState.NORMAL
+@export var fixPartialLinks: bool = true
+
 var graph: Array[MonsterNode]
 
 var debugLines: MeshInstance3D = null
+
+const DEBUG_LINE_HEIGHT: float = 0.2
 
 enum NodeState {
 	NORMAL,
@@ -15,13 +19,21 @@ enum NodeState {
 }
 
 func _ready() -> void:
-	if Engine.is_editor_hint():
+	if Engine.is_editor_hint() && !nextNodes.is_empty():
 		debugLines = _init_line()
 	else:
 		for node in get_children(true):
 			if node.get_meta("is_internal", false):
 				node.queue_free()
+	if fixPartialLinks:
+		_fix_partial_links()
 	graph = getWholeGraph()
+
+
+func _fix_partial_links() -> void:
+	for node in nextNodes:
+		if self not in node.nextNodes:
+			node.nextNodes.append(self)
 
 
 func getWholeGraph(visited: Array[MonsterNode] = []) -> Array[MonsterNode]:
@@ -32,12 +44,20 @@ func getWholeGraph(visited: Array[MonsterNode] = []) -> Array[MonsterNode]:
 		var nextVisited: Array[MonsterNode] = Array(visited)
 		nextVisited.append(self)
 		recNextNodes.append_array(node.getWholeGraph(nextVisited))
-	var result: Array[MonsterNode] = recNextNodes
-	result.append(self)
+	var tempResult: Array[MonsterNode] = recNextNodes
+	tempResult.append(self)
+	
+	var result: Array[MonsterNode] = []
+	for node in tempResult:
+		if node not in result:
+			result.append(node)
+	
 	return result
+
 
 func _physics_process(_delta: float) -> void:
 	_draw_lines()
+
 
 func _init_line() -> MeshInstance3D:
 	for node in get_children(true):
@@ -54,10 +74,10 @@ func _init_line() -> MeshInstance3D:
 	
 	self.add_child(meshInstance, false, Node.INTERNAL_MODE_BACK)
 	return meshInstance
-	
+
 
 func _draw_lines() -> void:
-	if debugLines == null:
+	if debugLines == null || nextNodes.is_empty():
 		return
 		
 	var material := ORMMaterial3D.new()
@@ -68,9 +88,8 @@ func _draw_lines() -> void:
 	mesh.surface_begin(Mesh.PRIMITIVE_LINES, material)
 	
 	for node in nextNodes:
-		if self in node.nextNodes:
-			mesh.surface_add_vertex(to_local(self.global_position))
-			mesh.surface_add_vertex(to_local(node.global_position))
+		mesh.surface_add_vertex(to_local(self.global_position) + Vector3(0, DEBUG_LINE_HEIGHT, 0))
+		mesh.surface_add_vertex(to_local(node.global_position) + Vector3(0, DEBUG_LINE_HEIGHT, 0))
 
 	mesh.surface_end()
 	

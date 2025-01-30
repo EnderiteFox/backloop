@@ -64,10 +64,11 @@ size = Vector3(10.1765, 5.29791, 3.26013)
 [sub_resource type="BoxShape3D" id="BoxShape3D_01qi5"]
 size = Vector3(3.24744, 5.29773, 3.99451)
 
-[node name="TShapeTwoWindows" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementHitbox")]
+[node name="TShapeTwoWindows" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementHitbox", "anyMonsterNode")]
 script = ExtResource("1_3h7sh")
 doors = [NodePath("Door"), NodePath("Door2"), NodePath("Door3")]
 roomPlacementHitbox = NodePath("PlacementHitbox")
+anyMonsterNode = NodePath("MonsterNodes/MonsterNode")
 
 [node name="Walls" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)

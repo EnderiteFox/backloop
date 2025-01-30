@@ -6,7 +6,7 @@ signal room_opened
 
 @export var doors: Array[Door]
 @export var roomPlacementHitbox: Area3D
-@export var lastMonsterNode: MonsterNode
+@export var anyMonsterNode: MonsterNode
 
 var fullyGenerated = false;
 

@@ -56,11 +56,11 @@ size = Vector3(3.20459, 4.25958, 10.1487)
 [sub_resource type="BoxShape3D" id="BoxShape3D_rwtdb"]
 size = Vector3(2.1012, 4.36975, 2.09558)
 
-[node name="StraightCorridor" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementHitbox", "lastMonsterNode")]
+[node name="StraightCorridor" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementHitbox", "anyMonsterNode")]
 script = ExtResource("1_2ddpk")
 doors = [NodePath("Door"), NodePath("Door2")]
 roomPlacementHitbox = NodePath("RoomPlacementHitbox")
-lastMonsterNode = NodePath("MonsterNodes/MonsterNode2")
+anyMonsterNode = NodePath("MonsterNodes/MonsterNode")
 
 [node name="Walls" type="StaticBody3D" parent="."]
 
@@ -186,11 +186,12 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.484
 
 [node name="MonsterNodes" type="Node3D" parent="."]
 
-[node name="MonsterNode" type="Node3D" parent="MonsterNodes"]
+[node name="MonsterNode" type="Node3D" parent="MonsterNodes" node_paths=PackedStringArray("nextNodes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.00332)
 script = ExtResource("7_r81c3")
+nextNodes = [NodePath("../MonsterNode2")]
 
-[node name="MonsterNode2" type="Node3D" parent="MonsterNodes" node_paths=PackedStringArray("previousNodes")]
+[node name="MonsterNode2" type="Node3D" parent="MonsterNodes" node_paths=PackedStringArray("nextNodes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.99513)
 script = ExtResource("7_r81c3")
-previousNodes = [NodePath("../MonsterNode")]
+nextNodes = [NodePath("../MonsterNode")]

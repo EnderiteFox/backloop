@@ -85,10 +85,11 @@ size = Vector3(0.1, 6.75419, 10.0538)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ccfbk"]
 size = Vector3(6.96606, 4.47205, 10.0525)
 
-[node name="Start" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementHitbox")]
+[node name="Start" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementHitbox", "anyMonsterNode")]
 script = ExtResource("1_g2lga")
 doors = [NodePath("Door")]
 roomPlacementHitbox = NodePath("PlacementHitbox")
+anyMonsterNode = NodePath("Node3D/MonsterNode")
 
 [node name="Walls" type="StaticBody3D" parent="."]
 collision_mask = 14
