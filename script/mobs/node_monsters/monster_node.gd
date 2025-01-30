@@ -1,5 +1,5 @@
 @tool
-extends Marker3D
+extends Node3D
 class_name MonsterNode
 
 @export var nextNodes: Array[MonsterNode]
@@ -68,8 +68,9 @@ func _draw_lines() -> void:
 	mesh.surface_begin(Mesh.PRIMITIVE_LINES, material)
 	
 	for node in nextNodes:
-		mesh.surface_add_vertex(to_local(self.global_position))
-		mesh.surface_add_vertex(to_local(node.global_position))
+		if self in node.nextNodes:
+			mesh.surface_add_vertex(to_local(self.global_position))
+			mesh.surface_add_vertex(to_local(node.global_position))
 
 	mesh.surface_end()
 	
