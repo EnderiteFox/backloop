@@ -100,6 +100,7 @@ transform = Transform3D(1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107
 light_color = Color(0.552956, 0.552956, 0.552956, 1)
 light_energy = 10.0
 light_indirect_energy = 10.0
+light_bake_mode = 1
 light_cull_mask = 4294967293
 shadow_enabled = true
 

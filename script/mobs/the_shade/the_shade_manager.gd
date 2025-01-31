@@ -1,4 +1,4 @@
-extends Object
+extends RefCounted
 class_name TheShadeManager
 
 const SPAWN_CHANCE: float = 0.2

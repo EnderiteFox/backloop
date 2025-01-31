@@ -1,5 +1,5 @@
-extends Object
-class_name TheWatcher
+extends RefCounted
+class_name TheWatcherManager
 
 const SPAWN_CHANCE: float = 0.2
 const REACT_TIME: float = 1.5

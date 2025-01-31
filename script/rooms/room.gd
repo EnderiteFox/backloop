@@ -8,7 +8,7 @@ signal room_opened
 @export var roomPlacementHitbox: Area3D
 @export var anyMonsterNode: MonsterNode
 
-var fullyGenerated = false;
+var fullyGenerated: bool = false;
 
 var previousRoom: Room = null
 
