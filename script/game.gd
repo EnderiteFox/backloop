@@ -8,11 +8,14 @@ var theWatcher := TheWatcherManager.new()
 var theShade := TheShadeManager.new()
 var outrun := OutrunManager.new()
 
+var nodeMonsterManager := NodeMonsterManager.new()
+
 @warning_ignore("unused_signal")
 signal room_opened(room: Room)
 
 func _ready() -> void:
 	roomList.load_rooms()
+	outrun.ready()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("fullscreen"):
