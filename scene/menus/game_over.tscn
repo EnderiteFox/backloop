@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cljvh2p7v80ll" path="res://scene/environment/ingame_environment.tscn" id="1_jf0cq"]
 [ext_resource type="Script" path="res://script/menus/game_over.gd" id="1_r16wo"]
-[ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/floor.tres" id="2_1cpfb"]
+[ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="2_1cpfb"]
 [ext_resource type="PackedScene" uid="uid://cm2rdqmhrouja" path="res://model/game_over/game_over_note.gltf" id="3_ug3lr"]
 [ext_resource type="Material" uid="uid://mi3tsypobxge" path="res://material/walls/wallpaper/wallpaper.tres" id="5_lmxj4"]
 

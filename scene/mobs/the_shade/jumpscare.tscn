@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=4 uid="uid://du73na0nwumla"]
 
-[ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/floor.tres" id="1_wx480"]
+[ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="1_wx480"]
 [ext_resource type="Material" uid="uid://mi3tsypobxge" path="res://material/walls/wallpaper/wallpaper.tres" id="2_0fp32"]
 [ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://scene/lights/ceiling/ceiling_light.tscn" id="3_yp5vn"]
 [ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://scene/door/door.tscn" id="4_pyecc"]
