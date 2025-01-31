@@ -1,11 +1,13 @@
-extends Object
+extends RefCounted
 class_name RoomGenerator
 
 var rooms: Array[Room]
 
 var lastRoomOpened: Room = null
 
-func _ready() -> void:
+
+## Initializes the RoomGenerator. Called by the game.
+func ready() -> void:
 	Game.room_opened.connect(func(room): lastRoomOpened = room)
 
 func pregenerate_after_door(room: Room, door: Door) -> void:

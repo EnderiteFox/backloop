@@ -8,13 +8,17 @@ var theWatcher := TheWatcherManager.new()
 var theShade := TheShadeManager.new()
 var outrun := OutrunManager.new()
 
-var nodeMonsterManager := NodeMonsterManager.new()
+var nodeMonsters := NodeMonsterManager.new()
 
 @warning_ignore("unused_signal")
 signal room_opened(room: Room)
 
+@warning_ignore("unused_signal")
+signal lights_flicker(duration: float)
+
 func _ready() -> void:
 	roomList.load_rooms()
+	roomGenerator.ready()
 	outrun.ready()
 
 func _unhandled_input(event: InputEvent) -> void:

@@ -1,9 +1,11 @@
 extends RefCounted
 class_name NodeMonsterManager
 
-"""
-Returns the rooms that are on the path, from the farthest room to the last room opened
-"""
+const START_POINT_DISTANCE: float = 10
+const END_POINT_DISTANCE: float = 10
+
+
+## Returns the rooms that are on the path, from the farthest room to the last room opened
 func _get_path_rooms() -> Array[Room]:
 	var rooms: Array[Room] = []
 	var currentRoom: Room = Game.roomGenerator.lastRoomOpened
@@ -14,28 +16,35 @@ func _get_path_rooms() -> Array[Room]:
 	return rooms
 
 
-"""
-Returns the path that the node monster should take. Returns an empty array if pathfinding failed
-"""
-func get_monster_node_path() -> Array[Vector3]:
-	var path: Array[Vector3] = []
+
+## Returns the path that the node monster should take.[br]
+## The path is made of the room paths back-to-back, with a start node and an end node added,
+## whose location is extended from the two first/last nodes.[br]
+## Returns an empty array if pathfinding failed.[br]
+func get_node_monster_path() -> PackedVector3Array:
+	var path: PackedVector3Array = []
 
 	var pathRooms: Array[Room] =_get_path_rooms()
 
 	for room in pathRooms:
-		var roomPath: Array[Vector3] = _pathfind_room_graph(room)
+		var roomPath: PackedVector3Array = _pathfind_room_graph(room)
 		if roomPath.is_empty():
 			return []
 		path.append_array(roomPath)
+
+	if path.size() < 2:
+		return []
+
+	path.insert(0, path[0] + path[1].direction_to(path[0]) * START_POINT_DISTANCE)
+	path.push_back(path[-1] + path[-2].direction_to(path[-1]) * END_POINT_DISTANCE)
 
 	return path
 
 
 
-"""
-Returns the path from the start to the end of the room. Returns an empty array if pathfinding failed
-"""
-func _pathfind_room_graph(room: Room) -> Array[Vector3]:
+
+## Returns the path from the start to the end of the room. Returns an empty array if pathfinding failed
+func _pathfind_room_graph(room: Room) -> PackedVector3Array:
 	var graph: Array[MonsterNode] = room.anyMonsterNode.graph
 
 	# Find start node

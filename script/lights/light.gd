@@ -11,6 +11,9 @@ const MAX_ENERGY_MULT: float = 0.7
 const MIN_INTERVAL: float = 0.05
 const MAX_INTERVAL: float = 0.2
 
+func _ready() -> void:
+	Game.lights_flicker.connect(flicker)
+
 func flicker(time: float) -> void:
 	for light in lights:
 		_flicker_light(time, light)

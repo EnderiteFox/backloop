@@ -1,18 +1,28 @@
 extends RefCounted
 class_name OutrunManager
 
-const START_POINT_DISTANCE: float = 10
-const END_POINT_DISTANCE: float = 10
+const SPAWN_CHANCE: float = 100.0
 
 var isActive: bool = false
 
-"""
-Initializes the manager. Called by Game
-"""
+var outrunScene: PackedScene = preload("res://scene/mobs/node_monsters/outrun/outrun.tscn")
+
+
+## Initializes the manager. Called by Game
 func ready() -> void:
 	Game.room_opened.connect(_on_room_opened)
 
+
+
 func _on_room_opened(_room: Room) -> void:
-	pass
+	if randf() < SPAWN_CHANCE:
+		spawn()
+
+
+## Spawns Outrun
+func spawn() -> void:
+	var outrun: Outrun = outrunScene.instantiate()
+	Game.roomGenerator.lastRoomOpened.add_sibling(outrun)
+	outrun.activate(Game.nodeMonsters.get_node_monster_path())
 
 

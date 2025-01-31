@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://f57tvg8catxs"]
+
+[ext_resource type="Texture2D" uid="uid://cmautxg73fxde" path="res://image/mobs/node_monsters/outrun/maxwell.png" id="1_ea6ck"]
+[ext_resource type="Script" path="res://script/mobs/node_monsters/outrun/outrun.gd" id="1_qoose"]
+
+[node name="Outrun" type="Node3D"]
+script = ExtResource("1_qoose")
+moveSpeed = 5.0
+
+[node name="Maxwell" type="Sprite3D" parent="."]
+transform = Transform3D(0.369715, 0, 0, 0, 0.369715, 0, 0, 0, 0.369715, 0, 1.47075, 0)
+gi_mode = 0
+billboard = 1
+shaded = true
+double_sided = false
+texture = ExtResource("1_ea6ck")
