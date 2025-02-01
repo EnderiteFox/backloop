@@ -16,6 +16,7 @@ var nextRoom: Room = null
 
 @onready var hitbox: StaticBody3D = %CollisionHitbox
 @onready var animationPlayer: AnimationPlayer = %AnimationPlayer
+@onready var doorSoundPlayer: AudioStreamPlayer3D = %DoorSoundPlayer
 
 func _ready() -> void:
 	super._ready()
@@ -25,7 +26,8 @@ func _ready() -> void:
 func _on_opened() -> void:
 	_set_start_monster_node()
 	_set_end_monster_node()
-	
+
+	doorSoundPlayer.play()
 	Game.room_opened.emit(nextRoom)
 
 func _on_interact() -> void:

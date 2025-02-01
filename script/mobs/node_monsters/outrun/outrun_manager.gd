@@ -2,7 +2,6 @@ extends RefCounted
 class_name OutrunManager
 
 const SPAWN_CHANCE: float = 1.0
-const TIME_BEFORE_ATTACK: float = 4.0
 
 var isActive: bool = false
 
@@ -24,6 +23,6 @@ func _on_room_opened(_room: Room) -> void:
 func spawn() -> void:
 	var outrun: Outrun = outrunScene.instantiate()
 	Game.roomGenerator.lastRoomOpened.add_sibling(outrun)
-	outrun.activate(Game.nodeMonsters.get_node_monster_path())
+	outrun.setup(Game.nodeMonsters.get_node_monster_path())
 
 

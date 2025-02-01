@@ -1,12 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://bbjkia2lowqon"]
+[gd_scene load_steps=15 format=3 uid="uid://bbjkia2lowqon"]
 
 [ext_resource type="PackedScene" uid="uid://de6hy5siiftlw" path="res://model/door/room_door_animation/scene.gltf" id="1_nu3f6"]
 [ext_resource type="Script" path="res://script/door/door.gd" id="2_dch8f"]
 [ext_resource type="Script" path="res://script/interactable/interactable.gd" id="2_s446a"]
+[ext_resource type="AudioStream" uid="uid://bj7thlbe65sup" path="res://sound/door/doorOpen_1.ogg" id="3_2a278"]
 [ext_resource type="Animation" uid="uid://bgbnuequyoj03" path="res://scene/door/door_animation.res" id="3_wdws3"]
+[ext_resource type="AudioStream" uid="uid://bi46jtvuofedk" path="res://sound/door/doorOpen_2.ogg" id="4_wfjhv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p4dlk"]
 size = Vector3(0.817505, 1.97674, 0.0354614)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1sj1c"]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = ExtResource("3_2a278")
+stream_1/stream = ExtResource("4_wfjhv")
 
 [sub_resource type="Animation" id="Animation_nrtu6"]
 length = 0.001
@@ -131,11 +139,16 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00360107, 0.98572, 0.0843811)
 shape = SubResource("BoxShape3D_p4dlk")
 
+[node name="DoorSoundPlayer" type="AudioStreamPlayer3D" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002/Plane_001/Plane_001_Door__Door_C_jpg_0" index="1"]
+unique_name_in_owner = true
+transform = Transform3D(1.00479, 9.9094e-11, 0.000831261, 0.00083126, -1.1978e-07, -1.00479, 0, 1.00479, -1.1978e-07, 0.435051, 0.101757, 0.744764)
+stream = SubResource("AudioStreamRandomizer_1sj1c")
+
 [node name="Plane_003" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002/Plane_001" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.64698e-23, 0, -2.64698e-23, 1, 0.850496, 0.0166004, 0.78184)
 
 [node name="Circle_002" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002/Plane_001" index="3"]
-transform = Transform3D(0.999123, 1.08515e-19, -0.0418755, -1.08419e-19, 1, 4.54414e-21, 0.0418755, -3.95819e-26, 0.999123, 0.809703, 0.0427378, 0.802855)
+transform = Transform3D(0.999123, 1.08514e-19, -0.0418755, -1.08419e-19, 1, 4.54416e-21, 0.0418755, -7.47209e-26, 0.999123, 0.809703, 0.0427378, 0.802855)
 
 [node name="AnimationPlayer" parent="." index="1"]
 unique_name_in_owner = true

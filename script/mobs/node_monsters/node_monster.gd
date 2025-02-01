@@ -15,16 +15,20 @@ var moving: bool = false
 ## The amount of time that the lights will flicker when this monster spawns
 @export var lightFlickerTime: float = 2
 
+## Time after spawn before the node monster starts to move
+@export var spawnSafeTime: float = 4.0
+
 @export_range(0, 100, 0.1, "or_greater", "suffix:m/s") var moveSpeed: float = 1.0
 
-func setup(monsterPath: PackedVector3Array, timeBeforeMove: float) -> void:
-	if monsterPath.is_empty():
-		printerr("Node monster can't follow empty path")
-		self.queue_free()
-		return
+var spawnTimer: Timer
 
-## Activates the node monster, defining its path, teleporting it to the first path node, and setting it to move
-func activate(monsterPath: PackedVector3Array) -> void:
+func _ready() -> void:
+	spawnTimer = Timer.new()
+	self.add_child(spawnTimer)
+	spawnTimer.timeout.connect(activate)
+
+## Sets the path that the monster will take, teleporting it to the first point, and starts the timer to make activate it
+func setup(monsterPath: PackedVector3Array) -> void:
 	if monsterPath.is_empty():
 		printerr("Node monster can't follow empty path")
 		self.queue_free()
@@ -37,6 +41,11 @@ func activate(monsterPath: PackedVector3Array) -> void:
 
 	Game.lights_flicker.emit(lightFlickerTime)
 
+	spawnTimer.start(spawnSafeTime)
+
+## Activates the node monster, making it move and making it deadly
+func activate() -> void:
+	self.moving = true
 
 
 func _physics_process(delta: float) -> void:
