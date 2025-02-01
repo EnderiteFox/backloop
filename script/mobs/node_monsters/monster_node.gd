@@ -1,5 +1,5 @@
 @tool
-extends Node3D
+extends Marker3D
 class_name MonsterNode
 
 @export var nextNodes: Array[MonsterNode]

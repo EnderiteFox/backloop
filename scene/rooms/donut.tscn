@@ -79,7 +79,7 @@ size = Vector3(14.956, 5.30023, 14.9846)
 
 [node name="Donut" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementHitbox", "anyMonsterNode")]
 script = ExtResource("1_swf72")
-doors = [NodePath("Door"), NodePath("Door2"), NodePath("Door3"), NodePath("Door4")]
+doors = [NodePath("Doors/Door"), NodePath("Doors/Door2"), NodePath("Doors/Door3"), NodePath("Doors/Door4")]
 roomPlacementHitbox = NodePath("PlacementHitbox")
 anyMonsterNode = NodePath("MonsterNodes/MonsterNode")
 
@@ -280,35 +280,43 @@ metadata/_edit_group_ = true
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall12"]
 mesh = SubResource("BoxMesh_i4nuw")
 
-[node name="Door" parent="." instance=ExtResource("4_ewkiy")]
+[node name="Doors" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Door" parent="Doors" instance=ExtResource("4_ewkiy")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.505, 0, 0)
 metadata/_edit_lock_ = true
 
-[node name="Door2" parent="." instance=ExtResource("4_ewkiy")]
+[node name="Door2" parent="Doors" instance=ExtResource("4_ewkiy")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.50147, 0, 12)
 metadata/_edit_lock_ = true
 
-[node name="Door3" parent="." instance=ExtResource("4_ewkiy")]
+[node name="Door3" parent="Doors" instance=ExtResource("4_ewkiy")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -6, 0, -1.48637)
 metadata/_edit_lock_ = true
 
-[node name="Door4" parent="." instance=ExtResource("4_ewkiy")]
+[node name="Door4" parent="Doors" instance=ExtResource("4_ewkiy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 13.4848)
 metadata/_edit_lock_ = true
 
-[node name="CeilingLight" parent="." instance=ExtResource("5_0wexn")]
+[node name="Lights" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CeilingLight" parent="Lights" instance=ExtResource("5_0wexn")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 3.18518, 0)
 metadata/_edit_lock_ = true
 
-[node name="CeilingLight2" parent="." instance=ExtResource("5_0wexn")]
+[node name="CeilingLight2" parent="Lights" instance=ExtResource("5_0wexn")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 3.185, 0)
 metadata/_edit_lock_ = true
 
-[node name="CeilingLight3" parent="." instance=ExtResource("5_0wexn")]
+[node name="CeilingLight3" parent="Lights" instance=ExtResource("5_0wexn")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 6, 3.185, 12)
 metadata/_edit_lock_ = true
 
-[node name="CeilingLight4" parent="." instance=ExtResource("5_0wexn")]
+[node name="CeilingLight4" parent="Lights" instance=ExtResource("5_0wexn")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -6, 3.185, 12)
 metadata/_edit_lock_ = true
 
@@ -357,22 +365,42 @@ metadata/_edit_group_ = true
 [node name="MonsterNode" type="Marker3D" parent="MonsterNodes" node_paths=PackedStringArray("nextNodes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.04932, 0, 0)
 script = ExtResource("7_ecq41")
-nextNodes = [NodePath("../MonsterNode2"), NodePath("../MonsterNode4")]
+nextNodes = [NodePath("../MonsterNode2"), NodePath("../MonsterNode4"), NodePath("../MonsterNode5")]
 
 [node name="MonsterNode2" type="Marker3D" parent="MonsterNodes" node_paths=PackedStringArray("nextNodes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.04932, 0, 12.1592)
 script = ExtResource("7_ecq41")
-nextNodes = [NodePath("../MonsterNode"), NodePath("../MonsterNode3")]
+nextNodes = [NodePath("../MonsterNode"), NodePath("../MonsterNode3"), NodePath("../MonsterNode6")]
 
 [node name="MonsterNode3" type="Marker3D" parent="MonsterNodes" node_paths=PackedStringArray("nextNodes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.00151, 0, 12.1592)
 script = ExtResource("7_ecq41")
-nextNodes = [NodePath("../MonsterNode2"), NodePath("../MonsterNode4")]
+nextNodes = [NodePath("../MonsterNode2"), NodePath("../MonsterNode4"), NodePath("../MonsterNode7")]
 
 [node name="MonsterNode4" type="Marker3D" parent="MonsterNodes" node_paths=PackedStringArray("nextNodes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.00151, 0, -0.00387168)
 script = ExtResource("7_ecq41")
-nextNodes = [NodePath("../MonsterNode"), NodePath("../MonsterNode3")]
+nextNodes = [NodePath("../MonsterNode"), NodePath("../MonsterNode3"), NodePath("../MonsterNode8")]
+
+[node name="MonsterNode5" type="Marker3D" parent="MonsterNodes" node_paths=PackedStringArray("nextNodes")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.99267, 0, 0)
+script = ExtResource("7_ecq41")
+nextNodes = [NodePath("../MonsterNode")]
+
+[node name="MonsterNode6" type="Marker3D" parent="MonsterNodes" node_paths=PackedStringArray("nextNodes")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.05, 0, 13.0016)
+script = ExtResource("7_ecq41")
+nextNodes = [NodePath("../MonsterNode2")]
+
+[node name="MonsterNode7" type="Marker3D" parent="MonsterNodes" node_paths=PackedStringArray("nextNodes")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.29663, 0, 12.0095)
+script = ExtResource("7_ecq41")
+nextNodes = [NodePath("../MonsterNode3")]
+
+[node name="MonsterNode8" type="Marker3D" parent="MonsterNodes" node_paths=PackedStringArray("nextNodes")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.00223, 0, -1.32829)
+script = ExtResource("7_ecq41")
+nextNodes = [NodePath("../MonsterNode4")]
 
 [node name="VoxelGI" type="VoxelGI" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.152191, 1.70156, 5.87106)

@@ -5,7 +5,7 @@
 
 [node name="Outrun" type="Node3D"]
 script = ExtResource("1_qoose")
-moveSpeed = 5.0
+moveSpeed = 10.0
 
 [node name="Maxwell" type="Sprite3D" parent="."]
 transform = Transform3D(0.369715, 0, 0, 0, 0.369715, 0, 0, 0, 0.369715, 0, 1.47075, 0)

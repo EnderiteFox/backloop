@@ -13,7 +13,7 @@ var moving: bool = false
 @export var freeOnPathEnd: bool = true
 
 ## The amount of time that the lights will flicker when this monster spawns
-@export var lightFlickerTime: float = 2
+@export var lightFlickerTime: float = 3.0
 
 ## Time after spawn before the node monster starts to move
 @export var spawnSafeTime: float = 4.0
@@ -37,7 +37,6 @@ func setup(monsterPath: PackedVector3Array) -> void:
 	self.path = monsterPath
 	self.global_position = self.path[0]
 	self.currentPathPoint = 1
-	self.moving = true
 
 	Game.lights_flicker.emit(lightFlickerTime)
 
