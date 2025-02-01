@@ -39,7 +39,3 @@ func _flicker_light(time: float, light: Light3D) -> void:
 		lightEnergy,
 		randf_range(MIN_ENERGY_MULT, MAX_ENERGY_MULT)
 	)
-
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("debug"):
-		flicker(10)

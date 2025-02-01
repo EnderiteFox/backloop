@@ -24,7 +24,7 @@ func _get_path_rooms() -> Array[Room]:
 func get_node_monster_path() -> PackedVector3Array:
 	var path: PackedVector3Array = []
 
-	var pathRooms: Array[Room] =_get_path_rooms()
+	var pathRooms: Array[Room] = _get_path_rooms()
 
 	for room in pathRooms:
 		var roomPath: PackedVector3Array = _pathfind_room_graph(room)

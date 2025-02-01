@@ -4,6 +4,7 @@ extends Light
 @export var flickerSound: AudioStreamPlayer3D
 
 func _ready() -> void:
+	super._ready()
 	normalSound.play()
 	flickerSound.stop()
 	flicker_start.connect(_on_flicker)

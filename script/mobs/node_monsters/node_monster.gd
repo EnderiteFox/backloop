@@ -17,7 +17,11 @@ var moving: bool = false
 
 @export_range(0, 100, 0.1, "or_greater", "suffix:m/s") var moveSpeed: float = 1.0
 
-
+func setup(monsterPath: PackedVector3Array, timeBeforeMove: float) -> void:
+	if monsterPath.is_empty():
+		printerr("Node monster can't follow empty path")
+		self.queue_free()
+		return
 
 ## Activates the node monster, defining its path, teleporting it to the first path node, and setting it to move
 func activate(monsterPath: PackedVector3Array) -> void:

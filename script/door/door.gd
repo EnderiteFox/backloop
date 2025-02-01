@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func _on_opened() -> void:
 	_set_start_monster_node()
-	_set_start_monster_node()
+	_set_end_monster_node()
 	
 	Game.room_opened.emit(nextRoom)
 

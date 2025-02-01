@@ -28,3 +28,6 @@ func _unhandled_input(event: InputEvent) -> void:
 				get_window().mode = Window.MODE_MAXIMIZED
 			_:
 				get_window().mode = Window.MODE_FULLSCREEN
+
+	if event.is_action_pressed("debug"):
+		lights_flicker.emit(10)

@@ -1,7 +1,8 @@
 extends RefCounted
 class_name OutrunManager
 
-const SPAWN_CHANCE: float = 100.0
+const SPAWN_CHANCE: float = 1.0
+const TIME_BEFORE_ATTACK: float = 4.0
 
 var isActive: bool = false
 
