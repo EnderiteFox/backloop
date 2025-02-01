@@ -1,18 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2xt05xayiv6e"]
+[gd_scene load_steps=6 format=3 uid="uid://b2xt05xayiv6e"]
 
-[ext_resource type="PackedScene" uid="uid://p0cu52kdlpm2" path="res://model/lights/ceiling/scene.gltf" id="1_qhgw6"]
 [ext_resource type="Script" path="res://script/lights/sound_light.gd" id="1_vprai"]
+[ext_resource type="PackedScene" uid="uid://dbnx20jy152lr" path="res://model/lights/ceiling/ceiling_light.tscn" id="2_3ilc7"]
 [ext_resource type="AudioStream" uid="uid://pmq32fcqmnfp" path="res://sound/lights/neon.ogg" id="3_5m4j4"]
 [ext_resource type="AudioStream" uid="uid://btp3lytgmwhqu" path="res://sound/lights/neon_flicker.ogg" id="4_j2rl1"]
 
-[node name="CeilingLight" type="Node3D" node_paths=PackedStringArray("normalSound", "flickerSound", "lights")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_1r4dr"]
+size = Vector3(0.207031, 0.162781, 1)
+
+[node name="CeilingLight" type="Node3D" node_paths=PackedStringArray("normalSound", "flickerSound", "lights", "breakHitbox")]
 script = ExtResource("1_vprai")
 normalSound = NodePath("NormalSound")
 flickerSound = NodePath("FlickerSound")
 lights = [NodePath("OmniLight3D"), NodePath("OmniLight3D2")]
+breakHitbox = NodePath("BreakHitbox")
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_qhgw6")]
-transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 1.41951, 0)
+[node name="CeilingLightModel" parent="." instance=ExtResource("2_3ilc7")]
+transform = Transform3D(-1, -1.50996e-07, 0, 1.50996e-07, -1, 0, 0, 0, 1, 0, 1.41951, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.153267, -0.3)
@@ -35,3 +39,12 @@ volume_db = -20.0
 [node name="FlickerSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_j2rl1")
 volume_db = -20.0
+
+[node name="BreakHitbox" type="Area3D" parent="."]
+collision_layer = 32
+collision_mask = 64
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BreakHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000976563, -0.0507507, 0)
+shape = SubResource("BoxShape3D_1r4dr")

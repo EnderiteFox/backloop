@@ -2,6 +2,7 @@ extends Node3D
 class_name NodeMonster
 
 signal path_end_reached
+signal started_moving
 
 var path: PackedVector3Array
 var currentPathPoint: int = 0
@@ -45,6 +46,7 @@ func setup(monsterPath: PackedVector3Array) -> void:
 ## Activates the node monster, making it move and making it deadly
 func activate() -> void:
 	self.moving = true
+	started_moving.emit()
 
 
 func _physics_process(delta: float) -> void:
