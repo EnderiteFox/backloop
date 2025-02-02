@@ -19,6 +19,12 @@ var moving: bool = false
 ## Time after spawn before the node monster starts to move
 @export var spawnSafeTime: float = 4.0
 
+## If false, the node monster won't break lights
+@export var breakLights: bool = true
+
+## The area3D that break lights
+@export var lightBreaker: Area3D
+
 @export_range(0, 100, 0.1, "or_greater", "suffix:m/s") var moveSpeed: float = 1.0
 
 var spawnTimer: Timer
@@ -27,6 +33,12 @@ func _ready() -> void:
 	spawnTimer = Timer.new()
 	self.add_child(spawnTimer)
 	spawnTimer.timeout.connect(activate)
+
+	if !breakLights:
+		if lightBreaker == null:
+			printerr("No light breaker defined for the node monster!")
+		else:
+			lightBreaker.monitorable = false
 
 ## Sets the path that the monster will take, teleporting it to the first point, and starts the timer to make activate it
 func setup(monsterPath: PackedVector3Array) -> void:

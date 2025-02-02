@@ -12,9 +12,28 @@ var fullyGenerated: bool = false;
 
 var previousRoom: Room = null
 
+var roomsBeforeDespawn: int = Game.roomGenerator.ROOM_PERSISTENCE
+
 func _ready() -> void:
 	self.visible = false
 	Game.roomGenerator.rooms.append(self)
+	Game.room_opened.connect(_on_room_opened)
+
+
+func _on_room_opened(_room: Room) -> void:
+	if !fullyGenerated:
+		return
+	roomsBeforeDespawn -= 1
+	if roomsBeforeDespawn == 0:
+		for door in doors:
+			door.close()
+	elif roomsBeforeDespawn < 0:
+		Game.roomGenerator.rooms.erase(self)
+		for door in doors:
+			if !door.nextRoom.fullyGenerated:
+				Game.roomGenerator.rooms.erase(door.nextRoom)
+				door.nextRoom.queue_free()
+		self.queue_free()
 
 func place_after_door(door: Door) -> void:
 	if door in doors:

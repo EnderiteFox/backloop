@@ -1,6 +1,8 @@
 extends RefCounted
 class_name RoomGenerator
 
+const ROOM_PERSISTENCE: int = 4
+
 var rooms: Array[Room]
 
 var lastRoomOpened: Room = null

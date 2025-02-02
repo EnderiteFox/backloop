@@ -6,8 +6,10 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_6bnv4"]
 radius = 4.12267
 
-[node name="Outrun" type="Node3D"]
+[node name="Outrun" type="Node3D" node_paths=PackedStringArray("lightBreaker")]
 script = ExtResource("1_qoose")
+breakLights = false
+lightBreaker = NodePath("LightBreaker")
 moveSpeed = 10.0
 
 [node name="Maxwell" type="Sprite3D" parent="."]
