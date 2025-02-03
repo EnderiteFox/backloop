@@ -12,13 +12,17 @@ var lastRoomOpened: Room = null
 func ready() -> void:
 	Game.room_opened.connect(func(room): lastRoomOpened = room)
 
+## Instantiates a new random room and places it after a door. The room will not be fully generated yet and will be
+## inactive until fully generated
 func pregenerate_after_door(room: Room, door: Door) -> void:
 	var newRoom: Room = Game.roomList.get_random_room().instantiate()
 	room.add_sibling(newRoom)
 	newRoom.previousRoom = room
 	newRoom.place_after_door(door)
 	door.nextRoom = newRoom
-	
+
+
+## Finishes generation of a room, making it visible and activating it
 func fully_generate(room: Room) -> void:
 	if room == null:
 		return

@@ -4,33 +4,33 @@ class_name Player
 @warning_ignore("unused_signal")
 signal died
 
-const SPEED = 2.0
-const SPRINTSPEED = 5
-const CROUCHSPEED = 1
+const SPEED: float       = 2.0
+const SPRINTSPEED: int   = 5
+const CROUCHSPEED: int   = 1
 const SENSIBILITY: float = 0.008
 
 const VIEW_BOBBLE_AMOUNT: float = 0.08
-const VIEW_BOBBLE_SPEED = 3.5
+const VIEW_BOBBLE_SPEED: float  = 3.5
 var view_bobble_progress: float = 0.0
 
 const INTERACTION_RANGE: float = 2.0
 
-const EXHAUSTION = 4
-const STAMINA_DRAIN = 30
-const STAMINA_GAIN = 30
-var exhaustion = 0
-var stamina: float = 100.0
+const EXHAUSTION: int    = 4
+const STAMINA_DRAIN: int = 30
+const STAMINA_GAIN: int  = 30
+var exhaustion: float    = 0
+var stamina: float       = 100.0
 
 var currentCrouchCamOffset: float = 0
 var CROUCH_CAM_OFFSET: float = 1
 var CROUCH_ANIM_TIME: float = 0.25
 @onready var defaultPivotHeight = %CamPivot.position.y;
 
-var crouched = false
-var running = false
-var walking = false
+var crouched: bool = false
+var running: bool  = false
+var walking: bool  = false
 
-var is_alive = true 
+var is_alive: bool = true
 
 @onready var hitbox: CollisionShape3D = %Hitbox
 @onready var hitboxCrouched: CollisionShape3D = %HitboxCrouched
@@ -100,6 +100,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		_mouse_motion(event)
 	if event.is_action("interact"): _interact()
+	if event.is_action_pressed("toggle_flashlight"):
+		%Flashlight.visible = !%Flashlight.visible
 		
 func _mouse_motion(event: InputEventMouseMotion) -> void:
 	var motion: Vector2 = event.screen_relative
@@ -118,7 +120,7 @@ func _interact() -> void:
 		return
 	collisionObject.interacted.emit()
 	
-func get_speed():
+func get_speed() -> float:
 	if Input.is_action_pressed("sprint") and stamina >= 0 and exhaustion <= 0 and crouched == false:
 		return SPRINTSPEED
 	if crouched == true:
