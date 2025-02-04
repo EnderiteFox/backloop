@@ -37,7 +37,7 @@ func breakLight() -> void:
 
 func _flicker_light(time: float, light: Light3D) -> void:
 	var totalTime: float = 0
-	var tween: Tween = get_tree().create_tween()
+	var tween: Tween = self.create_tween()
 	var lightEnergy: float = light.light_energy
 	while totalTime < time:
 		var interval: float = randf_range(MIN_INTERVAL, MAX_INTERVAL)

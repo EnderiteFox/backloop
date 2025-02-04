@@ -15,7 +15,7 @@ func ready() -> void:
 
 
 func _on_room_opened(_room: Room) -> void:
-	if isActive:
+	if isActive || !Game.player.is_alive:
 		return
 	if randf() < SPAWN_CHANCE:
 		spawn()
