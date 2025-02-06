@@ -1,4 +1,5 @@
 extends Node3D
+## Deletes all child nodes except for one
 
 func _ready() -> void:
 	var children: Array[Node] = self.get_children()

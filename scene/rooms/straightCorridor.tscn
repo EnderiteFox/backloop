@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://c470vup8fia17" path="res://scene/mobs/the_watcher/window.tscn" id="6_aqddg"]
 [ext_resource type="Script" path="res://script/mobs/node_monsters/monster_node.gd" id="7_r81c3"]
 [ext_resource type="VoxelGIData" uid="uid://b5ntbii127sue" path="res://scene/rooms/straightCorridorGI.res" id="8_7pacf"]
+[ext_resource type="Script" path="res://script/rooms/gen_templates/pick_random_template.gd" id="9_5s0fp"]
 [ext_resource type="PackedScene" uid="uid://cv5nx3qabwnnw" path="res://scene/clocks/wall_clock.tscn" id="9_jxo78"]
-[ext_resource type="Script" path="res://script/rooms/gen_template.gd" id="9_nri70"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2sw81"]
 size = Vector3(3, 1, 10.2)
@@ -222,7 +222,7 @@ size = Vector3(5.49365, 5.44116, 11.1415)
 data = ExtResource("8_7pacf")
 
 [node name="Clocks" type="Node3D" parent="."]
-script = ExtResource("9_nri70")
+script = ExtResource("9_5s0fp")
 
 [node name="wall_clock" parent="Clocks" instance=ExtResource("9_jxo78")]
 transform = Transform3D(-1.44129e-09, 0, -0.0329728, 0, 0.0329728, 0, 0.0329728, 0, -1.44129e-09, -1.41397, 2.06891, -3)
