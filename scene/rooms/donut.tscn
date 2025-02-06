@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b1p0eatfp6456"]
+[gd_scene load_steps=30 format=3 uid="uid://b1p0eatfp6456"]
 
 [ext_resource type="Script" path="res://script/rooms/room.gd" id="1_swf72"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="2_3vwna"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://buw2uy5r4nepf" path="res://scene/mobs/the_shade/the_shade_spawn_point.tscn" id="6_kyg8a"]
 [ext_resource type="Script" path="res://script/mobs/node_monsters/monster_node.gd" id="7_ecq41"]
 [ext_resource type="VoxelGIData" uid="uid://guskpng82rem" path="res://scene/rooms/donutGI.res" id="8_y5n6k"]
+[ext_resource type="Script" path="res://script/rooms/gen_template.gd" id="9_bt0cm"]
+[ext_resource type="PackedScene" uid="uid://cv5nx3qabwnnw" path="res://scene/clocks/wall_clock.tscn" id="9_cu3hc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7v7rh"]
 size = Vector3(15, 1, 3)
@@ -406,3 +408,18 @@ nextNodes = [NodePath("../MonsterNode4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.152191, 1.70156, 5.87106)
 size = Vector3(15.9838, 5.83186, 16.2739)
 data = ExtResource("8_y5n6k")
+
+[node name="Clocks" type="Node3D" parent="."]
+script = ExtResource("9_bt0cm")
+
+[node name="wall_clock" parent="Clocks" instance=ExtResource("9_cu3hc")]
+transform = Transform3D(0.0329728, 0, 0, 0, 0.0329728, 0, 0, 0, 0.0329728, 3.72773, 2.26383, 1.42328)
+
+[node name="wall_clock2" parent="Clocks" instance=ExtResource("9_cu3hc")]
+transform = Transform3D(-0.0329728, 0, 2.88257e-09, 0, 0.0329728, 0, -2.88257e-09, 0, -0.0329728, 3.72773, 2.26383, -1.42029)
+
+[node name="wall_clock3" parent="Clocks" instance=ExtResource("9_cu3hc")]
+transform = Transform3D(0.0329728, 0, 0, 0, 0.0329728, 0, 0, 0, 0.0329728, -3.6001, 2.26383, 1.42328)
+
+[node name="wall_clock4" parent="Clocks" instance=ExtResource("9_cu3hc")]
+transform = Transform3D(-0.0329728, 0, 2.88257e-09, 0, 0.0329728, 0, -2.88257e-09, 0, -0.0329728, -3.6001, 2.26383, -1.42029)

@@ -15,7 +15,7 @@ func load_rooms() -> void:
 	
 func get_random_room() -> PackedScene:
 	if rooms.size() == 0:
-		push_error("No card is registered")
+		push_error("No room is registered")
 		return null
 	var weight_sum: float = 0
 	for room in rooms:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cpivnlwdvvnpn"]
+[gd_scene load_steps=32 format=3 uid="uid://cpivnlwdvvnpn"]
 
 [ext_resource type="Script" path="res://script/rooms/room.gd" id="1_g2lga"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="1_jyy7g"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://scene/lights/ceiling/ceiling_light.tscn" id="7_nwwm7"]
 [ext_resource type="VoxelGIData" uid="uid://c4pqth2roomk3" path="res://scene/rooms/startGI.res" id="10_e8kip"]
 [ext_resource type="Script" path="res://script/mobs/node_monsters/monster_node.gd" id="11_4hr7i"]
+[ext_resource type="Script" path="res://script/rooms/gen_template.gd" id="11_pvpvv"]
+[ext_resource type="PackedScene" uid="uid://cv5nx3qabwnnw" path="res://scene/clocks/wall_clock.tscn" id="12_8pjoi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cr1do"]
 size = Vector3(6.80554, 1, 10)
@@ -82,7 +84,7 @@ size = Vector3(6.96606, 4.47205, 10.0525)
 script = ExtResource("1_g2lga")
 doors = [NodePath("Door")]
 roomPlacementHitbox = NodePath("PlacementHitbox")
-anyMonsterNode = NodePath("Node3D/MonsterNode")
+anyMonsterNode = NodePath("MonsterPath/MonsterNode")
 
 [node name="Walls" type="StaticBody3D" parent="."]
 collision_mask = 14
@@ -187,14 +189,14 @@ collision_mask = 16
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74353, 1.18964, 0.121488)
 shape = SubResource("BoxShape3D_ccfbk")
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="MonsterPath" type="Node3D" parent="."]
 
-[node name="MonsterNode" type="Marker3D" parent="Node3D" node_paths=PackedStringArray("nextNodes")]
+[node name="MonsterNode" type="Marker3D" parent="MonsterPath" node_paths=PackedStringArray("nextNodes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.92956, 0, -4.08576)
 script = ExtResource("11_4hr7i")
 nextNodes = [NodePath("../MonsterNode2")]
 
-[node name="MonsterNode2" type="Marker3D" parent="Node3D" node_paths=PackedStringArray("nextNodes")]
+[node name="MonsterNode2" type="Marker3D" parent="MonsterPath" node_paths=PackedStringArray("nextNodes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.92956, 0, 3.79336)
 script = ExtResource("11_4hr7i")
 nextNodes = [NodePath("../MonsterNode")]
@@ -204,3 +206,12 @@ nodeState = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.689758, 1.16308, 0.0230408)
 size = Vector3(7.22791, 5.01479, 10.5948)
 data = ExtResource("10_e8kip")
+
+[node name="Clock" type="Node3D" parent="."]
+script = ExtResource("11_pvpvv")
+
+[node name="wall_clock" parent="Clock" instance=ExtResource("12_8pjoi")]
+transform = Transform3D(-0.0329728, 0, -2.88257e-09, 0, 0.0329728, 0, 2.88257e-09, 0, -0.0329728, -1.00093, 2.3097, -2.4575)
+
+[node name="wall_clock2" parent="Clock" instance=ExtResource("12_8pjoi")]
+transform = Transform3D(4.32386e-09, 0, -0.0329728, 0, 0.0329728, 0, 0.0329728, 0, 4.32386e-09, -0.324694, 2.3097, -3.31889)

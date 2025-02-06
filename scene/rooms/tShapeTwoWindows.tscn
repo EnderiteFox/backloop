@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c4x0ishww8412"]
+[gd_scene load_steps=27 format=3 uid="uid://c4x0ishww8412"]
 
 [ext_resource type="Script" path="res://script/rooms/room.gd" id="1_3h7sh"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="2_24hvn"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://buw2uy5r4nepf" path="res://scene/mobs/the_shade/the_shade_spawn_point.tscn" id="6_b536d"]
 [ext_resource type="Script" path="res://script/mobs/node_monsters/monster_node.gd" id="7_eytio"]
 [ext_resource type="VoxelGIData" uid="uid://can7su0aqrumr" path="res://scene/rooms/tShapeTwoWindowsGI.res" id="8_lwosk"]
+[ext_resource type="PackedScene" uid="uid://cv5nx3qabwnnw" path="res://scene/clocks/wall_clock.tscn" id="9_2xf13"]
+[ext_resource type="Script" path="res://script/rooms/gen_template.gd" id="9_i72bp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_stwc3"]
 size = Vector3(10.2, 1, 3)
@@ -290,3 +292,18 @@ nextNodes = [NodePath("../MonsterNode"), NodePath("../MonsterNode2"), NodePath("
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0693359, 1.61102, -1.81216)
 size = Vector3(10.8789, 5.69812, 7.08832)
 data = ExtResource("8_lwosk")
+
+[node name="Clocks" type="Node3D" parent="."]
+script = ExtResource("9_i72bp")
+
+[node name="wall_clock" parent="Clocks" instance=ExtResource("9_2xf13")]
+transform = Transform3D(-1.44129e-09, 0, -0.0329728, 0, 0.0329728, 0, 0.0329728, 0, -1.44129e-09, -1.4281, 2.34408, -2.08296)
+
+[node name="wall_clock3" parent="Clocks" instance=ExtResource("9_2xf13")]
+transform = Transform3D(-0.0329728, 0, 2.88258e-09, 0, 0.0329728, 0, -2.88258e-09, 0, -0.0329728, -2.20488, 2.34408, -1.42112)
+
+[node name="wall_clock4" parent="Clocks" instance=ExtResource("9_2xf13")]
+transform = Transform3D(-0.0329728, 0, 2.88258e-09, 0, 0.0329728, 0, -2.88258e-09, 0, -0.0329728, 2.205, 2.344, -1.421)
+
+[node name="wall_clock2" parent="Clocks" instance=ExtResource("9_2xf13")]
+transform = Transform3D(4.32386e-09, 0, 0.0329728, 0, 0.0329728, 0, -0.0329728, 0, 4.32386e-09, 1.428, 2.344, -2.083)

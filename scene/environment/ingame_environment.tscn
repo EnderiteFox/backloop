@@ -8,6 +8,8 @@ ssil_enabled = true
 sdfgi_enabled = true
 sdfgi_read_sky_light = false
 glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
 
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = SubResource("Environment_g14hv")
