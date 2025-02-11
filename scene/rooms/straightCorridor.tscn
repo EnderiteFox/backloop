@@ -229,3 +229,9 @@ transform = Transform3D(-1.44129e-09, 0, -0.0329728, 0, 0.0329728, 0, 0.0329728,
 
 [node name="wall_clock2" parent="Clocks" instance=ExtResource("9_jxo78")]
 transform = Transform3D(-1.44128e-09, 0, 0.0329728, 0, 0.0329728, 0, -0.0329728, 0, -1.44128e-09, 1.40071, 2.06891, -3)
+
+[node name="wall_clock3" parent="Clocks" instance=ExtResource("9_jxo78")]
+transform = Transform3D(-1.44129e-09, 0, -0.0329728, 0, 0.0329728, 0, 0.0329728, 0, -1.44129e-09, -1.41397, 2.06891, 3)
+
+[node name="wall_clock4" parent="Clocks" instance=ExtResource("9_jxo78")]
+transform = Transform3D(-1.44128e-09, 0, 0.0329728, 0, 0.0329728, 0, -0.0329728, 0, -1.44128e-09, 1.40071, 2.06891, 3)

@@ -6,10 +6,7 @@ signal opened
 const CAMERA_TRANSITION_TIME: float = 0.1
 
 var open: bool = false
-var locked: bool = false:
-	set(new_locked):
-		locked = new_locked
-		%LockedModel.visible = new_locked
+var locked: bool = false
 		
 
 var nextRoom: Room = null
@@ -17,6 +14,7 @@ var nextRoom: Room = null
 @onready var hitbox: StaticBody3D = %CollisionHitbox
 @onready var animationPlayer: AnimationPlayer = %AnimationPlayer
 @onready var doorSoundPlayer: AudioStreamPlayer3D = %DoorSoundPlayer
+@onready var lockedModel: Node3D = %LockedModel
 
 func _ready() -> void:
 	super._ready()
@@ -64,13 +62,50 @@ func _on_camera_tween_finished() -> void:
 	%OpenCamera.make_current()
 	animationPlayer.play("Door/open")
 	animationPlayer.animation_finished.connect(func(_animation): _on_fully_opened(), ConnectFlags.CONNECT_ONE_SHOT)
-	
+
 func _on_fully_opened() -> void:
 	Game.player.camera.make_current()
 	Game.player.position = %PlayerTeleport.global_position
 	Game.player.rotation = %PlayerTeleport.global_rotation
 	Game.player.camPivot.rotation.x = %OpenCamera.global_rotation.x
-	
+
+func _set_start_monster_node() -> void:
+	if nextRoom == null:
+		return
+
+	var graph: Array[MonsterNode] = nextRoom.anyMonsterNode.graph
+
+	if graph.is_empty():
+		return
+
+	if graph.any(func(node): return node.nodeState == MonsterNode.NodeState.ROOM_START):
+		return
+
+	graph.sort_custom(
+		func(node1, node2):
+			return node1.global_position.distance_squared_to(self.global_position) \
+			< node2.global_position.distance_squared_to(self.global_position)
+	)
+	graph[0].nodeState = MonsterNode.NodeState.ROOM_START
+
+
+func _set_end_monster_node() -> void:
+	if room.anyMonsterNode.graph.is_empty():
+		return
+
+	for node in room.anyMonsterNode.graph:
+		if node.nodeState == MonsterNode.NodeState.ROOM_END:
+			node.nodeState = MonsterNode.NodeState.NORMAL
+
+	var graph: Array[MonsterNode] = room.anyMonsterNode.graph
+	graph.sort_custom(
+		func(node1, node2):
+			return node1.global_position.distance_squared_to(self.global_position) \
+			< node2.global_position.distance_squared_to(self.global_position)
+	)
+	graph[0].nodeState = MonsterNode.NodeState.ROOM_END
+
+
 func close() -> void:
 	if !open:
 		return
@@ -82,38 +117,7 @@ func close() -> void:
 			animationPlayer.speed_scale = 1.0
 	)
 
-func _set_start_monster_node() -> void:
-	if nextRoom == null:
-		return
-	
-	var graph: Array[MonsterNode] = nextRoom.anyMonsterNode.graph
-	
-	if graph.is_empty():
-		return
-	
-	if graph.any(func(node): return node.nodeState == MonsterNode.NodeState.ROOM_START):
-		return
-	
-	graph.sort_custom(
-		func(node1, node2):
-			return node1.global_position.distance_squared_to(self.global_position) \
-				< node2.global_position.distance_squared_to(self.global_position)
-	)
-	graph[0].nodeState = MonsterNode.NodeState.ROOM_START
-
-
-func _set_end_monster_node() -> void:
-	if room.anyMonsterNode.graph.is_empty():
-		return
-	
-	for node in room.anyMonsterNode.graph:
-		if node.nodeState == MonsterNode.NodeState.ROOM_END:
-			node.nodeState = MonsterNode.NodeState.NORMAL
-	
-	var graph: Array[MonsterNode] = room.anyMonsterNode.graph
-	graph.sort_custom(
-		func(node1, node2):
-			return node1.global_position.distance_squared_to(self.global_position) \
-				< node2.global_position.distance_squared_to(self.global_position)
-	)
-	graph[0].nodeState = MonsterNode.NodeState.ROOM_END
+func silent_lock() -> void:
+	if open:
+		close()
+	locked = true

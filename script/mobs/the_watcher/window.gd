@@ -58,6 +58,6 @@ func _on_watcher_see_player():
 	watcherModel.look_at(Game.player.global_position, Vector3.UP, true)
 	if room.previousRoom != null:
 		for door in room.previousRoom.doors:
-			door.close()
+			door.silent_lock()
 	for door in room.doors:
-		door.close()
+		door.silent_lock()
