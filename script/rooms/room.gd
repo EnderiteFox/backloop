@@ -5,6 +5,7 @@ class_name Room
 signal room_opened
 
 @export var doors: Array[Door]
+@export var roomPlacementShapeCast: MultiShapeCast3D
 @export var roomPlacementHitbox: Area3D
 @export var anyMonsterNode: MonsterNode
 
@@ -35,7 +36,7 @@ func _on_room_opened(_room: Room) -> void:
 				door.nextRoom.queue_free()
 		self.queue_free()
 
-func place_after_door(door: Door) -> void:
+func place_after_door(door: Door) -> Door:
 	if door in doors:
 		printerr("Can't place room after a door from the same room!")
 		return
@@ -47,6 +48,5 @@ func place_after_door(door: Door) -> void:
 	
 	var posOffset: Vector3 = self.global_position - selfDoor.global_position
 	self.global_position = door.global_position + posOffset
-	
-	doors.erase(selfDoor)
-	selfDoor.queue_free()
+
+	return selfDoor

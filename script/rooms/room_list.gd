@@ -12,18 +12,25 @@ func load_rooms() -> void:
 	for roomName in rooms:
 		loadedRooms[load("res://scene/rooms/" + roomName + ".tscn")] = rooms[roomName]
 	rooms = loadedRooms
-	
-func get_random_room() -> PackedScene:
-	if rooms.size() == 0:
-		push_error("No room is registered")
-		return null
-	var weight_sum: float = 0
-	for room in rooms:
-		weight_sum += rooms[room]
-	var chosen: float = randf() * weight_sum
-	var curr: float = 0
-	for room in rooms:
-		if curr + rooms[room] > chosen:
-			return room
-		curr += rooms[room]
-	return rooms.keys[-1]
+
+func get_random_rooms() -> Array[PackedScene]:
+	var possibleRooms: Dictionary = rooms.duplicate()
+	var weight_sum: float         = possibleRooms.values().reduce(func(acc, x): return acc + x, 0)
+
+	var roomList: Array[PackedScene] = []
+
+	while !possibleRooms.is_empty():
+		if possibleRooms.size() == 1:
+			roomList.append(possibleRooms.keys()[0])
+			break
+
+		var chosen: float = randf() * weight_sum
+		var curr: float = 0
+		for room in possibleRooms:
+			if curr + possibleRooms[room] > chosen:
+				roomList.append(room)
+				possibleRooms.erase(room)
+				continue
+			curr += rooms[room]
+
+	return roomList

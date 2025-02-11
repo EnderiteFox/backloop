@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c4x0ishww8412"]
+[gd_scene load_steps=28 format=3 uid="uid://c4x0ishww8412"]
 
 [ext_resource type="Script" path="res://script/rooms/room.gd" id="1_3h7sh"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="2_24hvn"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://scene/door/door.tscn" id="4_7ykeq"]
 [ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://scene/lights/ceiling/ceiling_light.tscn" id="5_qd417"]
 [ext_resource type="PackedScene" uid="uid://buw2uy5r4nepf" path="res://scene/mobs/the_shade/the_shade_spawn_point.tscn" id="6_b536d"]
+[ext_resource type="Script" path="res://script/utils/multi_shape_cast3D.gd" id="6_dispm"]
 [ext_resource type="Script" path="res://script/mobs/node_monsters/monster_node.gd" id="7_eytio"]
 [ext_resource type="VoxelGIData" uid="uid://can7su0aqrumr" path="res://scene/rooms/tShapeTwoWindowsGI.res" id="8_lwosk"]
 [ext_resource type="PackedScene" uid="uid://cv5nx3qabwnnw" path="res://scene/clocks/wall_clock.tscn" id="9_2xf13"]
@@ -67,9 +68,10 @@ size = Vector3(10.1765, 5.29791, 3.26013)
 [sub_resource type="BoxShape3D" id="BoxShape3D_01qi5"]
 size = Vector3(3.24744, 5.29773, 3.99451)
 
-[node name="TShapeTwoWindows" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementHitbox", "anyMonsterNode")]
+[node name="TShapeTwoWindows" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementShapeCast", "roomPlacementHitbox", "anyMonsterNode")]
 script = ExtResource("1_3h7sh")
 doors = [NodePath("Door"), NodePath("Door2"), NodePath("Door3")]
+roomPlacementShapeCast = NodePath("PlacementShapeCast")
 roomPlacementHitbox = NodePath("PlacementHitbox")
 anyMonsterNode = NodePath("MonsterNodes/MonsterNode")
 
@@ -242,7 +244,8 @@ metadata/_edit_lock_ = true
 
 [node name="PlacementHitbox" type="Area3D" parent="."]
 collision_layer = 16
-collision_mask = 16
+collision_mask = 0
+monitoring = false
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
@@ -251,6 +254,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00771332, 1.6011, -0.02593
 shape = SubResource("BoxShape3D_4oab5")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="PlacementHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00750732, 1.60492, -3.09918)
+shape = SubResource("BoxShape3D_01qi5")
+
+[node name="PlacementShapeCast" type="ShapeCast3D" parent="."]
+enabled = false
+collision_mask = 16
+script = ExtResource("6_dispm")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlacementShapeCast"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00771332, 1.6011, -0.0259399)
+shape = SubResource("BoxShape3D_4oab5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="PlacementShapeCast"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00750732, 1.60492, -3.09918)
 shape = SubResource("BoxShape3D_01qi5")
 

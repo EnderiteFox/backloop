@@ -15,11 +15,32 @@ func ready() -> void:
 ## Instantiates a new random room and places it after a door. The room will not be fully generated yet and will be
 ## inactive until fully generated
 func pregenerate_after_door(room: Room, door: Door) -> void:
-	var newRoom: Room = Game.roomList.get_random_room().instantiate()
-	room.add_sibling(newRoom)
-	newRoom.previousRoom = room
-	newRoom.place_after_door(door)
-	door.nextRoom = newRoom
+	room.roomPlacementHitbox.monitorable = false
+
+	var possibleRooms: Array[PackedScene] = Game.roomList.get_random_rooms()
+
+	for roomScene in possibleRooms:
+		var newRoom: Room = roomScene.instantiate()
+		newRoom.roomPlacementHitbox.monitorable = false
+		room.add_sibling(newRoom)
+		var nextDoor: Door = newRoom.place_after_door(door)
+
+		if !newRoom.roomPlacementShapeCast.is_any_shape_colliding():
+			newRoom.previousRoom = room
+			door.nextRoom = newRoom
+
+			newRoom.doors.erase(nextDoor)
+			nextDoor.queue_free()
+
+			room.roomPlacementHitbox.monitorable = true
+			newRoom.roomPlacementHitbox.monitorable = true
+			return
+
+		newRoom.free()
+
+	# No room could be generated
+	door.silent_lock()
+	room.roomPlacementHitbox.monitorable = true
 
 
 ## Finishes generation of a room, making it visible and activating it

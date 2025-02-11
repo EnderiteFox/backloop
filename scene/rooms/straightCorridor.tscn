@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bmgkpyr0xa3pi"]
+[gd_scene load_steps=27 format=3 uid="uid://bmgkpyr0xa3pi"]
 
 [ext_resource type="Script" path="res://script/rooms/room.gd" id="1_2ddpk"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="2_a2gwc"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://scene/door/door.tscn" id="4_3ssjw"]
 [ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://scene/lights/ceiling/ceiling_light.tscn" id="5_3nswq"]
 [ext_resource type="PackedScene" uid="uid://c470vup8fia17" path="res://scene/mobs/the_watcher/window.tscn" id="6_aqddg"]
+[ext_resource type="Script" path="res://script/utils/multi_shape_cast3D.gd" id="6_n2oxl"]
 [ext_resource type="Script" path="res://script/mobs/node_monsters/monster_node.gd" id="7_r81c3"]
 [ext_resource type="VoxelGIData" uid="uid://b5ntbii127sue" path="res://scene/rooms/straightCorridorGI.res" id="8_7pacf"]
 [ext_resource type="Script" path="res://script/rooms/gen_templates/pick_random_template.gd" id="9_5s0fp"]
@@ -63,9 +64,10 @@ size = Vector3(3.20459, 4.25958, 10.1487)
 [sub_resource type="BoxShape3D" id="BoxShape3D_rwtdb"]
 size = Vector3(2.1012, 4.36975, 2.09558)
 
-[node name="StraightCorridor" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementHitbox", "anyMonsterNode")]
+[node name="StraightCorridor" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementShapeCast", "roomPlacementHitbox", "anyMonsterNode")]
 script = ExtResource("1_2ddpk")
 doors = [NodePath("Door"), NodePath("Door2")]
+roomPlacementShapeCast = NodePath("RoomPlacementShapeCast")
 roomPlacementHitbox = NodePath("RoomPlacementHitbox")
 anyMonsterNode = NodePath("MonsterNodes/MonsterNode")
 
@@ -190,13 +192,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.08704, 0)
 
 [node name="RoomPlacementHitbox" type="Area3D" parent="."]
 collision_layer = 16
-collision_mask = 16
+collision_mask = 0
+monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomPlacementHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0432129, 1.11514, 0.00835037)
 shape = SubResource("BoxShape3D_7hg04")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="RoomPlacementHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.55438, 1.64435, -0.0205688)
+shape = SubResource("BoxShape3D_rwtdb")
+
+[node name="RoomPlacementShapeCast" type="ShapeCast3D" parent="."]
+enabled = false
+collision_mask = 16
+script = ExtResource("6_n2oxl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomPlacementShapeCast"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0432129, 1.11514, 0.00835037)
+shape = SubResource("BoxShape3D_7hg04")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RoomPlacementShapeCast"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.55438, 1.64435, -0.0205688)
 shape = SubResource("BoxShape3D_rwtdb")
 
