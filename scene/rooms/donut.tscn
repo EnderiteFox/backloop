@@ -1,11 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://b1p0eatfp6456"]
+[gd_scene load_steps=30 format=3 uid="uid://b1p0eatfp6456"]
 
 [ext_resource type="Script" path="res://script/rooms/room.gd" id="1_swf72"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="2_3vwna"]
 [ext_resource type="Material" uid="uid://mi3tsypobxge" path="res://material/walls/wallpaper/wallpaper.tres" id="3_2n7te"]
 [ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://scene/door/door.tscn" id="4_ewkiy"]
 [ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://scene/lights/ceiling/ceiling_light.tscn" id="5_0wexn"]
-[ext_resource type="Script" path="res://script/utils/multi_shape_cast3D.gd" id="6_h3f6s"]
 [ext_resource type="PackedScene" uid="uid://buw2uy5r4nepf" path="res://scene/mobs/the_shade/the_shade_spawn_point.tscn" id="6_kyg8a"]
 [ext_resource type="Script" path="res://script/mobs/node_monsters/monster_node.gd" id="7_ecq41"]
 [ext_resource type="VoxelGIData" uid="uid://guskpng82rem" path="res://scene/rooms/donutGI.res" id="8_y5n6k"]
@@ -78,12 +77,11 @@ material = ExtResource("3_2n7te")
 size = Vector3(1.04246, 1.16834, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uqdfj"]
-size = Vector3(14.956, 5.30023, 14.9846)
+size = Vector3(16.1246, 6.01054, 16.1792)
 
-[node name="Donut" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementShapeCast", "roomPlacementHitbox", "anyMonsterNode")]
+[node name="Donut" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementHitbox", "anyMonsterNode")]
 script = ExtResource("1_swf72")
 doors = [NodePath("Doors/Door"), NodePath("Doors/Door2"), NodePath("Doors/Door3"), NodePath("Doors/Door4")]
-roomPlacementShapeCast = NodePath("PlacementShapeCast")
 roomPlacementHitbox = NodePath("PlacementHitbox")
 anyMonsterNode = NodePath("MonsterNodes/MonsterNode")
 
@@ -332,19 +330,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlacementHitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0173645, 1.59006, 5.99962)
-shape = SubResource("BoxShape3D_uqdfj")
-
-[node name="PlacementShapeCast" type="ShapeCast3D" parent="."]
-enabled = false
-target_position = Vector3(0, 0, 0)
-collision_mask = 0
-script = ExtResource("6_h3f6s")
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlacementShapeCast"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0173645, 1.59006, 5.99962)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0351326, 1.54658, 6.0183)
 shape = SubResource("BoxShape3D_uqdfj")
 
 [node name="TheShadeSpawnpoints" type="Node3D" parent="."]

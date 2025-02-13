@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cpivnlwdvvnpn"]
+[gd_scene load_steps=32 format=3 uid="uid://cpivnlwdvvnpn"]
 
 [ext_resource type="Script" path="res://script/rooms/room.gd" id="1_g2lga"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="1_jyy7g"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://blxb0sqkunyi1" path="res://scene/furniture/desk/Desk.tscn" id="5_dh7hh"]
 [ext_resource type="PackedScene" uid="uid://cfbluaw30yhp5" path="res://scene/lights/floor_lamp/floor_lamp.tscn" id="6_xkg01"]
 [ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://scene/lights/ceiling/ceiling_light.tscn" id="7_nwwm7"]
-[ext_resource type="Script" path="res://script/utils/multi_shape_cast3D.gd" id="9_m2vm0"]
 [ext_resource type="VoxelGIData" uid="uid://c4pqth2roomk3" path="res://scene/rooms/startGI.res" id="10_e8kip"]
 [ext_resource type="Script" path="res://script/mobs/node_monsters/monster_node.gd" id="11_4hr7i"]
 [ext_resource type="Script" path="res://script/rooms/gen_templates/pick_random_template.gd" id="11_isn5a"]
@@ -79,12 +78,11 @@ material = ExtResource("3_yyoeo")
 size = Vector3(0.1, 6.75419, 10.0538)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ccfbk"]
-size = Vector3(6.96606, 4.47205, 10.0525)
+size = Vector3(7.39211, 4.92671, 10.6668)
 
-[node name="Start" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementShapeCast", "roomPlacementHitbox", "anyMonsterNode")]
+[node name="Start" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementHitbox", "anyMonsterNode")]
 script = ExtResource("1_g2lga")
 doors = [NodePath("Door")]
-roomPlacementShapeCast = NodePath("PlacementShapeCast")
 roomPlacementHitbox = NodePath("PlacementHitbox")
 anyMonsterNode = NodePath("MonsterPath/MonsterNode")
 
@@ -116,11 +114,10 @@ shape = SubResource("BoxShape3D_r0fbt")
 mesh = SubResource("BoxMesh_o7app")
 
 [node name="Wall3" type="CollisionShape3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.744449, 1.6, 5.0796)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.744449, 1.6, 5.00337)
 shape = SubResource("BoxShape3D_pdp7l")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0414405, 0, 0)
 mesh = SubResource("BoxMesh_eqhlg")
 
 [node name="Wall4" type="CollisionShape3D" parent="Walls"]
@@ -159,11 +156,11 @@ shape = SubResource("BoxShape3D_iwtdp")
 mesh = SubResource("BoxMesh_ssadg")
 
 [node name="Ceiling" type="CollisionShape3D" parent="Walls"]
-transform = Transform3D(4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, 4.37114e-08, 4.37114e-08, -4.37114e-08, -1, -0.757113, 3.34525, 0.0455087)
+transform = Transform3D(4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, 4.37114e-08, 4.37114e-08, -4.37114e-08, -1, -0.757113, 3.20721, 0.0455087)
 shape = SubResource("BoxShape3D_jv572")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Ceiling"]
-transform = Transform3D(1, 1.64203e-15, 0, 1.64203e-15, 1, 0, 0, 0, 1, -0.128431, 0, -3.72529e-09)
+transform = Transform3D(1, 1.64203e-15, 0, 1.64203e-15, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_o3u6c")
 
 [node name="Door" parent="." instance=ExtResource("3_m78sd")]
@@ -189,17 +186,7 @@ collision_mask = 0
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlacementHitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74353, 1.18964, 0.121488)
-shape = SubResource("BoxShape3D_ccfbk")
-
-[node name="PlacementShapeCast" type="ShapeCast3D" parent="."]
-enabled = false
-target_position = Vector3(0, 0, 0)
-collision_mask = 16
-script = ExtResource("9_m2vm0")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlacementShapeCast"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74353, 1.18964, 0.121488)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.761618, 1.17855, -0.0275932)
 shape = SubResource("BoxShape3D_ccfbk")
 
 [node name="MonsterPath" type="Node3D" parent="."]

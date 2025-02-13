@@ -9,7 +9,7 @@ var outrunScene: PackedScene = preload("res://scene/mobs/node_monsters/outrun/ou
 
 
 ## Initializes the manager. Called by Game
-func ready() -> void:
+func _init() -> void:
 	Game.room_opened.connect(_on_room_opened)
 
 

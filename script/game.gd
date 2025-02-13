@@ -7,11 +7,11 @@ const MAX_TIME_PROGRESS: int = 60
 
 var player: Player
 var roomList: RoomList = RoomList.new()
-var roomGenerator: RoomGenerator = RoomGenerator.new()
+@onready var roomGenerator: RoomGenerator = RoomGenerator.new()
 
 var theWatcher := TheWatcherManager.new()
 var theShade := TheShadeManager.new()
-var outrun := OutrunManager.new()
+@onready var outrun := OutrunManager.new()
 
 var nodeMonsters := NodeMonsterManager.new()
 
@@ -31,8 +31,6 @@ signal time_changed(new_time: int)
 func _ready() -> void:
 	time = START_TIME
 	roomList.load_rooms()
-	roomGenerator.ready()
-	outrun.ready()
 	room_opened.connect(_on_room_opened)
 
 func _unhandled_input(event: InputEvent) -> void:

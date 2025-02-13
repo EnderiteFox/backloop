@@ -16,6 +16,9 @@ streams_count = 2
 stream_0/stream = ExtResource("3_2a278")
 stream_1/stream = ExtResource("4_wfjhv")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_7djw8"]
+size = Vector3(0.816193, 1.95819, 0.0653152)
+
 [sub_resource type="Animation" id="Animation_nrtu6"]
 length = 0.001
 tracks/0/type = "value"
@@ -110,9 +113,6 @@ _data = {
 "open": SubResource("Animation_h5uq7")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7djw8"]
-size = Vector3(0.816193, 1.95819, 0.0653152)
-
 [sub_resource type="BoxMesh" id="BoxMesh_phiqp"]
 
 [node name="Door" instance=ExtResource("1_nu3f6")]
@@ -125,10 +125,10 @@ visible = false
 visible = false
 
 [node name="Plane_005" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002" index="2"]
-transform = Transform3D(1, 0.0008273, 0, -0.0008273, 1, 0, 0, 0, 1, -0.435135, -0.101397, 0.248962)
+transform = Transform3D(1, 0.000827303, 0, -0.000827303, 1, 0, 0, 0, 1, -0.435135, -0.101397, 0.248962)
 
 [node name="Plane_001" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002" index="3"]
-transform = Transform3D(1, 0.0008273, 0, -0.0008273, 1, 0, 0, 0, 1, -0.435135, -0.101397, 0.248962)
+transform = Transform3D(1, 0.000827303, 0, -0.000827303, 1, 0, 0, 0, 1, -0.435135, -0.101397, 0.248962)
 
 [node name="CollisionHitbox" type="StaticBody3D" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002/Plane_001/Plane_001_Door__Door_C_jpg_0" index="0"]
 unique_name_in_owner = true
@@ -144,11 +144,22 @@ unique_name_in_owner = true
 transform = Transform3D(1.00479, 9.9094e-11, 0.000831261, 0.00083126, -1.1978e-07, -1.00479, 0, 1.00479, -1.1978e-07, 0.435051, 0.101757, 0.744764)
 stream = SubResource("AudioStreamRandomizer_1sj1c")
 
+[node name="InteractionHitbox" type="Area3D" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002/Plane_001/Plane_001_Door__Door_C_jpg_0" index="2"]
+unique_name_in_owner = true
+transform = Transform3D(1.00479, 9.9094e-11, 0.000831261, 0.00083126, -1.1978e-07, -1.00479, 0, 1.00479, -1.1978e-07, 0.435051, 0.101757, 0.755826)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("2_s446a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002/Plane_001/Plane_001_Door__Door_C_jpg_0/InteractionHitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000259399, -0.00411987, 0.0787315)
+shape = SubResource("BoxShape3D_7djw8")
+
 [node name="Plane_003" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002/Plane_001" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.64698e-23, 0, -2.64698e-23, 1, 0.850496, 0.0166004, 0.78184)
 
 [node name="Circle_002" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002/Plane_001" index="3"]
-transform = Transform3D(0.999123, 1.08514e-19, -0.0418755, -1.08419e-19, 1, 4.54416e-21, 0.0418755, -7.47209e-26, 0.999123, 0.809703, 0.0427378, 0.802855)
+transform = Transform3D(0.999123, 1.08514e-19, -0.0418755, -1.08419e-19, 1, 4.54415e-21, 0.0418755, -7.31053e-26, 0.999123, 0.809703, 0.0427378, 0.802855)
 
 [node name="AnimationPlayer" parent="." index="1"]
 unique_name_in_owner = true
@@ -158,26 +169,15 @@ libraries = {
 }
 speed_scale = 2.0
 
-[node name="InteractionHitbox" type="Area3D" parent="." index="2"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-collision_layer = 8
-collision_mask = 0
-script = ExtResource("2_s446a")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionHitbox" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000259399, -0.00411987, 0.0787315)
-shape = SubResource("BoxShape3D_7djw8")
-
-[node name="OpenCamera" type="Camera3D" parent="." index="3"]
+[node name="OpenCamera" type="Camera3D" parent="." index="2"]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0, 1.58451, -0.596645)
 
-[node name="PlayerTeleport" type="Node3D" parent="." index="4"]
+[node name="PlayerTeleport" type="Node3D" parent="." index="3"]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0.633)
 
-[node name="LockedModel" type="MeshInstance3D" parent="." index="5"]
+[node name="LockedModel" type="MeshInstance3D" parent="." index="4"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13931, 0)
 visible = false

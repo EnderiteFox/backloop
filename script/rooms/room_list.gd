@@ -2,9 +2,9 @@ extends RefCounted
 class_name RoomList
 
 var rooms: Dictionary = {
-	"straightCorridor": 0.0,
+	"straightCorridor": 1.0,
 	"tShapeTwoWindows": 1.0,
-	"donut": 0.0
+	"donut": 1.0
 }
 
 func load_rooms() -> void:
