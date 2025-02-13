@@ -337,6 +337,7 @@ shape = SubResource("BoxShape3D_uqdfj")
 
 [node name="PlacementShapeCast" type="ShapeCast3D" parent="."]
 enabled = false
+target_position = Vector3(0, 0, 0)
 collision_mask = 0
 script = ExtResource("6_h3f6s")
 metadata/_edit_lock_ = true

@@ -29,7 +29,7 @@ func _on_opened() -> void:
 	Game.room_opened.emit(nextRoom)
 
 func _on_interact() -> void:
-	if locked || open:
+	if locked || open || !room.fullyGenerated:
 		return
 	opened.emit()
 	open = true

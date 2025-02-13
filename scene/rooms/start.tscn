@@ -194,6 +194,7 @@ shape = SubResource("BoxShape3D_ccfbk")
 
 [node name="PlacementShapeCast" type="ShapeCast3D" parent="."]
 enabled = false
+target_position = Vector3(0, 0, 0)
 collision_mask = 16
 script = ExtResource("9_m2vm0")
 

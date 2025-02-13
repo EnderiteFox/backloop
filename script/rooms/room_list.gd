@@ -2,14 +2,16 @@ extends RefCounted
 class_name RoomList
 
 var rooms: Dictionary = {
-	"straightCorridor": 1.0,
+	"straightCorridor": 0.0,
 	"tShapeTwoWindows": 1.0,
-	"donut": 1.0
+	"donut": 0.0
 }
 
 func load_rooms() -> void:
 	var loadedRooms: Dictionary = {}
 	for roomName in rooms:
+		if rooms[roomName] == 0:
+			continue
 		loadedRooms[load("res://scene/rooms/" + roomName + ".tscn")] = rooms[roomName]
 	rooms = loadedRooms
 
