@@ -117,7 +117,15 @@ func close() -> void:
 			animationPlayer.speed_scale = 1.0
 	)
 
-func silent_lock() -> void:
+func instant_close() -> void:
+	animationPlayer.play("Door/open")
+	animationPlayer.stop()
+	open = false
+
+func silent_lock(animate: bool = true) -> void:
 	if open:
-		close()
+		if animate:
+			close()
+		else:
+			instant_close()
 	locked = true

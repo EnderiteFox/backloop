@@ -12,7 +12,6 @@ func _init() -> void:
 	Game.room_opened.connect(_on_room_opened)
 
 func _on_room_opened(room: Room) -> void:
-	print("hello")
 	lastRoomOpened = room
 	delete_far_rooms(room)
 
@@ -95,4 +94,30 @@ func fully_generate(room: Room) -> void:
 
 ## Deletes rooms that are too far away from the opened room
 func delete_far_rooms(room: Room) -> void:
-	pass
+	var currentRoom: Room = room
+	var previousRoom: Room = null
+	var currentDistance: int = ROOM_PERSISTENCE + 1
+
+	while currentRoom != null:
+		if currentRoom.previousRoom == null:
+			break
+
+		previousRoom = currentRoom
+		currentRoom = currentRoom.previousRoom
+
+		currentDistance -= 1
+
+		if currentDistance < 0:
+			currentRoom.queue_free()
+			for door in currentRoom.doors:
+				if door.nextRoom != null && door.nextRoom != previousRoom:
+					_delete_forward_rooms(door.nextRoom)
+		elif currentDistance == 0:
+			for door in currentRoom.doors:
+				door.silent_lock(false)
+
+func _delete_forward_rooms(room: Room) -> void:
+	room.queue_free()
+	for door in room.doors:
+		if door.nextRoom != null:
+			_delete_forward_rooms(door.nextRoom)
