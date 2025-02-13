@@ -118,6 +118,8 @@ func close() -> void:
 	)
 
 func instant_close() -> void:
+	if !open:
+		return
 	animationPlayer.play("Door/open")
 	animationPlayer.stop()
 	open = false
