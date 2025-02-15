@@ -1,4 +1,4 @@
-extends RefCounted
+extends Resettable
 class_name OutrunManager
 
 const SPAWN_CHANCE: float = 1.0
@@ -10,9 +10,11 @@ var outrunScene: PackedScene = preload("res://scene/mobs/node_monsters/outrun/ou
 
 ## Initializes the manager. Called by Game
 func _init() -> void:
+	super._init()
 	Game.room_opened.connect(_on_room_opened)
 
-
+func reset() -> void:
+	isActive = false
 
 func _on_room_opened(_room: Room) -> void:
 	if isActive || !Game.player.is_alive:

@@ -5,9 +5,15 @@ const MAX_FLASHLIGHT_INTENSITY: float = 1.0
 const MIN_FLASHLIGHT_INTERVAL: float = 0.01
 const MAX_FLASHLIGHT_INTERVAL: float = 0.2
 
+const gameScene: PackedScene = preload("res://scene/main_game.tscn")
+
+@onready var retryButton: Button = %RetryButton
+
 func _ready() -> void:
 	%AnimationPlayer.play("enter_game_over")
 	_flicker_flashlight()
+	retryButton.pressed.connect(_on_retry_button_pressed)
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 
 func _flicker_flashlight() -> void:
 	var tween: Tween = get_tree().create_tween()
@@ -18,3 +24,8 @@ func _flicker_flashlight() -> void:
 			randf_range(MIN_FLASHLIGHT_INTERVAL, MAX_FLASHLIGHT_INTERVAL)
 	)
 	tween.tween_callback(_flicker_flashlight)
+
+func _on_retry_button_pressed() -> void:
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
+	Game.reset()
+	get_tree().change_scene_to_packed(gameScene)

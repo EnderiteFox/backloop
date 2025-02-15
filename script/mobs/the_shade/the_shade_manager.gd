@@ -1,4 +1,4 @@
-extends RefCounted
+extends Resettable
 class_name TheShadeManager
 
 const SPAWN_CHANCE: float = 0.2
@@ -10,3 +10,6 @@ const SPAWN_SAFE_DELAY: float = 1.5
 const DESPAWN_BLACKOUT_TIME: float = 0.2
 
 var isActive: bool = false
+
+func reset() -> void:
+	isActive = false

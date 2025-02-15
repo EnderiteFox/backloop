@@ -6,18 +6,26 @@ const MIN_TIME_PROGRESS: int = 30
 const MAX_TIME_PROGRESS: int = 60
 
 var player: Player
+
+# Room handlers
 var roomList: RoomList = RoomList.new()
 @onready var roomGenerator: RoomGenerator = RoomGenerator.new()
 
+# Monster managers
 var theWatcher := TheWatcherManager.new()
 var theShade := TheShadeManager.new()
 @onready var outrun := OutrunManager.new()
 
 var nodeMonsters := NodeMonsterManager.new()
 
+var _internal_time: int = START_TIME
+
+## The current in-game time. Starts at START_TIME, and generally progresses when doors are open
 var time: int:
+	get:
+		return _internal_time
 	set(new_time):
-		time = new_time % (24*60)
+		_internal_time = new_time % (24*60)
 		time_changed.emit(new_time)
 
 @warning_ignore("unused_signal")
@@ -46,3 +54,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_room_opened(_room: Room) -> void:
 	time += randi_range(MIN_TIME_PROGRESS, MAX_TIME_PROGRESS)
+
+func reset() -> void:
+	Resettable.reset_object(self)
+	_internal_time = START_TIME

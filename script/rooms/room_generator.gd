@@ -1,4 +1,4 @@
-extends RefCounted
+extends Resettable
 class_name RoomGenerator
 
 const ROOM_PERSISTENCE: int = 4
@@ -9,7 +9,13 @@ var lastRoomOpened: Room = null
 
 ## Initializes the RoomGenerator. Called by the game.
 func _init() -> void:
+	super._init()
 	Game.room_opened.connect(_on_room_opened)
+
+func reset() -> void:
+	super.reset()
+	rooms.clear()
+	lastRoomOpened = null
 
 func _on_room_opened(room: Room) -> void:
 	lastRoomOpened = room
