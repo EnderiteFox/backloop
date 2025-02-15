@@ -29,7 +29,7 @@ func get_random_rooms() -> Array[PackedScene]:
 		var chosen: float = randf() * weight_sum
 		var curr: float = 0
 		for room in possibleRooms:
-			if curr + possibleRooms[room] > chosen:
+			if curr + possibleRooms[room] >= chosen:
 				roomList.append(room)
 				possibleRooms.erase(room)
 				continue
