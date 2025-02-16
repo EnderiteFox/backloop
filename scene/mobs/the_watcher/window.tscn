@@ -213,31 +213,27 @@ skeleton = NodePath("../..")
 
 [node name="TheWatcher" type="Node3D" parent="." index="5"]
 
-[node name="TheWatcherInsideSpawn" type="Node3D" parent="TheWatcher" index="0"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.01657)
-
-[node name="TheWatcherRaycast" type="RayCast3D" parent="TheWatcher" index="1"]
+[node name="TheWatcherRaycast" type="RayCast3D" parent="TheWatcher" index="0"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50541, -0.511509)
 enabled = false
 collision_mask = 3
 script = ExtResource("3_wd4p8")
 
-[node name="EnterSound" type="AudioStreamPlayer3D" parent="TheWatcher" index="2"]
+[node name="EnterSound" type="AudioStreamPlayer3D" parent="TheWatcher" index="1"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.408554, 1.03263, 0)
 stream = ExtResource("3_tgfje")
 
-[node name="SpawnSound" type="AudioStreamPlayer3D" parent="TheWatcher" index="3"]
+[node name="SpawnSound" type="AudioStreamPlayer3D" parent="TheWatcher" index="2"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5169, -0.639805)
 
-[node name="TheWatcherActiveTimer" type="Timer" parent="TheWatcher" index="4"]
+[node name="TheWatcherActiveTimer" type="Timer" parent="TheWatcher" index="3"]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="TheWatcherModel" parent="TheWatcher" index="5" instance=ExtResource("7_45wot")]
+[node name="TheWatcherModel" parent="TheWatcher" index="4" instance=ExtResource("7_45wot")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.456827)
 

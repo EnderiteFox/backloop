@@ -148,10 +148,10 @@ func set_crouched(crouch: bool) -> void:
 		hitbox.disabled = true
 		hitboxCrouched.disabled = false
 		self.crouched = true
-		get_tree().create_tween().tween_property(self, "currentCrouchCamOffset", CROUCH_CAM_OFFSET, CROUCH_ANIM_TIME)
+		self.create_tween().tween_property(self, "currentCrouchCamOffset", CROUCH_CAM_OFFSET, CROUCH_ANIM_TIME)
 	else:
 		_set_active_walk_sound(%WalkSound)
 		hitbox.disabled = false
 		hitboxCrouched.disabled = true
 		self.crouched = false
-		get_tree().create_tween().tween_property(self, "currentCrouchCamOffset", 0, CROUCH_ANIM_TIME)
+		self.create_tween().tween_property(self, "currentCrouchCamOffset", 0, CROUCH_ANIM_TIME)

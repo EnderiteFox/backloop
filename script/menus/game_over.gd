@@ -16,7 +16,7 @@ func _ready() -> void:
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 
 func _flicker_flashlight() -> void:
-	var tween: Tween = get_tree().create_tween()
+	var tween: Tween = self.create_tween()
 	tween.tween_property(
 			%Flashlight,
 			"light_energy",

@@ -38,7 +38,7 @@ func _on_interact() -> void:
 	var camera: Camera3D = Camera3D.new()
 	self.add_child(camera)
 	camera.make_current()
-	var tween: Tween = get_tree().create_tween().set_parallel()
+	var tween: Tween = self.create_tween().set_parallel()
 	tween.tween_property(
 		camera,
 		"global_position",

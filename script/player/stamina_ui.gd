@@ -17,7 +17,7 @@ func _process(_delta: float) -> void:
 	value = Game.player.stamina
 	
 	if Game.player.exhaustion > 0 && !exhausted:
-		var tween: Tween = get_tree().create_tween()
+		var tween: Tween = self.create_tween()
 		tween.tween_property(self, "modulate", Color.RED, TWEEN_TIME).from(Color.WHITE)
 		tween.tween_callback(
 			func(): %AnimationPlayer.play("exhausted")
@@ -25,7 +25,7 @@ func _process(_delta: float) -> void:
 		exhausted = true
 		
 	elif exhausted && Game.player.exhaustion <= 0:
-		var tween: Tween = get_tree().create_tween()
+		var tween: Tween = self.create_tween()
 		tween.tween_property(self, "modulate", Color.WHITE, TWEEN_TIME).from(self.modulate)
 		%AnimationPlayer.stop()
 		exhausted = false
@@ -35,7 +35,7 @@ func _process(_delta: float) -> void:
 		if fadeInTween != null:
 			fadeInTween.kill()
 			fadeInTween = null
-		fadeOutTween = get_tree().create_tween()
+		fadeOutTween = self.create_tween()
 		fadeOutTween.tween_property(
 			self,
 			"self_modulate",
@@ -49,7 +49,7 @@ func _process(_delta: float) -> void:
 		if fadeOutTween != null:
 			fadeOutTween.kill()
 			fadeOutTween = null
-		fadeInTween = get_tree().create_tween()
+		fadeInTween = self.create_tween()
 		fadeInTween.tween_property(
 			self,
 			"self_modulate",

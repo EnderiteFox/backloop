@@ -30,6 +30,10 @@ window/size/mode=2
 
 project/assembly_name="Backloop"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/theop/Desktop/Coding/godot/backloop/export/movie_writer.avi"
+
 [input]
 
 move_left={

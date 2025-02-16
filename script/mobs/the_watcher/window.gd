@@ -5,6 +5,8 @@ extends RoomElement
 @onready var watcherTimer: Timer = %TheWatcherActiveTimer
 @onready var watcherModel: TheWatcherModel = %TheWatcherModel
 
+@onready var jumpscareScene: PackedScene = preload("res://scene/mobs/the_watcher/jumpscare.tscn")
+
 @export var watcherSpawnSounds: Array[AudioStream]
 
 func _ready() -> void:
@@ -53,9 +55,11 @@ func _on_watcher_see_player():
 	%EnterSound.play()
 	Game.player.died.emit()
 	Game.player.blackout(Game.theWatcher.ENTER_BLACKOUT_TIME)
+	get_tree().create_timer(Game.theWatcher.ENTER_BLACKOUT_TIME).timeout.connect(
+		func():
+			get_tree().change_scene_to_packed(jumpscareScene)
+	)
 	watcherModel.animationPlayer.play("RESET")
-	watcherModel.global_position = %TheWatcherInsideSpawn.global_position
-	watcherModel.look_at(Game.player.global_position, Vector3.UP, true)
 	if room.previousRoom != null:
 		for door in room.previousRoom.doors:
 			door.silent_lock()
