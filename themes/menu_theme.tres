@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=3 format=3 uid="uid://cmkvt8oqilc3e"]
 
-[ext_resource type="FontFile" uid="uid://b5um8rdwcggge" path="res://fonts/RubikGlitch-Regular.ttf" id="1_4ir5f"]
+[ext_resource type="FontFile" uid="uid://b5um8rdwcggge" path="res://fonts/rubik_glitch/RubikGlitch-Regular.ttf" id="1_kkddi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlxav"]
 bg_color = Color(0, 0, 0, 0.5)
@@ -15,7 +15,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [resource]
-default_font = ExtResource("1_4ir5f")
+default_font = ExtResource("1_kkddi")
 Button/colors/font_color = Color(0.800491, 0.800491, 0.800491, 1)
 Button/styles/hover = SubResource("StyleBoxFlat_xlxav")
 Button/styles/normal = SubResource("StyleBoxFlat_xlxav")

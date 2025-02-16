@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjtcl5nk3tm8d"]
+[gd_scene load_steps=12 format=3 uid="uid://bjtcl5nk3tm8d"]
 
 [ext_resource type="AudioStream" uid="uid://cqyj0a7qsu3bc" path="res://sound/mobs/the_watcher/the_watcher_jumpscare.ogg" id="1_staqd"]
 [ext_resource type="PackedScene" uid="uid://c4k81y2s6w1fu" path="res://scene/mobs/the_watcher/the_watcher.tscn" id="2_5yjum"]
+[ext_resource type="FontFile" uid="uid://wn16rsoarb1f" path="res://fonts/pangolin/Pangolin-Regular.ttf" id="3_6v0wg"]
 
 [sub_resource type="GDScript" id="GDScript_058e8"]
 script/source = "extends Node3D
@@ -12,6 +13,18 @@ script/source = "extends Node3D
 
 @onready var gameOverScene: PackedScene = preload(\"res://scene/menus/game_over.tscn\")
 
+@onready var label: Label = %Label
+
+var first_label_pos: Vector2
+var labelCount: int = 0
+
+const LABEL_DUPLICATE_DIRECTION: Vector2 = Vector2(10, -40)
+const LABEL_COLUMN_DIRECTION: Vector2 = Vector2(1000, -50)
+
+const LABEL_PER_COLUMN: int = 25
+
+const LABEL_DUPLICATE_TIME: float = 0.05
+
 func _ready() -> void:
 	animationPlayer.play(\"jumpscare\")
 	animationPlayer.animation_finished.connect(
@@ -20,6 +33,24 @@ func _ready() -> void:
 	)
 	theWatcher.animationPlayer.play(\"jumpscare\")
 	audioStreamPlayer.play()
+	
+func start_label_duplication() -> void:
+	label.visible = true
+	first_label_pos = label.global_position
+	_duplicate_label()
+
+func _duplicate_label() -> void:
+	var newLabel: Label = label.duplicate()
+	label.add_sibling(newLabel)
+	labelCount += 1
+	
+	var posInColumn: int = labelCount % LABEL_PER_COLUMN
+	@warning_ignore(\"integer_division\")
+	var columnIndex: int = (labelCount - posInColumn) / LABEL_PER_COLUMN
+	
+	newLabel.global_position = first_label_pos + LABEL_DUPLICATE_DIRECTION * posInColumn + LABEL_COLUMN_DIRECTION * columnIndex
+	
+	get_tree().create_timer(LABEL_DUPLICATE_TIME).timeout.connect(_duplicate_label)
 "
 
 [sub_resource type="Animation" id="Animation_egy5l"]
@@ -76,6 +107,20 @@ tracks/1/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.75),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_label_duplication"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_77sg7"]
 _data = {
@@ -96,6 +141,11 @@ disable_ambient_light = true
 material = SubResource("StandardMaterial3D_03n8p")
 radius = 4.0
 height = 8.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_wg1d7"]
+font = ExtResource("3_6v0wg")
+font_size = 64
+shadow_size = 0
 
 [node name="TheWatcherJumpscare" type="Node3D"]
 script = SubResource("GDScript_058e8")
@@ -130,6 +180,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="JumpscareUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.95
+anchor_right = 0.05
+anchor_bottom = 0.95
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+text = "It's all in your head"
+label_settings = SubResource("LabelSettings_wg1d7")
+horizontal_alignment = 1
 
 [node name="BlackScreenRect" type="ColorRect" parent="JumpscareUI"]
 visible = false

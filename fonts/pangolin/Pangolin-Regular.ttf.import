@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://b5um8rdwcggge"
-path="res://.godot/imported/RubikGlitch-Regular.ttf-7ace983df81ea2aab7ca1bd03d93d645.fontdata"
+uid="uid://wn16rsoarb1f"
+path="res://.godot/imported/Pangolin-Regular.ttf-512904ffe7f2bc6a4455918f098933a3.fontdata"
 
 [deps]
 
-source_file="res://fonts/RubikGlitch-Regular.ttf"
-dest_files=["res://.godot/imported/RubikGlitch-Regular.ttf-7ace983df81ea2aab7ca1bd03d93d645.fontdata"]
+source_file="res://fonts/pangolin/Pangolin-Regular.ttf"
+dest_files=["res://.godot/imported/Pangolin-Regular.ttf-512904ffe7f2bc6a4455918f098933a3.fontdata"]
 
 [params]
 
@@ -28,7 +28,12 @@ Fallbacks=null
 fallbacks=[]
 Compress=null
 compress=true
-preload=[]
+preload=[{
+"chars": [],
+"glyphs": [],
+"name": "New Configuration",
+"size": Vector2i(16, 0)
+}]
 language_support={}
 script_support={}
 opentype_features={}
