@@ -29,4 +29,3 @@ func spawn() -> void:
 	Game.roomGenerator.lastRoomOpened.add_sibling(outrun)
 	outrun.setup(Game.nodeMonsters.get_node_monster_path())
 
-
