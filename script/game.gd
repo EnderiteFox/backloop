@@ -8,8 +8,8 @@ const MAX_TIME_PROGRESS: int = 60
 var player: Player
 
 # Room handlers
-var roomList: RoomList = RoomList.new()
-@onready var roomGenerator: RoomGenerator = RoomGenerator.new()
+var roomList := RoomList.new()
+@onready var roomGenerator := RoomGenerator.new()
 
 # Monster managers
 var theWatcher := TheWatcherManager.new()

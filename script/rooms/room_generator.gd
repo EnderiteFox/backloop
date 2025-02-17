@@ -84,7 +84,7 @@ func pregenerate_after_door(room: Room, door: Door) -> void:
 		newRoom.free()
 
 	# No room could be generated
-	door.silent_lock()
+	door.make_blocked()
 	room.roomPlacementHitbox.collision_layer = roomPlacementHitboxLayer
 
 

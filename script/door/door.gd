@@ -6,7 +6,7 @@ signal opened
 const CAMERA_TRANSITION_TIME: float = 0.1
 
 var open: bool = false
-var locked: bool = false
+var state := State.NORMAL
 		
 
 var nextRoom: Room = null
@@ -15,6 +15,12 @@ var nextRoom: Room = null
 @onready var animationPlayer: AnimationPlayer = %AnimationPlayer
 @onready var doorSoundPlayer: AudioStreamPlayer3D = %DoorSoundPlayer
 @onready var lockedModel: Node3D = %LockedModel
+
+enum State {
+	NORMAL,
+	LOCKED,
+	BLOCKED
+}
 
 func _ready() -> void:
 	super._ready()
@@ -29,7 +35,7 @@ func _on_opened() -> void:
 	Game.room_opened.emit(nextRoom)
 
 func _on_interact() -> void:
-	if locked || open || !room.fullyGenerated:
+	if state == State.LOCKED || state == State.BLOCKED || open || !room.fullyGenerated:
 		return
 	opened.emit()
 	open = true
@@ -130,4 +136,9 @@ func silent_lock(animate: bool = true) -> void:
 			close()
 		else:
 			instant_close()
-	locked = true
+	state = State.LOCKED
+
+func make_blocked() -> void:
+	instant_close()
+	%BlockedModels.get_children().pick_random().visible = true
+	state = State.BLOCKED
