@@ -27,5 +27,9 @@ func _flicker_flashlight() -> void:
 
 func _on_retry_button_pressed() -> void:
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
+	%AnimationPlayer.play_backwards("enter_game_over")
+	%AnimationPlayer.animation_finished.connect(func(_anim): _restart_game())
+
+func _restart_game() -> void:
 	Game.reset()
 	get_tree().change_scene_to_packed(gameScene)

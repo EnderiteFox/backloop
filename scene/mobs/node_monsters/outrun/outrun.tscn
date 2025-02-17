@@ -8,7 +8,6 @@ radius = 4.12267
 
 [node name="Outrun" type="Node3D" node_paths=PackedStringArray("lightBreaker")]
 script = ExtResource("1_qoose")
-breakLights = false
 lightBreaker = NodePath("LightBreaker")
 moveSpeed = 10.0
 
