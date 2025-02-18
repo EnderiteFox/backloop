@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bmgkpyr0xa3pi"]
+[gd_scene load_steps=27 format=3 uid="uid://bmgkpyr0xa3pi"]
 
 [ext_resource type="Script" path="res://script/rooms/room.gd" id="1_2ddpk"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="2_a2gwc"]
@@ -10,6 +10,7 @@
 [ext_resource type="VoxelGIData" uid="uid://b5ntbii127sue" path="res://scene/rooms/straightCorridorGI.res" id="8_7pacf"]
 [ext_resource type="Script" path="res://script/rooms/gen_templates/pick_random_template.gd" id="9_5s0fp"]
 [ext_resource type="PackedScene" uid="uid://cv5nx3qabwnnw" path="res://scene/clocks/wall_clock.tscn" id="9_jxo78"]
+[ext_resource type="ArrayOccluder3D" uid="uid://c2r64ur406knu" path="res://scene/rooms/straightCorridor.occ" id="11_370k3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2sw81"]
 size = Vector3(3, 1, 10.2)
@@ -176,6 +177,9 @@ metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall11"]
 mesh = SubResource("BoxMesh_ankln")
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="Walls"]
+occluder = ExtResource("11_370k3")
 
 [node name="Door" parent="." instance=ExtResource("4_3ssjw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.10057)

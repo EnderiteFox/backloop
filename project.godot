@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Backloop"
 config/version="alpha-0.1"
-run/main_scene="res://scene/main_game.tscn"
+run/main_scene="res://scene/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -122,3 +122,4 @@ toggle_flashlight={
 
 anti_aliasing/quality/screen_space_aa=1
 anti_aliasing/quality/use_taa=true
+occlusion_culling/use_occlusion_culling=true

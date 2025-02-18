@@ -1,0 +1,179 @@
+[gd_scene load_steps=14 format=3 uid="uid://bev5ngmsob6ud"]
+
+[ext_resource type="Script" path="res://script/main_menu.gd" id="1_vntwe"]
+[ext_resource type="PackedScene" uid="uid://cpivnlwdvvnpn" path="res://scene/rooms/start.tscn" id="2_0hi3m"]
+[ext_resource type="PackedScene" uid="uid://cljvh2p7v80ll" path="res://scene/environment/ingame_environment.tscn" id="3_hjqey"]
+[ext_resource type="VoxelGIData" uid="uid://csh4dfqmd4waj" path="res://scene/main_menu.res" id="4_j3s0l"]
+[ext_resource type="FontFile" uid="uid://b5um8rdwcggge" path="res://fonts/rubik_glitch/RubikGlitch-Regular.ttf" id="5_qyewi"]
+[ext_resource type="Theme" uid="uid://cmkvt8oqilc3e" path="res://themes/menu_theme.tres" id="5_xu0xg"]
+[ext_resource type="AudioStream" uid="uid://b66ao2x03atp" path="res://music/sadness.ogg" id="6_q44dr"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_eic7i"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="InputEventKey" id="InputEventKey_wm1x7"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_tx3ng"]
+events = [SubResource("InputEventKey_eic7i"), SubResource("InputEventKey_wm1x7")]
+
+[sub_resource type="Animation" id="Animation_ugbmg"]
+resource_name = "play_fade_out"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/ColorRect:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuMusic:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -40.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MenuMusic:pitch_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.5]
+}
+
+[sub_resource type="Animation" id="Animation_gl7xk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuMusic:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MenuMusic:pitch_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uqt32"]
+_data = {
+"RESET": SubResource("Animation_gl7xk"),
+"play_fade_out": SubResource("Animation_ugbmg")
+}
+
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_vntwe")
+
+[node name="StartRoom" parent="." instance=ExtResource("2_0hi3m")]
+unique_name_in_owner = true
+metadata/_edit_lock_ = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.679941, 0, -0.733267, 0, 1, 0, 0.733267, 0, 0.679941, -3.53968, 1.53569, 4.36814)
+current = true
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("3_hjqey")]
+
+[node name="VoxelGI" type="VoxelGI" parent="."]
+data = ExtResource("4_j3s0l")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="Button" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.45
+anchor_top = 0.85
+anchor_right = 0.55
+anchor_bottom = 0.9
+offset_left = -20.5
+offset_top = -23.0
+offset_right = 20.5
+grow_horizontal = 2
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("5_xu0xg")
+theme_override_font_sizes/font_size = 56
+button_mask = 7
+shortcut = SubResource("Shortcut_tx3ng")
+shortcut_in_tooltip = false
+text = "Play"
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Title" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-2.16258e-07, 0, -4.9474, 0, 4.9474, 0, 4.9474, 0, -2.16258e-07, 2.607, 2.103, 0)
+alpha_cut = 1
+outline_modulate = Color(0, 0, 0, 0)
+text = "Backloop"
+font = ExtResource("5_qyewi")
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_q44dr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_uqt32")
+}

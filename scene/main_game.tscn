@@ -9,6 +9,7 @@ script = ExtResource("1_bt812")
 
 [node name="Start" parent="." instance=ExtResource("1_y88l4")]
 unique_name_in_owner = true
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_tkkt2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.398321, 0, 3.68787)

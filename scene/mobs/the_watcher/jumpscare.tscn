@@ -18,8 +18,8 @@ script/source = "extends Node3D
 var first_label_pos: Vector2
 var labelCount: int = 0
 
-const LABEL_DUPLICATE_DIRECTION: Vector2 = Vector2(10, -40)
-const LABEL_COLUMN_DIRECTION: Vector2 = Vector2(1000, -50)
+const LABEL_DUPLICATE_DIRECTION: Vector2 = Vector2(0.005, -0.037)
+const LABEL_COLUMN_DIRECTION: Vector2 = Vector2(0.52, -0.0463)
 
 const LABEL_PER_COLUMN: int = 25
 
@@ -33,6 +33,7 @@ func _ready() -> void:
 	)
 	theWatcher.animationPlayer.play(\"jumpscare\")
 	audioStreamPlayer.play()
+	label.label_settings.font_size = int(label.label_settings.font_size / 1920.0 * float(get_window().size.x))
 	
 func start_label_duplication() -> void:
 	label.visible = true
@@ -48,7 +49,7 @@ func _duplicate_label() -> void:
 	@warning_ignore(\"integer_division\")
 	var columnIndex: int = (labelCount - posInColumn) / LABEL_PER_COLUMN
 	
-	newLabel.global_position = first_label_pos + LABEL_DUPLICATE_DIRECTION * posInColumn + LABEL_COLUMN_DIRECTION * columnIndex
+	newLabel.global_position = first_label_pos + LABEL_DUPLICATE_DIRECTION * posInColumn * Vector2(get_window().size) + LABEL_COLUMN_DIRECTION * columnIndex * Vector2(get_window().size)
 	
 	get_tree().create_timer(LABEL_DUPLICATE_TIME).timeout.connect(_duplicate_label)
 "
@@ -184,6 +185,7 @@ metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="JumpscareUI"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
