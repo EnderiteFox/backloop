@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ys6vbwjiufre"]
+
+[ext_resource type="Shader" path="res://shader/screen_border_chromatic_aberration.gdshader" id="1_8ahq5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jnvtj"]
+render_priority = 0
+shader = ExtResource("1_8ahq5")
+shader_parameter/minPixelDistance = 2
+shader_parameter/maxPixelDistance = 10
+shader_parameter/minFactor = 0.1
+shader_parameter/maxFactor = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_2urab"]
+material = SubResource("ShaderMaterial_jnvtj")
+flip_faces = true
+size = Vector2(2, 2)
+
+[node name="ShaderRect" type="MeshInstance3D"]
+cast_shadow = 0
+extra_cull_margin = 16384.0
+ignore_occlusion_culling = true
+gi_mode = 0
+mesh = SubResource("QuadMesh_2urab")

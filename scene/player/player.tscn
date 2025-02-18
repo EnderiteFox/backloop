@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3wh7qyhhwb44"]
+[gd_scene load_steps=14 format=3 uid="uid://b3wh7qyhhwb44"]
 
 [ext_resource type="Script" path="res://script/player/player.gd" id="1_cwurn"]
 [ext_resource type="PackedScene" uid="uid://1m7fgwopygy7" path="res://scene/player/stamina_ui.tscn" id="2_k4avh"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://qju7cq2cq3es" path="res://sound/player/walk.ogg" id="4_h4sw0"]
 [ext_resource type="AudioStream" uid="uid://bywm8xahkrk2o" path="res://sound/player/run.ogg" id="5_feosj"]
 [ext_resource type="AudioStream" uid="uid://d2v8aksvasi7a" path="res://sound/player/crouch.ogg" id="6_3ebys"]
+[ext_resource type="PackedScene" uid="uid://ys6vbwjiufre" path="res://scene/player/shader_rect.tscn" id="8_rnoib"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5kqbu"]
 height = 1.87
@@ -32,6 +33,8 @@ fill_to = Vector2(0, 0.525641)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_cwurn")
+
+[node name="ShaderRect" parent="." instance=ExtResource("8_rnoib")]
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true

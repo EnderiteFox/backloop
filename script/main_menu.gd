@@ -22,6 +22,7 @@ func _ready() -> void:
 	%StartRoom.visible = true
 	menuMusicPlayer.play()
 	playButton.pressed.connect(_on_play_button_pressed)
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 
 
 func _blink_title() -> void:
@@ -46,10 +47,12 @@ func _blink_title() -> void:
 
 
 func _on_play_button_pressed() -> void:
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 	playButton.disabled = true
 	animationPlayer.play("play_fade_out")
 	animationPlayer.animation_finished.connect(
 		func(_anim):
+			Game.reset()
 			get_tree().change_scene_to_packed(mainGameScene)
 	)
 

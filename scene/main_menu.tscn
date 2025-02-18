@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bev5ngmsob6ud"]
+[gd_scene load_steps=15 format=3 uid="uid://bev5ngmsob6ud"]
 
 [ext_resource type="Script" path="res://script/main_menu.gd" id="1_vntwe"]
 [ext_resource type="PackedScene" uid="uid://cpivnlwdvvnpn" path="res://scene/rooms/start.tscn" id="2_0hi3m"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://b5um8rdwcggge" path="res://fonts/rubik_glitch/RubikGlitch-Regular.ttf" id="5_qyewi"]
 [ext_resource type="Theme" uid="uid://cmkvt8oqilc3e" path="res://themes/menu_theme.tres" id="5_xu0xg"]
 [ext_resource type="AudioStream" uid="uid://b66ao2x03atp" path="res://music/sadness.ogg" id="6_q44dr"]
+[ext_resource type="PackedScene" uid="uid://ys6vbwjiufre" path="res://scene/player/shader_rect.tscn" id="8_tl8v3"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_eic7i"]
 device = -1
@@ -19,6 +20,45 @@ keycode = 4194309
 
 [sub_resource type="Shortcut" id="Shortcut_tx3ng"]
 events = [SubResource("InputEventKey_eic7i"), SubResource("InputEventKey_wm1x7")]
+
+[sub_resource type="Animation" id="Animation_gl7xk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuMusic:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MenuMusic:pitch_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
 
 [sub_resource type="Animation" id="Animation_ugbmg"]
 resource_name = "play_fade_out"
@@ -58,45 +98,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [1.0, 0.5]
-}
-
-[sub_resource type="Animation" id="Animation_gl7xk"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MenuMusic:volume_db")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MenuMusic:pitch_scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uqt32"]
@@ -142,11 +143,13 @@ offset_top = -23.0
 offset_right = 20.5
 grow_horizontal = 2
 grow_vertical = 0
+focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_xu0xg")
 theme_override_font_sizes/font_size = 56
 button_mask = 7
 shortcut = SubResource("Shortcut_tx3ng")
+shortcut_feedback = false
 shortcut_in_tooltip = false
 text = "Play"
 
@@ -177,3 +180,9 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_uqt32")
 }
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5878.78, 0, 0)
+current = true
+
+[node name="ShaderRect" parent="." instance=ExtResource("8_tl8v3")]
