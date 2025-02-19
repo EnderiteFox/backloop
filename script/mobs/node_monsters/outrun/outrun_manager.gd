@@ -1,7 +1,7 @@
 extends Resettable
 class_name OutrunManager
 
-const SPAWN_CHANCE: float = 0.1
+const SPAWN_CHANCE: float = 0.01
 
 var isActive: bool = false
 
