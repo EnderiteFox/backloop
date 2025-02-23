@@ -13,6 +13,8 @@ moveSpeed = 10.0
 
 [node name="Maxwell" type="Sprite3D" parent="."]
 transform = Transform3D(0.369715, 0, 0, 0, 0.369715, 0, 0, 0, 0.369715, 0, 1.47075, 0)
+cast_shadow = 0
+ignore_occlusion_culling = true
 gi_mode = 0
 billboard = 1
 shaded = true

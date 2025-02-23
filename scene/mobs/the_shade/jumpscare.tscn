@@ -834,6 +834,7 @@ script = null
 [node name="TheShade" type="Node3D" parent="."]
 transform = Transform3D(-7.1201e-08, 0.325703, -0.0069835, -1.44674e-16, 0.0069835, 0.325703, 0.325778, 7.11846e-08, -1.52629e-09, -4.19261, 1.8926, 0.0290629)
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Skeleton3D" type="Skeleton3D" parent="TheShade"]
 transform = Transform3D(1, 1.42109e-14, -4.44089e-16, -5.68434e-14, 1, -1.86265e-09, -4.44089e-16, 1.86264e-09, 1, 7.10543e-15, -0.0192592, -0.89823)
@@ -1032,4 +1033,4 @@ color = Color(1, 1, 1, 0)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_folhd")
-pitch_scale = 1.25
+pitch_scale = 1.5
