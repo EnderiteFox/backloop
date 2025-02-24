@@ -44,20 +44,15 @@ func _on_interact() -> void:
 	var camera: Camera3D = Camera3D.new()
 	self.add_child(camera)
 	camera.make_current()
-	var tween: Tween = self.create_tween().set_parallel()
+	var start_transform: Transform3D = Game.player.camera.global_transform
+	var end_transform: Transform3D = %OpenCamera.global_transform
+	var tween: Tween = self.create_tween()
 	tween.tween_property(
 		camera,
-		"global_position",
-		%OpenCamera.global_position,
+		"global_transform",
+		end_transform,
 		CAMERA_TRANSITION_TIME
-	).from(Game.player.camera.global_position)
-	tween.tween_property(
-		camera,
-		"global_rotation",
-		%OpenCamera.global_rotation,
-		CAMERA_TRANSITION_TIME
-	).from(Game.player.camera.global_rotation)
-	tween.set_parallel(false)
+	).from(start_transform)
 	tween.tween_callback(
 		func():
 			_on_camera_tween_finished()
