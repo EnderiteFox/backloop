@@ -86,12 +86,13 @@ size = Vector3(7.39211, 4.92671, 10.6668)
 
 [node name="Start" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementHitbox", "anyMonsterNode")]
 script = ExtResource("1_g2lga")
-doors = [NodePath("Door")]
+doors = [NodePath("Doors/Door")]
 roomPlacementHitbox = NodePath("PlacementHitbox")
 anyMonsterNode = NodePath("MonsterPath/MonsterNode")
 
 [node name="Walls" type="StaticBody3D" parent="."]
-collision_mask = 14
+collision_mask = 0
+input_ray_pickable = false
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
@@ -170,21 +171,36 @@ mesh = SubResource("BoxMesh_o3u6c")
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="Walls"]
 occluder = SubResource("ArrayOccluder3D_du7w5")
 
-[node name="Door" parent="." instance=ExtResource("3_m78sd")]
+[node name="Doors" type="Node3D" parent="."]
+
+[node name="Door" parent="Doors" instance=ExtResource("3_m78sd")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.906461, 0, -4.99951)
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="DoubleBed" parent="." instance=ExtResource("4_miqw8")]
+[node name="Props" type="Node3D" parent="."]
+
+[node name="DoubleBed" parent="Props" instance=ExtResource("4_miqw8")]
 transform = Transform3D(-7.37431e-08, 0, 1.68705, 0, 1.68705, 0, -1.68705, 0, -7.37431e-08, 0.9572, -0.0487021, 3.71055)
 
-[node name="Desk" parent="." instance=ExtResource("5_dh7hh")]
+[node name="Desk" parent="Props" instance=ExtResource("5_dh7hh")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.06225, 0, -2.0451)
 
-[node name="FloorLamp" parent="." instance=ExtResource("6_xkg01")]
+[node name="FloorLamp" parent="Props" instance=ExtResource("6_xkg01")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.21931, -2.38419e-07, 4.43749)
 
-[node name="CeilingLight" parent="." instance=ExtResource("7_nwwm7")]
+[node name="Clocks" type="Node3D" parent="Props"]
+script = ExtResource("11_isn5a")
+
+[node name="wall_clock" parent="Props/Clocks" instance=ExtResource("12_8pjoi")]
+transform = Transform3D(-0.0329728, 0, -2.88257e-09, 0, 0.0329728, 0, 2.88257e-09, 0, -0.0329728, -1.00093, 2.3097, -2.4575)
+
+[node name="wall_clock2" parent="Props/Clocks" instance=ExtResource("12_8pjoi")]
+transform = Transform3D(4.32386e-09, 0, -0.0329728, 0, 0.0329728, 0, 0.0329728, 0, 4.32386e-09, -0.324694, 2.3097, -3.31889)
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="CeilingLight" parent="Lights" instance=ExtResource("7_nwwm7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.802149, 3.16269, 0.430064)
 
 [node name="PlacementHitbox" type="Area3D" parent="."]
@@ -213,12 +229,3 @@ nodeState = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.689758, 1.16308, 0.0230408)
 size = Vector3(7.22791, 5.01479, 10.5948)
 data = ExtResource("10_e8kip")
-
-[node name="Clock" type="Node3D" parent="."]
-script = ExtResource("11_isn5a")
-
-[node name="wall_clock" parent="Clock" instance=ExtResource("12_8pjoi")]
-transform = Transform3D(-0.0329728, 0, -2.88257e-09, 0, 0.0329728, 0, 2.88257e-09, 0, -0.0329728, -1.00093, 2.3097, -2.4575)
-
-[node name="wall_clock2" parent="Clock" instance=ExtResource("12_8pjoi")]
-transform = Transform3D(4.32386e-09, 0, -0.0329728, 0, 0.0329728, 0, 0.0329728, 0, 4.32386e-09, -0.324694, 2.3097, -3.31889)

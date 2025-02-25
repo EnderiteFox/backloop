@@ -70,7 +70,7 @@ size = Vector3(3.72263, 5.81248, 4.64414)
 
 [node name="TShapeTwoWindows" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementHitbox", "anyMonsterNode")]
 script = ExtResource("1_3h7sh")
-doors = [NodePath("Door"), NodePath("Door2"), NodePath("Door3")]
+doors = [NodePath("Doors/Door"), NodePath("Doors/Door2"), NodePath("Doors/Door3")]
 roomPlacementHitbox = NodePath("PlacementHitbox")
 anyMonsterNode = NodePath("MonsterNodes/MonsterNode")
 
@@ -229,19 +229,23 @@ mesh = SubResource("BoxMesh_t0s7s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 occluder = ExtResource("11_g42u2")
 
-[node name="Door" parent="." instance=ExtResource("4_7ykeq")]
+[node name="Doors" type="Node3D" parent="."]
+
+[node name="Door" parent="Doors" instance=ExtResource("4_7ykeq")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.10796, 0, 0)
 metadata/_edit_lock_ = true
 
-[node name="Door2" parent="." instance=ExtResource("4_7ykeq")]
+[node name="Door2" parent="Doors" instance=ExtResource("4_7ykeq")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 5.0936, 0, 0)
 metadata/_edit_lock_ = true
 
-[node name="Door3" parent="." instance=ExtResource("4_7ykeq")]
+[node name="Door3" parent="Doors" instance=ExtResource("4_7ykeq")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -5.10133)
 metadata/_edit_lock_ = true
 
-[node name="CeilingLight" parent="." instance=ExtResource("5_qd417")]
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="CeilingLight" parent="Lights" instance=ExtResource("5_qd417")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 3.17805, 0)
 metadata/_edit_lock_ = true
 
@@ -260,17 +264,17 @@ shape = SubResource("BoxShape3D_4oab5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0138401, 1.5478, -3.42399)
 shape = SubResource("BoxShape3D_01qi5")
 
-[node name="TheShadeSpawPoints" type="Node3D" parent="."]
+[node name="TheShadeSpawnPoints" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="TheShadeSpawnPoint" parent="TheShadeSpawPoints" instance=ExtResource("6_b536d")]
+[node name="TheShadeSpawnPoint" parent="TheShadeSpawnPoints" instance=ExtResource("6_b536d")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -3.43649)
 
-[node name="TheShadeSpawnPoint2" parent="TheShadeSpawPoints" instance=ExtResource("6_b536d")]
+[node name="TheShadeSpawnPoint2" parent="TheShadeSpawnPoints" instance=ExtResource("6_b536d")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.54186, 0, 0)
 
-[node name="TheShadeSpawnPoint3" parent="TheShadeSpawPoints" instance=ExtResource("6_b536d")]
+[node name="TheShadeSpawnPoint3" parent="TheShadeSpawnPoints" instance=ExtResource("6_b536d")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -3.47549, 0, 0)
 
 [node name="MonsterNodes" type="Node3D" parent="."]
