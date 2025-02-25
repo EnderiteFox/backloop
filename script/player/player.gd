@@ -36,6 +36,7 @@ var is_alive: bool = true
 @onready var hitboxCrouched: CollisionShape3D = %HitboxCrouched
 @onready var camera: Camera3D = %PlayerCamera
 @onready var camPivot: Node3D = %CamPivot
+@onready var flashlight: SpotLight3D = %Flashlight
 
 @onready var activeWalkSound: AudioStreamPlayer3D = %WalkSound
 
@@ -101,7 +102,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_mouse_motion(event)
 	if event.is_action("interact"): _interact()
 	if event.is_action_pressed("toggle_flashlight"):
-		%Flashlight.visible = !%Flashlight.visible
+		flashlight.visible = !flashlight.visible
 		
 func _mouse_motion(event: InputEventMouseMotion) -> void:
 	var motion: Vector2 = event.screen_relative

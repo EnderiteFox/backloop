@@ -35,15 +35,31 @@ func _on_opened() -> void:
 	Game.room_opened.emit(nextRoom)
 
 func _on_interact() -> void:
+	# Don't open if door is locked
 	if state == State.LOCKED || state == State.BLOCKED || open || !room.fullyGenerated:
 		return
+
+	# Update door state
 	opened.emit()
 	open = true
 	nextRoom.room_opened.emit()
+
+	# Uncrouch player
 	Game.player.set_crouched(false)
+
+	# Setup transition camera
 	var camera: Camera3D = Camera3D.new()
 	self.add_child(camera)
 	camera.make_current()
+
+	# Make the player's flashlight follow the transition camera
+	var flashlight_parent: Node = Game.player.flashlight.get_parent()
+	if flashlight_parent != null:
+		flashlight_parent.remove_child(Game.player.flashlight)
+
+	camera.add_child(Game.player.flashlight)
+
+	# Animate transition camera
 	var start_transform: Transform3D = Game.player.camera.global_transform
 	var end_transform: Transform3D = %OpenCamera.global_transform
 	var tween: Tween = self.create_tween()
@@ -60,11 +76,26 @@ func _on_interact() -> void:
 	)
 
 func _on_camera_tween_finished() -> void:
+	# Make the player's flashlight follow the animation camera
+	var flashlight_parent: Node = Game.player.flashlight.get_parent()
+	if flashlight_parent != null:
+		flashlight_parent.remove_child(Game.player.flashlight)
+
+	%OpenCamera.add_child(Game.player.flashlight)
+
+	# Start opening animation
 	%OpenCamera.make_current()
 	animationPlayer.play("Door/open")
 	animationPlayer.animation_finished.connect(func(_animation): _on_fully_opened(), ConnectFlags.CONNECT_ONE_SHOT)
 
 func _on_fully_opened() -> void:
+	# Make the player's flashlight follow the player's camera
+	var flashlight_parent: Node = Game.player.flashlight.get_parent()
+	if flashlight_parent != null:
+		flashlight_parent.remove_child(Game.player.flashlight)
+
+	Game.player.camera.add_child(Game.player.flashlight)
+
 	Game.player.camera.make_current()
 	Game.player.position = %PlayerTeleport.global_position
 	Game.player.rotation = %PlayerTeleport.global_rotation
