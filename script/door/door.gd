@@ -3,7 +3,7 @@ class_name Door
 
 signal opened
 
-const CAMERA_TRANSITION_TIME: float = 0.1
+const CAMERA_TRANSITION_TIME: float = 0.2
 
 var open: bool = false
 var state := State.NORMAL
