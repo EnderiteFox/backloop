@@ -1,10 +1,10 @@
 [gd_scene load_steps=23 format=4 uid="uid://c470vup8fia17"]
 
 [ext_resource type="PackedScene" uid="uid://cd1j5w4sb7i4w" path="res://model/window/scene.gltf" id="1_r2whe"]
-[ext_resource type="Script" path="res://script/mobs/the_watcher/window.gd" id="2_uicrv"]
+[ext_resource type="Script" uid="uid://b17il5po871e6" path="res://script/mobs/the_watcher/window.gd" id="2_uicrv"]
 [ext_resource type="AudioStream" uid="uid://b3cjg1epneadq" path="res://sound/mobs/the_watcher/watcher_spawn_1.ogg" id="3_ra4c4"]
 [ext_resource type="AudioStream" uid="uid://cb72pbgqndtt" path="res://sound/mobs/the_watcher/window_open.ogg" id="3_tgfje"]
-[ext_resource type="Script" path="res://script/mobs/the_watcher/the_watcher_raycast.gd" id="3_wd4p8"]
+[ext_resource type="Script" uid="uid://d0os161ltff60" path="res://script/mobs/the_watcher/the_watcher_raycast.gd" id="3_wd4p8"]
 [ext_resource type="AudioStream" uid="uid://0uifhi7l7oba" path="res://sound/mobs/the_watcher/watcher_spawn_2.ogg" id="4_u4sul"]
 [ext_resource type="Texture2D" uid="uid://c6xpd2gf80k83" path="res://model/window/textures/Glass_metallicRoughness.png" id="5_socnt"]
 [ext_resource type="PackedScene" uid="uid://c4k81y2s6w1fu" path="res://scene/mobs/the_watcher/the_watcher.tscn" id="7_45wot"]
@@ -105,8 +105,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0cv7h"]
 _data = {
-"RESET": SubResource("Animation_5w6ra"),
-"open": SubResource("Animation_ds1dx")
+&"RESET": SubResource("Animation_5w6ra"),
+&"open": SubResource("Animation_ds1dx")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qgcph"]

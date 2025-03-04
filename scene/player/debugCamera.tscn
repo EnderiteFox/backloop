@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cmk1lv7xjcuob"]
 
-[ext_resource type="Script" path="res://script/player/debugCamera.gd" id="1_cbfnu"]
+[ext_resource type="Script" uid="uid://byr88p4wla2po" path="res://script/player/debugCamera.gd" id="1_cbfnu"]
 
 [node name="DebugCamera" type="Camera3D"]
 process_mode = 3

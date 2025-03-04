@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cfbluaw30yhp5"]
 
 [ext_resource type="PackedScene" uid="uid://b6coesthevemy" path="res://model/lights/floor_lamp/floor_lamp.glb" id="1_l1gkq"]
-[ext_resource type="Script" path="res://script/lights/light.gd" id="1_pvgmh"]
+[ext_resource type="Script" uid="uid://bwgev15ikkilx" path="res://script/lights/light.gd" id="1_pvgmh"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_h8wjd"]
 radius = 0.0718775

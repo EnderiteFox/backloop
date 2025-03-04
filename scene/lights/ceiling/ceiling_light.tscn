@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b2xt05xayiv6e"]
 
-[ext_resource type="Script" path="res://script/lights/sound_light.gd" id="1_vprai"]
+[ext_resource type="Script" uid="uid://w8b15a3ccary" path="res://script/lights/sound_light.gd" id="1_vprai"]
 [ext_resource type="PackedScene" uid="uid://dbnx20jy152lr" path="res://model/lights/ceiling/ceiling_light.tscn" id="2_3ilc7"]
 [ext_resource type="AudioStream" uid="uid://pmq32fcqmnfp" path="res://sound/lights/neon.ogg" id="3_5m4j4"]
 [ext_resource type="AudioStream" uid="uid://btp3lytgmwhqu" path="res://sound/lights/neon_flicker.ogg" id="4_j2rl1"]

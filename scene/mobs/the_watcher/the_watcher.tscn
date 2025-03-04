@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=4 uid="uid://c4k81y2s6w1fu"]
 
 [ext_resource type="PackedScene" uid="uid://n5yhri112ipi" path="res://model/mobs/the_watcher/the_watcher.gltf" id="1_kqwgq"]
-[ext_resource type="Script" path="res://script/mobs/the_watcher/the_watcher_model.gd" id="2_dyy1d"]
+[ext_resource type="Script" uid="uid://beua3wpewcg33" path="res://script/mobs/the_watcher/the_watcher_model.gd" id="2_dyy1d"]
 [ext_resource type="Texture2D" uid="uid://cy02fblofd4v2" path="res://model/mobs/the_watcher/Albedo.png" id="3_1h1hb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fv6ly"]
@@ -1428,9 +1428,9 @@ tracks/53/keys = PackedFloat32Array(0, 1, 0.0121055, 1.48981e-07, -0.0850685, 0.
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gwdyt"]
 _data = {
-"RESET": SubResource("Animation_vsonl"),
-"jumpscare": SubResource("Animation_j6tu4"),
-"peek": SubResource("Animation_7mgbb")
+&"RESET": SubResource("Animation_vsonl"),
+&"jumpscare": SubResource("Animation_j6tu4"),
+&"peek": SubResource("Animation_7mgbb")
 }
 
 [node name="TheWatcher" node_paths=PackedStringArray("animationPlayer") instance=ExtResource("1_kqwgq")]

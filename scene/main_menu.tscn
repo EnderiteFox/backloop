@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://bev5ngmsob6ud"]
 
-[ext_resource type="Script" path="res://script/main_menu.gd" id="1_vntwe"]
+[ext_resource type="Script" uid="uid://d2hfsx2y5sbxe" path="res://script/main_menu.gd" id="1_vntwe"]
 [ext_resource type="PackedScene" uid="uid://cpivnlwdvvnpn" path="res://scene/rooms/start.tscn" id="2_0hi3m"]
 [ext_resource type="PackedScene" uid="uid://cljvh2p7v80ll" path="res://scene/environment/ingame_environment.tscn" id="3_hjqey"]
 [ext_resource type="VoxelGIData" uid="uid://csh4dfqmd4waj" path="res://scene/main_menu.res" id="4_j3s0l"]
@@ -174,8 +174,8 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uqt32"]
 _data = {
-"RESET": SubResource("Animation_gl7xk"),
-"play_fade_out": SubResource("Animation_ugbmg")
+&"RESET": SubResource("Animation_gl7xk"),
+&"play_fade_out": SubResource("Animation_ugbmg")
 }
 
 [node name="MainMenu" type="Node3D"]
@@ -250,7 +250,7 @@ stream = ExtResource("6_q44dr")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_uqt32")
+&"": SubResource("AnimationLibrary_uqt32")
 }
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]

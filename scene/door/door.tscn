@@ -1,8 +1,8 @@
 [gd_scene load_steps=19 format=3 uid="uid://bbjkia2lowqon"]
 
 [ext_resource type="PackedScene" uid="uid://de6hy5siiftlw" path="res://model/door/room_door_animation/scene.gltf" id="1_nu3f6"]
-[ext_resource type="Script" path="res://script/door/door.gd" id="2_dch8f"]
-[ext_resource type="Script" path="res://script/interactable/interactable.gd" id="2_s446a"]
+[ext_resource type="Script" uid="uid://qpihv6rykf0i" path="res://script/door/door.gd" id="2_dch8f"]
+[ext_resource type="Script" uid="uid://dnocscyviv226" path="res://script/interactable/interactable.gd" id="2_s446a"]
 [ext_resource type="AudioStream" uid="uid://bj7thlbe65sup" path="res://sound/door/doorOpen_1.ogg" id="3_2a278"]
 [ext_resource type="Animation" uid="uid://bgbnuequyoj03" path="res://scene/door/door_animation.res" id="3_wdws3"]
 [ext_resource type="AudioStream" uid="uid://bi46jtvuofedk" path="res://sound/door/doorOpen_2.ogg" id="4_wfjhv"]
@@ -52,8 +52,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bqqq5"]
 _data = {
-"Default Take": ExtResource("3_wdws3"),
-"RESET": SubResource("Animation_nrtu6")
+&"Default Take": ExtResource("3_wdws3"),
+&"RESET": SubResource("Animation_nrtu6")
 }
 
 [sub_resource type="Animation" id="Animation_h5uq7"]
@@ -114,7 +114,7 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4uson"]
 _data = {
-"open": SubResource("Animation_h5uq7")
+&"open": SubResource("Animation_h5uq7")
 }
 
 [sub_resource type="BoxMesh" id="BoxMesh_phiqp"]

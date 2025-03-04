@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://buw2uy5r4nepf"]
 
-[ext_resource type="Script" path="res://script/mobs/the_shade/the_shade_spawn_point.gd" id="1_cxpc2"]
+[ext_resource type="Script" uid="uid://bstgtv7cnlqrq" path="res://script/mobs/the_shade/the_shade_spawn_point.gd" id="1_cxpc2"]
 
 [node name="TheShadeSpawnPoint" type="Node3D"]
 script = ExtResource("1_cxpc2")

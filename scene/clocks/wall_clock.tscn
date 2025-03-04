@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cv5nx3qabwnnw"]
 
 [ext_resource type="PackedScene" uid="uid://dspjhaueo3jwm" path="res://model/clocks/wall_clock/wall_clock.gltf" id="1_43n50"]
-[ext_resource type="Script" path="res://scene/clocks/wall_clock.gd" id="2_8npct"]
+[ext_resource type="Script" uid="uid://bafso50ol0o5q" path="res://scene/clocks/wall_clock.gd" id="2_8npct"]
 
 [node name="wall_clock" instance=ExtResource("1_43n50")]
 transform = Transform3D(0.0329728, 0, 0, 0, 0.0329728, 0, 0, 0, 0.0329728, 0, 0, 0)

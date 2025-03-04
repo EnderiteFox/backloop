@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://c1hbjeqkobclu"]
 
 [ext_resource type="PackedScene" uid="uid://cljvh2p7v80ll" path="res://scene/environment/ingame_environment.tscn" id="1_jf0cq"]
-[ext_resource type="Script" path="res://script/menus/game_over.gd" id="1_r16wo"]
+[ext_resource type="Script" uid="uid://dgl8usieulul0" path="res://script/menus/game_over.gd" id="1_r16wo"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="2_1cpfb"]
 [ext_resource type="PackedScene" uid="uid://cm2rdqmhrouja" path="res://model/game_over/game_over_note.gltf" id="3_ug3lr"]
 [ext_resource type="Material" uid="uid://mi3tsypobxge" path="res://material/walls/wallpaper/wallpaper.tres" id="5_lmxj4"]
@@ -211,9 +211,9 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n21pg"]
 _data = {
-"RESET": SubResource("Animation_bfh2k"),
-"enter_game_over": SubResource("Animation_jqhq8"),
-"exit_game_over": SubResource("Animation_dn8jq")
+&"RESET": SubResource("Animation_bfh2k"),
+&"enter_game_over": SubResource("Animation_jqhq8"),
+&"exit_game_over": SubResource("Animation_dn8jq")
 }
 
 [sub_resource type="InputEventKey" id="InputEventKey_ejujd"]

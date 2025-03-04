@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://b3wh7qyhhwb44"]
 
-[ext_resource type="Script" path="res://script/player/player.gd" id="1_cwurn"]
+[ext_resource type="Script" uid="uid://b6qok45yrbdnj" path="res://script/player/player.gd" id="1_cwurn"]
 [ext_resource type="PackedScene" uid="uid://1m7fgwopygy7" path="res://scene/player/stamina_ui.tscn" id="2_k4avh"]
 [ext_resource type="PackedScene" uid="uid://cmk1lv7xjcuob" path="res://scene/player/debugCamera.tscn" id="3_kurhd"]
 [ext_resource type="PackedScene" uid="uid://cljvh2p7v80ll" path="res://scene/environment/ingame_environment.tscn" id="3_pagxp"]
-[ext_resource type="Script" path="res://script/node_3d/soft_follow.gd" id="3_puycw"]
+[ext_resource type="Script" uid="uid://dweiut1euqc8c" path="res://script/node_3d/soft_follow.gd" id="3_puycw"]
 [ext_resource type="AudioStream" uid="uid://qju7cq2cq3es" path="res://sound/player/walk.ogg" id="4_h4sw0"]
 [ext_resource type="AudioStream" uid="uid://bywm8xahkrk2o" path="res://sound/player/run.ogg" id="5_feosj"]
 [ext_resource type="AudioStream" uid="uid://d2v8aksvasi7a" path="res://sound/player/crouch.ogg" id="6_3ebys"]

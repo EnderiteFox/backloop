@@ -638,8 +638,8 @@ tracks/29/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_crccn"]
 _data = {
-"RESET": SubResource("Animation_7c1ix"),
-"jumpscare": SubResource("Animation_btumn")
+&"RESET": SubResource("Animation_7c1ix"),
+&"jumpscare": SubResource("Animation_btumn")
 }
 
 [sub_resource type="GDScript" id="GDScript_fhm2l"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://1m7fgwopygy7"]
 
-[ext_resource type="Script" path="res://script/player/stamina_ui.gd" id="1_35a1b"]
+[ext_resource type="Script" uid="uid://grp48xa86o8c" path="res://script/player/stamina_ui.gd" id="1_35a1b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2pp1"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -58,8 +58,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wdofl"]
 _data = {
-"RESET": SubResource("Animation_k1lk8"),
-"exhausted": SubResource("Animation_o7ynn")
+&"RESET": SubResource("Animation_k1lk8"),
+&"exhausted": SubResource("Animation_o7ynn")
 }
 
 [node name="StaminaUi" type="ProgressBar"]

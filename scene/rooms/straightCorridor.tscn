@@ -1,14 +1,14 @@
 [gd_scene load_steps=27 format=3 uid="uid://bmgkpyr0xa3pi"]
 
-[ext_resource type="Script" path="res://script/rooms/room.gd" id="1_2ddpk"]
+[ext_resource type="Script" uid="uid://c4opum1tbjfvr" path="res://script/rooms/room.gd" id="1_2ddpk"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="2_a2gwc"]
 [ext_resource type="Material" uid="uid://mi3tsypobxge" path="res://material/walls/wallpaper/wallpaper.tres" id="3_70e8w"]
 [ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://scene/door/door.tscn" id="4_3ssjw"]
 [ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://scene/lights/ceiling/ceiling_light.tscn" id="5_3nswq"]
 [ext_resource type="PackedScene" uid="uid://c470vup8fia17" path="res://scene/mobs/the_watcher/window.tscn" id="6_aqddg"]
-[ext_resource type="Script" path="res://script/mobs/node_monsters/monster_node.gd" id="7_r81c3"]
+[ext_resource type="Script" uid="uid://bf6mjw15l2dsr" path="res://script/mobs/node_monsters/monster_node.gd" id="7_r81c3"]
 [ext_resource type="VoxelGIData" uid="uid://b5ntbii127sue" path="res://scene/rooms/straightCorridorGI.res" id="8_7pacf"]
-[ext_resource type="Script" path="res://script/rooms/gen_templates/pick_random_template.gd" id="9_5s0fp"]
+[ext_resource type="Script" uid="uid://bick5l77yfe0k" path="res://script/rooms/gen_templates/pick_random_template.gd" id="9_5s0fp"]
 [ext_resource type="PackedScene" uid="uid://cv5nx3qabwnnw" path="res://scene/clocks/wall_clock.tscn" id="9_jxo78"]
 [ext_resource type="ArrayOccluder3D" uid="uid://c2r64ur406knu" path="res://scene/rooms/straightCorridor.occ" id="11_370k3"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c75184mf0hfkg"]
 
 [ext_resource type="PackedScene" uid="uid://d126kjjdvgakk" path="res://model/mobs/the_shade/the_shade.gltf" id="1_ppd8g"]
-[ext_resource type="Script" path="res://script/mobs/the_shade/the_shade.gd" id="1_qg38i"]
+[ext_resource type="Script" uid="uid://cyv7tyj51fv4m" path="res://script/mobs/the_shade/the_shade.gd" id="1_qg38i"]
 
 [sub_resource type="Animation" id="Animation_wxcpu"]
 length = 0.001
@@ -570,9 +570,9 @@ tracks/25/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4ibq1"]
 _data = {
-"RESET": SubResource("Animation_wxcpu"),
-"idle": SubResource("Animation_dkiua"),
-"seeing_player": SubResource("Animation_ulx28")
+&"RESET": SubResource("Animation_wxcpu"),
+&"idle": SubResource("Animation_dkiua"),
+&"seeing_player": SubResource("Animation_ulx28")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_34m82"]

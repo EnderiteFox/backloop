@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://f57tvg8catxs"]
 
 [ext_resource type="Texture2D" uid="uid://cmautxg73fxde" path="res://image/mobs/node_monsters/outrun/maxwell.png" id="1_ea6ck"]
-[ext_resource type="Script" path="res://script/mobs/node_monsters/outrun/outrun.gd" id="1_qoose"]
+[ext_resource type="Script" uid="uid://sbao4hhpf8dd" path="res://script/mobs/node_monsters/outrun/outrun.gd" id="1_qoose"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6bnv4"]
 radius = 4.12267
