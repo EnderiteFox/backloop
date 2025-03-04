@@ -1,19 +1,18 @@
 extends RefCounted
 class_name RoomList
 
-var rooms: Dictionary = {
+var roomsConfig: Dictionary[String, float] = {
 	"straightCorridor": 1.0,
 	"tShapeTwoWindows": 1.0,
 	"donut": 1.0
 }
+var rooms: Dictionary[PackedScene, float] = {}
 
 func load_rooms() -> void:
-	var loadedRooms: Dictionary = {}
-	for roomName in rooms:
-		if rooms[roomName] == 0:
+	for roomName in roomsConfig:
+		if roomsConfig[roomName] == 0:
 			continue
-		loadedRooms[load("res://scene/rooms/" + roomName + ".tscn")] = rooms[roomName]
-	rooms = loadedRooms
+		rooms[load("res://scene/rooms/" + roomName + ".tscn") as PackedScene] = roomsConfig[roomName]
 
 func get_random_rooms() -> Array[PackedScene]:
 	var possibleRooms: Dictionary = rooms.duplicate()

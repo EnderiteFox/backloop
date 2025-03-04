@@ -18,6 +18,13 @@ enum NodeState {
 	ROOM_END
 }
 
+@export_tool_button("Update path") var tool_update_path_action: Callable = _tool_update_path
+
+func _tool_update_path() -> void:
+	if fixPartialLinks:
+		_fix_partial_links()
+	graph = getWholeGraph()
+
 func _ready() -> void:
 	if Engine.is_editor_hint() && !nextNodes.is_empty():
 		debugLines = _init_line()
