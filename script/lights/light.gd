@@ -21,7 +21,7 @@ func flicker(time: float) -> void:
 	for light in lights:
 		_flicker_light(time, light)
 	flicker_start.emit()
-	get_tree().create_timer(time).timeout.connect(func(): flicker_end.emit())
+	get_tree().create_timer(time).timeout.connect(flicker_end.emit)
 
 
 func _on_lightbreaker_touched(_area: Area3D) -> void:

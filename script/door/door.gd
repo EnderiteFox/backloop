@@ -1,5 +1,5 @@
-extends RoomElement
 class_name Door
+extends RoomElement
 
 signal opened
 
@@ -7,7 +7,6 @@ const CAMERA_TRANSITION_TIME: float = 0.2
 
 var open: bool = false
 var state := State.NORMAL
-		
 
 var nextRoom: Room = null
 
@@ -15,6 +14,7 @@ var nextRoom: Room = null
 @onready var animationPlayer: AnimationPlayer = %AnimationPlayer
 @onready var doorSoundPlayer: AudioStreamPlayer3D = %DoorSoundPlayer
 @onready var lockedModel: Node3D = %LockedModel
+@onready var interaction_hitbox: Interactable = %InteractionHitbox
 
 enum State {
 	NORMAL,
@@ -24,8 +24,15 @@ enum State {
 
 func _ready() -> void:
 	super._ready()
-	%InteractionHitbox.interacted.connect(_on_interact, ConnectFlags.CONNECT_ONE_SHOT)
+	interaction_hitbox.interacted.connect(_on_interact, ConnectFlags.CONNECT_ONE_SHOT)
 	opened.connect(_on_opened, ConnectFlags.CONNECT_ONE_SHOT)
+	opened.connect(
+		func():
+			for child in interaction_hitbox.get_children():
+				if child is CollisionShape3D:
+					child.disabled = true,
+		ConnectFlags.CONNECT_ONE_SHOT
+	)
 
 func _on_opened() -> void:
 	_set_start_monster_node()
@@ -163,8 +170,14 @@ func silent_lock(animate: bool = true) -> void:
 		else:
 			instant_close()
 	state = State.LOCKED
+	for child in interaction_hitbox.get_children():
+		if child is CollisionShape3D:
+			child.disabled = true
 
 func make_blocked() -> void:
 	instant_close()
 	%BlockedModels.get_children().pick_random().visible = true
 	state = State.BLOCKED
+	for child in interaction_hitbox.get_children():
+		if child is CollisionShape3D:
+			child.disabled = true

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://scene/door/door.tscn" id="3_m78sd"]
 [ext_resource type="Material" uid="uid://mi3tsypobxge" path="res://material/walls/wallpaper/wallpaper.tres" id="3_yyoeo"]
 [ext_resource type="PackedScene" uid="uid://c6oj44c4rgh2q" path="res://scene/furniture/bed/double_bed.tscn" id="4_miqw8"]
-[ext_resource type="PackedScene" uid="uid://blxb0sqkunyi1" path="res://scene/furniture/desk/Desk.tscn" id="5_dh7hh"]
+[ext_resource type="PackedScene" uid="uid://cvp80r0s4kkmk" path="res://scene/furniture/desk/desk.tscn" id="6_r1wo2"]
 [ext_resource type="PackedScene" uid="uid://cfbluaw30yhp5" path="res://scene/lights/floor_lamp/floor_lamp.tscn" id="6_xkg01"]
 [ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://scene/lights/ceiling/ceiling_light.tscn" id="7_nwwm7"]
 [ext_resource type="VoxelGIData" uid="uid://c4pqth2roomk3" path="res://scene/rooms/startGI.res" id="10_e8kip"]
@@ -183,8 +183,8 @@ metadata/_edit_group_ = true
 [node name="DoubleBed" parent="Props" instance=ExtResource("4_miqw8")]
 transform = Transform3D(-7.37431e-08, 0, 1.68705, 0, 1.68705, 0, -1.68705, 0, -7.37431e-08, 0.9572, -0.0487021, 3.71055)
 
-[node name="Desk" parent="Props" instance=ExtResource("5_dh7hh")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.06225, 0, -2.0451)
+[node name="Desk2" parent="Props" instance=ExtResource("6_r1wo2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.06735, 0, -2.06013)
 
 [node name="FloorLamp" parent="Props" instance=ExtResource("6_xkg01")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.21931, -2.38419e-07, 4.43749)

@@ -1,26 +1,158 @@
-[gd_scene load_steps=4 format=3 uid="uid://blxb0sqkunyi1"]
+[gd_scene load_steps=9 format=3 uid="uid://cvp80r0s4kkmk"]
 
-[ext_resource type="PackedScene" uid="uid://bed0dbquna2an" path="res://model/desk/scene.gltf" id="1_li2ub"]
+[ext_resource type="PackedScene" uid="uid://bed0dbquna2an" path="res://model/desk/scene.gltf" id="1_nllvt"]
+[ext_resource type="Script" uid="uid://dnocscyviv226" path="res://script/interactable/interactable.gd" id="2_lvdph"]
+[ext_resource type="Script" uid="uid://bkjeaysbq8c4y" path="res://script/furniture/drawers/drawer.gd" id="2_t4rf5"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_unkuo"]
-size = Vector3(0.895752, 0.797394, 0.697784)
+[sub_resource type="BoxShape3D" id="BoxShape3D_t4rf5"]
+size = Vector3(0.535889, 0.211426, 0.055603)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_4nu6c"]
-size = Vector3(0.895752, 0.260513, 0.752083)
+[sub_resource type="BoxShape3D" id="BoxShape3D_bp7b1"]
+size = Vector3(0.538025, 0.0189819, 0.833008)
 
-[node name="Desk" type="StaticBody3D"]
-collision_mask = 14
+[sub_resource type="BoxShape3D" id="BoxShape3D_87ayv"]
+size = Vector3(0.855042, 0.794418, 0.0553589)
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_li2ub")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_qi6xt"]
+size = Vector3(0.855957, 0.0644703, 2.04083)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0194092, 0.398758, 0.722519)
-shape = SubResource("BoxShape3D_unkuo")
+[sub_resource type="BoxShape3D" id="BoxShape3D_i5nvs"]
+size = Vector3(0.0473633, 0.786377, 2.05432)
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0194092, 0.398758, -0.720552)
-shape = SubResource("BoxShape3D_unkuo")
+[node name="Desk" instance=ExtResource("1_nllvt")]
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0194092, 0.667198, 0.000892878)
-shape = SubResource("BoxShape3D_4nu6c")
+[node name="handle1_lp_001" parent="Sketchfab_model/desk_fbx/RootNode" index="1" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("2_t4rf5")
+hitbox = NodePath("Area3D")
+
+[node name="Area3D" type="Area3D" parent="Sketchfab_model/desk_fbx/RootNode/handle1_lp_001" index="1"]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_lvdph")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/desk_fbx/RootNode/handle1_lp_001/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.65916e-22, 0, 2.65916e-22, 1, -0.000121891, -0.0231934, -0.00863647)
+shape = SubResource("BoxShape3D_t4rf5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Sketchfab_model/desk_fbx/RootNode/handle1_lp_001/Area3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.65916e-22, 0, 2.65916e-22, 1, -0.0025323, -0.118195, -0.425049)
+shape = SubResource("BoxShape3D_bp7b1")
+
+[node name="handle2_lp_001" parent="Sketchfab_model/desk_fbx/RootNode" index="2" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("2_t4rf5")
+hitbox = NodePath("Area3D")
+
+[node name="Area3D" type="Area3D" parent="Sketchfab_model/desk_fbx/RootNode/handle2_lp_001" index="1"]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_lvdph")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/desk_fbx/RootNode/handle2_lp_001/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.65916e-22, 0, 2.65916e-22, 1, -0.000121891, -0.0231934, -0.00863647)
+shape = SubResource("BoxShape3D_t4rf5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Sketchfab_model/desk_fbx/RootNode/handle2_lp_001/Area3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.65916e-22, 0, 2.65916e-22, 1, -0.0025323, -0.118195, -0.425049)
+shape = SubResource("BoxShape3D_bp7b1")
+
+[node name="handle2_lp_002" parent="Sketchfab_model/desk_fbx/RootNode" index="3" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("2_t4rf5")
+hitbox = NodePath("Area3D")
+
+[node name="Area3D" type="Area3D" parent="Sketchfab_model/desk_fbx/RootNode/handle2_lp_002" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.65916e-22, 0, 2.65916e-22, 1, 0, 0, 0)
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_lvdph")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/desk_fbx/RootNode/handle2_lp_002/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.65916e-22, 0, 2.65916e-22, 1, -0.000121891, -0.0231934, -0.00863647)
+shape = SubResource("BoxShape3D_t4rf5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Sketchfab_model/desk_fbx/RootNode/handle2_lp_002/Area3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.65916e-22, 0, 2.65916e-22, 1, -0.0025323, -0.118195, -0.425049)
+shape = SubResource("BoxShape3D_bp7b1")
+
+[node name="handle1_lp_003" parent="Sketchfab_model/desk_fbx/RootNode" index="4" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("2_t4rf5")
+hitbox = NodePath("Area3D")
+
+[node name="Area3D" type="Area3D" parent="Sketchfab_model/desk_fbx/RootNode/handle1_lp_003" index="1"]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_lvdph")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/desk_fbx/RootNode/handle1_lp_003/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.65916e-22, 0, 2.65916e-22, 1, -0.000121891, -0.0231934, -0.00863647)
+shape = SubResource("BoxShape3D_t4rf5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Sketchfab_model/desk_fbx/RootNode/handle1_lp_003/Area3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.65916e-22, 0, 2.65916e-22, 1, -0.0025323, -0.118195, -0.425049)
+shape = SubResource("BoxShape3D_bp7b1")
+
+[node name="handle2_lp_003" parent="Sketchfab_model/desk_fbx/RootNode" index="5" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("2_t4rf5")
+hitbox = NodePath("Area3D")
+
+[node name="Area3D" type="Area3D" parent="Sketchfab_model/desk_fbx/RootNode/handle2_lp_003" index="1"]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_lvdph")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/desk_fbx/RootNode/handle2_lp_003/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.65916e-22, 0, 2.65916e-22, 1, -0.000121891, -0.0231934, -0.00863647)
+shape = SubResource("BoxShape3D_t4rf5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Sketchfab_model/desk_fbx/RootNode/handle2_lp_003/Area3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.65916e-22, 0, 2.65916e-22, 1, -0.0025323, -0.118195, -0.425049)
+shape = SubResource("BoxShape3D_bp7b1")
+
+[node name="handle2_lp_004" parent="Sketchfab_model/desk_fbx/RootNode" index="6" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("2_t4rf5")
+hitbox = NodePath("Area3D")
+
+[node name="Area3D" type="Area3D" parent="Sketchfab_model/desk_fbx/RootNode/handle2_lp_004" index="1"]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_lvdph")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/desk_fbx/RootNode/handle2_lp_004/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.65916e-22, 0, 2.65916e-22, 1, -0.000121891, -0.0231934, -0.00863647)
+shape = SubResource("BoxShape3D_t4rf5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Sketchfab_model/desk_fbx/RootNode/handle2_lp_004/Area3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.65916e-22, 0, 2.65916e-22, 1, -0.0025323, -0.118195, -0.425049)
+shape = SubResource("BoxShape3D_bp7b1")
+
+[node name="Hitbox" type="StaticBody3D" parent="." index="1"]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000335693, 0.397972, 1.00406)
+shape = SubResource("BoxShape3D_87ayv")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hitbox" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000335693, 0.397972, -0.999806)
+shape = SubResource("BoxShape3D_87ayv")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Hitbox" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000335693, 0.397972, 0.407691)
+shape = SubResource("BoxShape3D_87ayv")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Hitbox" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000335693, 0.397972, -0.408677)
+shape = SubResource("BoxShape3D_87ayv")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Hitbox" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00219727, 0.764506, 0.00656128)
+shape = SubResource("BoxShape3D_qi6xt")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Hitbox" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.406006, 0.405396, 0.000793457)
+shape = SubResource("BoxShape3D_i5nvs")
