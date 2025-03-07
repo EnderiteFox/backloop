@@ -12,7 +12,7 @@ const SENSIBILITY: float = 0.008
 const VIEW_BOBBLE_AMOUNT: float = 0.08
 const VIEW_BOBBLE_SPEED: float  = 3.5
 
-const INTERACTION_RANGE: float = 8.0
+const INTERACTION_RANGE: float = 1.75
 
 const EXHAUSTION: int    = 4
 const STAMINA_DRAIN: int = 30
@@ -60,6 +60,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	hitboxCrouched.disabled = true
 	died.connect(func(): is_alive = false)
+	interaction_raycast.target_position = interaction_raycast.target_position.normalized() * INTERACTION_RANGE
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -111,48 +112,17 @@ func _physics_process(delta: float) -> void:
 
 	# Update crosshair
 	_update_interact_crosshair()
+
+	# Interact key
+	if Input.is_action_just_pressed("interact"):
+		_interact()
 	
 	move_and_slide()
-
-
-func get_speed() -> float:
-	if Input.is_action_pressed("sprint") and stamina >= 0 and exhaustion <= 0 and crouched == false:
-		return SPRINTSPEED
-	if crouched == true:
-		return CROUCHSPEED
-	return SPEED
-
-
-func blackout(time: float) -> void:
-	%BlackoutRect.visible = true
-	get_tree().create_timer(time).timeout.connect(func(): %BlackoutRect.visible = false)
-
-
-func isMoving() -> bool:
-	return Input.get_vector("move_left", "move_right", "move_forward", "move_backward") != Vector2(0.0, 0.0)
-
-
-func set_crouched(crouch: bool) -> void:
-	if self.crouched == crouch:
-		return
-	if crouch:
-		_set_active_walk_sound(%CrouchSound)
-		hitbox.disabled = true
-		hitboxCrouched.disabled = false
-		self.crouched = true
-		self.create_tween().tween_property(self, "currentCrouchCamOffset", CROUCH_CAM_OFFSET, CROUCH_ANIM_TIME)
-	else:
-		_set_active_walk_sound(%WalkSound)
-		hitbox.disabled = false
-		hitboxCrouched.disabled = true
-		self.crouched = false
-		self.create_tween().tween_property(self, "currentCrouchCamOffset", 0, CROUCH_ANIM_TIME)
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		_mouse_motion(event)
-	if event.is_action("interact"): _interact()
 	if event.is_action_pressed("toggle_flashlight"):
 		flashlight.visible = !flashlight.visible
 
@@ -201,3 +171,38 @@ func _set_active_walk_sound(streamPlayer: AudioStreamPlayer3D) -> void:
 	%RunSound.stop()
 	%CrouchSound.stop()
 	self.activeWalkSound = streamPlayer
+
+
+func get_speed() -> float:
+	if Input.is_action_pressed("sprint") and stamina >= 0 and exhaustion <= 0 and crouched == false:
+		return SPRINTSPEED
+	if crouched == true:
+		return CROUCHSPEED
+	return SPEED
+
+
+func blackout(time: float) -> void:
+	%BlackoutRect.visible = true
+	get_tree().create_timer(time).timeout.connect(func(): %BlackoutRect.visible = false)
+
+
+func isMoving() -> bool:
+	return Input.get_vector("move_left", "move_right", "move_forward", "move_backward") != Vector2(0.0, 0.0)
+
+
+func set_crouched(crouch: bool) -> void:
+	if self.crouched == crouch:
+		return
+	if crouch:
+		_set_active_walk_sound(%CrouchSound)
+		hitbox.disabled = true
+		hitboxCrouched.disabled = false
+		self.crouched = true
+		self.create_tween().tween_property(self, "currentCrouchCamOffset", CROUCH_CAM_OFFSET, CROUCH_ANIM_TIME)
+	else:
+		_set_active_walk_sound(%WalkSound)
+		hitbox.disabled = false
+		hitboxCrouched.disabled = true
+		self.crouched = false
+		self.create_tween().tween_property(self, "currentCrouchCamOffset", 0, CROUCH_ANIM_TIME)
+
