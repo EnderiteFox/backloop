@@ -1,5 +1,5 @@
-extends Node
 class_name Clock
+extends Node
 
 @onready var displayed_time: int = Game.time
 

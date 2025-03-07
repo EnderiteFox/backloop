@@ -1,4 +1,4 @@
-extends Node3D
 class_name TheWatcherModel
+extends Node3D
 
 @export var animationPlayer: AnimationPlayer

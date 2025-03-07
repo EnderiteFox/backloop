@@ -1,5 +1,5 @@
-extends NodeMonster
 class_name Outrun
+extends NodeMonster
 
 func _ready() -> void:
 	super._ready()

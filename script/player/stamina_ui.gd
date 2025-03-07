@@ -1,18 +1,19 @@
 extends ProgressBar
 
-var exhausted: bool = false
-var staminaFull: bool = true
-
 const TWEEN_TIME: float = 0.5
 const STAMINA_FULL_TRANSITION: float = 1
 const STAMINA_NOT_FULL_TRANSITION: float = 0.5
+
+var exhausted: bool = false
+var staminaFull: bool = true
 
 var fadeOutTween: Tween = null
 var fadeInTween: Tween = null
 
 func _ready() -> void:
 	self.self_modulate = Color.TRANSPARENT
-	
+
+
 func _process(_delta: float) -> void:
 	value = Game.player.stamina
 	

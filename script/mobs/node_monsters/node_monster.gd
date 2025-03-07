@@ -1,14 +1,8 @@
-extends Node3D
 class_name NodeMonster
+extends Node3D
 
 signal path_end_reached
 signal started_moving
-
-var path: PackedVector3Array
-var currentPathPoint: int = 0
-
-var moving: bool = false
-
 
 ## If true, deletes the node monster when it reaches the end of its path
 @export var freeOnPathEnd: bool = true
@@ -27,6 +21,11 @@ var moving: bool = false
 
 @export_range(0, 100, 0.1, "or_greater", "suffix:m/s") var moveSpeed: float = 1.0
 
+var path: PackedVector3Array
+var currentPathPoint: int = 0
+
+var moving: bool = false
+
 var spawnTimer: Timer
 
 func _ready() -> void:
@@ -39,6 +38,24 @@ func _ready() -> void:
 			printerr("No light breaker defined for the node monster!")
 		else:
 			lightBreaker.monitorable = false
+
+
+func _physics_process(delta: float) -> void:
+	if !moving:
+		return
+
+	if currentPathPoint >= path.size():
+		path_end_reached.emit()
+		if freeOnPathEnd:
+			self.queue_free()
+		return
+
+	if self.global_position.distance_to(path[currentPathPoint]) < moveSpeed * delta:
+		self.global_position = path[currentPathPoint]
+		currentPathPoint += 1
+	else:
+		self.global_position += self.global_position.direction_to(path[currentPathPoint]) * moveSpeed * delta
+
 
 ## Sets the path that the monster will take, teleporting it to the first point, and starts the timer to make activate it
 func setup(monsterPath: PackedVector3Array) -> void:
@@ -59,21 +76,4 @@ func setup(monsterPath: PackedVector3Array) -> void:
 func activate() -> void:
 	self.moving = true
 	started_moving.emit()
-
-
-func _physics_process(delta: float) -> void:
-	if !moving:
-		return
-
-	if currentPathPoint >= path.size():
-		path_end_reached.emit()
-		if freeOnPathEnd:
-			self.queue_free()
-		return
-
-	if self.global_position.distance_to(path[currentPathPoint]) < moveSpeed * delta:
-		self.global_position = path[currentPathPoint]
-		currentPathPoint += 1
-	else:
-		self.global_position += self.global_position.direction_to(path[currentPathPoint]) * moveSpeed * delta
 

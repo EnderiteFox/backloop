@@ -1,5 +1,5 @@
-extends Node
 class_name RandomChanceTemplate
+extends Node
 ## Deletes the node if a random chance condition is not met
 
 ## The chance that the node spawns

@@ -1,5 +1,5 @@
-extends Resettable
 class_name TheShadeManager
+extends Resettable
 
 const SPAWN_CHANCE: float = 0.2
 const LENIENCE_TIME: float = 1.0

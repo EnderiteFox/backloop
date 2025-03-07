@@ -1,5 +1,5 @@
-extends Node3D
 class_name Drawer
+extends Node3D
 
 signal opened
 signal closed
@@ -37,11 +37,13 @@ func _ready() -> void:
 			is_opened = !is_opened
 	)
 
+
 func _on_opened() -> void:
 	disabled = true
 	var tween: Tween = self.create_tween()
 	tween.tween_property(self, "position", self.position + displacement, open_time)
 	get_tree().create_timer(open_time).timeout.connect(func(): disabled = false)
+
 
 func _on_closed() -> void:
 	disabled = true

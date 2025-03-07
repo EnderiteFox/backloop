@@ -1,5 +1,5 @@
-extends RayCast3D
 class_name TheWatcherRaycast
+extends RayCast3D
 
 signal saw_player
 

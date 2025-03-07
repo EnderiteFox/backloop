@@ -1,5 +1,5 @@
-extends Node3D
 class_name Room
+extends Node3D
 
 @warning_ignore("unused_signal")
 signal room_opened
@@ -15,6 +15,7 @@ var previousRoom: Room = null
 func _ready() -> void:
 	self.visible = false
 	Game.roomGenerator.rooms.append(self)
+
 
 func place_after_door(door: Door) -> Door:
 	if door in doors:

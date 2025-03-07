@@ -1,13 +1,14 @@
 extends RoomElement
 
+
+@export var watcherSpawnSounds: Array[AudioStream]
+
 @onready var watcherRaycast: TheWatcherRaycast = %TheWatcherRaycast
 @onready var animationPlayer: AnimationPlayer = %AnimationPlayer2
 @onready var watcherTimer: Timer = %TheWatcherActiveTimer
 @onready var watcherModel: TheWatcherModel = %TheWatcherModel
 
 @onready var jumpscareScene: PackedScene = preload("res://scene/mobs/the_watcher/jumpscare.tscn")
-
-@export var watcherSpawnSounds: Array[AudioStream]
 
 func _ready() -> void:
 	super._ready()

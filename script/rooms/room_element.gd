@@ -1,5 +1,5 @@
-extends Node3D
 class_name RoomElement
+extends Node3D
 
 var room: Room
 

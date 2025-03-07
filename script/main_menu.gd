@@ -1,13 +1,5 @@
 extends Node
 
-@onready var title: Label3D = %Title
-@onready var menuMusicPlayer: AudioStreamPlayer = %MenuMusic
-@onready var playButton: Button = %PlayButton
-@onready var animationPlayer: AnimationPlayer = %AnimationPlayer
-
-@onready var mainGameScene: PackedScene = preload("res://scene/main_game.tscn")
-
-
 const TITLE_MIN_BRIGHTNESS: float = 0.6
 const TITLE_MAX_BRIGHTNESS: float = 1.0
 const TITLE_MIN_BLINK_TIME: float = 0.1
@@ -16,6 +8,13 @@ const TITLE_MIN_BLINK_WAIT_TIME: float = 0.5
 const TITLE_MAX_BLINK_WAIT_TIME: float = 1.5
 const TITLE_MIN_BLINK_COUNT: int = 5
 const TITLE_MAX_BLINK_COUNT: int = 8
+
+@onready var title: Label3D = %Title
+@onready var menuMusicPlayer: AudioStreamPlayer = %MenuMusic
+@onready var playButton: Button = %PlayButton
+@onready var animationPlayer: AnimationPlayer = %AnimationPlayer
+
+@onready var mainGameScene: PackedScene = preload("res://scene/main_game.tscn")
 
 func _ready() -> void:
 	_blink_title()

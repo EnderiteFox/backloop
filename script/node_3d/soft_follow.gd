@@ -4,12 +4,12 @@ extends Node3D
 
 const DEFAULT_FOLLOW_FACTOR: float = 10
 
-@onready var position_offset: Vector3 = self.position
-@onready var rotation_offset: Vector3 = self.rotation
-
 @export_range(0.0, 1.0, 0.1, "or_greater") var follow_factor: float = DEFAULT_FOLLOW_FACTOR
 @export var follow_position: bool = true
 @export var follow_rotation: bool = true
+
+@onready var position_offset: Vector3 = self.position
+@onready var rotation_offset: Vector3 = self.rotation
 
 func _ready() -> void:
 	self.top_level = true

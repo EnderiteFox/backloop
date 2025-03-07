@@ -1,5 +1,5 @@
-extends RoomElement
 class_name TheShade
+extends RoomElement
 
 var playerMoveTime: float = 0.0
 var playerStillTime: float = 0.0

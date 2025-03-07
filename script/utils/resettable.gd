@@ -1,5 +1,5 @@
-extends RefCounted
 class_name Resettable
+extends RefCounted
 ## A resettable object.
 ## Contains a single reset function that calls the reset function of all properties of the class.
 
@@ -9,12 +9,14 @@ class_name Resettable
 func _init() -> void:
 	reset()
 
+
 ## Resets the object.
 ## Equivalent to calling [code]reset_object(self)[/code].
 ## Override to reset the properties of the object.
 ## Make sure to call [code]super.reset()[/code] to keep the recusive reset behaviour
 func reset() -> void:
 	reset_object(self)
+
 
 ## Resets all the [Resettable] properties of the given [Object].
 ## Allows using the same recursive behaviour of [Resettable] on objects that are not resettable.

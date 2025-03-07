@@ -1,5 +1,5 @@
-extends Resettable
 class_name RoomGenerator
+extends Resettable
 
 const ROOM_PERSISTENCE: int = 4
 
@@ -12,14 +12,24 @@ func _init() -> void:
 	super._init()
 	Game.room_opened.connect(_on_room_opened)
 
+
+func _delete_forward_rooms(room: Room) -> void:
+	room.queue_free()
+	for door in room.doors:
+		if door.nextRoom != null:
+			_delete_forward_rooms(door.nextRoom)
+
+
+func _on_room_opened(room: Room) -> void:
+	lastRoomOpened = room
+	delete_far_rooms(room)
+
+
 func reset() -> void:
 	super.reset()
 	rooms.clear()
 	lastRoomOpened = null
 
-func _on_room_opened(room: Room) -> void:
-	lastRoomOpened = room
-	delete_far_rooms(room)
 
 ## Instantiates a new random room and places it after a door. The room will not be fully generated yet and will be
 ## inactive until fully generated
@@ -98,6 +108,7 @@ func fully_generate(room: Room) -> void:
 		door.opened.connect(func(): fully_generate(door.nextRoom))
 	room.fullyGenerated = true
 
+
 ## Deletes rooms that are too far away from the opened room
 func delete_far_rooms(room: Room) -> void:
 	var currentRoom: Room = room
@@ -121,9 +132,3 @@ func delete_far_rooms(room: Room) -> void:
 		elif currentDistance == 0:
 			for door in currentRoom.doors:
 				door.silent_lock(false)
-
-func _delete_forward_rooms(room: Room) -> void:
-	room.queue_free()
-	for door in room.doors:
-		if door.nextRoom != null:
-			_delete_forward_rooms(door.nextRoom)

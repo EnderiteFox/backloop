@@ -20,6 +20,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			Game.player.process_mode = Node.PROCESS_MODE_INHERIT
 		%DebugLight.visible = !%DebugLight.visible
 
+
 func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var up_dir := 1 if Input.is_action_pressed("freecam_up") else -1 if Input.is_action_pressed("freecam_down") else 0
@@ -31,11 +32,13 @@ func _physics_process(delta: float) -> void:
 		position.x += direction.x * get_speed() * delta
 		position.z += direction.z * get_speed() * delta
 
-func get_speed() -> float:
-	return FAST_SPEED if Input.is_action_pressed("sprint") else NORMAL_SPEED
-	
+
 func _mouse_motion(event: InputEventMouseMotion) -> void:
 	var motion: Vector2 = event.screen_relative
 	rotation.y -= motion.x * SENSIBILITY
 	rotation.x -= motion.y * SENSIBILITY
 	rotation.x = clamp(rotation.x, -PI/2, PI/2)
+
+
+func get_speed() -> float:
+	return FAST_SPEED if Input.is_action_pressed("sprint") else NORMAL_SPEED

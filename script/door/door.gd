@@ -34,12 +34,14 @@ func _ready() -> void:
 		ConnectFlags.CONNECT_ONE_SHOT
 	)
 
+
 func _on_opened() -> void:
 	_set_start_monster_node()
 	_set_end_monster_node()
 
 	doorSoundPlayer.play()
 	Game.room_opened.emit(nextRoom)
+
 
 func _on_interact() -> void:
 	# Don't open if door is locked
@@ -82,6 +84,7 @@ func _on_interact() -> void:
 			camera.queue_free()
 	)
 
+
 func _on_camera_tween_finished() -> void:
 	# Make the player's flashlight follow the animation camera
 	var flashlight_parent: Node = Game.player.flashlight.get_parent()
@@ -95,6 +98,7 @@ func _on_camera_tween_finished() -> void:
 	animationPlayer.play("Door/open")
 	animationPlayer.animation_finished.connect(func(_animation): _on_fully_opened(), ConnectFlags.CONNECT_ONE_SHOT)
 
+
 func _on_fully_opened() -> void:
 	# Make the player's flashlight follow the player's camera
 	var flashlight_parent: Node = Game.player.flashlight.get_parent()
@@ -107,6 +111,7 @@ func _on_fully_opened() -> void:
 	Game.player.position = %PlayerTeleport.global_position
 	Game.player.rotation = %PlayerTeleport.global_rotation
 	Game.player.camPivot.rotation.x = %OpenCamera.global_rotation.x
+
 
 func _set_start_monster_node() -> void:
 	if nextRoom == null:
@@ -156,12 +161,14 @@ func close() -> void:
 			animationPlayer.speed_scale = 1.0
 	)
 
+
 func instant_close() -> void:
 	if !open:
 		return
 	animationPlayer.play("Door/open")
 	animationPlayer.stop()
 	open = false
+
 
 func silent_lock(animate: bool = true) -> void:
 	if open:
@@ -173,6 +180,7 @@ func silent_lock(animate: bool = true) -> void:
 	for child in interaction_hitbox.get_children():
 		if child is CollisionShape3D:
 			child.disabled = true
+
 
 func make_blocked() -> void:
 	instant_close()

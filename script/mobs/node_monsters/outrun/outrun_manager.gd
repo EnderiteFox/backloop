@@ -1,5 +1,5 @@
-extends Resettable
 class_name OutrunManager
+extends Resettable
 
 const SPAWN_CHANCE: float = 0.01
 
@@ -13,14 +13,17 @@ func _init() -> void:
 	super._init()
 	Game.room_opened.connect(_on_room_opened)
 
-func reset() -> void:
-	isActive = false
 
 func _on_room_opened(_room: Room) -> void:
 	if isActive || !Game.player.is_alive:
 		return
 	if randf() < SPAWN_CHANCE:
 		spawn()
+
+
+func reset() -> void:
+	super.reset()
+	isActive = false
 
 
 ## Spawns Outrun

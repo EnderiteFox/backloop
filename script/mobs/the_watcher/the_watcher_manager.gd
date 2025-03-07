@@ -1,5 +1,5 @@
-extends Resettable
 class_name TheWatcherManager
+extends Resettable
 
 const SPAWN_CHANCE: float = 0.2
 const REACT_TIME: float = 1.5

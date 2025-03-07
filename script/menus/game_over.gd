@@ -18,6 +18,7 @@ func _ready() -> void:
 	mainMenuButton.pressed.connect(_on_main_menu_button_pressed)
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 
+
 func _flicker_flashlight() -> void:
 	var tween: Tween = self.create_tween()
 	tween.tween_property(
@@ -28,10 +29,12 @@ func _flicker_flashlight() -> void:
 	)
 	tween.tween_callback(_flicker_flashlight)
 
+
 func _on_retry_button_pressed() -> void:
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 	%AnimationPlayer.play("exit_game_over")
 	%AnimationPlayer.animation_finished.connect(func(_anim): _restart_game())
+
 
 func _on_main_menu_button_pressed() -> void:
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
