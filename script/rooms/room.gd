@@ -1,3 +1,4 @@
+@tool
 class_name Room
 extends Node3D
 
@@ -12,9 +13,33 @@ var fullyGenerated: bool = false;
 
 var previousRoom: Room = null
 
+@export_tool_button("Prepare room") var editor_find_elements_action: Callable = _editor_prepare_room
+
 func _ready() -> void:
-	self.visible = false
-	Game.roomGenerator.rooms.append(self)
+	if !Engine.is_editor_hint():
+		self.visible = false
+		Game.roomGenerator.rooms.append(self)
+
+
+func _editor_prepare_room() -> void:
+	var monster_nodes: Array[MonsterNode] = _editor_get_monster_nodes(self)
+
+	if monster_nodes.is_empty():
+		push_warning("No monster nodes were found in the room!")
+		return
+
+	anyMonsterNode = monster_nodes[0]
+	for monster_node in monster_nodes:
+		monster_node._editor_update_path()
+
+
+func _editor_get_monster_nodes(node: Node) -> Array[MonsterNode]:
+	var found_nodes: Array[MonsterNode] = []
+	if node is MonsterNode:
+		found_nodes.append(node)
+	for child in node.get_children(true):
+		found_nodes.append_array(_editor_get_monster_nodes(child))
+	return found_nodes
 
 
 func place_after_door(door: Door) -> Door:

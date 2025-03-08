@@ -18,9 +18,9 @@ enum NodeState {
 	ROOM_END
 }
 
-@export_tool_button("Update path") var tool_update_path_action: Callable = _tool_update_path
+@export_tool_button("Update path") var editor_update_path_action: Callable = _editor_update_path
 
-func _tool_update_path() -> void:
+func _editor_update_path() -> void:
 	if fixPartialLinks:
 		_fix_partial_links()
 	graph = getWholeGraph()
