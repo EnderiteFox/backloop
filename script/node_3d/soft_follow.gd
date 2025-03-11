@@ -16,16 +16,24 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var parent: Node = self.get_parent()
-	if !(parent is Node3D):
+	var node_parent: Node = self.get_parent()
+	if !(node_parent is Node3D):
 		printerr("Parent of SoftFollow node is not a Node3D")
 		self.queue_free()
 		return
 
+	var parent: Node3D = node_parent as Node3D
+
 	if follow_position:
+		var target_position: Vector3 = position_offset
+		target_position = target_position.rotated(Vector3.UP, parent.global_rotation.y)
+		target_position = target_position.rotated(Vector3.FORWARD, parent.global_rotation.x)
+		target_position = target_position.rotated(Vector3.RIGHT, parent.global_rotation.z)
+		target_position += parent.global_position
+
 		self.global_position = lerp(
 			self.global_position,
-			parent.global_position + position_offset,
+			target_position,
 			follow_factor * delta
 		)
 
