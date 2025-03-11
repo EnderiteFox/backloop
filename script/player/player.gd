@@ -18,15 +18,10 @@ const EXHAUSTION: int    = 4
 const STAMINA_DRAIN: int = 30
 const STAMINA_GAIN: int  = 30
 
-const CROSSHAIR_FADE_TIME: float = 0.25
-
 var view_bobble_progress: float = 0.0
 
 var exhaustion: float    = 0
 var stamina: float       = 100.0
-
-var crosshair_tween: Tween       = null
-var looking_at_interactable: bool = false
 
 var currentCrouchCamOffset: float = 0
 var CROUCH_CAM_OFFSET: float = 1
@@ -110,9 +105,6 @@ func _physics_process(delta: float) -> void:
 	if !crouched && !Input.is_action_pressed("sprint") && activeWalkSound != %WalkSound:
 		_set_active_walk_sound(%WalkSound)
 
-	# Update crosshair
-	_update_interact_crosshair()
-
 	# Interact key
 	if Input.is_action_just_pressed("interact"):
 		_interact()
@@ -132,26 +124,6 @@ func _mouse_motion(event: InputEventMouseMotion) -> void:
 	self.rotation.y -= motion.x * SENSIBILITY
 	camPivot.rotation.x -= motion.y * SENSIBILITY
 	camPivot.rotation.x = clamp(camPivot.rotation.x, -PI/2, PI/2)
-
-
-func _update_interact_crosshair() -> void:
-	var raycastCollided: Object = interaction_raycast.get_collider()
-
-	var new_looking_at_interactable: bool = raycastCollided is Interactable
-
-	if new_looking_at_interactable == looking_at_interactable:
-		return
-
-	var modulate_color: Color = Color.WHITE if new_looking_at_interactable else Color.TRANSPARENT
-
-	if crosshair_tween != null:
-		crosshair_tween.kill()
-
-	crosshair_tween = self.create_tween()
-	crosshair_tween.tween_property(crosshair, "modulate", modulate_color, CROSSHAIR_FADE_TIME)
-	crosshair_tween.tween_callback(func(): crosshair_tween = null)
-
-	looking_at_interactable = new_looking_at_interactable
 
 
 func _interact() -> void:
