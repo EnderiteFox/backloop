@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cvp80r0s4kkmk"]
 
-[ext_resource type="PackedScene" uid="uid://bed0dbquna2an" path="res://model/desk/scene.gltf" id="1_nllvt"]
+[ext_resource type="PackedScene" uid="uid://bed0dbquna2an" path="res://model/furniture/desk/scene.gltf" id="1_nllvt"]
 [ext_resource type="Script" uid="uid://dnocscyviv226" path="res://script/interactable/interactable.gd" id="2_lvdph"]
 [ext_resource type="Script" uid="uid://bkjeaysbq8c4y" path="res://script/furniture/drawers/drawer.gd" id="2_t4rf5"]
 

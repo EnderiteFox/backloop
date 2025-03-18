@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c6oj44c4rgh2q"]
 
-[ext_resource type="PackedScene" uid="uid://bovbnho76hkw3" path="res://model/bed/double/scene.gltf" id="1_ndeav"]
+[ext_resource type="PackedScene" uid="uid://bovbnho76hkw3" path="res://model/furniture/bed/double/scene.gltf" id="1_ndeav"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6pd3b"]
 size = Vector3(1.44092, 0.481079, 1.146)

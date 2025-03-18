@@ -1,0 +1,11 @@
+Model Information:
+* title:	Antique wooden desk
+* source:	https://sketchfab.com/3d-models/antique-wooden-desk-67cc4558a0e74bb6be61a1af1eb13b66
+* author:	Lorenzo Drago (https://sketchfab.com/LorenzoDrago)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Antique wooden desk" (https://sketchfab.com/3d-models/antique-wooden-desk-67cc4558a0e74bb6be61a1af1eb13b66) by Lorenzo Drago (https://sketchfab.com/LorenzoDrago) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
