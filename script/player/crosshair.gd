@@ -11,7 +11,6 @@ var interaction_raycast: RayCast3D
 
 func _ready() -> void:
 	var parent: Node = get_parent()
-	print(parent)
 	if not parent is Player:
 		push_error("Parent of crosshair should be Player")
 		self.free()
