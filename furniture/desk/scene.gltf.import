@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bed0dbquna2an"
-path="res://.godot/imported/scene.gltf-4dd1b5224e443a7dfe04c3db91af8f12.scn"
+path="res://.godot/imported/scene.gltf-e1b29223feee79da185ea4036f96d633.scn"
 
 [deps]
 
-source_file="res://model/furniture/desk/scene.gltf"
-dest_files=["res://.godot/imported/scene.gltf-4dd1b5224e443a7dfe04c3db91af8f12.scn"]
+source_file="res://furniture/desk/scene.gltf"
+dest_files=["res://.godot/imported/scene.gltf-e1b29223feee79da185ea4036f96d633.scn"]
 
 [params]
 

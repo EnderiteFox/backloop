@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crpj5p4opagrw"
-path.s3tc="res://.godot/imported/Tymba_low_Material_Metallic_1001-Tymba_low_Material_Roughness_1001.png-91656c625226941cb30bb0ac6834fb08.s3tc.ctex"
+uid="uid://f35w4sgpk6ec"
+path.s3tc="res://.godot/imported/Material.004_baseColor.png-033863e16bf81ff40207bf060b45216f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://model/furniture/dresser/Tymba_low_Material_Metallic_1001-Tymba_low_Material_Roughness_1001.png"
-dest_files=["res://.godot/imported/Tymba_low_Material_Metallic_1001-Tymba_low_Material_Roughness_1001.png-91656c625226941cb30bb0ac6834fb08.s3tc.ctex"]
+source_file="res://furniture/desk/textures/Material.004_baseColor.png"
+dest_files=["res://.godot/imported/Material.004_baseColor.png-033863e16bf81ff40207bf060b45216f.s3tc.ctex"]
 
 [params]
 

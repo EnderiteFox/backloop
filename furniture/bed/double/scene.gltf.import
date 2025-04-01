@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cxnigobk3dcf5"
-path="res://.godot/imported/dresser.gltf-096486058e8fb46c82db7aab7b047dcf.scn"
+uid="uid://bovbnho76hkw3"
+path="res://.godot/imported/scene.gltf-20930cec453d0d14b2d4f4d52dc0b4c9.scn"
 
 [deps]
 
-source_file="res://model/furniture/dresser/dresser.gltf"
-dest_files=["res://.godot/imported/dresser.gltf-096486058e8fb46c82db7aab7b047dcf.scn"]
+source_file="res://furniture/bed/double/scene.gltf"
+dest_files=["res://.godot/imported/scene.gltf-20930cec453d0d14b2d4f4d52dc0b4c9.scn"]
 
 [params]
 

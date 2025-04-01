@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://f35w4sgpk6ec"
-path.s3tc="res://.godot/imported/Material.004_baseColor.png-9b29191dd4a070923f9405a4d67ce23b.s3tc.ctex"
+uid="uid://dfw88vxqyt0mi"
+path.s3tc="res://.godot/imported/Tymba_low_Material_Normal_1001.png-47684f55d45254e5ad279f5836917432.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://model/furniture/desk/textures/Material.004_baseColor.png"
-dest_files=["res://.godot/imported/Material.004_baseColor.png-9b29191dd4a070923f9405a4d67ce23b.s3tc.ctex"]
+source_file="res://furniture/dresser/Tymba_low_Material_Normal_1001.png"
+dest_files=["res://.godot/imported/Tymba_low_Material_Normal_1001.png-47684f55d45254e5ad279f5836917432.s3tc.ctex"]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://model/furniture/dresser/Tymba_low_Material_Normal_1001.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
