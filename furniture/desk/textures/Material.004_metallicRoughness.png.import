@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc8wwqy12smn6"
-path.s3tc="res://.godot/imported/Material.004_normal.png-8cd1558b3ab6113635e0df88b1abee12.s3tc.ctex"
+uid="uid://bay8s07rxvj0n"
+path.s3tc="res://.godot/imported/Material.004_metallicRoughness.png-986d431d49646baf576beee989c33f8a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://model/furniture/desk/textures/Material.004_normal.png"
-dest_files=["res://.godot/imported/Material.004_normal.png-8cd1558b3ab6113635e0df88b1abee12.s3tc.ctex"]
+source_file="res://furniture/desk/textures/Material.004_metallicRoughness.png"
+dest_files=["res://.godot/imported/Material.004_metallicRoughness.png-986d431d49646baf576beee989c33f8a.s3tc.ctex"]
 
 [params]
 
@@ -20,11 +20,11 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
+roughness/mode=8
 roughness/src_normal="res://model/desk/textures/Material.004_normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
