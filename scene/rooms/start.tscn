@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c4opum1tbjfvr" path="res://script/rooms/room.gd" id="1_g2lga"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="1_jyy7g"]
-[ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://scene/door/door.tscn" id="3_m78sd"]
+[ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://furniture/door/door.tscn" id="3_m78sd"]
 [ext_resource type="Material" uid="uid://mi3tsypobxge" path="res://material/walls/wallpaper/wallpaper.tres" id="3_yyoeo"]
 [ext_resource type="PackedScene" uid="uid://c6oj44c4rgh2q" path="res://furniture/bed/double/double_bed.tscn" id="4_miqw8"]
 [ext_resource type="PackedScene" uid="uid://cvp80r0s4kkmk" path="res://furniture/desk/desk.tscn" id="6_r1wo2"]
@@ -11,7 +11,7 @@
 [ext_resource type="VoxelGIData" uid="uid://c4pqth2roomk3" path="res://scene/rooms/startGI.res" id="10_e8kip"]
 [ext_resource type="Script" uid="uid://bf6mjw15l2dsr" path="res://script/mobs/node_monsters/monster_node.gd" id="11_4hr7i"]
 [ext_resource type="Script" uid="uid://bick5l77yfe0k" path="res://script/rooms/gen_templates/pick_random_template.gd" id="11_isn5a"]
-[ext_resource type="PackedScene" uid="uid://cv5nx3qabwnnw" path="res://scene/clocks/wall_clock.tscn" id="12_8pjoi"]
+[ext_resource type="PackedScene" uid="uid://cv5nx3qabwnnw" path="res://furniture/clocks/wall_clock.tscn" id="12_8pjoi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cr1do"]
 size = Vector3(6.80554, 1, 10.1401)
