@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3h4msxm7ua8n"
-path.s3tc="res://.godot/imported/glass_metallicRoughness.png-61192f27100ccf5b2e17f97cae03ca8c.s3tc.ctex"
+uid="uid://cy4wromlyv8ky"
+path.s3tc="res://.godot/imported/pla_met_baseColor.jpeg-6f2eca1edab73262acc270f97f70e018.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://model/lights/ceiling/textures/glass_metallicRoughness.png"
-dest_files=["res://.godot/imported/glass_metallicRoughness.png-61192f27100ccf5b2e17f97cae03ca8c.s3tc.ctex"]
+source_file="res://lights/ceiling/textures/pla_met_baseColor.jpeg"
+dest_files=["res://.godot/imported/pla_met_baseColor.jpeg-6f2eca1edab73262acc270f97f70e018.s3tc.ctex"]
 
 [params]
 
@@ -24,8 +24,8 @@ compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=8
-roughness/src_normal="res://model/lights/ceiling/textures/glass_normal.png"
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

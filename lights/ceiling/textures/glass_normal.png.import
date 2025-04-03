@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ebr6tvkxlvmu"
-path.s3tc="res://.godot/imported/floor_lamp_1.png-9d99eacc15698a41126ecf9acd425b46.s3tc.ctex"
+uid="uid://ce5ij6ykw43kc"
+path.s3tc="res://.godot/imported/glass_normal.png-233b10a33e807108a55f2716cdbf734c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "475ea9363c519d2f277c742e368ecc74"
-}
 
 [deps]
 
-source_file="res://model/lights/floor_lamp/floor_lamp_1.png"
-dest_files=["res://.godot/imported/floor_lamp_1.png-9d99eacc15698a41126ecf9acd425b46.s3tc.ctex"]
+source_file="res://lights/ceiling/textures/glass_normal.png"
+dest_files=["res://.godot/imported/glass_normal.png-233b10a33e807108a55f2716cdbf734c.s3tc.ctex"]
 
 [params]
 
@@ -23,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://model/lights/ceiling/textures/glass_normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

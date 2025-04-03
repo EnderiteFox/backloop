@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://51v35echi53u"
-path.s3tc="res://.godot/imported/floor_lamp_3.jpg-1b347def85cc9827b22ee348bf151a74.s3tc.ctex"
+uid="uid://cusw36mujen4k"
+path.s3tc="res://.godot/imported/pla_met_normal.png-df77143bc7157ea0d8197d600f07040b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "a2c9f719c2895784e004ff3bbaa40350"
-}
 
 [deps]
 
-source_file="res://model/lights/floor_lamp/floor_lamp_3.jpg"
-dest_files=["res://.godot/imported/floor_lamp_3.jpg-1b347def85cc9827b22ee348bf151a74.s3tc.ctex"]
+source_file="res://lights/ceiling/textures/pla_met_normal.png"
+dest_files=["res://.godot/imported/pla_met_normal.png-df77143bc7157ea0d8197d600f07040b.s3tc.ctex"]
 
 [params]
 
@@ -28,7 +25,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://model/lights/floor_lamp/floor_lamp_3.jpg"
+roughness/src_normal="res://model/lights/ceiling/textures/pla_met_normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
