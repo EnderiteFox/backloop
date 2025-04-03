@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnftb1cxque3o"
-path.s3tc="res://.godot/imported/floor_lamp_2.jpg-43b94dbb346f52021c4cc2bcfe8d89c0.s3tc.ctex"
+uid="uid://51v35echi53u"
+path.s3tc="res://.godot/imported/floor_lamp_3.jpg-01f604de603f598cae4650781e8b88c9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "653364f3ef955dc57489ac08cd223f6a"
+"md5": "a2c9f719c2895784e004ff3bbaa40350"
 }
 
 [deps]
 
-source_file="res://model/lights/floor_lamp/floor_lamp_2.jpg"
-dest_files=["res://.godot/imported/floor_lamp_2.jpg-43b94dbb346f52021c4cc2bcfe8d89c0.s3tc.ctex"]
+source_file="res://lights/floor_lamp/floor_lamp_3.jpg"
+dest_files=["res://.godot/imported/floor_lamp_3.jpg-01f604de603f598cae4650781e8b88c9.s3tc.ctex"]
 
 [params]
 
@@ -23,12 +23,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://model/lights/floor_lamp/floor_lamp_3.jpg"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

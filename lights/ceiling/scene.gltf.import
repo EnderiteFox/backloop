@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://p0cu52kdlpm2"
-path="res://.godot/imported/scene.gltf-b21eb6be94d8c2eb055e2703c3edb8fb.scn"
+path="res://.godot/imported/scene.gltf-ee467fc34a1fa66950f0cb13c40bba4e.scn"
 
 [deps]
 
-source_file="res://model/lights/ceiling/scene.gltf"
-dest_files=["res://.godot/imported/scene.gltf-b21eb6be94d8c2eb055e2703c3edb8fb.scn"]
+source_file="res://lights/ceiling/scene.gltf"
+dest_files=["res://.godot/imported/scene.gltf-ee467fc34a1fa66950f0cb13c40bba4e.scn"]
 
 [params]
 

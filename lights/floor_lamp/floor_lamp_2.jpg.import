@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7qmphvrien7j"
-path.s3tc="res://.godot/imported/glass_baseColor.png-35e45750aa65bbc9a5641e07021a9273.s3tc.ctex"
+uid="uid://cnftb1cxque3o"
+path.s3tc="res://.godot/imported/floor_lamp_2.jpg-9e61f65351c2fa7e095e4af0ee9a1a6c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "653364f3ef955dc57489ac08cd223f6a"
+}
 
 [deps]
 
-source_file="res://model/lights/ceiling/textures/glass_baseColor.png"
-dest_files=["res://.godot/imported/glass_baseColor.png-35e45750aa65bbc9a5641e07021a9273.s3tc.ctex"]
+source_file="res://lights/floor_lamp/floor_lamp_2.jpg"
+dest_files=["res://.godot/imported/floor_lamp_2.jpg-9e61f65351c2fa7e095e4af0ee9a1a6c.s3tc.ctex"]
 
 [params]
 
