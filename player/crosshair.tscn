@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://civclm7ljijcu"]
+[gd_scene load_steps=3 format=3 uid="uid://c8hufmrap4nap"]
 
-[ext_resource type="Script" uid="uid://btjjk8klvkta8" path="res://script/player/crosshair.gd" id="1_dyg2p"]
+[ext_resource type="Script" path="res://player/crosshair.gd" id="1_k2v2k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmgfq"]
 bg_color = Color(1, 1, 1, 1)
@@ -22,7 +22,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
-script = ExtResource("1_dyg2p")
+script = ExtResource("1_k2v2k")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

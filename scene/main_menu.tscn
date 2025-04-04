@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://d2hfsx2y5sbxe" path="res://script/main_menu.gd" id="1_vntwe"]
 [ext_resource type="PackedScene" uid="uid://cpivnlwdvvnpn" path="res://scene/rooms/start.tscn" id="2_0hi3m"]
-[ext_resource type="PackedScene" uid="uid://cljvh2p7v80ll" path="res://scene/environment/ingame_environment.tscn" id="3_hjqey"]
+[ext_resource type="PackedScene" uid="uid://cljvh2p7v80ll" path="res://environment/ingame_environment.tscn" id="3_hjqey"]
 [ext_resource type="VoxelGIData" uid="uid://csh4dfqmd4waj" path="res://scene/main_menu.res" id="4_j3s0l"]
 [ext_resource type="FontFile" uid="uid://b5um8rdwcggge" path="res://fonts/rubik_glitch/RubikGlitch-Regular.ttf" id="5_qyewi"]
 [ext_resource type="Theme" uid="uid://cmkvt8oqilc3e" path="res://themes/menu_theme.tres" id="5_xu0xg"]
 [ext_resource type="AudioStream" uid="uid://b66ao2x03atp" path="res://music/sadness.ogg" id="6_q44dr"]
-[ext_resource type="PackedScene" uid="uid://ys6vbwjiufre" path="res://scene/player/shader_rect.tscn" id="8_tl8v3"]
+[ext_resource type="PackedScene" uid="uid://djxorq18harj3" path="res://player/shader_rect.tscn" id="8_tl8v3"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_eic7i"]
 device = -1
