@@ -11,7 +11,7 @@ script/source = "extends Node3D
 @onready var audioStreamPlayer = %AudioStreamPlayer
 @onready var theWatcher: TheWatcherModel = %TheWatcher
 
-@onready var gameOverScene: PackedScene = preload(\"res://scene/menus/game_over.tscn\")
+@onready var gameOverScene: PackedScene = preload(\"res://menus/game_over/game_over.tscn\")
 
 @onready var label: Label = %Label
 

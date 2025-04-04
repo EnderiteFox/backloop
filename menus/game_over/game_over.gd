@@ -5,8 +5,8 @@ const MAX_FLASHLIGHT_INTENSITY: float = 1.0
 const MIN_FLASHLIGHT_INTERVAL: float = 0.01
 const MAX_FLASHLIGHT_INTERVAL: float = 0.2
 
-const gameScene: PackedScene = preload("res://scene/main_game.tscn")
-const menuScene: PackedScene = preload("res://scene/main_menu.tscn")
+const gameScene: PackedScene = preload("res://main_game/main_game.tscn")
+const menuScene: PackedScene = preload("res://menus/main_menu/main_menu.tscn")
 
 @onready var retryButton: Button = %RetryButton
 @onready var mainMenuButton: Button = %MainMenuButton

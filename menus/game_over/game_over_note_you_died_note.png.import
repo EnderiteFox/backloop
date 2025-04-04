@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bmab0ek4hj641"
-path="res://.godot/imported/game_over_note_you_died_note.png-d6c78694b5fa475674ad971ff3e3a131.ctex"
+path="res://.godot/imported/game_over_note_you_died_note.png-15a6d939c745814954e7e40fac47e4f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://model/game_over/game_over_note_you_died_note.png"
-dest_files=["res://.godot/imported/game_over_note_you_died_note.png-d6c78694b5fa475674ad971ff3e3a131.ctex"]
+source_file="res://menus/game_over/game_over_note_you_died_note.png"
+dest_files=["res://.godot/imported/game_over_note_you_died_note.png-15a6d939c745814954e7e40fac47e4f7.ctex"]
 
 [params]
 

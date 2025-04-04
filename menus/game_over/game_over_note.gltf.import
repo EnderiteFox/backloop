@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cm2rdqmhrouja"
-path="res://.godot/imported/game_over_note.gltf-18b3308f717e9bfcfcfc2409449bee30.scn"
+path="res://.godot/imported/game_over_note.gltf-ce0cef3b9e41c521b1708f0fb52b35cf.scn"
 
 [deps]
 
-source_file="res://model/game_over/game_over_note.gltf"
-dest_files=["res://.godot/imported/game_over_note.gltf-18b3308f717e9bfcfcfc2409449bee30.scn"]
+source_file="res://menus/game_over/game_over_note.gltf"
+dest_files=["res://.godot/imported/game_over_note.gltf-ce0cef3b9e41c521b1708f0fb52b35cf.scn"]
 
 [params]
 

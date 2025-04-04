@@ -14,7 +14,7 @@ const TITLE_MAX_BLINK_COUNT: int = 8
 @onready var playButton: Button = %PlayButton
 @onready var animationPlayer: AnimationPlayer = %AnimationPlayer
 
-@onready var mainGameScene: PackedScene = preload("res://scene/main_game.tscn")
+@onready var mainGameScene: PackedScene = preload("res://main_game/main_game.tscn")
 
 func _ready() -> void:
 	_blink_title()
