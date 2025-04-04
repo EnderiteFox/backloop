@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://1m7fgwopygy7"]
+[gd_scene load_steps=8 format=3 uid="uid://da1u52edx88kc"]
 
-[ext_resource type="Script" uid="uid://grp48xa86o8c" path="res://script/player/stamina_ui.gd" id="1_35a1b"]
+[ext_resource type="Script" path="res://player/stamina_ui.gd" id="1_37ndw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2pp1"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -72,10 +72,10 @@ grow_vertical = 2
 mouse_filter = 2
 theme = SubResource("Theme_4o43d")
 show_percentage = false
-script = ExtResource("1_35a1b")
+script = ExtResource("1_37ndw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_wdofl")
+&"": SubResource("AnimationLibrary_wdofl")
 }
