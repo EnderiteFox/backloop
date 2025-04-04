@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Backloop"
 config/version="alpha-0.1"
-run/main_scene="res://scene/main_menu.tscn"
+run/main_scene="uid://bev5ngmsob6ud"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
