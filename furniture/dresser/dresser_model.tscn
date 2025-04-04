@@ -1,10 +1,10 @@
 [gd_scene load_steps=20 format=4 uid="uid://dcwu41ma38gos"]
 
-[ext_resource type="Texture2D" uid="uid://lg3xfrfrohjn" path="res://model/furniture/dresser/Tymba_low_Material_BaseColor_1001.png" id="1_jnequ"]
-[ext_resource type="Script" uid="uid://bkjeaysbq8c4y" path="res://script/furniture/drawers/drawer.gd" id="2_glgdd"]
-[ext_resource type="Texture2D" uid="uid://crpj5p4opagrw" path="res://model/furniture/dresser/Tymba_low_Material_Metallic_1001-Tymba_low_Material_Roughness_1001.png" id="2_jvabr"]
+[ext_resource type="Texture2D" uid="uid://lg3xfrfrohjn" path="res://furniture/dresser/Tymba_low_Material_BaseColor_1001.png" id="1_jnequ"]
+[ext_resource type="Script" path="res://furniture/drawer.gd" id="2_glgdd"]
+[ext_resource type="Texture2D" uid="uid://crpj5p4opagrw" path="res://furniture/dresser/Tymba_low_Material_Metallic_1001-Tymba_low_Material_Roughness_1001.png" id="2_jvabr"]
 [ext_resource type="Script" uid="uid://dnocscyviv226" path="res://script/interactable/interactable.gd" id="3_3dk43"]
-[ext_resource type="Texture2D" uid="uid://dfw88vxqyt0mi" path="res://model/furniture/dresser/Tymba_low_Material_Normal_1001.png" id="3_ijhl4"]
+[ext_resource type="Texture2D" uid="uid://dfw88vxqyt0mi" path="res://furniture/dresser/Tymba_low_Material_Normal_1001.png" id="3_ijhl4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4hpeq"]
 resource_name = "Material.001.1001"
