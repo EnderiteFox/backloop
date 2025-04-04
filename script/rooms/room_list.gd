@@ -12,7 +12,7 @@ func load_rooms() -> void:
 	for roomName in roomsConfig:
 		if roomsConfig[roomName] == 0:
 			continue
-		rooms[load("res://scene/rooms/" + roomName + ".tscn") as PackedScene] = roomsConfig[roomName]
+		rooms[load("res://rooms/" + roomName + ".tscn") as PackedScene] = roomsConfig[roomName]
 
 
 func get_random_rooms() -> Array[PackedScene]:
