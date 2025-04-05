@@ -1,7 +1,7 @@
-[gd_scene load_steps=20 format=4 uid="uid://dcwu41ma38gos"]
+[gd_scene load_steps=27 format=4 uid="uid://dcwu41ma38gos"]
 
 [ext_resource type="Texture2D" uid="uid://lg3xfrfrohjn" path="res://furniture/dresser/Tymba_low_Material_BaseColor_1001.png" id="1_jnequ"]
-[ext_resource type="Script" path="res://furniture/drawer.gd" id="2_glgdd"]
+[ext_resource type="Script" uid="uid://bkjeaysbq8c4y" path="res://furniture/drawer.gd" id="2_glgdd"]
 [ext_resource type="Texture2D" uid="uid://crpj5p4opagrw" path="res://furniture/dresser/Tymba_low_Material_Metallic_1001-Tymba_low_Material_Roughness_1001.png" id="2_jvabr"]
 [ext_resource type="Script" uid="uid://dnocscyviv226" path="res://script/interactable/interactable.gd" id="3_3dk43"]
 [ext_resource type="Texture2D" uid="uid://dfw88vxqyt0mi" path="res://furniture/dresser/Tymba_low_Material_Normal_1001.png" id="3_ijhl4"]
@@ -104,6 +104,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ciaj3")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_pmoyq"]
+size = Vector3(2.64847, 3.24451, 0.0916748)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_smpwl"]
+size = Vector3(0.0760498, 3.12378, 0.963623)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_irssx"]
 resource_name = "Material.001.1001"
 cull_mode = 2
@@ -149,6 +155,12 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gf03i")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yxb2r"]
+size = Vector3(2.65543, 3.21472, 0.0775146)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h7bhg"]
+size = Vector3(0.0356445, 3.24988, 0.964844)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3umce"]
 resource_name = "Material.001.1001"
@@ -196,6 +208,15 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_facfl")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_0tqtj"]
+size = Vector3(3.02319, 0.0884705, 4.33154)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kwlr4"]
+size = Vector3(0.0588646, 3.94202, 4.39874)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a1ew3"]
+size = Vector3(3.2146, 4.24323, 0.372803)
+
 [node name="dresser" type="Node3D"]
 
 [node name="Drawer1" type="MeshInstance3D" parent="." node_paths=PackedStringArray("hitbox")]
@@ -206,7 +227,11 @@ script = ExtResource("2_glgdd")
 hitbox = NodePath("OpenHitbox")
 
 [node name="OpenHitbox" type="Area3D" parent="Drawer1"]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
 script = ExtResource("3_3dk43")
+metadata/_custom_type_script = "uid://dnocscyviv226"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Drawer1/OpenHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0322227, -0.0260925, -0.806793)
@@ -216,17 +241,70 @@ shape = SubResource("BoxShape3D_8snhy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32178, -0.0435181, -0.342926)
 shape = SubResource("BoxShape3D_jnequ")
 
-[node name="handle_low_2" type="MeshInstance3D" parent="."]
+[node name="Drawer2" type="MeshInstance3D" parent="." node_paths=PackedStringArray("hitbox")]
 transform = Transform3D(0.158273, 0, 0, 0, 0, -0.158273, 0, 0.158273, 0, -0.258722, 0.357335, 0.000764281)
 mesh = SubResource("ArrayMesh_poia0")
 skeleton = NodePath("")
+script = ExtResource("2_glgdd")
+hitbox = NodePath("OpenHitbox")
 
-[node name="handle_low_3" type="MeshInstance3D" parent="."]
+[node name="OpenHitbox" type="Area3D" parent="Drawer2"]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_3dk43")
+metadata/_custom_type_script = "uid://dnocscyviv226"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Drawer2/OpenHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32622, -0.00128167, -0.238586)
+shape = SubResource("BoxShape3D_pmoyq")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Drawer2/OpenHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.062561, -0.00207513, -0.70105)
+shape = SubResource("BoxShape3D_smpwl")
+
+[node name="Drawer3" type="MeshInstance3D" parent="." node_paths=PackedStringArray("hitbox")]
 transform = Transform3D(0.158273, 0, 0, 0, 0, -0.158273, 0, 0.158273, 0, -0.255642, 0.173717, 0.000764281)
 mesh = SubResource("ArrayMesh_byewa")
 skeleton = NodePath("")
+script = ExtResource("2_glgdd")
+hitbox = NodePath("OpenHitbox")
+
+[node name="OpenHitbox" type="Area3D" parent="Drawer3"]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_3dk43")
+metadata/_custom_type_script = "uid://dnocscyviv226"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Drawer3/OpenHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32329, -0.0210571, -0.25653)
+shape = SubResource("BoxShape3D_yxb2r")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Drawer3/OpenHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0661621, 0.00384502, -0.724608)
+shape = SubResource("BoxShape3D_h7bhg")
 
 [node name="lags_low" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.158273, 0, 0, 0, 0, -0.158273, 0, 0.158273, 0, -0.203054, -0.0138527, -0.279216)
 mesh = SubResource("ArrayMesh_rlou2")
 skeleton = NodePath("")
+
+[node name="Hitbox" type="StaticBody3D" parent="lags_low"]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lags_low/Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.24377, -0.201523, -2.95091)
+shape = SubResource("BoxShape3D_0tqtj")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="lags_low/Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.24377, 3.73968, -2.95091)
+shape = SubResource("BoxShape3D_0tqtj")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="lags_low/Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.74768, 1.78309, -2.99336)
+shape = SubResource("BoxShape3D_kwlr4")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="lags_low/Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23616, 1.7684, -5.13873)
+shape = SubResource("BoxShape3D_a1ew3")

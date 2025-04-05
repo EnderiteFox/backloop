@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4bl55uew74nc"]
+
+[ext_resource type="PackedScene" uid="uid://dq216r3wu2sjn" path="res://furniture/tall_plant/scene.gltf" id="1_tlwto"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tlwto"]
+height = 0.139008
+radius = 0.0712891
+
+[node name="TallPlant" instance=ExtResource("1_tlwto")]
+
+[node name="Hitbox" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0699615, 0)
+shape = SubResource("CylinderShape3D_tlwto")
