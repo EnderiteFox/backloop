@@ -225,6 +225,7 @@ mesh = SubResource("ArrayMesh_kq355")
 skeleton = NodePath("")
 script = ExtResource("2_glgdd")
 hitbox = NodePath("OpenHitbox")
+displacement = Vector3(-0.3, 0, 0)
 
 [node name="OpenHitbox" type="Area3D" parent="Drawer1"]
 collision_layer = 8
@@ -247,6 +248,7 @@ mesh = SubResource("ArrayMesh_poia0")
 skeleton = NodePath("")
 script = ExtResource("2_glgdd")
 hitbox = NodePath("OpenHitbox")
+displacement = Vector3(-0.3, 0, 0)
 
 [node name="OpenHitbox" type="Area3D" parent="Drawer2"]
 collision_layer = 8
@@ -269,6 +271,7 @@ mesh = SubResource("ArrayMesh_byewa")
 skeleton = NodePath("")
 script = ExtResource("2_glgdd")
 hitbox = NodePath("OpenHitbox")
+displacement = Vector3(-0.3, 0, 0)
 
 [node name="OpenHitbox" type="Area3D" parent="Drawer3"]
 collision_layer = 8
