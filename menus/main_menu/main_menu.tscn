@@ -180,6 +180,7 @@ _data = {
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_vntwe")
+metadata/_edit_lock_ = true
 
 [node name="StartRoom" parent="." instance=ExtResource("2_0hi3m")]
 unique_name_in_owner = true
@@ -200,6 +201,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="PlayButton" type="Button" parent="UI"]
 unique_name_in_owner = true

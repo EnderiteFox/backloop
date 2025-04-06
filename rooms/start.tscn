@@ -90,6 +90,7 @@ script = ExtResource("1_g2lga")
 doors = [NodePath("Doors/Door")]
 roomPlacementHitbox = NodePath("PlacementHitbox")
 anyMonsterNode = NodePath("MonsterPath/MonsterNode")
+metadata/_edit_lock_ = true
 
 [node name="Walls" type="StaticBody3D" parent="."]
 collision_mask = 0
@@ -173,6 +174,7 @@ mesh = SubResource("BoxMesh_o3u6c")
 occluder = SubResource("ArrayOccluder3D_du7w5")
 
 [node name="Doors" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="Door" parent="Doors" instance=ExtResource("3_m78sd")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.906461, 0, -4.99951)
@@ -180,6 +182,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Props" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="DoubleBed" parent="Props" instance=ExtResource("4_miqw8")]
 transform = Transform3D(-7.37431e-08, 0, 1.68705, 0, 1.68705, 0, -1.68705, 0, -7.37431e-08, 0.9572, -0.0487021, 3.71055)
@@ -192,6 +195,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.21931, -2.38419e-07, 4.4374
 
 [node name="Clocks" type="Node3D" parent="Props"]
 script = ExtResource("11_isn5a")
+metadata/_edit_lock_ = true
 
 [node name="wall_clock" parent="Props/Clocks" instance=ExtResource("12_8pjoi")]
 transform = Transform3D(-0.0329728, 0, -2.88257e-09, 0, 0.0329728, 0, 2.88257e-09, 0, -0.0329728, -1.00093, 2.3097, -2.4575)
@@ -206,6 +210,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.720
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.72025, 0.0137005, -0.368306)
 
 [node name="Lights" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="CeilingLight" parent="Lights" instance=ExtResource("7_nwwm7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.802149, 3.16269, 0.430064)
@@ -220,6 +225,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.761618, 1.17855, -0.027593
 shape = SubResource("BoxShape3D_ccfbk")
 
 [node name="MonsterPath" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="MonsterNode" type="Marker3D" parent="MonsterPath" node_paths=PackedStringArray("nextNodes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.92956, 0, -4.08576)

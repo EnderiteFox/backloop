@@ -230,24 +230,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 occluder = ExtResource("11_g42u2")
 
 [node name="Doors" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="Door" parent="Doors" instance=ExtResource("4_7ykeq")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.10796, 0, 0)
-metadata/_edit_lock_ = true
 
 [node name="Door2" parent="Doors" instance=ExtResource("4_7ykeq")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 5.0936, 0, 0)
-metadata/_edit_lock_ = true
 
 [node name="Door3" parent="Doors" instance=ExtResource("4_7ykeq")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -5.10133)
-metadata/_edit_lock_ = true
 
 [node name="Lights" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="CeilingLight" parent="Lights" instance=ExtResource("5_qd417")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 3.17805, 0)
-metadata/_edit_lock_ = true
 
 [node name="PlacementHitbox" type="Area3D" parent="."]
 collision_layer = 16
@@ -278,6 +276,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.5418
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -3.47549, 0, 0)
 
 [node name="MonsterNodes" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="MonsterNode" type="Marker3D" parent="MonsterNodes" node_paths=PackedStringArray("nextNodes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.42134, 0, 0)
@@ -305,6 +304,7 @@ data = ExtResource("8_lwosk")
 
 [node name="Clocks" type="Node3D" parent="."]
 script = ExtResource("9_37n1e")
+metadata/_edit_lock_ = true
 
 [node name="wall_clock" parent="Clocks" instance=ExtResource("9_2xf13")]
 transform = Transform3D(-1.44129e-09, 0, -0.0329728, 0, 0.0329728, 0, 0.0329728, 0, -1.44129e-09, -1.4281, 2.34408, -2.08296)

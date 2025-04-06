@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c75184mf0hfkg"]
 
 [ext_resource type="PackedScene" uid="uid://d126kjjdvgakk" path="res://mobs/the_shade/the_shade.gltf" id="1_ppd8g"]
-[ext_resource type="Script" path="res://mobs/the_shade/the_shade.gd" id="1_qg38i"]
+[ext_resource type="Script" uid="uid://cyv7tyj51fv4m" path="res://mobs/the_shade/the_shade.gd" id="1_qg38i"]
 
 [sub_resource type="Animation" id="Animation_wxcpu"]
 length = 0.001
@@ -581,6 +581,7 @@ size = Vector3(2.9151, 2.68054, 3.38977)
 [node name="TheShade" instance=ExtResource("1_ppd8g")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 script = ExtResource("1_qg38i")
+metadata/_edit_lock_ = true
 
 [node name="Armature" parent="." index="0"]
 unique_name_in_owner = true
@@ -593,7 +594,7 @@ bones/1/position = Vector3(-7.10543e-15, 1.40281, 1.19133e-06)
 bones/1/rotation = Quaternion(0.184453, -3.42432e-08, 3.47705e-08, 0.982841)
 bones/2/rotation = Quaternion(-1.49012e-08, 0, 0, 1)
 bones/3/position = Vector3(1.89096e-14, 1.32458, -1.88029e-07)
-bones/3/rotation = Quaternion(-0.00279316, -0.040808, -0.793763, 0.60685)
+bones/3/rotation = Quaternion(-0.00279314, -0.040808, -0.793763, 0.60685)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/position = Vector3(1.81393e-06, 2.39089, -4.51513e-07)
 bones/4/rotation = Quaternion(-0.691705, 0.482241, -0.354641, 0.404003)
@@ -615,7 +616,7 @@ bones/11/position = Vector3(4.78883e-13, 1.32459, 1.08331e-06)
 bones/11/rotation = Quaternion(-0.347878, 5.56883e-07, -1.83821e-07, 0.93754)
 bones/12/position = Vector3(-7.69658e-14, 2.23268, 1.52539e-07)
 bones/12/rotation = Quaternion(-0.116879, -6.43452e-10, -1.36806e-07, 0.993146)
-bones/13/rotation = Quaternion(0.1795, -5.59512e-14, 2.13981e-07, 0.983758)
+bones/13/rotation = Quaternion(0.1795, -5.92806e-14, 2.13981e-07, 0.983758)
 bones/14/position = Vector3(-7.69658e-14, 2.23268, 1.52539e-07)
 bones/14/rotation = Quaternion(0.391266, 1.08608e-07, 4.99339e-07, 0.920278)
 bones/15/rotation = Quaternion(-0.169144, -3.00297e-13, -2.41962e-07, 0.985591)
@@ -627,7 +628,7 @@ bones/18/position = Vector3(-1.24335e-06, 2.44912, -1.71145e-08)
 bones/18/rotation = Quaternion(-0.0571138, 0.0117877, 0.251432, 0.966116)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/rotation = Quaternion(0.0126907, 0.000401439, 0.00811198, 0.999887)
-bones/20/rotation = Quaternion(-0.0178971, -1.58884e-08, 0.707017, 0.70697)
+bones/20/rotation = Quaternion(-0.0178971, -1.60926e-08, 0.707017, 0.70697)
 bones/21/position = Vector3(2.29204e-07, 0.750349, -2.16247e-06)
 bones/21/rotation = Quaternion(-0.66503, 0.195773, 0.189441, 0.695356)
 bones/21/scale = Vector3(1, 1, 1)
@@ -644,7 +645,7 @@ collision_mask = 3
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_4ibq1")
+&"": SubResource("AnimationLibrary_4ibq1")
 }
 
 [node name="PlayerSafeSpot" type="Area3D" parent="." index="2"]

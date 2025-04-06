@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b2xt05xayiv6e"]
 
-[ext_resource type="Script" path="res://lights/sound_light.gd" id="1_vprai"]
-[ext_resource type="PackedScene" path="res://lights/ceiling/ceiling_light_model.tscn" id="2_3ilc7"]
+[ext_resource type="Script" uid="uid://w8b15a3ccary" path="res://lights/sound_light.gd" id="1_vprai"]
+[ext_resource type="PackedScene" uid="uid://dbnx20jy152lr" path="res://lights/ceiling/ceiling_light_model.tscn" id="2_3ilc7"]
 [ext_resource type="AudioStream" uid="uid://pmq32fcqmnfp" path="res://lights/neon.ogg" id="3_5m4j4"]
 [ext_resource type="AudioStream" uid="uid://btp3lytgmwhqu" path="res://lights/neon_flicker.ogg" id="4_j2rl1"]
 
@@ -14,6 +14,7 @@ normalSound = NodePath("NormalSound")
 flickerSound = NodePath("FlickerSound")
 lights = [NodePath("OmniLight3D"), NodePath("OmniLight3D2")]
 breakHitbox = NodePath("BreakHitbox")
+metadata/_edit_lock_ = true
 
 [node name="CeilingLightModel" parent="." instance=ExtResource("2_3ilc7")]
 transform = Transform3D(-1, -1.50996e-07, 0, 1.50996e-07, -1, 0, 0, 0, 1, 0, 1.41951, 0)
@@ -44,6 +45,7 @@ volume_db = -20.0
 collision_layer = 32
 collision_mask = 64
 monitorable = false
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BreakHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000976563, -0.0507507, 0)

@@ -2,10 +2,10 @@
 
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="1_wx480"]
 [ext_resource type="Material" uid="uid://mi3tsypobxge" path="res://material/walls/wallpaper/wallpaper.tres" id="2_0fp32"]
-[ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://scene/lights/ceiling/ceiling_light.tscn" id="3_yp5vn"]
-[ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://scene/door/door.tscn" id="4_pyecc"]
-[ext_resource type="PackedScene" uid="uid://cljvh2p7v80ll" path="res://scene/environment/ingame_environment.tscn" id="5_blw86"]
-[ext_resource type="AudioStream" uid="uid://cupv4nldrhpjq" path="res://sound/mobs/the_shade/jumpscare/the_shade_jumpscare.ogg" id="6_folhd"]
+[ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://lights/ceiling/ceiling_light.tscn" id="3_yp5vn"]
+[ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://furniture/door/door.tscn" id="4_pyecc"]
+[ext_resource type="PackedScene" uid="uid://cljvh2p7v80ll" path="res://environment/ingame_environment.tscn" id="5_blw86"]
+[ext_resource type="AudioStream" uid="uid://cupv4nldrhpjq" path="res://mobs/the_shade/the_shade_jumpscare.ogg" id="6_folhd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fkuso"]
 size = Vector3(10.2, 1, 3)
@@ -814,7 +814,6 @@ mesh = SubResource("BoxMesh_dol4n")
 process_mode = 4
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 3.17805, 0)
 script = null
-metadata/_edit_lock_ = true
 
 [node name="Door" parent="." instance=ExtResource("4_pyecc")]
 process_mode = 4
@@ -1017,7 +1016,7 @@ current = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_crccn")
+&"": SubResource("AnimationLibrary_crccn")
 }
 script = SubResource("GDScript_fhm2l")
 
