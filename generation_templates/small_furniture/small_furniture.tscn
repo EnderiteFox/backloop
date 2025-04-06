@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bx0j3x6espf7t" path="res://script/utils/editor_only.gd" id="1_bkipw"]
 [ext_resource type="Script" uid="uid://bick5l77yfe0k" path="res://generation_templates/pick_random_template.gd" id="1_dkk6q"]
-[ext_resource type="PackedScene" uid="uid://dcwu41ma38gos" path="res://furniture/dresser/dresser_model.tscn" id="2_bkipw"]
+[ext_resource type="PackedScene" uid="uid://dcwu41ma38gos" path="res://furniture/dresser/dresser.tscn" id="2_bkipw"]
 [ext_resource type="PackedScene" uid="uid://d4bl55uew74nc" path="res://furniture/tall_plant/tall_plant.tscn" id="4_wxc6o"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dkk6q"]
@@ -14,14 +14,17 @@ material = SubResource("StandardMaterial3D_dkk6q")
 size = Vector3(0.69, 1.93, 0.685)
 
 [node name="SmallFurniture" type="Node3D"]
+metadata/_edit_lock_ = true
 
 [node name="PreviewBox" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96612, -0.000257015)
+gi_mode = 0
 mesh = SubResource("BoxMesh_bkipw")
 script = ExtResource("1_bkipw")
 
 [node name="PossibleObjects" type="Node3D" parent="."]
 script = ExtResource("1_dkk6q")
+metadata/_edit_lock_ = true
 
 [node name="Nothing" type="Node3D" parent="PossibleObjects"]
 

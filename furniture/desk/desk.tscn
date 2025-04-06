@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bed0dbquna2an" path="res://furniture/desk/scene.gltf" id="1_nllvt"]
 [ext_resource type="Script" uid="uid://dnocscyviv226" path="res://script/interactable/interactable.gd" id="2_lvdph"]
-[ext_resource type="Script" path="res://furniture/drawer.gd" id="2_t4rf5"]
+[ext_resource type="Script" uid="uid://bkjeaysbq8c4y" path="res://furniture/drawer.gd" id="2_t4rf5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t4rf5"]
 size = Vector3(0.535889, 0.211426, 0.055603)
@@ -20,6 +20,7 @@ size = Vector3(0.855957, 0.0644703, 2.04083)
 size = Vector3(0.0473633, 0.786377, 2.05432)
 
 [node name="Desk" instance=ExtResource("1_nllvt")]
+metadata/_edit_lock_ = true
 
 [node name="handle1_lp_001" parent="Sketchfab_model/desk_fbx/RootNode" index="1" node_paths=PackedStringArray("hitbox")]
 script = ExtResource("2_t4rf5")
@@ -132,6 +133,7 @@ shape = SubResource("BoxShape3D_bp7b1")
 
 [node name="Hitbox" type="StaticBody3D" parent="." index="1"]
 collision_mask = 0
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000335693, 0.397972, 1.00406)

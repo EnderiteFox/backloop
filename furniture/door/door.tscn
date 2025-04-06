@@ -121,6 +121,7 @@ _data = {
 
 [node name="Door" instance=ExtResource("1_nu3f6")]
 script = ExtResource("2_dch8f")
+metadata/_edit_lock_ = true
 
 [node name="Plane" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode" index="0"]
 visible = false
@@ -164,7 +165,7 @@ shape = SubResource("BoxShape3D_7djw8")
 transform = Transform3D(1, 0, 0, 0, 1, 2.64698e-23, 0, -2.64698e-23, 1, 0.850496, 0.0166004, 0.78184)
 
 [node name="Circle_002" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002/Plane_001" index="3"]
-transform = Transform3D(0.999123, 1.08514e-19, -0.0418755, -1.08419e-19, 1, 4.54414e-21, 0.0418755, -5.97767e-26, 0.999123, 0.809703, 0.0427378, 0.802855)
+transform = Transform3D(0.999123, 1.08514e-19, -0.0418755, -1.08419e-19, 1, 4.54414e-21, 0.0418755, -5.37183e-26, 0.999123, 0.809703, 0.0427378, 0.802855)
 
 [node name="AnimationPlayer" parent="." index="1"]
 unique_name_in_owner = true
@@ -190,9 +191,11 @@ mesh = SubResource("BoxMesh_phiqp")
 
 [node name="BlockedModels" type="Node3D" parent="." index="5"]
 unique_name_in_owner = true
+metadata/_edit_lock_ = true
 
 [node name="Planks" type="Node3D" parent="BlockedModels" index="0"]
 visible = false
+metadata/_edit_lock_ = true
 
 [node name="plank_1" parent="BlockedModels/Planks" index="0" instance=ExtResource("7_gh2qx")]
 transform = Transform3D(0.00682976, -5.45077e-12, -0.000124699, -0.000124699, -2.98538e-10, -0.00682976, 0, 0.0068309, -2.98588e-10, 0, 1.29321, -0.113187)

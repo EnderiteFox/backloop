@@ -218,6 +218,7 @@ size = Vector3(0.0588646, 3.94202, 4.39874)
 size = Vector3(3.2146, 4.24323, 0.372803)
 
 [node name="dresser" type="Node3D"]
+metadata/_edit_lock_ = true
 
 [node name="Drawer1" type="MeshInstance3D" parent="." node_paths=PackedStringArray("hitbox")]
 transform = Transform3D(0.158273, 0, 0, 0, 0, -0.158273, 0, 0.158273, 0, -0.256, 0.527, 0.001)

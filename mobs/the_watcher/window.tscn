@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b17il5po871e6" path="res://mobs/the_watcher/window.gd" id="2_uicrv"]
 [ext_resource type="AudioStream" uid="uid://b3cjg1epneadq" path="res://mobs/the_watcher/watcher_spawn_1.ogg" id="3_ra4c4"]
 [ext_resource type="AudioStream" uid="uid://cb72pbgqndtt" path="res://mobs/the_watcher/window_open.ogg" id="3_tgfje"]
-[ext_resource type="Script" path="res://mobs/the_watcher/the_watcher_raycast.gd" id="3_wd4p8"]
+[ext_resource type="Script" uid="uid://d0os161ltff60" path="res://mobs/the_watcher/the_watcher_raycast.gd" id="3_wd4p8"]
 [ext_resource type="AudioStream" uid="uid://0uifhi7l7oba" path="res://mobs/the_watcher/watcher_spawn_2.ogg" id="4_u4sul"]
 [ext_resource type="Texture2D" uid="uid://c6xpd2gf80k83" path="res://mobs/the_watcher/window_model/textures/Glass_metallicRoughness.png" id="5_socnt"]
 [ext_resource type="PackedScene" uid="uid://c4k81y2s6w1fu" path="res://mobs/the_watcher/the_watcher.tscn" id="7_45wot"]
@@ -185,6 +185,7 @@ light_cull_mask = 4294967293
 shadow_enabled = true
 
 [node name="FakeSky" type="Node3D" parent="." index="4"]
+metadata/_edit_lock_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="FakeSky" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0.156771, -0.777845)
@@ -212,6 +213,7 @@ mesh = SubResource("PlaneMesh_0q4d7")
 skeleton = NodePath("../..")
 
 [node name="TheWatcher" type="Node3D" parent="." index="5"]
+metadata/_edit_lock_ = true
 
 [node name="TheWatcherRaycast" type="RayCast3D" parent="TheWatcher" index="0"]
 unique_name_in_owner = true

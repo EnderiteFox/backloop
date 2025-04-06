@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://b2vyca0is7h3p"]
 
-[ext_resource type="Script" path="res://player/player.gd" id="1_8t03j"]
+[ext_resource type="Script" uid="uid://b6qok45yrbdnj" path="res://player/player.gd" id="1_8t03j"]
 [ext_resource type="PackedScene" uid="uid://da1u52edx88kc" path="res://player/stamina_ui.tscn" id="2_k4avh"]
 [ext_resource type="PackedScene" uid="uid://drmaeomkykstr" path="res://player/debugCamera.tscn" id="3_kurhd"]
 [ext_resource type="PackedScene" uid="uid://cljvh2p7v80ll" path="res://environment/ingame_environment.tscn" id="3_pagxp"]
@@ -35,6 +35,7 @@ fill_to = Vector2(0, 0.525641)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_8t03j")
+metadata/_edit_lock_ = true
 
 [node name="ShaderRect" parent="." instance=ExtResource("8_rnoib")]
 
