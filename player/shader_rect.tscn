@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://djxorq18harj3"]
 
-[ext_resource type="Shader" path="res://player/screen_border_chromatic_aberration.gdshader" id="1_1xm7d"]
+[ext_resource type="Shader" uid="uid://csf5oct0kxrgf" path="res://player/screen_border_chromatic_aberration.gdshader" id="1_1xm7d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jnvtj"]
 render_priority = 0
@@ -16,6 +16,7 @@ flip_faces = true
 size = Vector2(2, 2)
 
 [node name="ShaderRect" type="MeshInstance3D"]
+sorting_offset = -10.0
 cast_shadow = 0
 extra_cull_margin = 16384.0
 ignore_occlusion_culling = true
