@@ -51,9 +51,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			_:
 				get_window().mode = Window.MODE_FULLSCREEN
 
-	if event.is_action_pressed("debug"):
-		lights_flicker.emit(10)
-
 
 func _on_room_opened(_room: Room) -> void:
 	time += randi_range(MIN_TIME_PROGRESS, MAX_TIME_PROGRESS)
