@@ -1,3 +1,4 @@
+class_name SoftFollow
 extends Node3D
 ## Makes a Node3D follow its starting position, relative to its parent
 ## This can be used eg. for a flashlight following the camera with a slight delay
@@ -15,7 +16,7 @@ func _ready() -> void:
 	self.top_level = true
 
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	var node_parent: Node = self.get_parent()
 	if !(node_parent is Node3D):
 		printerr("Parent of SoftFollow node is not a Node3D")
@@ -43,3 +44,20 @@ func _physics_process(delta: float) -> void:
 			lerp_angle(self.global_rotation.y, parent.global_rotation.y + rotation_offset.y, follow_factor * delta),
 			lerp_angle(self.global_rotation.z, parent.global_rotation.z + rotation_offset.z, follow_factor * delta)
 		)
+		
+	
+## Sets the offset of the item, without lerping. Useful when initializing, changing the parent or teleporting the [SoftFollow]
+func reset_offset() -> void:
+	var node_parent: Node = self.get_parent()
+	if node_parent is not Node3D:
+		printerr("Parent of SoftFollow node is not a Node3D")
+		self.queue_free()
+		return
+	
+	var parent: Node3D = node_parent as Node3D
+	
+	if follow_position:
+		self.global_position = position_offset
+		
+	if follow_rotation:
+		self.global_rotation = parent.global_rotation + rotation_offset
