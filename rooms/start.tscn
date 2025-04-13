@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cpivnlwdvvnpn"]
+[gd_scene load_steps=35 format=3 uid="uid://cpivnlwdvvnpn"]
 
 [ext_resource type="Script" uid="uid://c4opum1tbjfvr" path="res://script/rooms/room.gd" id="1_g2lga"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="1_jyy7g"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://bick5l77yfe0k" path="res://generation_templates/pick_random_template.gd" id="11_isn5a"]
 [ext_resource type="PackedScene" uid="uid://cv5nx3qabwnnw" path="res://furniture/clocks/wall_clock.tscn" id="12_8pjoi"]
 [ext_resource type="PackedScene" uid="uid://85dh5vt2vjd7" path="res://generation_templates/small_furniture/small_furniture.tscn" id="13_udwfs"]
+[ext_resource type="PackedScene" uid="uid://842qni0nuca6" path="res://items/item_types/flashlight/flashlight_on_ground.tscn" id="14_yvskn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cr1do"]
 size = Vector3(6.80554, 1, 10.1401)
@@ -178,7 +179,6 @@ metadata/_edit_lock_ = true
 
 [node name="Door" parent="Doors" instance=ExtResource("3_m78sd")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.906461, 0, -4.99951)
-metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Props" type="Node3D" parent="."]
@@ -242,3 +242,6 @@ nodeState = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.689758, 1.16308, 0.0230408)
 size = Vector3(7.22791, 5.01479, 10.5948)
 data = ExtResource("10_e8kip")
+
+[node name="FlashlightOnGround" parent="." instance=ExtResource("14_yvskn")]
+transform = Transform3D(0.833288, -0.0335557, 0.551821, 0.0402364, 0.99919, 1.74623e-09, -0.551374, 0.0222033, 0.833963, -1.23911, 0.828818, -1.78866)

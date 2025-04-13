@@ -33,6 +33,8 @@ var walking: bool  = false
 
 var is_alive: bool = true
 
+@export var inventory: Inventory
+
 @onready var interaction_raycast: RayCast3D = %InteractionRaycast
 
 @onready var crosshair: Control = %Crosshair
@@ -45,7 +47,7 @@ var is_alive: bool = true
 @onready var camera: Camera3D = %PlayerCamera
 @onready var camPivot: Node3D = %CamPivot
 
-@onready var flashlight: SpotLight3D = %Flashlight
+@onready var held_items: Node3D = %HeldItems
 
 @onready var activeWalkSound: AudioStreamPlayer3D = %WalkSound
 
@@ -56,6 +58,10 @@ func _ready() -> void:
 	hitboxCrouched.disabled = true
 	died.connect(func(): is_alive = false)
 	interaction_raycast.target_position = interaction_raycast.target_position.normalized() * INTERACTION_RANGE
+	
+	inventory.item_added.connect(_add_handheld_item)
+	inventory.item_selected.connect(_on_item_select)
+	inventory.item_unselected.connect(_on_item_unselect)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -115,8 +121,6 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		_mouse_motion(event)
-	if event.is_action_pressed("toggle_flashlight"):
-		flashlight.visible = !flashlight.visible
 
 
 func _mouse_motion(event: InputEventMouseMotion) -> void:
@@ -143,6 +147,28 @@ func _set_active_walk_sound(streamPlayer: AudioStreamPlayer3D) -> void:
 	%RunSound.stop()
 	%CrouchSound.stop()
 	self.activeWalkSound = streamPlayer
+	
+	
+func _add_handheld_item(item: Item) -> void:
+	if item.model == null:
+		return
+	
+	var model: Node3D = item.model
+	item.remove_child(model)
+	held_items.add_child(model)
+	model.visible = false
+	if model is SoftFollow:
+		model.reset_offset()
+		
+		
+func _on_item_select(item: Item) -> void:
+	if item == null:
+		return
+	item.model.visible = true
+	
+	
+func _on_item_unselect(item: Item) -> void:
+	item.model.visible = false
 
 
 func get_speed() -> float:
