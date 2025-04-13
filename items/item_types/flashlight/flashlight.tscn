@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://d0pwkaakif8sj"]
+
+[ext_resource type="Script" uid="uid://cv03ob7bjx58g" path="res://items/components/toggleable_component.gd" id="1_irxr7"]
+[ext_resource type="Script" uid="uid://jhx0it63g85o" path="res://items/item_types/flashlight/flashlight.gd" id="1_pkemv"]
+[ext_resource type="Texture2D" uid="uid://nlremdiasw71" path="res://items/item_types/flashlight/slot_texture.png" id="2_dbv0i"]
+[ext_resource type="Script" uid="uid://dbw8ccs3wetgd" path="res://items/components/battery_powered_component.gd" id="2_eafmh"]
+[ext_resource type="Script" uid="uid://dweiut1euqc8c" path="res://script/node_3d/soft_follow.gd" id="4_3jd6t"]
+[ext_resource type="PackedScene" uid="uid://dymnmir2nh0m0" path="res://items/item_types/flashlight/model/flashlight_model.tscn" id="5_pkemv"]
+
+[sub_resource type="Gradient" id="Gradient_cgiyt"]
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.762404, 0.762404, 0.762404, 1, 1, 1, 1, 1, 0.5, 0.5, 0.5, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pkemv"]
+gradient = SubResource("Gradient_cgiyt")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0.525641)
+
+[node name="Flashlight" type="Node3D" node_paths=PackedStringArray("battery_component", "toggleable_component", "model")]
+script = ExtResource("1_pkemv")
+battery_component = NodePath("BatteryPoweredComponent")
+toggleable_component = NodePath("ToggleableComponent")
+model = NodePath("Model")
+inventory_texture = ExtResource("2_dbv0i")
+
+[node name="ToggleableComponent" type="Node" parent="." node_paths=PackedStringArray("battery_component")]
+script = ExtResource("1_irxr7")
+toggle_on_action = &"item_use"
+toggle_off_action = &"item_use"
+global_item = true
+toggle_on_global_action = &"toggle_flashlight"
+toggle_off_global_action = &"toggle_flashlight"
+battery_component = NodePath("../BatteryPoweredComponent")
+battery_consumption = 0.003
+metadata/_custom_type_script = "uid://cv03ob7bjx58g"
+
+[node name="BatteryPoweredComponent" type="Node" parent="."]
+script = ExtResource("2_eafmh")
+metadata/_custom_type_script = "uid://dbw8ccs3wetgd"
+
+[node name="Model" type="Node3D" parent="."]
+script = ExtResource("4_3jd6t")
+follow_factor = 15.0
+
+[node name="Flashlight" type="Node3D" parent="Model"]
+transform = Transform3D(2.33714, 0, 0, 0, 2.33714, 0, 0, 0, 2.33714, 0.282044, -0.264273, -0.270367)
+
+[node name="FlashlightModel" parent="Model/Flashlight" instance=ExtResource("5_pkemv")]
+unique_name_in_owner = true
+transform = Transform3D(-0.382248, 0, 0.92406, -0.0234313, 0.999678, -0.00969263, -0.923763, -0.0253569, -0.382125, 0, -0.0128502, 0.0160573)
+
+[node name="FlashlightSpotLight" type="SpotLight3D" parent="Model/Flashlight"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000731692, 0.000359356, -0.0667205)
+visible = false
+light_projector = SubResource("GradientTexture2D_pkemv")
+shadow_enabled = true
+spot_range = 7.5
+spot_attenuation = 2.0
+spot_angle = 40.0

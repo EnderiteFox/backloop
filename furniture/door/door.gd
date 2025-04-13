@@ -61,12 +61,12 @@ func _on_interact() -> void:
 	self.add_child(camera)
 	camera.make_current()
 
-	# Make the player's flashlight follow the transition camera
-	var flashlight_parent: Node = Game.player.flashlight.get_parent()
-	if flashlight_parent != null:
-		flashlight_parent.remove_child(Game.player.flashlight)
+	# Make the player's held items follow the transition camera
+	var held_items_parent: Node = Game.player.held_items.get_parent()
+	if held_items_parent != null:
+		held_items_parent.remove_child(Game.player.held_items)
 
-	camera.add_child(Game.player.flashlight)
+	camera.add_child(Game.player.held_items)
 
 	# Animate transition camera
 	var start_transform: Transform3D = Game.player.camera.global_transform
@@ -86,12 +86,12 @@ func _on_interact() -> void:
 
 
 func _on_camera_tween_finished() -> void:
-	# Make the player's flashlight follow the animation camera
-	var flashlight_parent: Node = Game.player.flashlight.get_parent()
-	if flashlight_parent != null:
-		flashlight_parent.remove_child(Game.player.flashlight)
+	# Make the player's held items follow the animation camera
+	var held_items_parent: Node = Game.player.held_items.get_parent()
+	if held_items_parent != null:
+		held_items_parent.remove_child(Game.player.held_items)
 
-	%OpenCamera.add_child(Game.player.flashlight)
+	%OpenCamera.add_child(Game.player.held_items)
 
 	# Start opening animation
 	%OpenCamera.make_current()
@@ -100,12 +100,12 @@ func _on_camera_tween_finished() -> void:
 
 
 func _on_fully_opened() -> void:
-	# Make the player's flashlight follow the player's camera
-	var flashlight_parent: Node = Game.player.flashlight.get_parent()
-	if flashlight_parent != null:
-		flashlight_parent.remove_child(Game.player.flashlight)
+	# Make the player's held items follow the player's camera
+	var held_items_parent: Node = Game.player.held_items.get_parent()
+	if held_items_parent != null:
+		held_items_parent.remove_child(Game.player.held_items)
 
-	Game.player.camera.add_child(Game.player.flashlight)
+	Game.player.camera.add_child(Game.player.held_items)
 
 	Game.player.camera.make_current()
 	Game.player.position = %PlayerTeleport.global_position
