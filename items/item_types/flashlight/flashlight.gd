@@ -16,19 +16,6 @@ func _ready() -> void:
 	
 	battery_component.battery_ran_out.connect(_on_battery_ran_out)
 	
-	self.selected.connect(_on_select.call_deferred)
-	self.unselected.connect(_on_unselect.call_deferred)
-	
-	
-func _on_unselect() -> void:
-	self.model.visible = true
-	self.flashlight_model.visible = false
-	self.flashlight_spotlight.visible = toggleable_component.active
-	
-func _on_select() -> void:
-	self.flashlight_model.visible = true
-	self.flashlight_spotlight.visible = toggleable_component.active
-	
 	
 func _on_toggle_on() -> void:
 	flashlight_spotlight.visible = true
