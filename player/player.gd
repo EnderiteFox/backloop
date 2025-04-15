@@ -51,6 +51,8 @@ var is_alive: bool = true
 
 @onready var activeWalkSound: AudioStreamPlayer3D = %WalkSound
 
+@onready var inventory_view: InventoryView = %InventoryView
+
 
 func _ready() -> void:
 	Game.player = self
