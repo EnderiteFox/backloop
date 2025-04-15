@@ -5,6 +5,9 @@ extends Control
 
 @onready var slot_container: Node = %SlotContainer
 
+@onready var battery_bar: TextureProgressBar = %BatteryBar
+@onready var battery_bar_animation: AnimationPlayer = %BatteryBarAnimation
+
 var slot_scene: PackedScene = preload("uid://bnbu5ij73yytw")
 
 

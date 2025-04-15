@@ -101,4 +101,5 @@ script = ExtResource("11_2ieo8")
 metadata/_custom_type_script = "uid://d1phijy3uq15j"
 
 [node name="InventoryView" parent="." node_paths=PackedStringArray("inventory") instance=ExtResource("12_ebec5")]
+unique_name_in_owner = true
 inventory = NodePath("../Inventory")
