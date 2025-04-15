@@ -8,7 +8,6 @@ var isActive: bool = false
 var outrunScene: PackedScene = preload("res://mobs/node_monsters/outrun/outrun.tscn")
 
 
-## Initializes the manager. Called by Game
 func _init() -> void:
 	super._init()
 	Game.room_opened.connect(_on_room_opened)
