@@ -22,7 +22,6 @@ var roomList := RoomList.new()
 
 # Monster managers
 var theWatcher := TheWatcherManager.new()
-var theShade := TheShadeManager.new()
 
 var nodeMonsters := NodeMonsterManager.new()
 
@@ -34,6 +33,7 @@ var time: int:
 		_internal_time = new_time % (24*60)
 		time_changed.emit(new_time)
 
+@onready var theShade := TheShadeManager.new()
 @onready var outrun := OutrunManager.new()
 @onready var roomGenerator := RoomGenerator.new()
 
