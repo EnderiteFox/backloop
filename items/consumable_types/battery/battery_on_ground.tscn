@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bchph5xi23fj7"]
+
+[ext_resource type="Script" uid="uid://bphft31wvyuyr" path="res://items/consumable_on_ground.gd" id="1_t4asn"]
+[ext_resource type="PackedScene" uid="uid://bo1nou4l3cq02" path="res://items/consumable_types/battery/battery.gltf" id="2_fhkwk"]
+[ext_resource type="Script" uid="uid://dnocscyviv226" path="res://script/interactable/interactable.gd" id="3_fhkwk"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0fh8b"]
+height = 0.0991211
+radius = 0.0131836
+
+[node name="BatteryOnGround" type="Node3D" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("1_t4asn")
+hitbox = NodePath("Interactable")
+
+[node name="battery" parent="." instance=ExtResource("2_fhkwk")]
+transform = Transform3D(3.31062, 0, 0, 0, -1.44712e-07, 3.31062, 0, -3.31062, -1.44712e-07, 0, 0.0180692, 0.0673147)
+
+[node name="Interactable" type="Area3D" parent="."]
+transform = Transform3D(1.46151, 0, 0, 0, 1.46151, 0, 0, 0, 1.46151, 0, -0.000335881, 0.00233351)
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_fhkwk")
+metadata/_custom_type_script = "uid://dnocscyviv226"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0125932, -0.00317383)
+shape = SubResource("CylinderShape3D_0fh8b")
