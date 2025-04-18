@@ -1,26 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://xcvchlcrwwfx"]
+[gd_scene load_steps=10 format=3 uid="uid://xcvchlcrwwfx"]
 
 [ext_resource type="Theme" uid="uid://b7bhcsgyg3vwt" path="res://player/inventory/inventory_ui_theme.tres" id="1_bd7kl"]
 [ext_resource type="Script" uid="uid://cweobukhiy0r6" path="res://player/inventory/inventory_view.gd" id="1_tvc4b"]
 [ext_resource type="Texture2D" uid="uid://vbiyujls2cwo" path="res://player/inventory/battery_border.png" id="3_78iof"]
 [ext_resource type="Texture2D" uid="uid://b17kg8b5el18k" path="res://player/inventory/battery_fill.png" id="4_cf14k"]
-
-[sub_resource type="Animation" id="Animation_78iof"]
-resource_name = "show"
-length = 0.5
-capture_included = true
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"update": 2,
-"values": [Color(1, 1, 1, 1)]
-}
+[ext_resource type="PackedScene" uid="uid://bkjlfmjkm13oc" path="res://player/inventory/consumable_display.tscn" id="5_cf14k"]
 
 [sub_resource type="Animation" id="Animation_cf14k"]
 length = 0.001
@@ -34,7 +18,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_nutwa"]
@@ -52,6 +36,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 2,
 "values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_78iof"]
+resource_name = "show"
+length = 0.5
+capture_included = true
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yp6ve"]
@@ -86,6 +87,7 @@ alignment = 1
 
 [node name="BatteryBar" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -106,3 +108,21 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_yp6ve")
 }
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="ConsumablesList" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ConsumableDisplay" parent="MarginContainer/ConsumablesList" node_paths=PackedStringArray("inventory_view") instance=ExtResource("5_cf14k")]
+layout_mode = 2
+size_flags_horizontal = 4
+inventory_view = NodePath("../../..")
+consumable_texture = ExtResource("4_cf14k")
