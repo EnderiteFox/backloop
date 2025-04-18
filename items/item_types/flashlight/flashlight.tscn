@@ -33,11 +33,14 @@ global_item = true
 toggle_on_global_action = &"toggle_flashlight"
 toggle_off_global_action = &"toggle_flashlight"
 battery_component = NodePath("../BatteryPoweredComponent")
-battery_consumption = 0.003
+battery_consumption = 1.0
 metadata/_custom_type_script = "uid://cv03ob7bjx58g"
 
 [node name="BatteryPoweredComponent" type="Node" parent="."]
 script = ExtResource("2_eafmh")
+max_battery = 120.0
+current_battery = 120.0
+battery_recharge_amount = 120.0
 metadata/_custom_type_script = "uid://dbw8ccs3wetgd"
 
 [node name="Model" type="Node3D" parent="."]
