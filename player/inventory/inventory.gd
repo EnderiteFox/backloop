@@ -11,6 +11,9 @@ signal item_selected(item: Item)
 ## Not emitted if you had an empty hand before selecting an item
 signal item_unselected(item: Item)
 
+## Emitted when the count of a consumable changes
+signal consumable_count_changed(old_count: int, new_count: int)
+
 const INVENTORY_SLOT_COUNT: int = 6
 
 var items: Array[Item]
@@ -59,7 +62,16 @@ func set_selected_index(new_index: int) -> void:
 	
 	
 func add_consumable(consumable_type: Consumable.Type, amount: int = 1) -> void:
+	var old_amount: int = get_consumable_count(consumable_type)
 	if not consumables.has(consumable_type):
 		consumables[consumable_type] = amount
 	else:
 		consumables[consumable_type] += amount
+	consumable_count_changed.emit(old_amount, get_consumable_count(consumable_type))
+		
+		
+func get_consumable_count(consumable_type: Consumable.Type) -> int:
+	if consumables.has(consumable_type):
+		return consumables[consumable_type]
+	else:
+		return 0
