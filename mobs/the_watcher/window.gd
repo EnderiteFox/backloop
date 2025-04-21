@@ -16,6 +16,12 @@ func _ready() -> void:
 	room.room_opened.connect(_on_room_opened)
 	watcherTimer.timeout.connect(_watcher_deactivate)
 	watcherModel.visible = false
+	
+	
+func _process(_delta: float) -> void:
+	if watcherRaycast.enabled and Game.player.isMoving():
+		_on_watcher_see_player()
+	
 
 func _on_room_opened() -> void:
 	if Game.theWatcher.isActive || !Game.player.is_alive:
@@ -23,6 +29,7 @@ func _on_room_opened() -> void:
 	if randf() <= Game.theWatcher.SPAWN_CHANCE:
 		_watcher_activate()
 	
+		
 func _watcher_activate() -> void:
 	Game.theWatcher.isActive = true
 	get_tree().create_timer(
@@ -32,6 +39,7 @@ func _watcher_activate() -> void:
 		)
 	).timeout.connect(_watcher_warn)
 	
+	
 func _watcher_warn() -> void:
 	watcherModel.visible = true
 	watcherModel.animationPlayer.play("peek")
@@ -39,17 +47,20 @@ func _watcher_warn() -> void:
 	%SpawnSound.play()
 	get_tree().create_timer(Game.theWatcher.REACT_TIME).timeout.connect(_watcher_spawn)
 
+	
 func _watcher_spawn() -> void:
 	watcherRaycast.enabled = true
 	Game.theWatcher.isActive = true
 	watcherTimer.start(Game.theWatcher.ACTIVE_DURATION)
 
+	
 func _watcher_deactivate() -> void:
 	watcherRaycast.enabled = false
 	Game.theWatcher.isActive = false
 	%SpawnSound.stream = watcherSpawnSounds.pick_random()
 	%SpawnSound.play()
 
+	
 func _on_watcher_see_player():
 	watcherTimer.stop()
 	animationPlayer.play("open")
