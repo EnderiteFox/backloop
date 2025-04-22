@@ -1,26 +1,26 @@
 [gd_scene load_steps=36 format=3 uid="uid://cpivnlwdvvnpn"]
 
-[ext_resource type="Script" uid="uid://c4opum1tbjfvr" path="res://script/rooms/room.gd" id="1_g2lga"]
-[ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="1_jyy7g"]
-[ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://furniture/door/door.tscn" id="3_m78sd"]
-[ext_resource type="Material" uid="uid://mi3tsypobxge" path="res://material/walls/wallpaper/wallpaper.tres" id="3_yyoeo"]
-[ext_resource type="PackedScene" uid="uid://c6oj44c4rgh2q" path="res://furniture/bed/double/double_bed.tscn" id="4_miqw8"]
-[ext_resource type="PackedScene" uid="uid://cvp80r0s4kkmk" path="res://furniture/desk/desk.tscn" id="6_r1wo2"]
-[ext_resource type="PackedScene" uid="uid://cfbluaw30yhp5" path="res://lights/floor_lamp/floor_lamp.tscn" id="6_xkg01"]
-[ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://lights/ceiling/ceiling_light.tscn" id="7_nwwm7"]
-[ext_resource type="VoxelGIData" uid="uid://c4pqth2roomk3" path="res://rooms/startGI.res" id="10_e8kip"]
-[ext_resource type="Script" uid="uid://bf6mjw15l2dsr" path="res://mobs/node_monsters/monster_node.gd" id="11_4hr7i"]
-[ext_resource type="Script" uid="uid://bick5l77yfe0k" path="res://generation_templates/pick_random_template.gd" id="11_isn5a"]
-[ext_resource type="PackedScene" uid="uid://cv5nx3qabwnnw" path="res://furniture/clocks/wall_clock.tscn" id="12_8pjoi"]
-[ext_resource type="PackedScene" uid="uid://85dh5vt2vjd7" path="res://generation_templates/small_furniture/small_furniture.tscn" id="13_udwfs"]
-[ext_resource type="PackedScene" uid="uid://842qni0nuca6" path="res://items/item_types/flashlight/flashlight_on_ground.tscn" id="14_yvskn"]
-[ext_resource type="PackedScene" uid="uid://bchph5xi23fj7" path="res://items/consumable_types/battery/battery_on_ground.tscn" id="15_h3kro"]
+[ext_resource type="Script" uid="uid://c4opum1tbjfvr" path="res://script/rooms/room.gd" id="1_hpja8"]
+[ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="2_lktxw"]
+[ext_resource type="Material" uid="uid://mi3tsypobxge" path="res://material/walls/wallpaper/wallpaper.tres" id="3_mviyk"]
+[ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://furniture/door/door.tscn" id="4_e184x"]
+[ext_resource type="PackedScene" uid="uid://c6oj44c4rgh2q" path="res://furniture/bed/double/double_bed.tscn" id="5_ebvtm"]
+[ext_resource type="PackedScene" uid="uid://cvp80r0s4kkmk" path="res://furniture/desk/desk.tscn" id="6_molsy"]
+[ext_resource type="PackedScene" uid="uid://cfbluaw30yhp5" path="res://lights/floor_lamp/floor_lamp.tscn" id="7_kmp3f"]
+[ext_resource type="Script" uid="uid://bick5l77yfe0k" path="res://generation_templates/pick_random_template.gd" id="8_qva0p"]
+[ext_resource type="PackedScene" uid="uid://cv5nx3qabwnnw" path="res://furniture/clocks/wall_clock.tscn" id="9_3h2fg"]
+[ext_resource type="PackedScene" uid="uid://85dh5vt2vjd7" path="res://generation_templates/small_furniture/small_furniture.tscn" id="10_s3o2s"]
+[ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://lights/ceiling/ceiling_light.tscn" id="11_btujy"]
+[ext_resource type="Script" uid="uid://bf6mjw15l2dsr" path="res://mobs/node_monsters/monster_node.gd" id="12_ipnww"]
+[ext_resource type="VoxelGIData" uid="uid://c4pqth2roomk3" path="res://rooms/startGI.res" id="13_xjxum"]
+[ext_resource type="PackedScene" uid="uid://842qni0nuca6" path="res://items/item_types/flashlight/flashlight_on_ground.tscn" id="14_tu3u3"]
+[ext_resource type="PackedScene" uid="uid://bchph5xi23fj7" path="res://items/consumable_types/battery/battery_on_ground.tscn" id="15_x00w7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cr1do"]
 size = Vector3(6.80554, 1, 10.1401)
 
 [sub_resource type="BoxMesh" id="BoxMesh_8kqqt"]
-material = ExtResource("1_jyy7g")
+material = ExtResource("2_lktxw")
 size = Vector3(6.80554, 1, 10.1401)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r0fbt"]
@@ -28,56 +28,56 @@ size = Vector3(0.1, 3.2, 10.037)
 
 [sub_resource type="BoxMesh" id="BoxMesh_o7app"]
 lightmap_size_hint = Vector2i(54, 88)
-material = ExtResource("3_yyoeo")
+material = ExtResource("3_mviyk")
 size = Vector3(0.1, 3.2, 10.037)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pdp7l"]
 size = Vector3(0.1, 3.2, 6.87145)
 
 [sub_resource type="BoxMesh" id="BoxMesh_eqhlg"]
-material = ExtResource("3_yyoeo")
+material = ExtResource("3_mviyk")
 size = Vector3(0.1, 3.2, 6.87145)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hnbva"]
 size = Vector3(0.1, 3.2, 4.58057)
 
 [sub_resource type="BoxMesh" id="BoxMesh_xnnx3"]
-material = ExtResource("3_yyoeo")
+material = ExtResource("3_mviyk")
 size = Vector3(0.1, 3.2, 4.58057)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w5lcy"]
 size = Vector3(0.1, 3.2, 1.32059)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ktmew"]
-material = ExtResource("3_yyoeo")
+material = ExtResource("3_mviyk")
 size = Vector3(0.1, 3.2, 1.32059)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cv6bf"]
 size = Vector3(0.1, 1.17723, 0.931124)
 
 [sub_resource type="BoxMesh" id="BoxMesh_qdsnf"]
-material = ExtResource("3_yyoeo")
+material = ExtResource("3_mviyk")
 size = Vector3(0.1, 1.17723, 0.931124)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5l15b"]
 size = Vector3(0.1, 3.2, 3.77155)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bysif"]
-material = ExtResource("3_yyoeo")
+material = ExtResource("3_mviyk")
 size = Vector3(0.1, 3.2, 3.77155)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iwtdp"]
 size = Vector3(0.1, 3.2, 2.4648)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ssadg"]
-material = ExtResource("3_yyoeo")
+material = ExtResource("3_mviyk")
 size = Vector3(0.1, 3.2, 2.4648)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jv572"]
 size = Vector3(0.1, 6.75419, 10.0538)
 
 [sub_resource type="BoxMesh" id="BoxMesh_o3u6c"]
-material = ExtResource("3_yyoeo")
+material = ExtResource("3_mviyk")
 size = Vector3(0.1, 6.75419, 10.0538)
 
 [sub_resource type="ArrayOccluder3D" id="ArrayOccluder3D_du7w5"]
@@ -88,7 +88,7 @@ indices = PackedInt32Array(0, 1, 2, 1, 3, 2, 4, 5, 6, 5, 7, 6, 1, 4, 3, 4, 6, 3,
 size = Vector3(7.39211, 4.92671, 10.6668)
 
 [node name="Start" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementHitbox", "anyMonsterNode")]
-script = ExtResource("1_g2lga")
+script = ExtResource("1_hpja8")
 doors = [NodePath("Doors/Door")]
 roomPlacementHitbox = NodePath("PlacementHitbox")
 anyMonsterNode = NodePath("MonsterPath/MonsterNode")
@@ -178,42 +178,42 @@ occluder = SubResource("ArrayOccluder3D_du7w5")
 [node name="Doors" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="Door" parent="Doors" instance=ExtResource("3_m78sd")]
+[node name="Door" parent="Doors" instance=ExtResource("4_e184x")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.906461, 0, -4.99951)
 metadata/_edit_group_ = true
 
 [node name="Props" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="DoubleBed" parent="Props" instance=ExtResource("4_miqw8")]
+[node name="DoubleBed" parent="Props" instance=ExtResource("5_ebvtm")]
 transform = Transform3D(-7.37431e-08, 0, 1.68705, 0, 1.68705, 0, -1.68705, 0, -7.37431e-08, 0.9572, -0.0487021, 3.71055)
 
-[node name="Desk2" parent="Props" instance=ExtResource("6_r1wo2")]
+[node name="Desk2" parent="Props" instance=ExtResource("6_molsy")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.06735, 0, -2.06013)
 
-[node name="FloorLamp" parent="Props" instance=ExtResource("6_xkg01")]
+[node name="FloorLamp" parent="Props" instance=ExtResource("7_kmp3f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.21931, -2.38419e-07, 4.43749)
 
 [node name="Clocks" type="Node3D" parent="Props"]
-script = ExtResource("11_isn5a")
+script = ExtResource("8_qva0p")
 metadata/_edit_lock_ = true
 
-[node name="wall_clock" parent="Props/Clocks" instance=ExtResource("12_8pjoi")]
+[node name="wall_clock" parent="Props/Clocks" instance=ExtResource("9_3h2fg")]
 transform = Transform3D(-0.0329728, 0, -2.88257e-09, 0, 0.0329728, 0, 2.88257e-09, 0, -0.0329728, -1.00093, 2.3097, -2.4575)
 
-[node name="wall_clock2" parent="Props/Clocks" instance=ExtResource("12_8pjoi")]
+[node name="wall_clock2" parent="Props/Clocks" instance=ExtResource("9_3h2fg")]
 transform = Transform3D(4.32386e-09, 0, -0.0329728, 0, 0.0329728, 0, 0.0329728, 0, 4.32386e-09, -0.324694, 2.3097, -3.31889)
 
-[node name="SmallFurniture" parent="Props" instance=ExtResource("13_udwfs")]
+[node name="SmallFurniture" parent="Props" instance=ExtResource("10_s3o2s")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.72025, 0.0137005, 4.60293)
 
-[node name="SmallFurniture2" parent="Props" instance=ExtResource("13_udwfs")]
+[node name="SmallFurniture2" parent="Props" instance=ExtResource("10_s3o2s")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.72025, 0.0137005, -0.368306)
 
 [node name="Lights" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="CeilingLight" parent="Lights" instance=ExtResource("7_nwwm7")]
+[node name="CeilingLight" parent="Lights" instance=ExtResource("11_btujy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.802149, 3.16269, 0.430064)
 
 [node name="PlacementHitbox" type="Area3D" parent="."]
@@ -230,25 +230,25 @@ metadata/_edit_lock_ = true
 
 [node name="MonsterNode" type="Marker3D" parent="MonsterPath" node_paths=PackedStringArray("nextNodes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.92956, 0, -4.08576)
-script = ExtResource("11_4hr7i")
+script = ExtResource("12_ipnww")
 nextNodes = [NodePath("../MonsterNode2")]
 
 [node name="MonsterNode2" type="Marker3D" parent="MonsterPath" node_paths=PackedStringArray("nextNodes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.92956, 0, 3.79336)
-script = ExtResource("11_4hr7i")
+script = ExtResource("12_ipnww")
 nextNodes = [NodePath("../MonsterNode")]
 nodeState = 1
 
 [node name="VoxelGI" type="VoxelGI" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.689758, 1.16308, 0.0230408)
 size = Vector3(7.22791, 5.01479, 10.5948)
-data = ExtResource("10_e8kip")
+data = ExtResource("13_xjxum")
 
-[node name="FlashlightOnGround" parent="." instance=ExtResource("14_yvskn")]
+[node name="FlashlightOnGround" parent="." instance=ExtResource("14_tu3u3")]
 transform = Transform3D(0.833288, -0.0335557, 0.551821, 0.0402364, 0.99919, 1.74623e-09, -0.551374, 0.0222033, 0.833963, -1.23911, 0.828818, -1.78866)
 
-[node name="BatteryOnGround" parent="." instance=ExtResource("15_h3kro")]
+[node name="BatteryOnGround" parent="." instance=ExtResource("15_x00w7")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -1.63753, 0.79794, -1.79267)
 
-[node name="BatteryOnGround2" parent="." instance=ExtResource("15_h3kro")]
+[node name="BatteryOnGround2" parent="." instance=ExtResource("15_x00w7")]
 transform = Transform3D(0.235939, 0, 0.971768, 0, 1, 0, -0.971768, 0, 0.235939, -1.57834, 0.79794, -1.86491)
