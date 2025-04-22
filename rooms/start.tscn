@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c6oj44c4rgh2q" path="res://furniture/bed/double/double_bed.tscn" id="5_ebvtm"]
 [ext_resource type="PackedScene" uid="uid://cvp80r0s4kkmk" path="res://furniture/desk/desk.tscn" id="6_molsy"]
 [ext_resource type="PackedScene" uid="uid://cfbluaw30yhp5" path="res://lights/floor_lamp/floor_lamp.tscn" id="7_kmp3f"]
-[ext_resource type="Script" uid="uid://bick5l77yfe0k" path="res://generation_templates/pick_random_template.gd" id="8_qva0p"]
+[ext_resource type="Script" uid="uid://dywgw7sxcfrui" path="res://generation_templates/pick_random_weighted.gd" id="8_h3kro"]
 [ext_resource type="PackedScene" uid="uid://cv5nx3qabwnnw" path="res://furniture/clocks/wall_clock.tscn" id="9_3h2fg"]
 [ext_resource type="PackedScene" uid="uid://85dh5vt2vjd7" path="res://generation_templates/small_furniture/small_furniture.tscn" id="10_s3o2s"]
 [ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://lights/ceiling/ceiling_light.tscn" id="11_btujy"]
@@ -195,7 +195,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.067
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.21931, -2.38419e-07, 4.43749)
 
 [node name="Clocks" type="Node3D" parent="Props"]
-script = ExtResource("8_qva0p")
+script = ExtResource("8_h3kro")
 metadata/_edit_lock_ = true
 
 [node name="wall_clock" parent="Props/Clocks" instance=ExtResource("9_3h2fg")]

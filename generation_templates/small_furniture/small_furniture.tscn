@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://85dh5vt2vjd7"]
 
 [ext_resource type="Script" uid="uid://bx0j3x6espf7t" path="res://script/utils/editor_only.gd" id="1_bkipw"]
-[ext_resource type="Script" uid="uid://bick5l77yfe0k" path="res://generation_templates/pick_random_template.gd" id="1_dkk6q"]
 [ext_resource type="PackedScene" uid="uid://dcwu41ma38gos" path="res://furniture/dresser/dresser.tscn" id="2_bkipw"]
+[ext_resource type="Script" uid="uid://dywgw7sxcfrui" path="res://generation_templates/pick_random_weighted.gd" id="2_wxc6o"]
 [ext_resource type="PackedScene" uid="uid://d4bl55uew74nc" path="res://furniture/tall_plant/tall_plant.tscn" id="4_wxc6o"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dkk6q"]
@@ -23,7 +23,7 @@ mesh = SubResource("BoxMesh_bkipw")
 script = ExtResource("1_bkipw")
 
 [node name="PossibleObjects" type="Node3D" parent="."]
-script = ExtResource("1_dkk6q")
+script = ExtResource("2_wxc6o")
 metadata/_edit_lock_ = true
 
 [node name="Nothing" type="Node3D" parent="PossibleObjects"]
