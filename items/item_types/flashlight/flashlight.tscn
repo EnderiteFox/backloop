@@ -1,12 +1,495 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0pwkaakif8sj"]
+[gd_scene load_steps=31 format=3 uid="uid://d0pwkaakif8sj"]
 
 [ext_resource type="Script" uid="uid://cv03ob7bjx58g" path="res://items/components/toggleable_component.gd" id="1_irxr7"]
 [ext_resource type="Script" uid="uid://jhx0it63g85o" path="res://items/item_types/flashlight/flashlight.gd" id="1_pkemv"]
 [ext_resource type="Texture2D" uid="uid://nlremdiasw71" path="res://items/item_types/flashlight/slot_texture.png" id="2_dbv0i"]
 [ext_resource type="Script" uid="uid://dbw8ccs3wetgd" path="res://items/components/battery_powered_component.gd" id="2_eafmh"]
+[ext_resource type="AudioStream" uid="uid://0wgx16j2slyj" path="res://items/item_types/flashlight/sounds/flashlight_click_1.ogg" id="3_md00j"]
 [ext_resource type="Script" uid="uid://dweiut1euqc8c" path="res://script/node_3d/soft_follow.gd" id="4_3jd6t"]
+[ext_resource type="AudioStream" uid="uid://cvjo67oafphhj" path="res://items/item_types/flashlight/sounds/flashlight_click_2.ogg" id="4_ctr4f"]
+[ext_resource type="AudioStream" uid="uid://cps3o8b7l22g1" path="res://items/item_types/flashlight/sounds/flashlight_click_3.ogg" id="5_0qnqo"]
 [ext_resource type="PackedScene" uid="uid://dymnmir2nh0m0" path="res://items/item_types/flashlight/model/flashlight_model.tscn" id="5_pkemv"]
+[ext_resource type="AudioStream" uid="uid://cel63ths6yb0i" path="res://items/item_types/flashlight/sounds/flashlight_click_4.ogg" id="6_202tg"]
+[ext_resource type="AudioStream" uid="uid://orag6enocld2" path="res://items/item_types/flashlight/sounds/flashlight_click_5.ogg" id="7_2c2tj"]
 [ext_resource type="Script" uid="uid://bkgw7f3r5fh1k" path="res://script/node_3d/copy_position.gd" id="7_m4vst"]
+[ext_resource type="AudioStream" uid="uid://bhmnh1cia2xfp" path="res://items/item_types/flashlight/sounds/replace_battery_1.ogg" id="7_uduni"]
+[ext_resource type="AudioStream" uid="uid://d0dokq001xqf7" path="res://items/item_types/flashlight/sounds/flashlight_click_6.ogg" id="8_d10ae"]
+[ext_resource type="AudioStream" uid="uid://cfqm4ackq31iy" path="res://items/item_types/flashlight/sounds/replace_battery_2.ogg" id="8_uvco8"]
+[ext_resource type="PackedScene" uid="uid://bo1nou4l3cq02" path="res://items/consumable_types/battery/battery.gltf" id="15_uvco8"]
+
+[sub_resource type="Animation" id="Animation_md00j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%FlashlightSpotLight:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.00969278, 1.96291, -0.0234346)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.282044, -0.294306, -0.232839)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%FlashlightSpotLight:light_energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%FlashlightModel/../../ToggleableComponent:battery_consumption")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BatteryInFlashlight:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0383755, 0.0138763, -0.0158744)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BatteryInFlashlight:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3.88869e-11, -0.389208, -1.5708)]
+}
+
+[sub_resource type="Animation" id="Animation_dk061"]
+resource_name = "ambient_flicker"
+loop_mode = 1
+step = 0.01
+capture_included = true
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%FlashlightSpotLight:light_energy")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 2,
+"values": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_367km"]
+streams_count = 2
+stream_0/stream = ExtResource("7_uduni")
+stream_1/stream = ExtResource("8_uvco8")
+
+[sub_resource type="Animation" id="Animation_pfvuq"]
+resource_name = "battery_reload"
+length = 2.25
+step = 0.025
+capture_included = true
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.45, 0.75, 1.05, 1.425, 1.725, 2.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 2,
+"values": [Vector3(0.282044, -0.294306, -0.232839), Vector3(0.233, -0.016, -0.298), Vector3(0.163, -0.067, -0.278), Vector3(0.218, -0.041, -0.283), Vector3(0.163, -0.067, -0.278), Vector3(0.218, -0.041, -0.283), Vector3(0.282044, -0.294306, -0.232839)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.45, 0.75, 1.725, 2.025, 2.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 2,
+"values": [Vector3(0.00969278, 1.96291, -0.0234346), Vector3(0.401426, 1.42942, 1.09258), Vector3(0.467748, 1.55858, 1.28456), Vector3(0.467748, 1.55858, 1.28456), Vector3(0.698132, 1.75231, 1.09258), Vector3(0.00969278, 1.96291, -0.0234346)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlashlightSounds")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_367km")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_367km")
+}],
+"times": PackedFloat32Array(0.675, 1.3)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BatteryInFlashlight:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.675, 0.7875, 1.425, 1.725),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.0383755, 0.0138763, -0.0158744), Vector3(-0.0383755, 0.0138763, -0.0158744), Vector3(-0.143, 0.014, -0.051), Vector3(-0.143, 0.014, -0.051), Vector3(-0.0383755, 0.0138763, -0.0158744)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BatteryInFlashlight:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3.88869e-11, -0.389208, -1.5708)]
+}
+
+[sub_resource type="Animation" id="Animation_mu13o"]
+resource_name = "battery_run_out"
+length = 0.8
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%FlashlightSpotLight:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.45, 0.3, 0.35, 0.25, 0.35, 0.1, 0.2, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_367km"]
+resource_name = "pickup"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%FlashlightSpotLight:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_uduni"]
+resource_name = "select"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.282044, -0.294306, -0.232839)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.00969278, 1.96291, -0.0234346)]
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_u26ke"]
+streams_count = 6
+stream_0/stream = ExtResource("3_md00j")
+stream_1/stream = ExtResource("4_ctr4f")
+stream_2/stream = ExtResource("5_0qnqo")
+stream_3/stream = ExtResource("6_202tg")
+stream_4/stream = ExtResource("7_2c2tj")
+stream_5/stream = ExtResource("8_d10ae")
+
+[sub_resource type="Animation" id="Animation_d10ae"]
+resource_name = "toggle_off"
+length = 0.3
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlashlightSounds")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_u26ke")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%FlashlightSpotLight:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.00969278, 1.96291, -0.0234346), Vector3(0.0827237, 1.95464, -0.201804), Vector3(0.00969278, 1.96291, -0.0234346)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.282044, -0.294306, -0.232839), Vector3(0.282044, -0.308257, -0.232839), Vector3(0.282044, -0.294306, -0.232839)]
+}
+
+[sub_resource type="Animation" id="Animation_u26ke"]
+resource_name = "toggle_on"
+step = 0.01
+capture_included = true
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlashlightSounds")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_u26ke")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%FlashlightSpotLight:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 2,
+"values": [Vector3(0.00969278, 1.96291, -0.0234346), Vector3(0.0827237, 1.95464, -0.201804), Vector3(0.00969278, 1.96291, -0.0234346)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 2,
+"values": [Vector3(0.282044, -0.294306, -0.232839), Vector3(0.282044, -0.308257, -0.232839), Vector3(0.282044, -0.294306, -0.232839)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%FlashlightSpotLight:light_energy")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.1, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 0.5]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%FlashlightModel/../../ToggleableComponent:battery_consumption")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.08, 0.1, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 2.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_uvco8"]
+resource_name = "unselect"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.282044, -0.294306, -0.232839)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.00969278, 1.96291, -0.0234346)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uduni"]
+_data = {
+&"RESET": SubResource("Animation_md00j"),
+&"ambient_flicker": SubResource("Animation_dk061"),
+&"battery_reload": SubResource("Animation_pfvuq"),
+&"battery_run_out": SubResource("Animation_mu13o"),
+&"pickup": SubResource("Animation_367km"),
+&"select": SubResource("Animation_uduni"),
+&"toggle_off": SubResource("Animation_d10ae"),
+&"toggle_on": SubResource("Animation_u26ke"),
+&"unselect": SubResource("Animation_uvco8")
+}
 
 [sub_resource type="Gradient" id="Gradient_cgiyt"]
 offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75, 1)
@@ -18,11 +501,10 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0, 0.525641)
 
-[node name="Flashlight" type="Node3D" node_paths=PackedStringArray("battery_component", "toggleable_component", "model")]
+[node name="Flashlight" type="Node3D" node_paths=PackedStringArray("battery_component", "toggleable_component")]
 script = ExtResource("1_pkemv")
 battery_component = NodePath("BatteryPoweredComponent")
 toggleable_component = NodePath("ToggleableComponent")
-model = NodePath("Model")
 inventory_texture = ExtResource("2_dbv0i")
 
 [node name="ToggleableComponent" type="Node" parent="." node_paths=PackedStringArray("battery_component")]
@@ -47,19 +529,30 @@ metadata/_custom_type_script = "uid://dbw8ccs3wetgd"
 script = ExtResource("4_3jd6t")
 follow_factor = 15.0
 
-[node name="Flashlight" type="Node3D" parent="Model"]
-transform = Transform3D(2.33714, 0, 0, 0, 2.33714, 0, 0, 0, 2.33714, 0.282044, -0.264273, -0.270367)
-
-[node name="FlashlightModel" parent="Model/Flashlight" instance=ExtResource("5_pkemv")]
+[node name="FlashlightModel" parent="Model" instance=ExtResource("5_pkemv")]
 unique_name_in_owner = true
-transform = Transform3D(-0.382248, 0, 0.92406, -0.0234313, 0.999678, -0.00969263, -0.923763, -0.0253569, -0.382125, 0, -0.0128502, 0.0160573)
+transform = Transform3D(-0.893365, -1.74131e-08, 2.15966, -0.0547623, 2.33639, -0.0226531, -2.15896, -0.0592628, -0.89308, 0.282044, -0.294306, -0.232839)
 
-[node name="SpotlightPosition" type="Node3D" parent="Model/Flashlight/FlashlightModel"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Model/FlashlightModel"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_uduni")
+}
+playback_auto_capture_transition_type = 7
+playback_auto_capture_ease_type = 2
+
+[node name="SpotlightPosition" type="Node3D" parent="Model/FlashlightModel"]
 transform = Transform3D(-0.382248, -0.0234313, -0.923763, 6.55535e-09, 0.999678, -0.0253569, 0.92406, -0.00969262, -0.382125, 0.0764372, 0.0153043, 0.0308273)
 
-[node name="Node" type="Node" parent="Model/Flashlight"]
+[node name="FlashlightSounds" type="AudioStreamPlayer3D" parent="Model/FlashlightModel"]
+transform = Transform3D(0.427873, -4.65661e-09, 2.98023e-08, 1.86265e-09, 0.427874, 1.86265e-09, -4.47035e-08, -4.65661e-10, 0.427873, 0.0330375, 0.0167541, 0.0136663)
 
-[node name="FlashlightSpotLight" type="SpotLight3D" parent="Model/Flashlight/Node" node_paths=PackedStringArray("position_parent")]
+[node name="BatteryInFlashlight" parent="Model/FlashlightModel" instance=ExtResource("15_uvco8")]
+transform = Transform3D(-3.39281e-06, 0.937238, -0.384389, -1.013, -3.66705e-06, 3.93924e-11, -1.39145e-06, 0.384389, 0.937238, -0.0383755, 0.0138763, -0.0158744)
+
+[node name="Node" type="Node" parent="Model/FlashlightModel"]
+
+[node name="FlashlightSpotLight" type="SpotLight3D" parent="Model/FlashlightModel/Node" node_paths=PackedStringArray("position_parent")]
 unique_name_in_owner = true
 transform = Transform3D(1, 1.86264e-09, 2.98023e-08, -1.86265e-09, 1, 8.3819e-09, -2.98023e-08, -8.3819e-09, 1, 0.280334, -0.263433, -0.426302)
 light_projector = SubResource("GradientTexture2D_pkemv")
@@ -68,4 +561,6 @@ spot_range = 7.5
 spot_attenuation = 2.0
 spot_angle = 40.0
 script = ExtResource("7_m4vst")
-position_parent = NodePath("../../FlashlightModel/SpotlightPosition")
+position_parent = NodePath("../../SpotlightPosition")
+
+[node name="Dummy" type="Camera3D" parent="."]

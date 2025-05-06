@@ -41,8 +41,8 @@ func _on_item_unselected(item: Item) -> void:
 
 func add_item(item: Item) -> void:
 	items.append(item)
-	self.add_child(item)
 	item_added.emit(item)
+	item.picked_up.emit()
 	
 	
 func set_selected_index(new_index: int) -> void:
