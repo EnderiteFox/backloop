@@ -2,6 +2,7 @@ class_name BatteryPoweredComponent
 extends ItemComponent
 
 signal battery_ran_out
+signal battery_reloaded
 
 @export var max_battery: float = 1.0
 @export var current_battery: float = 1.0:
@@ -40,3 +41,4 @@ func _unhandled_input(event: InputEvent) -> void:
 	and item.is_selected:
 		current_battery += battery_recharge_amount
 		Game.player.inventory.add_consumable(Consumable.Type.BATTERY, -1)
+		battery_reloaded.emit()

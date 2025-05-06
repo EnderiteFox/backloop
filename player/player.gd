@@ -61,9 +61,7 @@ func _ready() -> void:
 	died.connect(func(): is_alive = false)
 	interaction_raycast.target_position = interaction_raycast.target_position.normalized() * INTERACTION_RANGE
 	
-	inventory.item_added.connect(_add_handheld_item)
-	inventory.item_selected.connect(_on_item_select)
-	inventory.item_unselected.connect(_on_item_unselect)
+	inventory.item_added.connect(_on_add_handheld_item)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -151,26 +149,8 @@ func _set_active_walk_sound(streamPlayer: AudioStreamPlayer3D) -> void:
 	self.activeWalkSound = streamPlayer
 	
 	
-func _add_handheld_item(item: Item) -> void:
-	if item.model == null:
-		return
-	
-	var model: Node3D = item.model
-	item.remove_child(model)
-	held_items.add_child(model)
-	model.visible = false
-	if model is SoftFollow:
-		model.reset_offset()
-		
-		
-func _on_item_select(item: Item) -> void:
-	if item == null:
-		return
-	item.model.visible = true
-	
-	
-func _on_item_unselect(item: Item) -> void:
-	item.model.visible = false
+func _on_add_handheld_item(item: Item) -> void:
+	held_items.add_child(item)
 
 
 func get_speed() -> float:

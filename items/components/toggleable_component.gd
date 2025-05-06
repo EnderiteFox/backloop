@@ -39,6 +39,7 @@ func _ready() -> void:
 		
 	self.item.unselected.connect(_on_item_unselected)
 
+	
 func _physics_process(delta: float) -> void:
 	if battery_component == null:
 		return
@@ -51,18 +52,26 @@ func _unhandled_input(event: InputEvent) -> void:
 	if active:
 		if (item.is_selected and event.is_action_pressed(toggle_off_action))\
 		or (global_item and event.is_action_pressed(toggle_off_global_action)):
-			toggled_off.emit()
-			active = false
+			toggle_off()
 	else:
 		if (item.is_selected and event.is_action_pressed(toggle_on_action))\
 		or (global_item and event.is_action_pressed(toggle_on_global_action)):
 			if battery_component != null and battery_component.current_battery == 0.0:
 				toggle_fail_no_battery.emit()
 			else:
-				toggled_on.emit()
-				active = true
+				toggle_on()
+				
+				
+func toggle_on() -> void:
+	toggled_on.emit()
+	active = true
+	
+
+func toggle_off() -> void:
+	toggled_off.emit()
+	active = false
 			
 			
 func _on_item_unselected() -> void:
 	if not global_item:
-		toggled_off.emit()
+		toggle_off()
