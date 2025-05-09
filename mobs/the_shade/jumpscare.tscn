@@ -1,5 +1,6 @@
 [gd_scene load_steps=28 format=4 uid="uid://du73na0nwumla"]
 
+[ext_resource type="Script" uid="uid://v5a1cxslmehg" path="res://mobs/the_shade/jumpscare.gd" id="1_80110"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="1_wx480"]
 [ext_resource type="Material" uid="uid://mi3tsypobxge" path="res://material/walls/wallpaper/wallpaper.tres" id="2_0fp32"]
 [ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://lights/ceiling/ceiling_light.tscn" id="3_yp5vn"]
@@ -642,22 +643,8 @@ _data = {
 &"jumpscare": SubResource("Animation_btumn")
 }
 
-[sub_resource type="GDScript" id="GDScript_fhm2l"]
-resource_name = "the_shade_jumpscare"
-script/source = "extends AnimationPlayer
-
-
-func _ready() -> void:
-	get_tree().paused = false
-	play(\"jumpscare\")
-	
-	self.animation_finished.connect(
-		func(_animation):
-			get_tree().change_scene_to_file(\"res://scene/menus/game_over.tscn\")
-	)
-"
-
 [node name="Jumpscare" type="Node3D"]
+script = ExtResource("1_80110")
 
 [node name="Walls" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -1015,10 +1002,10 @@ transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, -0.218
 current = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_crccn")
 }
-script = SubResource("GDScript_fhm2l")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
