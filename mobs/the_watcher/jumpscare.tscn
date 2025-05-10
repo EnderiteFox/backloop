@@ -1,58 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://bjtcl5nk3tm8d"]
 
+[ext_resource type="Script" uid="uid://cugymjx2eenph" path="res://mobs/the_watcher/jumpscare.gd" id="1_k5pe6"]
 [ext_resource type="AudioStream" uid="uid://cqyj0a7qsu3bc" path="res://mobs/the_watcher/the_watcher_jumpscare.ogg" id="1_staqd"]
 [ext_resource type="PackedScene" uid="uid://c4k81y2s6w1fu" path="res://mobs/the_watcher/the_watcher.tscn" id="2_5yjum"]
 [ext_resource type="FontFile" uid="uid://wn16rsoarb1f" path="res://fonts/pangolin/Pangolin-Regular.ttf" id="3_6v0wg"]
-
-[sub_resource type="GDScript" id="GDScript_058e8"]
-script/source = "extends Node3D
-
-@onready var animationPlayer = %AnimationPlayer
-@onready var audioStreamPlayer = %AudioStreamPlayer
-@onready var theWatcher: TheWatcherModel = %TheWatcher
-
-@onready var gameOverScene: PackedScene = preload(\"res://menus/game_over/game_over.tscn\")
-
-@onready var label: Label = %Label
-
-var first_label_pos: Vector2
-var labelCount: int = 0
-
-const LABEL_DUPLICATE_DIRECTION: Vector2 = Vector2(0.005, -0.037)
-const LABEL_COLUMN_DIRECTION: Vector2 = Vector2(0.52, -0.0463)
-
-const LABEL_PER_COLUMN: int = 25
-
-const LABEL_DUPLICATE_TIME: float = 0.05
-
-func _ready() -> void:
-	animationPlayer.play(\"jumpscare\")
-	animationPlayer.animation_finished.connect(
-		func(_anim):
-			get_tree().change_scene_to_packed(gameOverScene)
-	)
-	theWatcher.animationPlayer.play(\"jumpscare\")
-	audioStreamPlayer.play()
-	label.label_settings.font_size = int(label.label_settings.font_size / 1920.0 * float(get_window().size.x))
-	
-func start_label_duplication() -> void:
-	label.visible = true
-	first_label_pos = label.global_position
-	_duplicate_label()
-
-func _duplicate_label() -> void:
-	var newLabel: Label = label.duplicate()
-	label.add_sibling(newLabel)
-	labelCount += 1
-	
-	var posInColumn: int = labelCount % LABEL_PER_COLUMN
-	@warning_ignore(\"integer_division\")
-	var columnIndex: int = (labelCount - posInColumn) / LABEL_PER_COLUMN
-	
-	newLabel.global_position = first_label_pos + LABEL_DUPLICATE_DIRECTION * posInColumn * Vector2(get_window().size) + LABEL_COLUMN_DIRECTION * columnIndex * Vector2(get_window().size)
-	
-	get_tree().create_timer(LABEL_DUPLICATE_TIME).timeout.connect(_duplicate_label)
-"
 
 [sub_resource type="Animation" id="Animation_egy5l"]
 length = 0.001
@@ -149,7 +100,7 @@ font_size = 64
 shadow_size = 0
 
 [node name="TheWatcherJumpscare" type="Node3D"]
-script = SubResource("GDScript_058e8")
+script = ExtResource("1_k5pe6")
 metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
