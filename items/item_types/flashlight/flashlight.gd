@@ -15,6 +15,8 @@ const FLASH_CONSUMPTION_VALUE: float = 20.0
 @onready var flashlight_spotlight: SpotLight3D = %FlashlightSpotLight
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
+var can_reload: bool = true
+
 
 func _ready() -> void:
 	self.item_type = Type.FLASHLIGHT
@@ -22,8 +24,12 @@ func _ready() -> void:
 	self.picked_up.connect(_on_pick_up)
 	self.selected.connect(_on_selected)
 	self.unselected.connect(_on_unselected)
+	
 	battery_component.battery_ran_out.connect(_on_battery_ran_out)
 	battery_component.battery_reloaded.connect(_on_battery_reloaded)
+	battery_component.can_reload_callable = func():
+		return can_reload
+	
 	toggleable_component.toggled_on.connect(_on_turn_on)
 	toggleable_component.toggled_off.connect(_on_turn_off)
 	toggleable_component.toggle_fail_no_battery.connect(_on_turn_on_failed_no_battery)
@@ -61,6 +67,9 @@ func _on_animation_start(animation_name: StringName) -> void:
 func _on_animation_finished(animation_name: StringName) -> void:
 	if animation_name == &"toggle_on":
 		animation_player.play(&"ambient_flicker")
+		
+	if animation_name == &"battery_reload":
+		can_reload = true
 
 
 func _set_random_flicker_animation_values() -> void:
@@ -88,6 +97,7 @@ func _on_battery_ran_out() -> void:
 	
 func _on_battery_reloaded() -> void:
 	animation_player.play(&"battery_reload")
+	can_reload = false
 
 
 func _on_selected() -> void:
@@ -96,6 +106,7 @@ func _on_selected() -> void:
 
 func _on_unselected() -> void:
 	animation_player.play(&"unselect")
+	can_reload = true
 
 
 func _on_turn_on() -> void:
