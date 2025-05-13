@@ -39,7 +39,6 @@ var time: int:
 
 func _ready() -> void:
 	time = START_TIME
-	roomList.load_rooms()
 	room_opened.connect(_on_room_opened)
 
 

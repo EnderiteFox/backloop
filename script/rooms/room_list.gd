@@ -6,20 +6,14 @@ var roomsConfig: Dictionary[String, float] = {
 	"tShapeTwoWindows": 1.0,
 	"donut": 1.0
 }
-var rooms: Dictionary[PackedScene, float] = {}
-
-func load_rooms() -> void:
-	for roomName in roomsConfig:
-		if roomsConfig[roomName] == 0:
-			continue
-		rooms[load("res://rooms/" + roomName + ".tscn") as PackedScene] = roomsConfig[roomName]
+var roomScenes: Dictionary[String, PackedScene] = {}
 
 
-func get_random_rooms() -> Array[PackedScene]:
-	var possibleRooms: Dictionary = rooms.duplicate()
+func get_random_rooms() -> Array[String]:
+	var possibleRooms: Dictionary = roomsConfig.duplicate()
 	var weight_sum: float         = possibleRooms.values().reduce(func(acc, x): return acc + x, 0)
 
-	var roomList: Array[PackedScene] = []
+	var roomList: Array[String] = []
 
 	while !possibleRooms.is_empty():
 		if possibleRooms.size() == 1:
@@ -33,6 +27,13 @@ func get_random_rooms() -> Array[PackedScene]:
 				roomList.append(room)
 				possibleRooms.erase(room)
 				continue
-			curr += rooms[room]
+			curr += roomsConfig[room]
 
 	return roomList
+	
+	
+func get_room_scene(roomName: String) -> PackedScene:
+	if not roomScenes.has(roomName):
+		roomScenes[roomName] = load("res://rooms/" + roomName + ".tscn") as PackedScene
+		
+	return roomScenes[roomName]
