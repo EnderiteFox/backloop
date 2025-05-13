@@ -37,10 +37,10 @@ func pregenerate_after_door(room: Room, door: Door) -> void:
 	var roomPlacementHitboxLayer: int = room.roomPlacementHitbox.collision_layer
 	room.roomPlacementHitbox.collision_layer = 0
 
-	var possibleRooms: Array[PackedScene] = Game.roomList.get_random_rooms()
+	var possibleRooms: Array[String] = Game.roomList.get_random_rooms()
 
-	for roomScene in possibleRooms:
-		var newRoom: Room = roomScene.instantiate()
+	for roomName in possibleRooms:
+		var newRoom: Room = Game.roomList.get_room_scene(roomName).instantiate()
 
 		# Deactivate the hitbox of the new room to prevent self collision
 		var newRoomPlacementHitboxLayer: int = newRoom.roomPlacementHitbox.collision_layer
