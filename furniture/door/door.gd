@@ -3,7 +3,7 @@ extends RoomElement
 
 signal opened
 
-const CAMERA_TRANSITION_TIME: float = 0.2
+const CAMERA_TRANSITION_TIME: float = 0.35
 
 var open: bool = false
 var state := State.NORMAL
@@ -77,7 +77,7 @@ func _on_interact() -> void:
 		"global_transform",
 		end_transform,
 		CAMERA_TRANSITION_TIME
-	).from(start_transform)
+	).from(start_transform).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_callback(
 		func():
 			_on_camera_tween_finished()
