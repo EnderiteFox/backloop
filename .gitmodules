@@ -1,0 +1,3 @@
+[submodule "addons/forest"]
+	path = addons/forest
+	url = https://github.com/EnderiteFox/forest
