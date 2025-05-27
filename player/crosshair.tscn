@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c8hufmrap4nap"]
 
-[ext_resource type="Script" path="res://player/crosshair.gd" id="1_k2v2k"]
+[ext_resource type="Script" uid="uid://btjjk8klvkta8" path="res://player/crosshair.gd" id="1_k2v2k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmgfq"]
 bg_color = Color(1, 1, 1, 1)
