@@ -31,6 +31,8 @@ var crouched: bool = false
 var running: bool  = false
 var walking: bool  = false
 
+var can_move: bool = true
+
 var is_alive: bool = true
 
 @export var inventory: Inventory
@@ -53,6 +55,8 @@ var is_alive: bool = true
 
 @onready var inventory_view: InventoryView = %InventoryView
 
+@onready var dev_console: DevConsole = %DevConsole
+
 
 func _ready() -> void:
 	Game.player = self
@@ -69,7 +73,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Update velocity
-	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward") if can_move else Vector2.ZERO
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * get_speed()
@@ -88,7 +92,7 @@ func _physics_process(delta: float) -> void:
 	%CamPivot.position.y = defaultPivotHeight + sin(view_bobble_progress) * VIEW_BOBBLE_AMOUNT - currentCrouchCamOffset
 	
 	# Handle sprinting
-	if Input.is_action_pressed("sprint"):
+	if Input.is_action_pressed("sprint") and can_move:
 		if activeWalkSound != %RunSound && !crouched && exhaustion <= 0:
 			_set_active_walk_sound(%RunSound)
 		if stamina > 0:
@@ -97,25 +101,30 @@ func _physics_process(delta: float) -> void:
 		else:
 			_set_active_walk_sound(%WalkSound)
 			exhaustion = EXHAUSTION
-	if !Input.is_action_pressed("sprint") || exhaustion > 0:
+	if not Input.is_action_pressed("sprint") or exhaustion > 0:
 		stamina += STAMINA_GAIN * delta
 		stamina = clamp(stamina, 0, 100)
 		if exhaustion > 0:
 			exhaustion -= delta
 	
-	# Handle crouching
-	if Input.is_action_just_pressed("crouch"):
-		set_crouched(!crouched)
-	
 	# Handle starting walk sound
-	if !crouched && !Input.is_action_pressed("sprint") && activeWalkSound != %WalkSound:
+	if not crouched and not Input.is_action_pressed("sprint") and activeWalkSound != %WalkSound:
 		_set_active_walk_sound(%WalkSound)
-
-	# Interact key
-	if Input.is_action_just_pressed("interact"):
-		_interact()
 	
 	move_and_slide()
+	
+	
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed(&"dev_console"):
+		dev_console.toggle()
+
+	# Handle crouching
+	if event.is_action_pressed(&"crouch") and can_move:
+		set_crouched(!crouched)
+
+	# Interact key
+	if event.is_action_pressed(&"interact"):
+		_interact()
 
 
 func _unhandled_input(event: InputEvent) -> void:
