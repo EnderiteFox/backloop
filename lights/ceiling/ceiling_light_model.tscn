@@ -1,5 +1,5 @@
 [gd_scene load_steps=2 format=3 uid="uid://dbnx20jy152lr"]
 
-[ext_resource type="PackedScene" uid="uid://p0cu52kdlpm2" path="res://model/lights/ceiling/scene.gltf" id="1_wb2l2"]
+[ext_resource type="PackedScene" uid="uid://p0cu52kdlpm2" path="res://lights/ceiling/scene.gltf" id="1_wb2l2"]
 
 [node name="CeilingLight" instance=ExtResource("1_wb2l2")]
