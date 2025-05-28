@@ -11,3 +11,12 @@ func spawn(monster: String) -> void:
 			dev_console.print_console("Spawned Outrun")
 		_:
 			dev_console.print_error_console("Unknown monster: %s" % monster)
+	
+	
+func give(item: String) -> void:
+	match item:
+		"battery":
+			Game.player.inventory.add_consumable(Consumable.Type.BATTERY)
+			dev_console.print_console("Gave one battery")
+		_:
+			dev_console.print_error_console("Unknown item: %s" % item)
