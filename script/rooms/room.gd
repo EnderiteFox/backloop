@@ -8,6 +8,7 @@ signal room_opened
 @export var doors: Array[Door]
 @export var roomPlacementHitbox: Area3D
 @export var anyMonsterNode: MonsterNode
+@export var nav_region: NavigationRegion3D
 
 var fullyGenerated: bool = false;
 
@@ -31,6 +32,12 @@ func _editor_prepare_room() -> void:
 	anyMonsterNode = monster_nodes[0]
 	for monster_node in monster_nodes:
 		monster_node._editor_update_path()
+		
+	for node in get_children():
+		if node is NavigationRegion3D:
+			self.nav_region = node
+			self.nav_region.bake_navigation_mesh()
+			break
 
 
 func _editor_get_monster_nodes(node: Node) -> Array[MonsterNode]:
