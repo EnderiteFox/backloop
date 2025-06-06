@@ -1,16 +1,20 @@
-[gd_scene load_steps=28 format=3 uid="uid://c4x0ishww8412"]
+[gd_scene load_steps=29 format=3 uid="uid://c4x0ishww8412"]
 
 [ext_resource type="Script" uid="uid://c4opum1tbjfvr" path="res://script/rooms/room.gd" id="1_3h7sh"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="2_24hvn"]
 [ext_resource type="Material" uid="uid://mi3tsypobxge" path="res://material/walls/wallpaper/wallpaper.tres" id="3_egf11"]
 [ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://furniture/door/door.tscn" id="4_7ykeq"]
 [ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://lights/ceiling/ceiling_light.tscn" id="5_qd417"]
-[ext_resource type="PackedScene" uid="uid://buw2uy5r4nepf" path="res://mobs/the_shade/the_shade_spawn_point.tscn" id="6_b536d"]
+[ext_resource type="PackedScene" uid="uid://buw2uy5r4nepf" path="res://mobs/old_the_shade/old_the_shade_spawn_point.tscn" id="6_b536d"]
 [ext_resource type="Script" uid="uid://bf6mjw15l2dsr" path="res://mobs/node_monsters/monster_node.gd" id="7_eytio"]
 [ext_resource type="VoxelGIData" uid="uid://can7su0aqrumr" path="res://rooms/tShapeTwoWindowsGI.res" id="8_lwosk"]
 [ext_resource type="PackedScene" uid="uid://cv5nx3qabwnnw" path="res://furniture/clocks/wall_clock.tscn" id="9_2xf13"]
 [ext_resource type="Script" uid="uid://dywgw7sxcfrui" path="res://generation_templates/pick_random_weighted.gd" id="10_f34k0"]
 [ext_resource type="ArrayOccluder3D" uid="uid://1xawnjuhk3o5" path="res://rooms/tShapeTwoWindows.occ" id="11_g42u2"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_f34k0"]
+vertices = PackedVector3Array(0.90157, 0.5, -1.0918, 0.90157, 0.5, -4.0918, -0.84843, 0.5, -4.0918, -1.09843, 0.5, -0.8418, 3.90157, 0.5, 0.9082, 3.90157, 0.5, -0.8418, -4.09843, 0.5, 0.9082, -4.09843, 0.5, -0.8418)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(3, 4, 6), PackedInt32Array(6, 7, 3)]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_stwc3"]
 size = Vector3(10.2, 1, 3)
@@ -68,252 +72,279 @@ size = Vector3(11.1139, 5.9568, 3.87027)
 [sub_resource type="BoxShape3D" id="BoxShape3D_01qi5"]
 size = Vector3(3.72263, 5.81248, 4.64414)
 
-[node name="TShapeTwoWindows" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementHitbox", "anyMonsterNode")]
+[node name="TShapeTwoWindows" type="Node3D" node_paths=PackedStringArray("doors", "roomPlacementHitbox", "anyMonsterNode", "nav_region")]
 script = ExtResource("1_3h7sh")
-doors = [NodePath("Doors/Door"), NodePath("Doors/Door2"), NodePath("Doors/Door3")]
-roomPlacementHitbox = NodePath("PlacementHitbox")
-anyMonsterNode = NodePath("MonsterNodes/MonsterNode")
+doors = [NodePath("NavigationRegion3D/Doors/Door"), NodePath("NavigationRegion3D/Doors/Door2"), NodePath("NavigationRegion3D/Doors/Door3")]
+roomPlacementHitbox = NodePath("NavigationRegion3D/PlacementHitbox")
+anyMonsterNode = NodePath("NavigationRegion3D/MonsterNodes/MonsterNode")
+nav_region = NodePath("NavigationRegion3D")
 
-[node name="Walls" type="StaticBody3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_f34k0")
+
+[node name="Walls" type="StaticBody3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 collision_mask = 14
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Ground" type="CollisionShape3D" parent="Walls"]
+[node name="Ground" type="CollisionShape3D" parent="NavigationRegion3D/Walls"]
 shape = SubResource("BoxShape3D_stwc3")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Ground"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Walls/Ground"]
 mesh = SubResource("BoxMesh_58dmr")
 
-[node name="Ground2" type="CollisionShape3D" parent="Walls"]
+[node name="Ground2" type="CollisionShape3D" parent="NavigationRegion3D/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.3)
 shape = SubResource("BoxShape3D_yxsoq")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Ground2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Walls/Ground2"]
 mesh = SubResource("BoxMesh_gngcj")
 
-[node name="Ceiling" type="CollisionShape3D" parent="Walls"]
+[node name="Ceiling" type="CollisionShape3D" parent="NavigationRegion3D/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.17426, 0)
 shape = SubResource("BoxShape3D_stwc3")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Ceiling"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Walls/Ceiling"]
 mesh = SubResource("BoxMesh_2fygv")
 
-[node name="Ceiling2" type="CollisionShape3D" parent="Walls"]
+[node name="Ceiling2" type="CollisionShape3D" parent="NavigationRegion3D/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.17426, -3.3)
 shape = SubResource("BoxShape3D_yxsoq")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Ceiling2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Walls/Ceiling2"]
 mesh = SubResource("BoxMesh_i36qe")
 
-[node name="Wall" type="CollisionShape3D" parent="Walls"]
+[node name="Wall" type="CollisionShape3D" parent="NavigationRegion3D/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000732422, 2.08969, 1.49944)
 shape = SubResource("BoxShape3D_3g6ym")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Walls/Wall"]
 mesh = SubResource("BoxMesh_75toi")
 
-[node name="Wall2" type="CollisionShape3D" parent="Walls"]
+[node name="Wall2" type="CollisionShape3D" parent="NavigationRegion3D/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.29623, 2.08969, -1.50723)
 shape = SubResource("BoxShape3D_bay1a")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Walls/Wall2"]
 mesh = SubResource("BoxMesh_orsbe")
 
-[node name="Wall3" type="CollisionShape3D" parent="Walls"]
+[node name="Wall3" type="CollisionShape3D" parent="NavigationRegion3D/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.296, 2.09, -1.507)
 shape = SubResource("BoxShape3D_bay1a")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Walls/Wall3"]
 mesh = SubResource("BoxMesh_orsbe")
 
-[node name="Wall4" type="CollisionShape3D" parent="Walls"]
+[node name="Wall4" type="CollisionShape3D" parent="NavigationRegion3D/Walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.52025, 2.09, -3.29179)
 shape = SubResource("BoxShape3D_bay1a")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Walls/Wall4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00893259, 0, 0)
 mesh = SubResource("BoxMesh_orsbe")
 
-[node name="Wall5" type="CollisionShape3D" parent="Walls"]
+[node name="Wall5" type="CollisionShape3D" parent="NavigationRegion3D/Walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.52, 2.09, -3.292)
 shape = SubResource("BoxShape3D_bay1a")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall5"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Walls/Wall5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00893259, 0, 0)
 mesh = SubResource("BoxMesh_orsbe")
 
-[node name="Wall6" type="CollisionShape3D" parent="Walls"]
+[node name="Wall6" type="CollisionShape3D" parent="NavigationRegion3D/Walls"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.0958, 3.10442, -0.00313568)
 shape = SubResource("BoxShape3D_hll57")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall6"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Walls/Wall6"]
 mesh = SubResource("BoxMesh_8okkt")
 
-[node name="Wall7" type="CollisionShape3D" parent="Walls"]
+[node name="Wall7" type="CollisionShape3D" parent="NavigationRegion3D/Walls"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.0958, 2.08633, -0.953634)
 shape = SubResource("BoxShape3D_hdo0s")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall7"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Walls/Wall7"]
 mesh = SubResource("BoxMesh_t0s7s")
 
-[node name="Wall8" type="CollisionShape3D" parent="Walls"]
+[node name="Wall8" type="CollisionShape3D" parent="NavigationRegion3D/Walls"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.0958, 2.08633, 0.947309)
 shape = SubResource("BoxShape3D_hdo0s")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall8"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Walls/Wall8"]
 mesh = SubResource("BoxMesh_t0s7s")
 
-[node name="Wall9" type="CollisionShape3D" parent="Walls"]
+[node name="Wall9" type="CollisionShape3D" parent="NavigationRegion3D/Walls"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.096, 3.10442, -0.00313568)
 shape = SubResource("BoxShape3D_hll57")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall9"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Walls/Wall9"]
 mesh = SubResource("BoxMesh_8okkt")
 
-[node name="Wall10" type="CollisionShape3D" parent="Walls"]
+[node name="Wall10" type="CollisionShape3D" parent="NavigationRegion3D/Walls"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.096, 2.08633, -0.953634)
 shape = SubResource("BoxShape3D_hdo0s")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall10"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Walls/Wall10"]
 mesh = SubResource("BoxMesh_t0s7s")
 
-[node name="Wall11" type="CollisionShape3D" parent="Walls"]
+[node name="Wall11" type="CollisionShape3D" parent="NavigationRegion3D/Walls"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.096, 2.08633, 0.947309)
 shape = SubResource("BoxShape3D_hdo0s")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall11"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Walls/Wall11"]
 mesh = SubResource("BoxMesh_t0s7s")
 
-[node name="Wall12" type="CollisionShape3D" parent="Walls"]
+[node name="Wall12" type="CollisionShape3D" parent="NavigationRegion3D/Walls"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.79212e-05, 3.10442, -5.09841)
 shape = SubResource("BoxShape3D_hll57")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall12"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Walls/Wall12"]
 mesh = SubResource("BoxMesh_8okkt")
 
-[node name="Wall13" type="CollisionShape3D" parent="Walls"]
+[node name="Wall13" type="CollisionShape3D" parent="NavigationRegion3D/Walls"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.95048, 2.08633, -5.09841)
 shape = SubResource("BoxShape3D_hdo0s")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall13"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Walls/Wall13"]
 mesh = SubResource("BoxMesh_t0s7s")
 
-[node name="Wall14" type="CollisionShape3D" parent="Walls"]
+[node name="Wall14" type="CollisionShape3D" parent="NavigationRegion3D/Walls"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.950463, 2.08633, -5.09841)
 shape = SubResource("BoxShape3D_hdo0s")
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall14"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Walls/Wall14"]
 mesh = SubResource("BoxMesh_t0s7s")
 
-[node name="OccluderInstance3D" type="OccluderInstance3D" parent="Walls"]
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="NavigationRegion3D/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 occluder = ExtResource("11_g42u2")
 
-[node name="Doors" type="Node3D" parent="."]
+[node name="Doors" type="Node3D" parent="NavigationRegion3D"]
 metadata/_edit_lock_ = true
 
-[node name="Door" parent="Doors" instance=ExtResource("4_7ykeq")]
+[node name="Door" parent="NavigationRegion3D/Doors" instance=ExtResource("4_7ykeq")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.10796, 0, 0)
 
-[node name="Door2" parent="Doors" instance=ExtResource("4_7ykeq")]
+[node name="Door2" parent="NavigationRegion3D/Doors" instance=ExtResource("4_7ykeq")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 5.0936, 0, 0)
 
-[node name="Door3" parent="Doors" instance=ExtResource("4_7ykeq")]
+[node name="Door3" parent="NavigationRegion3D/Doors" instance=ExtResource("4_7ykeq")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -5.10133)
 
-[node name="Lights" type="Node3D" parent="."]
+[node name="Lights" type="Node3D" parent="NavigationRegion3D"]
 metadata/_edit_lock_ = true
 
-[node name="CeilingLight" parent="Lights" instance=ExtResource("5_qd417")]
+[node name="CeilingLight" parent="NavigationRegion3D/Lights" instance=ExtResource("5_qd417")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 3.17805, 0)
 
-[node name="PlacementHitbox" type="Area3D" parent="."]
+[node name="PlacementHitbox" type="Area3D" parent="NavigationRegion3D"]
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlacementHitbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/PlacementHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0755215, 1.62465, 0.0322116)
 shape = SubResource("BoxShape3D_4oab5")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="PlacementHitbox"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/PlacementHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0138401, 1.5478, -3.42399)
 shape = SubResource("BoxShape3D_01qi5")
 
-[node name="TheShadeSpawnPoints" type="Node3D" parent="."]
+[node name="TheShadeSpawnPoints" type="Node3D" parent="NavigationRegion3D"]
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="TheShadeSpawnPoint" parent="TheShadeSpawnPoints" instance=ExtResource("6_b536d")]
+[node name="TheShadeSpawnPoint" parent="NavigationRegion3D/TheShadeSpawnPoints" instance=ExtResource("6_b536d")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -3.43649)
 
-[node name="TheShadeSpawnPoint2" parent="TheShadeSpawnPoints" instance=ExtResource("6_b536d")]
+[node name="TheShadeSpawnPoint2" parent="NavigationRegion3D/TheShadeSpawnPoints" instance=ExtResource("6_b536d")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.54186, 0, 0)
 
-[node name="TheShadeSpawnPoint3" parent="TheShadeSpawnPoints" instance=ExtResource("6_b536d")]
+[node name="TheShadeSpawnPoint3" parent="NavigationRegion3D/TheShadeSpawnPoints" instance=ExtResource("6_b536d")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -3.47549, 0, 0)
 
-[node name="MonsterNodes" type="Node3D" parent="."]
+[node name="MonsterNodes" type="Node3D" parent="NavigationRegion3D"]
 metadata/_edit_lock_ = true
 
-[node name="MonsterNode" type="Marker3D" parent="MonsterNodes" node_paths=PackedStringArray("nextNodes")]
+[node name="MonsterNode" type="Marker3D" parent="NavigationRegion3D/MonsterNodes" node_paths=PackedStringArray("nextNodes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.42134, 0, 0)
 script = ExtResource("7_eytio")
 nextNodes = [NodePath("../CenterNode")]
 
-[node name="MonsterNode2" type="Marker3D" parent="MonsterNodes" node_paths=PackedStringArray("nextNodes")]
+[node name="MonsterNode2" type="Marker3D" parent="NavigationRegion3D/MonsterNodes" node_paths=PackedStringArray("nextNodes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.421, 0, 0)
 script = ExtResource("7_eytio")
 nextNodes = [NodePath("../CenterNode")]
 
-[node name="MonsterNode3" type="Marker3D" parent="MonsterNodes" node_paths=PackedStringArray("nextNodes")]
+[node name="MonsterNode3" type="Marker3D" parent="NavigationRegion3D/MonsterNodes" node_paths=PackedStringArray("nextNodes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.51054)
 script = ExtResource("7_eytio")
 nextNodes = [NodePath("../CenterNode")]
 
-[node name="CenterNode" type="Marker3D" parent="MonsterNodes" node_paths=PackedStringArray("nextNodes")]
+[node name="CenterNode" type="Marker3D" parent="NavigationRegion3D/MonsterNodes" node_paths=PackedStringArray("nextNodes")]
 script = ExtResource("7_eytio")
 nextNodes = [NodePath("../MonsterNode"), NodePath("../MonsterNode2"), NodePath("../MonsterNode3")]
 
-[node name="VoxelGI" type="VoxelGI" parent="."]
+[node name="VoxelGI" type="VoxelGI" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0693359, 1.61102, -1.81216)
 size = Vector3(10.8789, 5.69812, 7.08832)
 data = ExtResource("8_lwosk")
 
-[node name="Clocks" type="Node3D" parent="."]
+[node name="Clocks" type="Node3D" parent="NavigationRegion3D"]
 script = ExtResource("10_f34k0")
 metadata/_edit_lock_ = true
 
-[node name="wall_clock" parent="Clocks" instance=ExtResource("9_2xf13")]
+[node name="wall_clock" parent="NavigationRegion3D/Clocks" instance=ExtResource("9_2xf13")]
 transform = Transform3D(-1.44129e-09, 0, -0.0329728, 0, 0.0329728, 0, 0.0329728, 0, -1.44129e-09, -1.4281, 2.34408, -2.08296)
 
-[node name="wall_clock3" parent="Clocks" instance=ExtResource("9_2xf13")]
+[node name="wall_clock3" parent="NavigationRegion3D/Clocks" instance=ExtResource("9_2xf13")]
 transform = Transform3D(-0.0329728, 0, 2.88258e-09, 0, 0.0329728, 0, -2.88258e-09, 0, -0.0329728, -2.20488, 2.34408, -1.42112)
 
-[node name="wall_clock4" parent="Clocks" instance=ExtResource("9_2xf13")]
+[node name="wall_clock4" parent="NavigationRegion3D/Clocks" instance=ExtResource("9_2xf13")]
 transform = Transform3D(-0.0329728, 0, 2.88258e-09, 0, 0.0329728, 0, -2.88258e-09, 0, -0.0329728, 2.205, 2.344, -1.421)
 
-[node name="wall_clock2" parent="Clocks" instance=ExtResource("9_2xf13")]
+[node name="wall_clock2" parent="NavigationRegion3D/Clocks" instance=ExtResource("9_2xf13")]
 transform = Transform3D(4.32386e-09, 0, 0.0329728, 0, 0.0329728, 0, -0.0329728, 0, 4.32386e-09, 1.428, 2.344, -2.083)
+
+[node name="NavigationObstacles" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavigationRegion3D/NavigationObstacles"]
+vertices = PackedVector3Array(-6.84289, 0, -1.89229, -5.67574, 0, -1.92852, -5.70156, 0, 1.53763, -6.85221, 0, 1.58266)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="NavigationObstacle3D2" type="NavigationObstacle3D" parent="NavigationRegion3D/NavigationObstacles"]
+vertices = PackedVector3Array(1.86062, 0, -6.8566, 1.91225, 0, -5.53871, -1.96852, 0, -5.54507, -1.80313, 0, -6.80671)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="NavigationObstacle3D3" type="NavigationObstacle3D" parent="NavigationRegion3D/NavigationObstacles"]
+vertices = PackedVector3Array(6.86865, 0, 1.68494, 5.67788, 0, 1.76635, 5.69982, 0, -1.83895, 6.75168, 0, -1.82493)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="NavigationObstacle3D4" type="NavigationObstacle3D" parent="NavigationRegion3D/NavigationObstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.01152, 0)
+vertices = PackedVector3Array(7.77448, 0, 2.53077, -7.65118, 0, 2.5755, -7.68463, 0, -1.27932, -2.10589, 0, -1.32518, -1.72834, 0, -7.47, 2.28972, 0, -7.51945, 2.28546, 0, -1.76817, 7.93601, 0, -1.64896)
+affect_navigation_mesh = true
+avoidance_enabled = false
