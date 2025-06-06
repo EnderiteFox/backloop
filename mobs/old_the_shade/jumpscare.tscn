@@ -1,12 +1,12 @@
 [gd_scene load_steps=28 format=4 uid="uid://du73na0nwumla"]
 
-[ext_resource type="Script" uid="uid://v5a1cxslmehg" path="res://mobs/the_shade/jumpscare.gd" id="1_80110"]
+[ext_resource type="Script" uid="uid://v5a1cxslmehg" path="res://mobs/old_the_shade/jumpscare.gd" id="1_80110"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="1_wx480"]
 [ext_resource type="Material" uid="uid://mi3tsypobxge" path="res://material/walls/wallpaper/wallpaper.tres" id="2_0fp32"]
 [ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://lights/ceiling/ceiling_light.tscn" id="3_yp5vn"]
 [ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://furniture/door/door.tscn" id="4_pyecc"]
 [ext_resource type="PackedScene" uid="uid://cljvh2p7v80ll" path="res://environment/ingame_environment.tscn" id="5_blw86"]
-[ext_resource type="AudioStream" uid="uid://cupv4nldrhpjq" path="res://mobs/the_shade/the_shade_jumpscare.ogg" id="6_folhd"]
+[ext_resource type="AudioStream" uid="uid://cupv4nldrhpjq" path="res://mobs/old_the_shade/old_the_shade_jumpscare.ogg" id="6_folhd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fkuso"]
 size = Vector3(10.2, 1, 3)

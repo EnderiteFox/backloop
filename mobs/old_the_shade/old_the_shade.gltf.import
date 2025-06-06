@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://d126kjjdvgakk"
-path="res://.godot/imported/the_shade.gltf-42231eca2cc5eb86a2f60f8a4279dd2c.scn"
+path="res://.godot/imported/old_the_shade.gltf-8634d7d8bdd193aa344674436e8349c3.scn"
 
 [deps]
 
-source_file="res://mobs/the_shade/the_shade.gltf"
-dest_files=["res://.godot/imported/the_shade.gltf-42231eca2cc5eb86a2f60f8a4279dd2c.scn"]
+source_file="res://mobs/old_the_shade/old_the_shade.gltf"
+dest_files=["res://.godot/imported/old_the_shade.gltf-8634d7d8bdd193aa344674436e8349c3.scn"]
 
 [params]
 
