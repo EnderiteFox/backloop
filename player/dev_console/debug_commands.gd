@@ -8,15 +8,12 @@ func spawn(monster: String) -> void:
 	match monster:
 		"outrun":
 			Game.outrun.spawn()
-			dev_console.print_console("Spawned Outrun")
 		_:
 			dev_console.print_error_console("Unknown monster: %s" % monster)
 			
 		
 func _spawn_the_shade(room: Room) -> void:
-	if Game.the_shade.spawn(room):
-		dev_console.print_console("The Shade spawned")
-	else:
+	if not Game.the_shade.spawn(room):
 		dev_console.print_error_console("Failed to spawn The Shade")
 		
 			
