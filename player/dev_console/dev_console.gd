@@ -211,3 +211,8 @@ func print_console(line: String) -> void:
 func print_error_console(line: String) -> void:
 	console_text.newline()
 	console_text.append_text("[color=red]%s[/color]" % line)
+	
+	
+func print_info_console(line: String) -> void:
+	console_text.newline()
+	console_text.append_text("[color=dim_gray]%s[/color]" % line)

@@ -15,6 +15,6 @@ func spawn(room: Room) -> bool:
 		1,
 		true
 	)
-	print(position)
 	the_shade.global_position = position
+	Game.player.dev_console.print_info_console("The Shade spawned")
 	return true
