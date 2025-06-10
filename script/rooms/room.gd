@@ -19,6 +19,12 @@ var previousRoom: Room = null
 func _ready() -> void:
 	if !Engine.is_editor_hint():
 		Game.roomGenerator.rooms.append(self)
+		
+		# Put the room's navigation mesh on its own map
+		var map: RID = NavigationServer3D.map_create()
+		NavigationServer3D.map_set_up(map, Vector3.UP)
+		NavigationServer3D.map_set_active(map, true)
+		nav_region.set_navigation_map(map)
 
 
 func _editor_prepare_room() -> void:
