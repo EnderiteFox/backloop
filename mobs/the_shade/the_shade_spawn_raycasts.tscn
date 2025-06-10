@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=3 uid="uid://ciwbfrfyc0x4x"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_o4ivl"]
+radius = 0.6
+
+[node name="TheShadeSpawnRaycasts" type="Node3D"]
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08063, 0)
+shape = SubResource("CylinderShape3D_o4ivl")
+target_position = Vector3(0, 0, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0.01, 0)
+collision_mask = 11
+collide_with_areas = true
+
+[node name="RayCast3D2" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+target_position = Vector3(0, 0.01, 0)
+collision_mask = 11
+collide_with_areas = true
+
+[node name="RayCast3D3" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, 0.01, 0)
+collision_mask = 11
+collide_with_areas = true
+
+[node name="RayCast3D4" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+target_position = Vector3(0, 0.01, 0)
+collision_mask = 11
+collide_with_areas = true
+
+[node name="RayCast3D5" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+target_position = Vector3(0, 0.01, 0)
+collision_mask = 11
+collide_with_areas = true
+
+[node name="RayCast3D6" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1)
+target_position = Vector3(0, 0.01, 0)
+collision_mask = 11
+collide_with_areas = true
+
+[node name="RayCast3D7" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1)
+target_position = Vector3(0, 0.01, 0)
+collision_mask = 11
+collide_with_areas = true
+
+[node name="RayCast3D8" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 0)
+target_position = Vector3(0, 0.01, 0)
+collision_mask = 11
+collide_with_areas = true
+
+[node name="RayCast3D9" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 0)
+target_position = Vector3(0, 0.01, 0)
+collision_mask = 11
+collide_with_areas = true

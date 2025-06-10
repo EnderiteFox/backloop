@@ -1,17 +1,12 @@
 class_name TheShadeManager
 extends Resettable
 
-const CHECKED_SPAWN_RAYCAST_POSITIONS: Array[Vector3] = [
-	Vector3.ZERO,
-	Vector3.UP * 0.5,
-	Vector3.UP,
-	Vector3.UP * 1.5,
-]
-const MAX_SPAWN_VISIBLE_CHECK_TRIES: int = 10
+const MAX_SPAWN_VISIBLE_CHECK_TRIES: int = 15
 const RAYCAST_COLLISION_MASK: int = 1 | 2 | 8
 
 var is_active: bool = false
 var the_shade_scene: PackedScene = preload("uid://b7y1pcrm32hly")
+var spawn_raycasts_scene: PackedScene = preload("uid://ciwbfrfyc0x4x")
 
 
 ## Spawn The Shade in a room. Returns [code]true[/code] if spawned successfully, or [code]false[/code] if The Shade 
@@ -24,14 +19,6 @@ func spawn(room: Room) -> bool:
 			true
 		)
 		
-		if _any_pos_sees_player(
-			room, 
-			CHECKED_SPAWN_RAYCAST_POSITIONS.map(
-				func(vec: Vector3): return vec + position
-			)
-		):
-			continue
-			
 		# Get position on ground
 		var raycast := RayCast3D.new()
 		room.add_child(raycast)
@@ -45,6 +32,9 @@ func spawn(room: Room) -> bool:
 			continue
 		position = raycast.get_collision_point()
 		
+		if _pos_sees_player(room, position):
+			continue
+		
 		var the_shade: TheShade = the_shade_scene.instantiate()
 		room.add_sibling(the_shade)
 		the_shade.global_position = position
@@ -55,28 +45,32 @@ func spawn(room: Room) -> bool:
 	return false
 	
 
-## Returns true if any of the given global positions have line of sight with the player
-func _any_pos_sees_player(room: Room, positions: Array) -> bool:
-	var collided: bool = false
+## Returns true if any of the global position have line of sight with the player
+func _pos_sees_player(room: Room, position: Vector3) -> bool:
+	# Instantiate raycast scene
+	var spawn_raycasts: Node3D = spawn_raycasts_scene.instantiate()
+	room.add_child(spawn_raycasts)
+	spawn_raycasts.global_position = position
 	
-	# Create raycast
-	var raycast := RayCast3D.new()
-	room.add_child(raycast)
-	raycast.collision_mask = RAYCAST_COLLISION_MASK
-	raycast.collide_with_areas = true
+	# Check raycasts
+	var any_collided: bool = false
+	for child in spawn_raycasts.get_children():
+		if child is RayCast3D:
+			child.target_position = child.to_local(Game.player.camera.global_position)
+			child.force_raycast_update()
+			if child.is_colliding() and child.get_collider() is Player:
+				any_collided = true
+				break
+		elif child is ShapeCast3D:
+			child.target_position = Vector3.ZERO
+			child.force_shapecast_update()
+			if child.is_colliding():
+				any_collided = true
+				break
+		else:
+			push_warning("Unexpected type for The Shade spawn raycast node: %s" % child.get_class())
+			
+	# Remove raycasts
+	spawn_raycasts.free()
 	
-	# Check positions
-	for position in positions:
-		raycast.global_position = position
-		raycast.target_position = raycast.to_local(Game.player.camera.global_position)
-		raycast.force_raycast_update()
-		if raycast.get_collider() is Player:
-			collided = true
-			break
-		
-	# Clear raycast
-	room.remove_child(raycast)
-	raycast.queue_free()
-	
-	return collided
-	
+	return any_collided
