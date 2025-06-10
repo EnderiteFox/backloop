@@ -26,7 +26,7 @@ func spawn_the_shade(_the_shade: String, where: String) -> void:
 		"random":
 			_spawn_the_shade(Game.roomGenerator.rooms.pick_random())
 		"last":
-			_spawn_the_shade(Game.roomGenerator.rooms[-1])
+			_spawn_the_shade(Game.roomGenerator.lastRoomOpened)
 		_:
 			dev_console.print_error_console("Invalid location: %s" % where)
 	
