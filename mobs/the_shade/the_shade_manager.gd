@@ -51,6 +51,8 @@ func _pos_sees_player(room: Room, position: Vector3) -> bool:
 	var spawn_raycasts: Node3D = spawn_raycasts_scene.instantiate()
 	room.add_child(spawn_raycasts)
 	spawn_raycasts.global_position = position
+	spawn_raycasts.look_at(Game.player.camera.global_position)
+	spawn_raycasts.rotation.x = 0
 	
 	# Check raycasts
 	var any_collided: bool = false
