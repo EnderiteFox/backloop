@@ -1,4 +1,4 @@
-class_name Light
+class_name RoomLight
 extends RoomElement
 
 signal flicker_start
@@ -12,10 +12,26 @@ const MAX_INTERVAL: float = 0.2
 @export var lights: Array[Light3D]
 @export var breakHitbox: Area3D
 
+var default_energies: Dictionary[Light3D, float]
+
+var energy: float = 1.0:
+	set = set_energy
+
 func _ready() -> void:
 	super._ready()
 	Game.lights_flicker.connect(flicker)
 	breakHitbox.area_entered.connect(_on_lightbreaker_touched)
+	
+	# Store default light values
+	for light in lights:
+		default_energies[light] = light.light_energy
+		
+		
+func set_energy(new_energy: float) -> void:
+	energy = new_energy
+	for light in lights:
+		assert(default_energies.has(light), "Light has no default energy")
+		light.light_energy = default_energies[light] * energy
 
 
 func _on_lightbreaker_touched(_area: Area3D) -> void:

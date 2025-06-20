@@ -1,4 +1,4 @@
-extends Light
+extends RoomLight
 
 @export var normalSound: AudioStreamPlayer3D
 @export var flickerSound: AudioStreamPlayer3D
