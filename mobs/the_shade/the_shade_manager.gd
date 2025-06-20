@@ -38,6 +38,7 @@ func spawn(room: Room) -> bool:
 		var the_shade: TheShade = the_shade_scene.instantiate()
 		room.add_sibling(the_shade)
 		the_shade.global_position = position
+		the_shade.navagent.set_navigation_map(room.nav_region.get_navigation_map())
 		Game.player.dev_console.print_info_console("The Shade spawned")
 		return true
 		
