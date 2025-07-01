@@ -8,8 +8,15 @@ var roomsConfig: Dictionary[String, float] = {
 }
 var roomScenes: Dictionary[String, PackedScene] = {}
 
+var forcedNextRoom: String = ""
+
 
 func get_random_rooms() -> Array[String]:
+	if forcedNextRoom:
+		var result: Array[String] = [forcedNextRoom]
+		forcedNextRoom = ""
+		return result
+	
 	var possibleRooms: Dictionary = roomsConfig.duplicate()
 	var weight_sum: float         = possibleRooms.values().reduce(func(acc, x): return acc + x, 0)
 
