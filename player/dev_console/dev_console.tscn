@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://cj4q8pgqiwrsd"]
+[gd_scene load_steps=10 format=3 uid="uid://cj4q8pgqiwrsd"]
 
 [ext_resource type="Script" uid="uid://5s167l2h7qav" path="res://player/dev_console/dev_console.gd" id="1_mvyso"]
 [ext_resource type="Script" uid="uid://dqwdxxtw4ef1k" path="res://addons/forest/command_tree/command_tree.gd" id="2_nhrba"]
 [ext_resource type="Script" uid="uid://cehwf7xbnc5c3" path="res://addons/forest/commands/command.gd" id="3_l62em"]
-[ext_resource type="Script" uid="uid://dl5l6r6kkd1tk" path="res://addons/forest/resource/custom_callback.gd" id="4_sksdo"]
 [ext_resource type="Script" uid="uid://ds2t4tqqrl4g0" path="res://addons/forest/commands/arguments/enum_argument.gd" id="5_s2i2b"]
 [ext_resource type="Script" uid="uid://gsppnmm8soku" path="res://addons/forest/commands/arguments/keyword_argument.gd" id="6_l62em"]
 [ext_resource type="Script" uid="uid://gcgj6m5pfoev" path="res://player/dev_console/debug_commands.gd" id="6_x175u"]
@@ -11,36 +10,6 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cepbk"]
 bg_color = Color(0, 0, 0, 0.27451)
-
-[sub_resource type="Resource" id="Resource_ynik4"]
-script = ExtResource("4_sksdo")
-node = NodePath("../DebugCommands")
-callback = &"spawn"
-metadata/_custom_type_script = "uid://dl5l6r6kkd1tk"
-
-[sub_resource type="Resource" id="Resource_l62em"]
-script = ExtResource("4_sksdo")
-node = NodePath("../DebugCommands")
-callback = &"spawn_the_shade"
-metadata/_custom_type_script = "uid://dx6u3arc60cx7"
-
-[sub_resource type="Resource" id="Resource_nhrba"]
-script = ExtResource("4_sksdo")
-node = NodePath("../DebugCommands")
-callback = &"give"
-metadata/_custom_type_script = "uid://dx6u3arc60cx7"
-
-[sub_resource type="Resource" id="Resource_s2i2b"]
-script = ExtResource("4_sksdo")
-node = NodePath("../DebugCommands")
-callback = &"force_next_room"
-metadata/_custom_type_script = "uid://dx6u3arc60cx7"
-
-[sub_resource type="Resource" id="Resource_sksdo"]
-script = ExtResource("4_sksdo")
-node = NodePath("../DebugCommands")
-callback = &"enter_room"
-metadata/_custom_type_script = "uid://dx6u3arc60cx7"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nhrba"]
 bg_color = Color(0, 0, 0, 0.705882)
@@ -87,10 +56,6 @@ script = ExtResource("2_nhrba")
 [node name="Spawn" type="Node" parent="CommandTree"]
 script = ExtResource("3_l62em")
 command_name = "spawn"
-command_callbacks = Dictionary[Array, ExtResource("4_sksdo")]({
-["monster"]: SubResource("Resource_ynik4"),
-["the_shade", "where"]: SubResource("Resource_l62em")
-})
 
 [node name="EnumArgument" type="Node" parent="CommandTree/Spawn"]
 script = ExtResource("5_s2i2b")
@@ -110,9 +75,6 @@ metadata/_custom_type_script = "uid://ds2t4tqqrl4g0"
 [node name="Give" type="Node" parent="CommandTree"]
 script = ExtResource("3_l62em")
 command_name = "give"
-command_callbacks = Dictionary[Array, ExtResource("4_sksdo")]({
-["item"]: SubResource("Resource_nhrba")
-})
 metadata/_custom_type_script = "uid://cehwf7xbnc5c3"
 
 [node name="Item" type="Node" parent="CommandTree/Give"]
@@ -130,9 +92,6 @@ metadata/_custom_type_script = "uid://gcgj6m5pfoev"
 [node name="ForceNextRoom" type="Node" parent="CommandTree"]
 script = ExtResource("3_l62em")
 command_name = "force_next_room"
-command_callbacks = Dictionary[Array, ExtResource("4_sksdo")]({
-["room_name"]: SubResource("Resource_s2i2b")
-})
 metadata/_custom_type_script = "uid://cehwf7xbnc5c3"
 
 [node name="RoomArgument" type="Node" parent="CommandTree/ForceNextRoom"]
@@ -143,9 +102,6 @@ metadata/_custom_type_script = "uid://dwr81tany2fw5"
 [node name="EnterRoom" type="Node" parent="CommandTree"]
 script = ExtResource("3_l62em")
 command_name = "enter_room"
-command_callbacks = Dictionary[Array, ExtResource("4_sksdo")]({
-["room_name"]: SubResource("Resource_sksdo")
-})
 metadata/_custom_type_script = "uid://cehwf7xbnc5c3"
 
 [node name="RoomArgument" type="Node" parent="CommandTree/EnterRoom"]
