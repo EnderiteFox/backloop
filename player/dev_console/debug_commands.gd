@@ -4,6 +4,17 @@ extends Node
 @export var dev_console: DevConsole
 
 
+func _ready() -> void:
+	dev_console.ready.connect(
+		func():
+			dev_console.command_tree.register_callable(["spawn"], ["monster"], spawn)
+			dev_console.command_tree.register_callable(["spawn"], ["the_shade", "where"], spawn_the_shade)
+			dev_console.command_tree.register_callable(["give"], ["item"], give)
+			dev_console.command_tree.register_callable(["force_next_room"], ["room_name"], force_next_room)
+			dev_console.command_tree.register_callable(["enter_room"], ["room_name"], enter_room)
+	)
+
+
 func spawn(monster: String) -> void:
 	match monster:
 		"outrun":
