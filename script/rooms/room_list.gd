@@ -10,7 +10,10 @@ var roomScenes: Dictionary[String, PackedScene] = {}
 
 var forcedNextRoom: String = ""
 
-
+## Get rooms in a random weighted order
+## Performs a weighted selection of rooms until the pool is empty, and returns the rooms in the order
+## they were selected
+## This function does not load any room, and merely returns a list of room names
 func get_random_rooms() -> Array[String]:
 	if forcedNextRoom:
 		var result: Array[String] = [forcedNextRoom]
@@ -39,6 +42,8 @@ func get_random_rooms() -> Array[String]:
 	return roomList
 	
 	
+## Returns an instance of the given room name
+## If the room was not loaded, loads the room
 func get_room_scene(roomName: String) -> PackedScene:
 	if not roomScenes.has(roomName):
 		roomScenes[roomName] = load("res://rooms/" + roomName + ".tscn") as PackedScene

@@ -1,6 +1,8 @@
 class_name DebugCommands
 extends Node
 
+const ENTER_ROOM_MAX_TRIES: int = 10
+
 @export var dev_console: DevConsole
 
 
@@ -57,40 +59,83 @@ func force_next_room(room: String) -> void:
 	
 	
 func enter_room(room: String) -> void:
+	_enter_room(room, ENTER_ROOM_MAX_TRIES)
+
+	
+func _enter_room(room: String, remaining_tries: int) -> void:
 	if Game.roomGenerator.rooms.is_empty():
 		dev_console.print_error_console("No room to generate the new room after!")
 		return
-
-	Game.roomList.forcedNextRoom = room
-	var last_room: Room = Game.roomGenerator.rooms[-1]
-	var last_door: Door = last_room.doors.pick_random()
-
-	if not last_room.fullyGenerated:
-		Game.roomGenerator.fully_generate(last_room)
-	
-	# Delete all rooms except the last one
-	var to_remove: Array[Room]
-	for deleted_room in Game.roomGenerator.rooms:
-		if deleted_room == last_room or (last_room.previousRoom != null and last_room.previousRoom == deleted_room):
-			continue
-			
-		deleted_room.roomPlacementHitbox.collision_mask = 0
-		deleted_room.get_parent().remove_child(deleted_room)
-		deleted_room.queue_free()
-		to_remove.append(deleted_room)
-
-	# Remove deleted rooms from room list
-	for deleted_room in to_remove:
-		Game.roomGenerator.rooms.erase(deleted_room)
-	# TODO: Automatically remove rooms from the room list when exiting tree
-	
-	# Close doors that lead to the void
-	if last_room.previousRoom != null:
-		for door in last_room.previousRoom.doors:
-			door.instant_close()
-	
-	Game.roomGenerator.pregenerate_after_door(last_room, last_door)
-	
-	last_door.interaction_hitbox.interacted.emit()
-	dev_console.print_info_console("Entered room %s" % room)
 		
+	# Get last room generated
+	var prev_last_room: Room = Game.roomGenerator.rooms[-1]
+	
+	# If the room is not fully generated, generate it
+	if not prev_last_room.fullyGenerated:
+		Game.roomGenerator.fully_generate(prev_last_room)
+
+	# Delete all rooms except one
+	for deleted_room in Game.roomGenerator.rooms:
+		if deleted_room != prev_last_room:
+			deleted_room.queue_free()
+		
+	# Set next and previous rooms for the remaining room to null, close and unblock them
+	prev_last_room.previousRoom = null
+	for door in prev_last_room.doors:
+		door.nextRoom = null
+		door.state = Door.State.NORMAL
+		
+	# Update the room list accordingly
+	Game.roomGenerator.rooms.clear()
+	Game.roomGenerator.rooms.append(prev_last_room)
+	
+	# Choose a random door in the remaining room
+	var prev_last_door: Door = prev_last_room.doors.pick_random()
+	
+	# Generate a random room after the chosen door
+	Game.roomGenerator.pregenerate_after_door(prev_last_room, prev_last_door)
+	
+	# Get the newly generated room
+	var last_room: Room = prev_last_door.nextRoom
+	
+	# If last_room is null, generation failed, retry
+	if last_room == null:
+		if remaining_tries > 0:
+			dev_console.print_info_console("Failed to generate room to enter, retrying...")
+			_enter_room(room, remaining_tries - 1)
+			return
+		else:
+			dev_console.print_error_console("Failed to generate any room, can't recover")
+			return
+		
+	# Close all doors of the previous room
+	for door in prev_last_room.doors:
+		door.instant_close()
+		
+	# Force the next generated room and fully generate the last room
+	# If trying to fallback, don't force the room
+	if remaining_tries >= 0:
+		Game.roomList.forcedNextRoom = room
+	Game.roomGenerator.fully_generate(last_room)
+	
+	# The first door of the last room has the wanted room
+	var wanted_door: Door = last_room.doors.front()
+	
+	# If the wanted door is null, the wanted room failed to generate, retry
+	if wanted_door == null:
+		if remaining_tries > 0:
+			dev_console.print_info_console("Failed to generate room to enter, retrying...")
+			_enter_room(room, remaining_tries - 1)
+			return
+		elif wanted_door.nextRoom == null:
+			dev_console.print_error_console("Failed to generate wanted room, generating another room")
+			_enter_room(room, remaining_tries - 1)
+			return
+		else:
+			dev_console.print_error_console("Failed to generate wanted room, entering another room")
+		
+	# Open the wanted door
+	wanted_door.interaction_hitbox.interacted.emit()
+	
+	if remaining_tries >= 0:
+		dev_console.print_info_console("Entered room %s" % room)
