@@ -14,6 +14,7 @@ config/name="Backloop"
 config/version="alpha-0.1"
 run/main_scene="uid://bev5ngmsob6ud"
 config/features=PackedStringArray("4.4", "Forward Plus")
+run/max_fps=144
 config/icon="res://icon.svg"
 
 [autoload]
