@@ -17,6 +17,8 @@ var previousRoom: Room = null
 @export_tool_button("Prepare room") var editor_find_elements_action: Callable = _editor_prepare_room
 
 func _ready() -> void:
+	self.tree_exiting.connect(_on_exit_tree)
+	
 	if !Engine.is_editor_hint():
 		Game.roomGenerator.rooms.append(self)
 		
@@ -25,6 +27,19 @@ func _ready() -> void:
 		NavigationServer3D.map_set_up(map, Vector3.UP)
 		NavigationServer3D.map_set_active(map, true)
 		nav_region.set_navigation_map(map)
+		
+		
+func _on_exit_tree() -> void:
+	Game.roomGenerator.rooms.erase(self)
+	
+	if self.previousRoom != null:
+		for door in self.previousRoom.doors:
+			if door.nextRoom == self:
+				door.nextRoom = null
+				
+	for door in doors:
+		if door.nextRoom != null:
+			door.nextRoom.previousRoom = null
 
 
 func _editor_prepare_room() -> void:
