@@ -5,6 +5,7 @@ enum State {
 	CHASING,
 	MOVING,
 	WAITING,
+	FLASHED,
 }
 
 signal state_changed(state: State)
@@ -18,9 +19,15 @@ const LIGHT_DIM_MIN_EFFECT: float = 1.0
 const LIGHT_DIM_MAX_EFFECT: float = 0.0
 const LIGHT_DIM_ACTIVATION_TIME: float = 1.0
 
+const ANIMATION_FLASHED: StringName = &"flashed"
+
 @onready var navagent: NavigationAgent3D = %NavigationAgent3D
 @onready var eye_raycast: RayCast3D = %EyeRaycast
 @onready var front_raycast: RayCast3D = %FrontRaycast
+
+@onready var eye_flash_hitbox: Flashable = %EyeFlashHitbox
+
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
 
 @onready var light_dim_area: Area3D = %LightDimEffect
 @onready var light_dim_area_shape: CollisionShape3D = %LightDimEffectShape
@@ -41,6 +48,8 @@ func _ready() -> void:
 	(light_dim_area_shape.shape as SphereShape3D).radius = LIGHT_DIM_RADIUS
 	light_dim_area.area_entered.connect(_on_light_enter_light_dim)
 	light_dim_area.area_exited.connect(_on_light_leave_light_dim)
+	
+	eye_flash_hitbox.flashed.connect(_on_flash)
 
 
 func _physics_process(_delta: float) -> void:
@@ -81,14 +90,20 @@ func _get_light_energy_from_distance(distance: float) -> float:
 	if distance <= LIGHT_DIM_DARKNESS_RADIUS:
 		return current_light_dim_max_effect
 		
-	return lerp(current_light_dim_max_effect, LIGHT_DIM_MIN_EFFECT, (distance - LIGHT_DIM_DARKNESS_RADIUS) / (LIGHT_DIM_RADIUS - LIGHT_DIM_DARKNESS_RADIUS))
+	return lerp(
+		current_light_dim_max_effect, 
+		LIGHT_DIM_MIN_EFFECT, 
+		(distance - LIGHT_DIM_DARKNESS_RADIUS) / (LIGHT_DIM_RADIUS - LIGHT_DIM_DARKNESS_RADIUS)
+	)
 
 #endregion
 
 
 #region Movement
 
-func _on_velocity_computed(safe_velocity: Vector3):
+func _on_velocity_computed(safe_velocity: Vector3) -> void:
+	if current_state in [State.WAITING, State.FLASHED]:
+		return
 	velocity = safe_velocity
 	move_and_slide()
 
@@ -118,7 +133,7 @@ func _move_towards_player(speed: float) -> void:
 #region Behavior
 
 func _update_state() -> void:
-	if current_state == State.CHASING:
+	if current_state in [State.CHASING, State.FLASHED]:
 		return
 
 	var eye_sees_player: bool = eye_raycast.is_colliding() and eye_raycast.get_collider() is Player
@@ -132,6 +147,15 @@ func _update_state() -> void:
 		current_state = State.MOVING
 		
 		
+func _on_flash() -> void:
+	if current_state == State.FLASHED:
+		return
+	
+	current_state = State.FLASHED
+	animation_player.play(ANIMATION_FLASHED)
+	animation_player.animation_finished.connect(self.queue_free.unbind(1))
+	
+
 func _on_state_change(state: State) -> void:
 	if state == State.CHASING:
 		var tween: Tween = get_tree().create_tween()

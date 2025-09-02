@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7y1pcrm32hly"]
+[gd_scene load_steps=15 format=3 uid="uid://b7y1pcrm32hly"]
 
 [ext_resource type="Script" uid="uid://cefj4mge88uff" path="res://mobs/the_shade/the_shade.gd" id="1_7vchk"]
+[ext_resource type="Script" uid="uid://runiwhm0odjl" path="res://script/flashable/flashable.gd" id="2_gvumm"]
+[ext_resource type="PackedScene" uid="uid://cljvh2p7v80ll" path="res://environment/ingame_environment.tscn" id="3_s6nlr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7vchk"]
 radius = 0.4
@@ -10,6 +12,135 @@ radius = 0.4
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7vchk"]
 radius = 6.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_7vchk"]
+radius = 0.065
+height = 0.13
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gvumm"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_s6nlr"]
+material = SubResource("StandardMaterial3D_gvumm")
+radius = 0.033
+height = 0.065
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s6nlr"]
+radius = 0.137782
+height = 0.525536
+
+[sub_resource type="FogMaterial" id="FogMaterial_s6nlr"]
+density = 0.0
+albedo = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_s6nlr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bean:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.00617, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bean:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Fog:material:density")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bean:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_gvumm"]
+resource_name = "flashed"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bean:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.00617, 0), Vector3(0, 1.00617, 3.94615)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bean:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Fog:material:density")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 8.0, 8.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bean:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s6nlr"]
+_data = {
+&"RESET": SubResource("Animation_s6nlr"),
+&"flashed": SubResource("Animation_gvumm")
+}
 
 [node name="TheShade" type="CharacterBody3D"]
 collision_layer = 0
@@ -24,6 +155,67 @@ shape = SubResource("CapsuleShape3D_7vchk")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00617, 0)
 mesh = SubResource("CapsuleMesh_52n7y")
 
+[node name="EyeRaycast" type="RayCast3D" parent="Bean"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.129827, 0.5933, 0)
+collision_mask = 11
+collide_with_areas = true
+
+[node name="FrontRaycast" type="RayCast3D" parent="Bean"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59283, -1.676)
+collision_mask = 11
+collide_with_areas = true
+
+[node name="LightDimEffect" type="Area3D" parent="Bean"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.00617, 0)
+collision_layer = 0
+collision_mask = 32
+monitorable = false
+
+[node name="LightDimEffectShape" type="CollisionShape3D" parent="Bean/LightDimEffect"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10159, 0)
+shape = SubResource("SphereShape3D_7vchk")
+
+[node name="LeftEye" type="MeshInstance3D" parent="Bean"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.131513, 0.546432, -0.362408)
+mesh = SubResource("SphereMesh_7vchk")
+skeleton = NodePath("../..")
+
+[node name="Pupil" type="MeshInstance3D" parent="Bean/LeftEye"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0358261)
+mesh = SubResource("SphereMesh_s6nlr")
+skeleton = NodePath("../../..")
+
+[node name="RightEye" type="MeshInstance3D" parent="Bean"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132, 0.54683, -0.362)
+mesh = SubResource("SphereMesh_7vchk")
+skeleton = NodePath("../..")
+
+[node name="Pupil" type="MeshInstance3D" parent="Bean/RightEye"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0358261)
+mesh = SubResource("SphereMesh_s6nlr")
+skeleton = NodePath("../../..")
+
+[node name="EyeFlashHitbox" type="Area3D" parent="Bean"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.539266, -0.396023)
+collision_layer = 0
+collision_mask = 128
+monitorable = false
+script = ExtResource("2_gvumm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bean/EyeFlashHitbox"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_s6nlr")
+
+[node name="Fog" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.299782, 1.09778, 4.6158)
+size = Vector3(5.91371, 4.40112, 3.8075)
+material = SubResource("FogMaterial_s6nlr")
+
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 unique_name_in_owner = true
 path_desired_distance = 0.4
@@ -31,25 +223,10 @@ path_max_distance = 100.01
 avoidance_enabled = true
 radius = 0.4
 
-[node name="EyeRaycast" type="RayCast3D" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.129827, 1.59947, 0)
-collision_mask = 11
-collide_with_areas = true
+libraries = {
+&"": SubResource("AnimationLibrary_s6nlr")
+}
 
-[node name="FrontRaycast" type="RayCast3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.599, -1.676)
-collision_mask = 11
-collide_with_areas = true
-
-[node name="LightDimEffect" type="Area3D" parent="."]
-unique_name_in_owner = true
-collision_layer = 0
-collision_mask = 32
-monitorable = false
-
-[node name="LightDimEffectShape" type="CollisionShape3D" parent="LightDimEffect"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10159, 0)
-shape = SubResource("SphereShape3D_7vchk")
+[node name="WorldEnvironment" parent="." instance=ExtResource("3_s6nlr")]
