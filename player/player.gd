@@ -41,7 +41,7 @@ var is_alive: bool = true
 
 @onready var crosshair: Control = %Crosshair
 
-@onready var defaultPivotHeight = %CamPivot.position.y;
+@onready var defaultPivotHeight: float = %CamPivot.position.y;
 
 @onready var hitbox: CollisionShape3D = %Hitbox
 @onready var hitboxCrouched: CollisionShape3D = %HitboxCrouched
