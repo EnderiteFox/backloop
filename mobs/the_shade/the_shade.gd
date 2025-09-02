@@ -102,7 +102,8 @@ func _move_towards_player(speed: float) -> void:
 	var next_path_position: Vector3 = navagent.get_next_path_position() if not navagent.is_navigation_finished() else Game.player.global_position
 	var new_velocity: Vector3 = global_position.direction_to(next_path_position) * speed
 	if not is_zero_approx(self.global_position.cross(next_path_position).length()):
-		self.look_at(next_path_position)
+		if not Vector3.UP.cross(next_path_position - self.global_position).is_zero_approx():
+			self.look_at(next_path_position)
 		self.rotation.x = 0
 		self.rotation.z = 0
 		
