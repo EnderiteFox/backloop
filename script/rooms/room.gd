@@ -5,10 +5,15 @@ extends Node3D
 @warning_ignore("unused_signal")
 signal room_opened
 
+## Emitted once the animation for the door opening finishes
+@warning_ignore("unused_signal")
+signal fully_opened
+
 @export var doors: Array[Door]
 @export var roomPlacementHitbox: Area3D
 @export var anyMonsterNode: MonsterNode
-@export var nav_region: NavigationRegion3D
+@export var local_nav_region: NavigationRegion3D
+@export var global_nav_region: NavigationRegion3D
 
 var fullyGenerated: bool = false;
 
@@ -17,16 +22,16 @@ var previousRoom: Room = null
 @export_tool_button("Prepare room") var editor_find_elements_action: Callable = _editor_prepare_room
 
 func _ready() -> void:
-	self.tree_exiting.connect(_on_exit_tree)
-	
 	if !Engine.is_editor_hint():
+		self.tree_exiting.connect(_on_exit_tree)
+		
 		Game.roomGenerator.rooms.append(self)
 		
 		# Put the room's navigation mesh on its own map
 		var map: RID = NavigationServer3D.map_create()
 		NavigationServer3D.map_set_up(map, Vector3.UP)
 		NavigationServer3D.map_set_active(map, true)
-		nav_region.set_navigation_map(map)
+		local_nav_region.set_navigation_map(map)
 		
 		
 func _on_exit_tree() -> void:
@@ -55,9 +60,18 @@ func _editor_prepare_room() -> void:
 		
 	for node in get_children():
 		if node is NavigationRegion3D:
-			self.nav_region = node
-			self.nav_region.bake_navigation_mesh()
+			self.global_nav_region = node
+			if self.global_nav_region.navigation_mesh == null:
+				self.global_nav_region.navigation_mesh = NavigationMesh.new()
+			self.global_nav_region.bake_navigation_mesh()
+			assert(node.get_child_count() == 1)
+			assert(node.get_children()[0] is NavigationRegion3D)
+			self.local_nav_region = node.get_children()[0]
+			if self.local_nav_region.navigation_mesh == null:
+				self.local_nav_region.navigation_mesh = NavigationMesh.new()
+			self.local_nav_region.bake_navigation_mesh()
 			break
+	assert(false, "Failed to get global nav region")
 
 
 func _editor_get_monster_nodes(node: Node) -> Array[MonsterNode]:

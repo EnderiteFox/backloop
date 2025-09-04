@@ -22,9 +22,13 @@ func _init() -> void:
 
 
 func _on_room_opened(room: Room) -> void:
-	if is_active or randf() < SPAWN_CHANCE + SPAWN_FAIL_CHANCE_BONUS * spawn_fails:
+	room.fully_opened.connect(_on_room_fully_opened.bind(room))
+	
+	
+func _on_room_fully_opened(room: Room) -> void:
+	if is_active or randf() > SPAWN_CHANCE + SPAWN_FAIL_CHANCE_BONUS * spawn_fails:
 		return
-		
+
 	room.get_tree().create_timer(SPAWN_TIMEOUT).timeout.connect(_on_spawn_timeout.bind(room))
 		
 		
@@ -74,8 +78,8 @@ func _pos_sees_player(room: Room, position: Vector3) -> bool:
 func spawn(room: Room) -> bool:
 	for i in range(MAX_SPAWN_VISIBLE_CHECK_TRIES):
 		var position: Vector3 = NavigationServer3D.map_get_random_point(
-			room.nav_region.get_navigation_map(),
-			1,
+			room.local_nav_region.get_navigation_map(),
+			2,
 			true
 		)
 		
@@ -98,7 +102,6 @@ func spawn(room: Room) -> bool:
 		var the_shade: TheShade = the_shade_scene.instantiate()
 		room.add_sibling(the_shade)
 		the_shade.global_position = position
-		the_shade.navagent.set_navigation_map(room.nav_region.get_navigation_map())
 		Game.player.dev_console.print_info_console("The Shade spawned")
 		return true
 		
