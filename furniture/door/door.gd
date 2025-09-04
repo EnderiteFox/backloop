@@ -15,6 +15,9 @@ var nextRoom: Room = null
 @onready var lockedModel: Node3D = %LockedModel
 @onready var interaction_hitbox: Interactable = %InteractionHitbox
 
+@onready var door_cross_1: Area3D = %DoorCross1
+@onready var door_cross_2: Area3D = %DoorCross2
+
 @onready var open: bool = false: set = _set_open
 @onready var state: State = State.NORMAL: set = _set_state
 @onready var can_interact: bool = true: set = _set_can_interact
@@ -156,6 +159,9 @@ func _on_fully_opened() -> void:
 	Game.player.position = %PlayerTeleport.global_position
 	Game.player.rotation = %PlayerTeleport.global_rotation
 	Game.player.camPivot.rotation.x = %OpenCamera.global_rotation.x
+	
+	if nextRoom != null:
+		nextRoom.fully_opened.emit()
 
 
 func _set_start_monster_node() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b7y1pcrm32hly"]
+[gd_scene load_steps=16 format=3 uid="uid://b7y1pcrm32hly"]
 
 [ext_resource type="Script" uid="uid://cefj4mge88uff" path="res://mobs/the_shade/the_shade.gd" id="1_7vchk"]
 [ext_resource type="Script" uid="uid://runiwhm0odjl" path="res://script/flashable/flashable.gd" id="2_gvumm"]
@@ -142,6 +142,10 @@ _data = {
 &"flashed": SubResource("Animation_gvumm")
 }
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_s6nlr"]
+height = 1.0
+radius = 0.4
+
 [node name="TheShade" type="CharacterBody3D"]
 collision_layer = 0
 collision_mask = 9
@@ -219,9 +223,8 @@ material = SubResource("FogMaterial_s6nlr")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 unique_name_in_owner = true
 path_desired_distance = 0.4
+path_height_offset = 0.5
 path_max_distance = 100.01
-avoidance_enabled = true
-radius = 0.4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -230,3 +233,13 @@ libraries = {
 }
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("3_s6nlr")]
+
+[node name="DoorCrossHitbox" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorCrossHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_s6nlr")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bbjkia2lowqon"]
+[gd_scene load_steps=20 format=3 uid="uid://bbjkia2lowqon"]
 
 [ext_resource type="PackedScene" uid="uid://de6hy5siiftlw" path="res://furniture/door/room_door_animation/scene.gltf" id="1_nu3f6"]
 [ext_resource type="Script" uid="uid://qpihv6rykf0i" path="res://furniture/door/door.gd" id="2_dch8f"]
@@ -119,6 +119,10 @@ _data = {
 
 [sub_resource type="BoxMesh" id="BoxMesh_phiqp"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_w8sen"]
+height = 1.0
+radius = 0.2
+
 [node name="Door" instance=ExtResource("1_nu3f6")]
 script = ExtResource("2_dch8f")
 metadata/_edit_lock_ = true
@@ -130,10 +134,10 @@ visible = false
 visible = false
 
 [node name="Plane_005" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002" index="2"]
-transform = Transform3D(1, 0.000827291, 0, -0.000827291, 1, 0, 0, 0, 1, -0.435135, -0.101397, 0.248962)
+transform = Transform3D(1, 0.000827297, 0, -0.000827297, 1, 0, 0, 0, 1, -0.435135, -0.101397, 0.248962)
 
 [node name="Plane_001" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002" index="3"]
-transform = Transform3D(1, 0.000827291, 0, -0.000827291, 1, 0, 0, 0, 1, -0.435135, -0.101397, 0.248962)
+transform = Transform3D(1, 0.000827297, 0, -0.000827297, 1, 0, 0, 0, 1, -0.435135, -0.101397, 0.248962)
 
 [node name="CollisionHitbox" type="StaticBody3D" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002/Plane_001/Plane_001_Door__Door_C_jpg_0" index="0"]
 unique_name_in_owner = true
@@ -165,7 +169,7 @@ shape = SubResource("BoxShape3D_7djw8")
 transform = Transform3D(1, 0, 0, 0, 1, 2.64698e-23, 0, -2.64698e-23, 1, 0.850496, 0.0166004, 0.78184)
 
 [node name="Circle_002" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002/Plane_001" index="3"]
-transform = Transform3D(0.999123, 1.08515e-19, -0.0418756, -1.0842e-19, 1, 4.54417e-21, 0.0418756, -2.98884e-26, 0.999123, 0.809703, 0.0427378, 0.802855)
+transform = Transform3D(0.999123, 1.08515e-19, -0.0418755, -1.08419e-19, 1, 4.54414e-21, 0.0418755, -4.20053e-26, 0.999123, 0.809703, 0.0427378, 0.802855)
 
 [node name="AnimationPlayer" parent="." index="1"]
 unique_name_in_owner = true
@@ -208,3 +212,29 @@ transform = Transform3D(0.00658534, 5.35741e-11, 0.00122563, 0.00122563, -2.8785
 
 [node name="plank_4" parent="BlockedModels/Planks" index="3" instance=ExtResource("10_th7kg")]
 transform = Transform3D(0.00586318, 7.82915e-11, 0.0017911, 0.0017911, -2.56288e-10, -0.00586318, 0, 0.00613066, -2.6798e-10, 0, 0.82204, -0.116175)
+
+[node name="NavigationLink3D" type="NavigationLink3D" parent="." index="6"]
+start_position = Vector3(0, 0, -1.5)
+end_position = Vector3(0, 0, 1.5)
+
+[node name="DoorCross1" type="Area3D" parent="." index="7"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+collision_layer = 256
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorCross1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_w8sen")
+
+[node name="DoorCross2" type="Area3D" parent="." index="8"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+collision_layer = 256
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorCross2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_w8sen")
