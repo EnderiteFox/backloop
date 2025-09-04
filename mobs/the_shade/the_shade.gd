@@ -10,6 +10,7 @@ enum State {
 }
 
 signal state_changed(prev_state: State, state: State)
+signal impatience_timer_expired
 
 const MOVING_STATE_MOVE_SPEED: float = 2
 const CHASING_STATE_MOVE_SPEED: float = 4
@@ -22,6 +23,12 @@ const LIGHT_DIM_DARKNESS_RADIUS: float = 4.5
 const LIGHT_DIM_MIN_EFFECT: float = 1.0
 const LIGHT_DIM_MAX_EFFECT: float = 0.0
 const LIGHT_DIM_ACTIVATION_TIME: float = 1.0
+
+const IMPATIENCE_TIMER_LENGTH: float = 20.0
+const IMPATIENCE_TIMER_STATES_MULTIPLIER: Dictionary[State, float] = {
+	State.WAITING: 1.0,
+	State.MOVING: 0.5,
+}
 
 const ANIMATION_FLASHED: StringName = &"flashed"
 
@@ -44,6 +51,8 @@ var crossing_door_start_pos: Vector3
 var crossing_door_is_start_door_lerp: bool = false
 var crossing_door_tween: Tween = null
 
+var impatience_timer: float = IMPATIENCE_TIMER_LENGTH
+
 var prev_state := State.MOVING
 var current_state := State.MOVING:
 	set(new_state):
@@ -65,12 +74,15 @@ func _ready() -> void:
 	eye_flash_hitbox.flashed.connect(_on_flash)
 	
 	state_changed.connect(_on_state_change)
+	
+	impatience_timer_expired.connect(_on_impatience_timer_expired)
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	eye_raycast.target_position = eye_raycast.to_local(Game.player.camera.global_position)
 	front_raycast.target_position = front_raycast.to_local(Game.player.camera.global_position)
 	navagent.set_target_position(Game.player.global_position)
+	increment_impatience_timer(delta)
 	_update_state()
 	_tick_current_state()
 	_process_dim_lights()
@@ -229,6 +241,26 @@ func _on_flash() -> void:
 	current_state = State.FLASHED
 	animation_player.play(ANIMATION_FLASHED)
 	animation_player.animation_finished.connect(self.queue_free.unbind(1))
+	
+	
+func increment_impatience_timer(time: float) -> void:
+	if impatience_timer <= 0:
+		return
+	
+	var state_multiplier: float = IMPATIENCE_TIMER_STATES_MULTIPLIER.get_or_add(current_state, 0.0)
+	impatience_timer -= time * state_multiplier
+	if impatience_timer <= 0:
+		impatience_timer_expired.emit()
+
+
+func _on_impatience_timer_expired() -> void:
+	if current_state == State.CROSSING_DOOR:
+		_on_state_change(prev_state, State.CHASING)
+		prev_state = State.CHASING
+		return
+	
+	if current_state != State.CHASING:
+		current_state = State.CHASING
 	
 
 func _on_state_change(previous_state: State, state: State) -> void:
