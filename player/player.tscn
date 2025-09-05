@@ -64,6 +64,14 @@ collide_with_areas = true
 [node name="HeldItems" type="Node3D" parent="CamPivot/PlayerCamera"]
 unique_name_in_owner = true
 
+[node name="ProximityLight" type="OmniLight3D" parent="CamPivot/PlayerCamera"]
+light_color = Color(0.737255, 1, 1, 1)
+light_energy = 0.02
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_specular = 0.0
+omni_range = 0.7
+
 [node name="Crosshair" parent="." instance=ExtResource("4_oypl4")]
 unique_name_in_owner = true
 
