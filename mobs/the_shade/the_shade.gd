@@ -12,9 +12,10 @@ enum State {
 signal state_changed(prev_state: State, state: State)
 signal impatience_timer_expired
 
-const MOVING_STATE_MOVE_SPEED: float = 2
 const CHASING_STATE_MOVE_SPEED: float = 4
 const DOOR_CROSSING_MOVE_SPEED: float = 2
+
+const MOVING_TELEPORT_DISTANCE: float = 0.1
 
 const DOOR_CROSSING_ANIM_START_LERP_TIME: float = 0.2
 
@@ -79,13 +80,17 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	eye_raycast.target_position = eye_raycast.to_local(Game.player.camera.global_position)
-	front_raycast.target_position = front_raycast.to_local(Game.player.camera.global_position)
+	_update_raycasts()
 	navagent.set_target_position(Game.player.global_position)
 	increment_impatience_timer(delta)
 	_update_state()
 	_tick_current_state()
 	_process_dim_lights()
+	
+	
+func _update_raycasts() -> void:
+	eye_raycast.target_position = eye_raycast.to_local(Game.player.camera.global_position)
+	front_raycast.target_position = front_raycast.to_local(Game.player.camera.global_position)
 	
 	
 #region Light dimming
@@ -133,6 +138,33 @@ func _on_velocity_computed(safe_velocity: Vector3) -> void:
 		return
 	velocity = safe_velocity
 	move_and_slide()
+	
+	
+func _teleport_towards_player() -> void:
+	var iter: int = 0
+	while current_state == State.MOVING and iter < 50:
+		iter += 1
+		
+		if NavigationServer3D.map_get_iteration_id(navagent.get_navigation_map()) == 0:
+			return
+			
+		if navagent.is_navigation_finished():
+			return
+			
+		var next_path_position: Vector3 = navagent.get_next_path_position()
+		
+		var target_pos: Vector3
+		if self.global_position.distance_squared_to(next_path_position) < MOVING_TELEPORT_DISTANCE:
+			target_pos = Vector3(next_path_position.x, self.global_position.y, next_path_position.z)
+		else:
+			target_pos = self.global_position + self.global_position.direction_to(Vector3(next_path_position.x, self.global_position.y, next_path_position.z)) * MOVING_TELEPORT_DISTANCE
+		
+		look_toward(target_pos)
+		self.global_position = target_pos
+		_update_raycasts()
+		eye_raycast.force_raycast_update()
+		front_raycast.force_raycast_update()
+		self._update_state()
 
 	
 func _move_towards_player(speed: float) -> void:
@@ -286,7 +318,7 @@ func _tick_chasing_state() -> void:
 	
 
 func _tick_moving_state() -> void:
-	_move_towards_player(MOVING_STATE_MOVE_SPEED)
+	_teleport_towards_player()
 	
 	
 func _tick_crossing_door_state() -> void:
