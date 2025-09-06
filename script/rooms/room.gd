@@ -10,10 +10,19 @@ signal room_opened
 signal fully_opened
 
 @export var doors: Array[Door]
-@export var roomPlacementHitbox: Area3D
-@export var anyMonsterNode: MonsterNode
-@export var local_nav_region: NavigationRegion3D
-@export var global_nav_region: NavigationRegion3D
+@export var monster_nodes: Array[MonsterNode]
+
+@onready var roomPlacementHitbox: Area3D = %PlacementHitbox
+@onready var local_nav_region: NavigationRegion3D = %LocalNavigationRegion
+@onready var global_nav_region: NavigationRegion3D = %GlobalNavigationRegion
+
+#region Editor organization nodes
+
+@onready var doors_holder: Node = %Doors
+@onready var monster_nodes_holder: Node = %MonsterNodes
+@onready var voxel_gi: VoxelGI = %VoxelGI
+
+#endregion
 
 var fullyGenerated: bool = false;
 
@@ -48,39 +57,35 @@ func _on_exit_tree() -> void:
 
 
 func _editor_prepare_room() -> void:
-	var monster_nodes: Array[MonsterNode] = _editor_get_monster_nodes(self)
-
-	if monster_nodes.is_empty():
-		push_warning("No monster nodes were found in the room!")
-		return
-
-	anyMonsterNode = monster_nodes[0]
-	for monster_node in monster_nodes:
-		monster_node._editor_update_path()
-		
-	for node in get_children():
-		if node is NavigationRegion3D:
-			self.global_nav_region = node
-			if self.global_nav_region.navigation_mesh == null:
-				self.global_nav_region.navigation_mesh = NavigationMesh.new()
-			self.global_nav_region.bake_navigation_mesh()
-			assert(node.get_child_count() == 1)
-			assert(node.get_children()[0] is NavigationRegion3D)
-			self.local_nav_region = node.get_children()[0]
-			if self.local_nav_region.navigation_mesh == null:
-				self.local_nav_region.navigation_mesh = NavigationMesh.new()
-			self.local_nav_region.bake_navigation_mesh()
-			break
-	assert(false, "Failed to get global nav region")
-
-
-func _editor_get_monster_nodes(node: Node) -> Array[MonsterNode]:
-	var found_nodes: Array[MonsterNode] = []
-	if node is MonsterNode:
-		found_nodes.append(node)
-	for child in node.get_children(true):
-		found_nodes.append_array(_editor_get_monster_nodes(child))
-	return found_nodes
+	monster_nodes = []
+	if monster_nodes_holder == null:
+		push_error("Monster node holder not found!")
+	else:
+		for node in monster_nodes_holder.get_children():
+			if node is MonsterNode:
+				monster_nodes.append(node)
+				node._editor_update_path()
+	
+	doors = []
+	if doors_holder == null:
+		push_error("Door holder not found!")
+	else:
+		for node in doors_holder.get_children():
+			if node is Door:
+				doors.append(node)
+	
+	if voxel_gi == null:
+		push_error("VoxelGI not found!")
+	else:
+		voxel_gi.bake()
+	
+	if global_nav_region.navigation_mesh == null:
+		global_nav_region.navigation_mesh = NavigationMesh.new()
+	global_nav_region.bake_navigation_mesh()
+	
+	if local_nav_region.navigation_mesh == null:
+		local_nav_region.navigation_mesh = NavigationMesh.new()
+	local_nav_region.bake_navigation_mesh()
 
 
 func place_after_door(door: Door) -> Door:

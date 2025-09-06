@@ -77,6 +77,9 @@ func _draw_lines() -> void:
 	mesh.surface_begin(Mesh.PRIMITIVE_LINES, material)
 
 	for node in nextNodes:
+		if node == null:
+			continue
+			
 		mesh.surface_add_vertex(to_local(self.global_position) + Vector3(0, DEBUG_LINE_HEIGHT, 0))
 		mesh.surface_add_vertex(to_local(node.global_position) + Vector3(0, DEBUG_LINE_HEIGHT, 0))
 

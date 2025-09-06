@@ -168,7 +168,7 @@ func _set_start_monster_node() -> void:
 	if nextRoom == null:
 		return
 
-	var graph: Array[MonsterNode] = nextRoom.anyMonsterNode.graph
+	var graph: Array[MonsterNode] = nextRoom.monster_nodes
 
 	if graph.is_empty():
 		return
@@ -185,14 +185,14 @@ func _set_start_monster_node() -> void:
 
 
 func _set_end_monster_node() -> void:
-	if room.anyMonsterNode.graph.is_empty():
+	if room.monster_nodes.is_empty():
 		return
 
-	for node in room.anyMonsterNode.graph:
+	for node in room.monster_nodes:
 		if node.nodeState == MonsterNode.NodeState.ROOM_END:
 			node.nodeState = MonsterNode.NodeState.NORMAL
 
-	var graph: Array[MonsterNode] = room.anyMonsterNode.graph
+	var graph: Array[MonsterNode] = room.monster_nodes
 	graph.sort_custom(
 		func(node1, node2):
 			return node1.global_position.distance_squared_to(self.global_position) \

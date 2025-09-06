@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://di0dsa4lr66ws"]
+
+[ext_resource type="Script" uid="uid://c4opum1tbjfvr" path="res://script/rooms/room.gd" id="1_iduk7"]
+[ext_resource type="Script" uid="uid://dywgw7sxcfrui" path="res://generation_templates/pick_random_weighted.gd" id="8_5xv0u"]
+
+[node name="Room" type="Node3D"]
+script = ExtResource("1_iduk7")
+
+[node name="GlobalNavigationRegion" type="NavigationRegion3D" parent="."]
+unique_name_in_owner = true
+
+[node name="LocalNavigationRegion" type="NavigationRegion3D" parent="GlobalNavigationRegion"]
+unique_name_in_owner = true
+navigation_layers = 2
+
+[node name="Walls" type="StaticBody3D" parent="GlobalNavigationRegion/LocalNavigationRegion"]
+collision_mask = 14
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="GlobalNavigationRegion/LocalNavigationRegion/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Doors" type="Node3D" parent="GlobalNavigationRegion/LocalNavigationRegion"]
+unique_name_in_owner = true
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Lights" type="Node3D" parent="GlobalNavigationRegion/LocalNavigationRegion"]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="PlacementHitbox" type="Area3D" parent="GlobalNavigationRegion/LocalNavigationRegion"]
+unique_name_in_owner = true
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="MonsterNodes" type="Node3D" parent="GlobalNavigationRegion/LocalNavigationRegion"]
+unique_name_in_owner = true
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="VoxelGI" type="VoxelGI" parent="GlobalNavigationRegion/LocalNavigationRegion"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.152191, 1.70156, 5.87106)
+size = Vector3(15.9838, 5.83186, 16.2739)
+
+[node name="Clocks" type="Node3D" parent="GlobalNavigationRegion/LocalNavigationRegion"]
+script = ExtResource("8_5xv0u")
+metadata/_edit_lock_ = true
+
+[node name="NavigationObstacles" type="Node3D" parent="GlobalNavigationRegion/LocalNavigationRegion"]

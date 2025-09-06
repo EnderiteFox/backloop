@@ -42,13 +42,13 @@ func pregenerate_after_door(room: Room, door: Door) -> void:
 
 	for roomName in possibleRooms:
 		var newRoom: Room = Game.roomList.get_room_scene(roomName).instantiate()
+		room.add_sibling(newRoom)
 
 		# Deactivate the hitbox of the new room to prevent self collision
 		var newRoomPlacementHitboxLayer: int = newRoom.roomPlacementHitbox.collision_layer
 		newRoom.roomPlacementHitbox.collision_layer = 0
 
 		# Position the new room
-		room.add_sibling(newRoom)
 		var nextDoor: Door = newRoom.place_after_door(door)
 
 		# Create shapecast
