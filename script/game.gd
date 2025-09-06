@@ -34,7 +34,6 @@ var time: int:
 		time_changed.emit(new_time)
 
 @onready var the_shade := TheShadeManager.new()
-@onready var oldTheShade := OldTheShadeManager.new()
 @onready var outrun := OutrunManager.new()
 @onready var roomGenerator := RoomGenerator.new()
 
