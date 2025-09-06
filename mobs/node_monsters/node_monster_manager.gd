@@ -17,7 +17,7 @@ func _get_path_rooms() -> Array[Room]:
 
 ## Returns the path from the start to the end of the room. Returns an empty array if pathfinding failed
 func _pathfind_room_graph(room: Room) -> PackedVector3Array:
-	var graph: Array[MonsterNode] = room.anyMonsterNode.graph
+	var graph: Array[MonsterNode] = room.monster_nodes
 
 	# Find start node
 	var startNode: MonsterNode = null
