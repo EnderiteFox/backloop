@@ -77,6 +77,8 @@ func _ready() -> void:
 	state_changed.connect(_on_state_change)
 	
 	impatience_timer_expired.connect(_on_impatience_timer_expired)
+	
+	self.tree_exiting.connect(Game.entity_manager.the_shade_manager.register_inactive)
 
 
 func _physics_process(delta: float) -> void:
