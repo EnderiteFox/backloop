@@ -33,9 +33,10 @@ var time: int:
 		_internal_time = new_time % (24*60)
 		time_changed.emit(new_time)
 
-@onready var the_shade := TheShadeManager.new()
 @onready var outrun := OutrunManager.new()
 @onready var roomGenerator := RoomGenerator.new()
+
+@onready var entity_manager := EntityManager.new()
 
 func _ready() -> void:
 	time = START_TIME
