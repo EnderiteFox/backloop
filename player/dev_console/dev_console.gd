@@ -206,13 +206,22 @@ func toggle() -> void:
 func print_console(line: String) -> void:
 	console_text.newline()
 	console_text.append_text(line)
+	print(line)
 
 
 func print_error_console(line: String) -> void:
 	console_text.newline()
 	console_text.append_text("[color=red]%s[/color]" % line)
+	push_error(line)
+	
+	
+func print_warning_console(line: String) -> void:
+	console_text.newline()
+	console_text.append_text("[color=gold]%s[/color]" % line)
+	push_warning(line)
 	
 	
 func print_info_console(line: String) -> void:
 	console_text.newline()
 	console_text.append_text("[color=dim_gray]%s[/color]" % line)
+	print(line)
