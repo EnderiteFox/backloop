@@ -13,7 +13,7 @@ enum EntityCategory {
 }
 
 const entity_category_exclusions: Dictionary[EntityCategory, Array] = {
-	EntityCategory.RUSHER: [EntityCategory.AMBIENT],
+	EntityCategory.RUSHER: [EntityCategory.RUSHER],
 	EntityCategory.AMBIENT: [EntityCategory.RUSHER],
 }
 
@@ -25,9 +25,11 @@ var active_entities: Dictionary[EntityType, int]
 #region Mob Managers
 
 var the_shade_manager := TheShadeManager.new()
+var outrun_manager := OutrunManager.new()
 
 var mob_managers: Dictionary[EntityType, MobManager] = {
-	EntityType.THE_SHADE: the_shade_manager
+	EntityType.THE_SHADE: the_shade_manager,
+	EntityType.OUTRUN: outrun_manager
 }
 
 #endregion
@@ -86,4 +88,6 @@ func get_entity_from_id(entity_id: String) -> EntityType:
 	
 ## Returns [code]true[/code] if any currently active entity is conflicting with the given entity category
 func has_conflicted_active(entity_category: EntityCategory) -> bool:
+	if not entity_category_exclusions.has(entity_category):
+		return false
 	return entity_category_exclusions[entity_category].any(get_category_active)
