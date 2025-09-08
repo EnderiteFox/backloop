@@ -1,28 +1,30 @@
 class_name OutrunManager
-extends Resettable
+extends MobManager
 
 const SPAWN_CHANCE: float = 0.01
+const ROOM_COOLDOWN: int = 5
 
-var isActive: bool = false
-
-var outrunScene: PackedScene = preload("res://mobs/node_monsters/outrun/outrun.tscn")
+var outrunScene: PackedScene = preload("uid://f57tvg8catxs")
 
 
 func _init() -> void:
-	super._init()
-	Game.room_opened.connect(_on_room_opened)
-
-
-func _on_room_opened(_room: Room) -> void:
-	if isActive || !Game.player.is_alive:
-		return
-	if randf() < SPAWN_CHANCE:
-		spawn()
-
-
-func reset() -> void:
-	super.reset()
-	isActive = false
+	super._init(
+		EntityManager.EntityType.OUTRUN,
+		EntityManager.EntityCategory.RUSHER,
+		RoomOpenedSpawner.new(
+			EntityManager.EntityType.OUTRUN,
+			EntityManager.EntityCategory.RUSHER,
+			true,
+			SPAWN_CHANCE,
+			0.0,
+			ROOM_COOLDOWN
+		)
+	)
+	_get_mob_spawner().spawn.connect(spawn.unbind(1))
+	
+	
+func _get_mob_spawner() -> RoomOpenedSpawner:
+	return mob_spawner as RoomOpenedSpawner
 
 
 ## Spawns Outrun
@@ -31,4 +33,4 @@ func spawn() -> void:
 	Game.roomGenerator.lastRoomOpened.add_sibling(outrun)
 	outrun.setup(Game.nodeMonsters.get_node_monster_path())
 	Game.player.dev_console.print_info_console("Outrun spawned")
-
+	register_active()
