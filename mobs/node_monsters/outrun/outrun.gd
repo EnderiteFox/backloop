@@ -3,5 +3,8 @@ extends NodeMonster
 
 func _ready() -> void:
 	super._ready()
-	Game.outrun.isActive = true
-	path_end_reached.connect(func(): Game.outrun.isActive = false)
+	path_end_reached.connect(_on_path_end_reached)
+	
+	
+func _on_path_end_reached() -> void:
+	Game.entity_manager.outrun_manager.register_inactive()
