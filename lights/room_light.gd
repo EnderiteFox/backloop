@@ -9,6 +9,8 @@ const MAX_ENERGY_MULT: float = 0.7
 const MIN_INTERVAL: float = 0.05
 const MAX_INTERVAL: float = 0.2
 
+signal light_break
+
 @export var lights: Array[Light3D]
 
 var default_energies: Dictionary[Light3D, float]
@@ -25,6 +27,15 @@ func _ready() -> void:
 	# Store default light values
 	for light in lights:
 		default_energies[light] = light.light_energy
+		
+		
+func _set_broken(p_broken: bool) -> void:
+	if broken:
+		return
+	else:
+		if p_broken:
+			light_break.emit()
+	broken = p_broken
 		
 		
 func set_energy(new_energy: float) -> void:
@@ -62,10 +73,37 @@ func flicker(time: float) -> void:
 	if broken:
 		return
 		
+	# Generate energies and intervals
+	var total_time: float = 0
+	var intervals: Array[float]
+	var energy_mults: Array[float]
+	var end_interval: float = randf_range(MIN_INTERVAL, MAX_INTERVAL)
+	while total_time < time:
+		var interval: float = randf_range(MIN_INTERVAL, MAX_INTERVAL)
+		intervals.append(interval)
+		energy_mults.append(randf_range(MIN_ENERGY_MULT, MAX_ENERGY_MULT))
+		total_time += interval
+		
+	# Create tweens
 	for light in lights:
-		_flicker_light(time, light)
+		var tween: Tween = light.create_tween()
+		for i in range(intervals.size()):
+			tween.tween_property(
+				light,
+				"light_energy",
+				default_energies.get_or_add(light, 0.0) * energy_mults[i],
+				intervals[i]
+			)
+		tween.tween_property(
+			light,
+			"light_energy",
+			default_energies.get_or_add(light, 0.0),
+			end_interval
+		)
+		light_break.connect(tween.kill)
+		
 	flicker_start.emit()
-	get_tree().create_timer(time).timeout.connect(flicker_end.emit)
+	get_tree().create_timer(total_time + end_interval).timeout.connect(flicker_end.emit)
 
 
 ## Breaks the light
