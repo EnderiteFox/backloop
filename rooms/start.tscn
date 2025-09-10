@@ -7,11 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://furniture/door/door.tscn" id="4_e184x"]
 [ext_resource type="PackedScene" uid="uid://c6oj44c4rgh2q" path="res://furniture/bed/double/double_bed.tscn" id="5_ebvtm"]
 [ext_resource type="PackedScene" uid="uid://cvp80r0s4kkmk" path="res://furniture/desk/desk.tscn" id="6_molsy"]
-[ext_resource type="PackedScene" uid="uid://cfbluaw30yhp5" path="res://lights/floor_lamp/floor_lamp.tscn" id="7_kmp3f"]
+[ext_resource type="PackedScene" uid="uid://dw3wtf3pomwen" path="res://lights/floor_lamp/floor_lamp.tscn" id="7_kmp3f"]
 [ext_resource type="Script" uid="uid://dywgw7sxcfrui" path="res://generation_templates/pick_random_weighted.gd" id="8_h3kro"]
 [ext_resource type="PackedScene" uid="uid://cv5nx3qabwnnw" path="res://furniture/clocks/wall_clock.tscn" id="9_3h2fg"]
 [ext_resource type="PackedScene" uid="uid://85dh5vt2vjd7" path="res://generation_templates/small_furniture/small_furniture.tscn" id="10_s3o2s"]
-[ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://lights/ceiling/ceiling_light.tscn" id="11_btujy"]
+[ext_resource type="PackedScene" uid="uid://k5g54y6u162p" path="res://lights/ceiling/ceiling_light.tscn" id="11_btujy"]
 [ext_resource type="Script" uid="uid://bf6mjw15l2dsr" path="res://mobs/node_monsters/monster_node.gd" id="12_ipnww"]
 [ext_resource type="VoxelGIData" uid="uid://c4pqth2roomk3" path="res://rooms/startGI.res" id="13_xjxum"]
 [ext_resource type="PackedScene" uid="uid://842qni0nuca6" path="res://items/item_types/flashlight/flashlight_on_ground.tscn" id="14_tu3u3"]
@@ -210,6 +210,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.720
 
 [node name="CeilingLight" parent="GlobalNavigationRegion/LocalNavigationRegion/Lights" index="0" instance=ExtResource("11_btujy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.802149, 3.16269, 0.430064)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GlobalNavigationRegion/LocalNavigationRegion/PlacementHitbox" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.761618, 1.17855, -0.0275932)

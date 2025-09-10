@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="2_24hvn"]
 [ext_resource type="Material" uid="uid://mi3tsypobxge" path="res://material/walls/wallpaper/wallpaper.tres" id="3_egf11"]
 [ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://furniture/door/door.tscn" id="4_7ykeq"]
-[ext_resource type="PackedScene" uid="uid://b2xt05xayiv6e" path="res://lights/ceiling/ceiling_light.tscn" id="5_qd417"]
+[ext_resource type="PackedScene" uid="uid://k5g54y6u162p" path="res://lights/ceiling/ceiling_light.tscn" id="6_hhir5"]
 [ext_resource type="Script" uid="uid://bf6mjw15l2dsr" path="res://mobs/node_monsters/monster_node.gd" id="7_eytio"]
 [ext_resource type="VoxelGIData" uid="uid://can7su0aqrumr" path="res://rooms/tShapeTwoWindowsGI.res" id="8_lwosk"]
 [ext_resource type="PackedScene" uid="uid://cv5nx3qabwnnw" path="res://furniture/clocks/wall_clock.tscn" id="9_2xf13"]
@@ -242,8 +242,9 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 5.0936, 
 [node name="Door3" parent="GlobalNavigationRegion/LocalNavigationRegion/Doors" index="2" instance=ExtResource("4_7ykeq")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -5.10133)
 
-[node name="CeilingLight" parent="GlobalNavigationRegion/LocalNavigationRegion/Lights" index="0" instance=ExtResource("5_qd417")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 3.17805, 0)
+[node name="CeilingLight" parent="GlobalNavigationRegion/LocalNavigationRegion/Lights" index="0" instance=ExtResource("6_hhir5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3.17805, 0)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GlobalNavigationRegion/LocalNavigationRegion/PlacementHitbox" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0755215, 1.62465, 0.0322116)
