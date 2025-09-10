@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_light_breaker_area_entered(area: Area3D) -> void:
 	var node: Node3D = area as Node3D
-	if node is RoomLight:
+	if node is RoomLight and node.room.fullyGenerated:
 		area.break_light()
 
 
