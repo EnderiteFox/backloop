@@ -14,10 +14,10 @@ signal started_moving
 @export var spawnSafeTime: float = 4.0
 
 ## If false, the node monster won't break lights
-@export var breakLights: bool = true
+@export var break_lights: bool = true
 
 ## The area3D that break lights
-@export var lightBreaker: Area3D
+@export var light_breaker: Area3D
 
 @export_range(0, 100, 0.1, "or_greater", "suffix:m/s") var moveSpeed: float = 1.0
 
@@ -33,11 +33,11 @@ func _ready() -> void:
 	self.add_child(spawnTimer)
 	spawnTimer.timeout.connect(activate)
 
-	if !breakLights:
-		if lightBreaker == null:
-			printerr("No light breaker defined for the node monster!")
+	if break_lights:
+		if light_breaker == null:
+			Game.player.dev_console.print_error_console("No light breaker defined for the node monster!")
 		else:
-			lightBreaker.monitorable = false
+			light_breaker.area_entered.connect(_on_light_breaker_area_entered)
 
 
 func _physics_process(delta: float) -> void:
@@ -55,6 +55,12 @@ func _physics_process(delta: float) -> void:
 		currentPathPoint += 1
 	else:
 		self.global_position += self.global_position.direction_to(path[currentPathPoint]) * moveSpeed * delta
+
+
+func _on_light_breaker_area_entered(area: Area3D) -> void:
+	var node: Node3D = area as Node3D
+	if node is RoomLight:
+		area.break_light()
 
 
 ## Sets the path that the monster will take, teleporting it to the first point, and starts the timer to make activate it

@@ -1,27 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfbluaw30yhp5"]
+[gd_scene load_steps=5 format=3 uid="uid://dw3wtf3pomwen"]
 
 [ext_resource type="PackedScene" uid="uid://b6coesthevemy" path="res://lights/floor_lamp/floor_lamp.glb" id="1_l1gkq"]
 [ext_resource type="Script" uid="uid://c6jalqrmleqku" path="res://lights/room_light.gd" id="1_pvgmh"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_h8wjd"]
-radius = 0.0718775
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_fjqma"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_2bbqb"]
 radius = 0.368656
 
-[node name="FloorLamp" type="StaticBody3D" node_paths=PackedStringArray("lights", "breakHitbox")]
-collision_mask = 14
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2bbqb"]
+radius = 0.0718775
+
+[node name="FloorLamp" type="Area3D" node_paths=PackedStringArray("lights")]
+collision_layer = 40
+collision_mask = 0
+monitoring = false
 script = ExtResource("1_pvgmh")
 lights = [NodePath("OmniLight3D")]
-breakHitbox = NodePath("BreakHitbox")
-metadata/_edit_lock_ = true
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_l1gkq")]
+[node name="Model" parent="." instance=ExtResource("1_l1gkq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01189, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01633, 0)
-shape = SubResource("CylinderShape3D_h8wjd")
+[node name="BreakHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80122, 0)
+shape = SubResource("SphereShape3D_2bbqb")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80202, 0)
@@ -31,11 +31,9 @@ shadow_enabled = true
 omni_range = 10.0
 omni_attenuation = 2.0
 
-[node name="BreakHitbox" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80122, 0)
-collision_layer = 32
-collision_mask = 64
-metadata/_edit_lock_ = true
+[node name="SolidHitbox" type="StaticBody3D" parent="."]
+collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BreakHitbox"]
-shape = SubResource("SphereShape3D_fjqma")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SolidHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01633, 0)
+shape = SubResource("CylinderShape3D_2bbqb")

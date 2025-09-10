@@ -10,17 +10,17 @@ const MIN_INTERVAL: float = 0.05
 const MAX_INTERVAL: float = 0.2
 
 @export var lights: Array[Light3D]
-@export var breakHitbox: Area3D
 
 var default_energies: Dictionary[Light3D, float]
 
 var energy: float = 1.0:
 	set = set_energy
 
+var broken: bool = false
+
 func _ready() -> void:
 	super._ready()
 	Game.lights_flicker.connect(flicker)
-	breakHitbox.area_entered.connect(_on_lightbreaker_touched)
 	
 	# Store default light values
 	for light in lights:
@@ -28,16 +28,13 @@ func _ready() -> void:
 		
 		
 func set_energy(new_energy: float) -> void:
+	if broken:
+		return
+		
 	energy = new_energy
 	for light in lights:
 		assert(default_energies.has(light), "Light has no default energy")
 		light.light_energy = default_energies[light] * energy
-
-
-func _on_lightbreaker_touched(_area: Area3D) -> void:
-	if !room.fullyGenerated:
-		return
-	breakLight()
 
 
 func _flicker_light(time: float, light: Light3D) -> void:
@@ -62,6 +59,9 @@ func _flicker_light(time: float, light: Light3D) -> void:
 
 
 func flicker(time: float) -> void:
+	if broken:
+		return
+		
 	for light in lights:
 		_flicker_light(time, light)
 	flicker_start.emit()
@@ -69,7 +69,11 @@ func flicker(time: float) -> void:
 
 
 ## Breaks the light
-func breakLight() -> void:
+func break_light() -> void:
+	if broken:
+		return
+		
+	broken = true
 	for light in lights:
 		light.visible = false
 	lights.clear()
