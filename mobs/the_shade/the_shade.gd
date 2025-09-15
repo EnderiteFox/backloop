@@ -24,6 +24,7 @@ const LIGHT_DIM_DARKNESS_RADIUS: float = 4.5
 const LIGHT_DIM_MIN_EFFECT: float = 1.0
 const LIGHT_DIM_MAX_EFFECT: float = 0.0
 const LIGHT_DIM_ACTIVATION_TIME: float = 1.0
+const PASSIVE_LIGHT_DIM_MULTIPLIER: float = 0.75
 
 const IMPATIENCE_TIMER_LENGTH: float = 20.0
 const IMPATIENCE_TIMER_STATES_MULTIPLIER: Dictionary[State, float] = {
@@ -77,8 +78,6 @@ func _ready() -> void:
 	state_changed.connect(_on_state_change)
 	
 	impatience_timer_expired.connect(_on_impatience_timer_expired)
-	
-	self.tree_exiting.connect(Game.entity_manager.the_shade_manager.register_inactive)
 
 
 func _physics_process(delta: float) -> void:
@@ -88,6 +87,12 @@ func _physics_process(delta: float) -> void:
 	_update_state()
 	_tick_current_state()
 	_process_dim_lights()
+	
+	
+func _exit_tree() -> void:
+	Game.entity_manager.the_shade_manager.register_inactive()
+	for light in light_dim_affected:
+		light.energy_multipliers.erase(self.get_instance_id())
 	
 	
 func _update_raycasts() -> void:
@@ -100,26 +105,26 @@ func _update_raycasts() -> void:
 func _process_dim_lights() -> void:
 	for light in light_dim_affected:
 		var distance: float = light.global_position.distance_to(self.light_dim_area_shape.global_position)
-		light.energy = _get_light_energy_from_distance(distance)
+		light.set_multiplier(self.get_instance_id(), _get_light_energy_from_distance(distance))
 
 
 func _on_light_enter_light_dim(area: Area3D) -> void:
-	var parent: Node = area.get_parent()
-	if parent is RoomLight and parent.breakHitbox == area:
-		light_dim_affected.append(parent)
+	var node: Node = area as Node
+	if node is RoomLight:
+		light_dim_affected.append(node)
 	
 	
 func _on_light_leave_light_dim(area: Area3D) -> void:
-	var parent: Node = area.get_parent()
-	if parent is RoomLight and parent.breakHitbox == area:
-		light_dim_affected.erase(parent)
-		parent.energy = 1.0
+	var node: Node = area as Node
+	if node is RoomLight:
+		light_dim_affected.erase(node)
+		node.energy_multipliers.erase(self.get_instance_id())
 	
 	
 ## The interpolation function used to determine the strength of the dim effect on nearby lights
 func _get_light_energy_from_distance(distance: float) -> float:
 	if current_state != State.CHASING and (current_state != State.CROSSING_DOOR or prev_state != State.CHASING):
-		return 1.0
+		return PASSIVE_LIGHT_DIM_MULTIPLIER
 		
 	if distance <= LIGHT_DIM_DARKNESS_RADIUS:
 		return current_light_dim_max_effect

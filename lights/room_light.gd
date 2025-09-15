@@ -15,19 +15,39 @@ signal light_break
 
 var default_energies: Dictionary[Light3D, float]
 
-var energy: float = 1.0:
-	set = set_energy
+## A dict containing energy multipliers, keyed by id to allow multiple entities to edit their own multiplier
+## Entities should use their own instance id as the identifier
+## While a global multiplier with the lamp's instance id is present, it should not be edited directly.
+## Use [code]global_multiplier[/code] instead
+var energy_multipliers: Dictionary[int, float]
+## A global multiplier
+## When edited, changes the multiplier with the lamp's instance id in [code]energy_multipliers[/code]
+var global_multiplier: float: set = _set_global_multiplier
 
+## If [code]true[/code], the lamp is broken and doesn't emit any light
+## Broken lamps can't be repaired
 var broken: bool = false
 
 func _ready() -> void:
 	super._ready()
+	global_multiplier = 1.0
 	Game.lights_flicker.connect(flicker)
 	
 	# Store default light values
 	for light in lights:
 		default_energies[light] = light.light_energy
 		
+	
+func _process(_delta: float) -> void:
+	var global_mult = energy_multipliers.values().reduce(func(acc, val): return acc * val, 1.0)
+	
+	for light in lights:
+		light.light_energy = default_energies[light] * global_mult
+		
+		
+func _set_global_multiplier(multiplier: float) -> void:
+	global_multiplier = multiplier
+	energy_multipliers[self.get_instance_id()] = multiplier
 		
 func _set_broken(p_broken: bool) -> void:
 	if broken:
@@ -36,37 +56,10 @@ func _set_broken(p_broken: bool) -> void:
 		if p_broken:
 			light_break.emit()
 	broken = p_broken
-		
-		
-func set_energy(new_energy: float) -> void:
-	if broken:
-		return
-		
-	energy = new_energy
-	for light in lights:
-		assert(default_energies.has(light), "Light has no default energy")
-		light.light_energy = default_energies[light] * energy
-
-
-func _flicker_light(time: float, light: Light3D) -> void:
-	var totalTime: float = 0
-	var tween: Tween = self.create_tween()
-	var lightEnergy: float = light.light_energy
-	while totalTime < time:
-		var interval: float = randf_range(MIN_INTERVAL, MAX_INTERVAL)
-		totalTime += interval
-		tween.tween_property(
-			light,
-			"light_energy",
-			lightEnergy * randf_range(MIN_ENERGY_MULT, MAX_ENERGY_MULT),
-			interval
-		)
-	tween.tween_property(
-		light,
-		"light_energy",
-		lightEnergy,
-		randf_range(MIN_ENERGY_MULT, MAX_ENERGY_MULT)
-	)
+	
+	
+func set_multiplier(identifier: int, multiplier: float) -> void:
+	energy_multipliers[identifier] = multiplier
 
 
 func flicker(time: float) -> void:
@@ -74,36 +67,25 @@ func flicker(time: float) -> void:
 		return
 		
 	# Generate energies and intervals
-	var total_time: float = 0
-	var intervals: Array[float]
-	var energy_mults: Array[float]
-	var end_interval: float = randf_range(MIN_INTERVAL, MAX_INTERVAL)
-	while total_time < time:
+	var totalTime: float = 0
+	var tween: Tween = self.create_tween()
+	while totalTime < time:
 		var interval: float = randf_range(MIN_INTERVAL, MAX_INTERVAL)
-		intervals.append(interval)
-		energy_mults.append(randf_range(MIN_ENERGY_MULT, MAX_ENERGY_MULT))
-		total_time += interval
-		
-	# Create tweens
-	for light in lights:
-		var tween: Tween = light.create_tween()
-		for i in range(intervals.size()):
-			tween.tween_property(
-				light,
-				"light_energy",
-				default_energies.get_or_add(light, 0.0) * energy_mults[i],
-				intervals[i]
-			)
+		totalTime += interval
 		tween.tween_property(
-			light,
-			"light_energy",
-			default_energies.get_or_add(light, 0.0),
-			end_interval
+			self,
+			"global_multiplier",
+			randf_range(MIN_ENERGY_MULT, MAX_ENERGY_MULT),
+			interval
 		)
-		light_break.connect(tween.kill)
-		
+	tween.tween_property(
+		self,
+		"global_multiplier",
+		1.0,
+		randf_range(MIN_ENERGY_MULT, MAX_ENERGY_MULT)
+	)
+	tween.tween_callback(flicker_end.emit)
 	flicker_start.emit()
-	get_tree().create_timer(total_time + end_interval).timeout.connect(flicker_end.emit)
 
 
 ## Breaks the light
