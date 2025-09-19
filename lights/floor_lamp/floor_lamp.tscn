@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dw3wtf3pomwen"]
 
-[ext_resource type="PackedScene" uid="uid://b6coesthevemy" path="res://lights/floor_lamp/floor_lamp.glb" id="1_l1gkq"]
 [ext_resource type="Script" uid="uid://c6jalqrmleqku" path="res://lights/room_light.gd" id="1_pvgmh"]
+[ext_resource type="PackedScene" uid="uid://chdoyx8ffn5gf" path="res://lights/floor_lamp/floor_lamp_model.tscn" id="2_3j7ga"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2bbqb"]
 radius = 0.368656
@@ -9,14 +9,15 @@ radius = 0.368656
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2bbqb"]
 radius = 0.0718775
 
-[node name="FloorLamp" type="Area3D" node_paths=PackedStringArray("lights")]
+[node name="FloorLamp" type="Area3D" node_paths=PackedStringArray("lights", "model")]
 collision_layer = 40
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_pvgmh")
 lights = [NodePath("OmniLight3D")]
+model = NodePath("Model")
 
-[node name="Model" parent="." instance=ExtResource("1_l1gkq")]
+[node name="Model" parent="." instance=ExtResource("2_3j7ga")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01189, 0)
 
 [node name="BreakHitbox" type="CollisionShape3D" parent="."]

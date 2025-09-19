@@ -12,8 +12,11 @@ const MAX_INTERVAL: float = 0.2
 signal light_break
 
 @export var lights: Array[Light3D]
+@export var model: Node3D
 
 var default_energies: Dictionary[Light3D, float]
+var default_material_emissions: Dictionary[BaseMaterial3D, float]
+var default_material_colors: Dictionary[BaseMaterial3D, Color]
 
 ## A dict containing energy multipliers, keyed by id to allow multiple entities to edit their own multiplier
 ## Entities should use their own instance id as the identifier
@@ -26,29 +29,35 @@ var global_multiplier: float: set = _set_global_multiplier
 
 ## If [code]true[/code], the lamp is broken and doesn't emit any light
 ## Broken lamps can't be repaired
-var broken: bool = false
+var broken: bool = false: set = _set_broken
 
 func _ready() -> void:
 	super._ready()
-	global_multiplier = 1.0
-	Game.lights_flicker.connect(flicker)
 	
 	# Store default light values
+	_get_default_emissions(model)
 	for light in lights:
 		default_energies[light] = light.light_energy
 		
+	Game.lights_flicker.connect(flicker)
+	
 	
 func _process(_delta: float) -> void:
-	var global_mult = energy_multipliers.values().reduce(func(acc, val): return acc * val, 1.0)
+	var global_mult: float = 0 if broken else energy_multipliers.values().reduce(func(acc, val): return acc * val, 1.0)
 	
 	for light in lights:
 		light.light_energy = default_energies[light] * global_mult
+		
+	for material: StandardMaterial3D in default_material_emissions.keys():
+		material.emission_energy_multiplier = default_material_emissions[material] * global_mult
+		material.emission = default_material_colors[material].darkened(1.0 - global_mult)
 		
 		
 func _set_global_multiplier(multiplier: float) -> void:
 	global_multiplier = multiplier
 	energy_multipliers[self.get_instance_id()] = multiplier
-		
+	
+	
 func _set_broken(p_broken: bool) -> void:
 	if broken:
 		return
@@ -56,6 +65,22 @@ func _set_broken(p_broken: bool) -> void:
 		if p_broken:
 			light_break.emit()
 	broken = p_broken
+	
+	
+func _get_default_emissions(node: Node) -> void:
+	if node is MeshInstance3D:
+		var mesh: Mesh = node.get_mesh()
+		var surface_count: int = mesh.get_surface_count()
+		for i in range(surface_count):
+			var material: Material = node.get_active_material(i)
+			if material is BaseMaterial3D:
+				var standard_material: BaseMaterial3D = material as BaseMaterial3D
+				default_material_emissions[standard_material] = standard_material.emission_energy_multiplier
+				default_material_colors[standard_material] = standard_material.emission
+				standard_material.emission_operator = BaseMaterial3D.EMISSION_OP_MULTIPLY
+				
+	for child: Node in node.get_children():
+		_get_default_emissions(child)
 	
 	
 func set_multiplier(identifier: int, multiplier: float) -> void:

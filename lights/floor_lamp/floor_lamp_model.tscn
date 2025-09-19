@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://chdoyx8ffn5gf"]
+
+[ext_resource type="PackedScene" uid="uid://b6coesthevemy" path="res://lights/floor_lamp/floor_lamp.glb" id="1_830uw"]
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_830uw")]
+
+[node name="defaultMaterial" parent="Sketchfab_model/Collada visual scene group/floor_lamp" index="0"]
+gi_mode = 2
