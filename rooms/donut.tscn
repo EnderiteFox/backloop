@@ -11,11 +11,11 @@
 [ext_resource type="ArrayOccluder3D" uid="uid://bv70d62kulo57" path="res://rooms/donut.occ" id="11_4e72j"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_lcuic"]
-vertices = PackedVector3Array(-4.99194, 0.5, 11.2732, -6.49194, 0.5, 12.7732, 4.75806, 0.5, 12.7732, 5.00806, 0.5, 12.2732, 5.25806, 0.5, 11.0232, 6.75806, 0.5, 12.2732, 6.75806, 0.5, 1.02316, 6.25806, 0.5, 0.77316, 5.00806, 0.5, 0.77316, 6.25806, 0.5, -0.72684, -6.74194, 0.5, -0.47684, -5.24194, 0.5, 1.02316)
+vertices = PackedVector3Array(-4.9919395, 0.5, 11.27316, -6.4919395, 0.5, 12.77316, 4.7580605, 0.5, 12.77316, 5.0080605, 0.5, 12.27316, 5.2580605, 0.5, 11.02316, 6.7580605, 0.5, 12.27316, 6.7580605, 0.5, 1.0231602, 6.2580605, 0.5, 0.7731602, 5.0080605, 0.5, 0.7731602, 6.2580605, 0.5, -0.7268398, -6.7419395, 0.5, -0.47683978, -5.2419395, 0.5, 1.0231602)
 polygons = [PackedInt32Array(3, 2, 4), PackedInt32Array(4, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(8, 11, 9), PackedInt32Array(9, 11, 10), PackedInt32Array(0, 1, 11), PackedInt32Array(11, 1, 10), PackedInt32Array(8, 9, 7), PackedInt32Array(4, 5, 3)]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_p88k1"]
-vertices = PackedVector3Array(-4.99194, 0.5, 11.2732, -6.49194, 0.5, 12.7732, 4.75806, 0.5, 12.7732, 5.00806, 0.5, 12.2732, 5.25806, 0.5, 11.0232, 6.75806, 0.5, 12.2732, 6.75806, 0.5, 1.02316, 6.25806, 0.5, 0.77316, 5.00806, 0.5, 0.77316, 6.25806, 0.5, -0.72684, -6.74194, 0.5, -0.47684, -5.24194, 0.5, 1.02316)
+vertices = PackedVector3Array(-4.9919395, 0.5, 11.27316, -6.4919395, 0.5, 12.77316, 4.7580605, 0.5, 12.77316, 5.0080605, 0.5, 12.27316, 5.2580605, 0.5, 11.02316, 6.7580605, 0.5, 12.27316, 6.7580605, 0.5, 1.0231602, 6.2580605, 0.5, 0.7731602, 5.0080605, 0.5, 0.7731602, 6.2580605, 0.5, -0.7268398, -6.7419395, 0.5, -0.47683978, -5.2419395, 0.5, 1.0231602)
 polygons = [PackedInt32Array(3, 2, 4), PackedInt32Array(4, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(8, 11, 9), PackedInt32Array(9, 11, 10), PackedInt32Array(0, 1, 11), PackedInt32Array(11, 1, 10), PackedInt32Array(8, 9, 7), PackedInt32Array(4, 5, 3)]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fkb3l"]

@@ -12,11 +12,11 @@
 [ext_resource type="ArrayOccluder3D" uid="uid://c2r64ur406knu" path="res://rooms/straightCorridor.occ" id="11_370k3"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_7ndm1"]
-vertices = PackedVector3Array(-0.78526, 0.465309, -4.09573, -0.78526, 0.465309, 3.90427, 0.71474, 0.465309, 3.90427, 0.71474, 0.465309, -4.09573)
+vertices = PackedVector3Array(-0.78525996, 0.46530902, -4.09573, -0.78525996, 0.46530902, 3.9042702, 0.71474004, 0.46530902, 3.9042702, 0.71474004, 0.46530902, -4.09573)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_h7m6l"]
-vertices = PackedVector3Array(-0.78526, 0.465309, -4.09573, -0.78526, 0.465309, 3.90427, 0.71474, 0.465309, 3.90427, 0.71474, 0.465309, -4.09573)
+vertices = PackedVector3Array(-0.78525996, 0.46530902, -4.09573, -0.78525996, 0.46530902, 3.9042702, 0.71474004, 0.46530902, 3.9042702, 0.71474004, 0.46530902, -4.09573)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p3edc"]
