@@ -3,3 +3,21 @@
 [ext_resource type="PackedScene" uid="uid://p0cu52kdlpm2" path="res://lights/ceiling/scene.gltf" id="1_wb2l2"]
 
 [node name="CeilingLight" instance=ExtResource("1_wb2l2")]
+
+[node name="defaultMaterial" parent="Sketchfab_model/Collada visual scene group/Cylinder_002" index="0"]
+gi_mode = 2
+
+[node name="defaultMaterial2" parent="Sketchfab_model/Collada visual scene group/Cylinder_001" index="0"]
+gi_mode = 2
+
+[node name="defaultMaterial3" parent="Sketchfab_model/Collada visual scene group/Cylinder" index="0"]
+gi_mode = 2
+
+[node name="defaultMaterial4" parent="Sketchfab_model/Collada visual scene group/Cube_002" index="0"]
+gi_mode = 2
+
+[node name="defaultMaterial5" parent="Sketchfab_model/Collada visual scene group/Cube" index="0"]
+gi_mode = 2
+
+[node name="defaultMaterial6" parent="Sketchfab_model/Collada visual scene group/Cube_001" index="0"]
+gi_mode = 2
