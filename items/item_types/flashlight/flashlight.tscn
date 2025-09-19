@@ -630,7 +630,7 @@ follow_factor = 15.0
 
 [node name="FlashlightModel" parent="Model" instance=ExtResource("5_pkemv")]
 unique_name_in_owner = true
-transform = Transform3D(-0.893365, -1.74131e-08, 2.15966, -0.0547623, 2.33639, -0.0226531, -2.15896, -0.0592628, -0.89308, 0.282044, -0.294306, -0.232839)
+transform = Transform3D(-0.8933648, -1.7413061e-08, 2.15966, -0.054762278, 2.33639, -0.022653054, -2.15896, -0.059262805, -0.8930798, 0.282044, -0.294306, -0.232839)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Model/FlashlightModel"]
 unique_name_in_owner = true
@@ -647,7 +647,7 @@ transform = Transform3D(-0.382248, -0.0234313, -0.923763, 6.55535e-09, 0.999678,
 transform = Transform3D(0.427873, -4.65661e-09, 2.98023e-08, 1.86265e-09, 0.427874, 1.86265e-09, -4.47035e-08, -4.65661e-10, 0.427873, 0.0330375, 0.0167541, 0.0136663)
 
 [node name="BatteryInFlashlight" parent="Model/FlashlightModel" instance=ExtResource("15_uvco8")]
-transform = Transform3D(-3.39281e-06, 0.937238, -0.384389, -1.013, -3.66705e-06, 3.93924e-11, -1.39145e-06, 0.384389, 0.937238, -0.0383755, 0.0138763, -0.0158744)
+transform = Transform3D(-3.3928059e-06, 0.93723804, -0.38438886, -1.013, -3.6670517e-06, 3.9392448e-11, -1.3914469e-06, 0.38438886, 0.93723804, -0.0383755, 0.0138763, -0.0158744)
 
 [node name="Node" type="Node" parent="Model/FlashlightModel"]
 
