@@ -11,11 +11,11 @@
 [ext_resource type="ArrayOccluder3D" uid="uid://1xawnjuhk3o5" path="res://rooms/tShapeTwoWindows.occ" id="11_g42u2"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ktra6"]
-vertices = PackedVector3Array(0.90157, 0.5, -1.0918, 0.90157, 0.5, -4.0918, -0.84843, 0.5, -4.0918, -1.09843, 0.5, -0.8418, 3.90157, 0.5, 0.9082, 3.90157, 0.5, -0.8418, -4.09843, 0.5, 0.9082, -4.09843, 0.5, -0.8418)
+vertices = PackedVector3Array(0.90156984, 0.5, -1.0917997, 0.90156984, 0.5, -4.0917997, -0.84843016, 0.5, -4.0917997, -1.0984302, 0.5, -0.84179974, 3.9015698, 0.5, 0.90820026, 3.9015698, 0.5, -0.84179974, -4.09843, 0.5, 0.90820026, -4.09843, 0.5, -0.84179974)
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(3, 4, 6), PackedInt32Array(6, 7, 3)]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ypqlm"]
-vertices = PackedVector3Array(0.90157, 0.5, -1.0918, 0.90157, 0.5, -4.0918, -0.84843, 0.5, -4.0918, -1.09843, 0.5, -0.8418, 3.90157, 0.5, 0.9082, 3.90157, 0.5, -0.8418, -4.09843, 0.5, 0.9082, -4.09843, 0.5, -0.8418)
+vertices = PackedVector3Array(0.90156984, 0.5, -1.0917997, 0.90156984, 0.5, -4.0917997, -0.84843016, 0.5, -4.0917997, -1.0984302, 0.5, -0.84179974, 3.9015698, 0.5, 0.90820026, 3.9015698, 0.5, -0.84179974, -4.09843, 0.5, 0.90820026, -4.09843, 0.5, -0.84179974)
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(3, 4, 6), PackedInt32Array(6, 7, 3)]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bhoau"]
