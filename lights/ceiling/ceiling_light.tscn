@@ -8,7 +8,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_lbfdp"]
 size = Vector3(0.209412, 0.105225, 1.29272)
 
-[node name="CeilingLight" type="Area3D" node_paths=PackedStringArray("normalSound", "flickerSound", "lights")]
+[node name="CeilingLight" type="Area3D" node_paths=PackedStringArray("normalSound", "flickerSound", "lights", "model")]
 collision_layer = 32
 collision_mask = 0
 monitoring = false
@@ -16,6 +16,7 @@ script = ExtResource("1_vprai")
 normalSound = NodePath("NormalSound")
 flickerSound = NodePath("FlickerSound")
 lights = [NodePath("OmniLight3D"), NodePath("OmniLight3D2")]
+model = NodePath("Model")
 
 [node name="Model" parent="." instance=ExtResource("2_3ilc7")]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 1.41896, 0)
