@@ -186,7 +186,7 @@ metadata/_edit_lock_ = true
 unique_name_in_owner = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.679941, 0, -0.733267, 0, 1, 0, 0.733267, 0, 0.679941, -3.53968, 1.53569, 4.36814)
+transform = Transform3D(0.6799412, 0, -0.7332668, 0, 1, 0, 0.7332668, 0, 0.6799412, -3.53968, 1.53569, 4.36814)
 current = true
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("3_hjqey")]
