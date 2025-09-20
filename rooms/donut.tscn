@@ -364,6 +364,8 @@ script = ExtResource("7_ecq41")
 nextNodes = [NodePath("../MonsterNode4")]
 
 [node name="VoxelGI" parent="GlobalNavigationRegion/LocalNavigationRegion" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013653457, 1.70156, 5.851651)
+size = Vector3(16.813477, 5.83186, 16.412506)
 data = ExtResource("8_y5n6k")
 
 [node name="wall_clock" parent="GlobalNavigationRegion/LocalNavigationRegion/Clocks" index="0" instance=ExtResource("9_cu3hc")]
