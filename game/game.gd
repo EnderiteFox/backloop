@@ -20,6 +20,9 @@ var player: Player
 # Room handlers
 var roomList := RoomList.new()
 
+# Camera manager
+var camera_manager := CameraManager.new()
+
 # Monster managers
 var theWatcher := TheWatcherManager.new()
 

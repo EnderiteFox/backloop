@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://d4irak3k1xmaq"]
+
+[node name="PlayerCamera" type="Camera3D"]
+current = true
