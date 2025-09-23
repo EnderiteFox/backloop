@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b2vyca0is7h3p"]
+[gd_scene load_steps=17 format=3 uid="uid://b2vyca0is7h3p"]
 
 [ext_resource type="Script" uid="uid://b6qok45yrbdnj" path="res://player/player.gd" id="1_8t03j"]
 [ext_resource type="PackedScene" uid="uid://da1u52edx88kc" path="res://player/stamina_ui.tscn" id="2_k4avh"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cljvh2p7v80ll" path="res://environment/ingame_environment.tscn" id="3_pagxp"]
 [ext_resource type="AudioStream" uid="uid://qju7cq2cq3es" path="res://player/walk.ogg" id="4_h4sw0"]
 [ext_resource type="PackedScene" uid="uid://c8hufmrap4nap" path="res://player/crosshair.tscn" id="4_oypl4"]
+[ext_resource type="PackedScene" uid="uid://d4irak3k1xmaq" path="res://player/player_camera.tscn" id="4_yllr7"]
 [ext_resource type="AudioStream" uid="uid://bywm8xahkrk2o" path="res://player/run.ogg" id="5_feosj"]
 [ext_resource type="AudioStream" uid="uid://d2v8aksvasi7a" path="res://player/crouch.ogg" id="6_3ebys"]
 [ext_resource type="PackedScene" uid="uid://djxorq18harj3" path="res://player/shader_rect.tscn" id="8_rnoib"]
@@ -50,9 +51,8 @@ disabled = true
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60548, 0)
 
-[node name="PlayerCamera" type="Camera3D" parent="CamPivot"]
+[node name="PlayerCamera" parent="CamPivot" instance=ExtResource("4_yllr7")]
 unique_name_in_owner = true
-current = true
 
 [node name="InteractionRaycast" type="RayCast3D" parent="CamPivot/PlayerCamera"]
 unique_name_in_owner = true

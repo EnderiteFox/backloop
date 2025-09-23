@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2ptfiwcpuxdq"]
+
+[ext_resource type="Script" uid="uid://vh74fqygyeuq" path="res://player/cinematic_camera.gd" id="1_626ks"]
+[ext_resource type="PackedScene" uid="uid://d4irak3k1xmaq" path="res://player/player_camera.tscn" id="2_pdlqe"]
+
+[node name="CinematicCamera" type="Node3D"]
+script = ExtResource("1_626ks")
+
+[node name="Camera" parent="." instance=ExtResource("2_pdlqe")]
+unique_name_in_owner = true
+current = false

@@ -5,6 +5,7 @@ signal opened
 signal closed
 
 const CAMERA_TRANSITION_TIME: float = 0.35
+const CAMERA_END_TRANSITION_TIME: float = 0.2
 
 
 var nextRoom: Room = null
@@ -14,6 +15,7 @@ var nextRoom: Room = null
 @onready var doorSoundPlayer: AudioStreamPlayer3D = %DoorSoundPlayer
 @onready var lockedModel: Node3D = %LockedModel
 @onready var interaction_hitbox: Interactable = %InteractionHitbox
+@onready var open_camera: CinematicCamera = %OpenCamera
 
 @onready var door_cross_1: Area3D = %DoorCross1
 @onready var door_cross_2: Area3D = %DoorCross2
@@ -103,62 +105,42 @@ func _on_interact() -> void:
 
 	# Uncrouch player
 	Game.player.set_crouched(false)
-
-	# Setup transition camera
-	var camera: Camera3D = Camera3D.new()
-	self.add_child(camera)
-	camera.make_current()
-
-	# Make the player's held items follow the transition camera
-	var held_items_parent: Node = Game.player.held_items.get_parent()
-	if held_items_parent != null:
-		held_items_parent.remove_child(Game.player.held_items)
-
-	camera.add_child(Game.player.held_items)
-
-	# Animate transition camera
-	var start_transform: Transform3D = Game.player.camera.global_transform
-	var end_transform: Transform3D = %OpenCamera.global_transform
-	var tween: Tween = self.create_tween()
-	tween.tween_property(
-		camera,
-		"global_transform",
-		end_transform,
-		CAMERA_TRANSITION_TIME
-	).from(start_transform).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_callback(
-		func():
-			_on_camera_tween_finished()
-			camera.queue_free()
-	)
+	Game.player.can_move = false
+	
+	# Setup camera transition
+	Game.camera_manager.make_transition(Game.player.camera, open_camera.camera, CAMERA_TRANSITION_TIME)
+	Game.camera_manager.transition_interrupted.connect(_on_camera_transition_interrupted, Object.CONNECT_ONE_SHOT)
+	Game.camera_manager.transition_end.connect(_on_camera_transition_end, Object.CONNECT_ONE_SHOT)
 
 
-func _on_camera_tween_finished() -> void:
-	# Make the player's held items follow the animation camera
-	var held_items_parent: Node = Game.player.held_items.get_parent()
-	if held_items_parent != null:
-		held_items_parent.remove_child(Game.player.held_items)
+func _on_camera_transition_interrupted() -> void:
+	if Game.camera_manager.transition_end.is_connected(_on_camera_transition_end):
+		Game.camera_manager.transition_end.disconnect(_on_camera_transition_end)
+	if Game.camera_manager_transition_end.is_conncted(_on_end_camera_transition_end):
+		Game.camera_manager.transition_end.disconnect(_on_end_camera_transition_end)
 
-	%OpenCamera.add_child(Game.player.held_items)
+
+func _on_camera_transition_end() -> void:
+	Game.camera_manager.transition_interrupted.disconnect(_on_camera_transition_interrupted)
 
 	# Start opening animation
-	%OpenCamera.make_current()
 	animationPlayer.play("Door/open")
 	animationPlayer.animation_finished.connect(func(_animation): _on_fully_opened(), ConnectFlags.CONNECT_ONE_SHOT)
+	
+	
+func _on_end_camera_transition_end() -> void:
+	Game.player.can_move = true
+	Game.camera_manager.transition_interrupted.disconnect(_on_camera_transition_interrupted)
 
 
 func _on_fully_opened() -> void:
-	# Make the player's held items follow the player's camera
-	var held_items_parent: Node = Game.player.held_items.get_parent()
-	if held_items_parent != null:
-		held_items_parent.remove_child(Game.player.held_items)
-
-	Game.player.camera.add_child(Game.player.held_items)
-
-	Game.player.camera.make_current()
 	Game.player.position = %PlayerTeleport.global_position
 	Game.player.rotation = %PlayerTeleport.global_rotation
 	Game.player.camPivot.rotation.x = %OpenCamera.global_rotation.x
+	
+	Game.camera_manager.make_transition(open_camera.camera, Game.player.camera, CAMERA_END_TRANSITION_TIME)
+	Game.camera_manager.transition_interrupted.connect(_on_camera_transition_interrupted, Object.CONNECT_ONE_SHOT)
+	Game.camera_manager.transition_end.connect(_on_end_camera_transition_end, Object.CONNECT_ONE_SHOT)
 	
 	if nextRoom != null:
 		nextRoom.fully_opened.emit()
