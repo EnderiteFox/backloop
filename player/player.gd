@@ -7,7 +7,7 @@ signal died
 const SPEED: float       = 2.0
 const SPRINTSPEED: int   = 5
 const CROUCHSPEED: int   = 1
-const SENSIBILITY: float = 0.008
+const SENSIBILITY: float = 6
 
 const VIEW_BOBBLE_AMOUNT: float = 0.08
 const VIEW_BOBBLE_SPEED: float  = 3.5
@@ -134,8 +134,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _mouse_motion(event: InputEventMouseMotion) -> void:
 	var motion: Vector2 = event.screen_relative
-	self.rotation.y -= motion.x * SENSIBILITY
-	camPivot.rotation.x -= motion.y * SENSIBILITY
+	var screen_size: Vector2 = get_viewport().get_visible_rect().size
+	var max_screen_size: float = max(screen_size.x, screen_size.y)
+	self.rotation.y -= (motion.x / max_screen_size) * SENSIBILITY
+	camPivot.rotation.x -= (motion.y / max_screen_size) * SENSIBILITY
 	camPivot.rotation.x = clamp(camPivot.rotation.x, -PI/2, PI/2)
 
 
@@ -194,4 +196,3 @@ func set_crouched(crouch: bool) -> void:
 		hitboxCrouched.disabled = true
 		self.crouched = false
 		self.create_tween().tween_property(self, "currentCrouchCamOffset", 0, CROUCH_ANIM_TIME)
-

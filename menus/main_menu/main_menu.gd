@@ -54,4 +54,3 @@ func _on_play_button_pressed() -> void:
 			Game.reset()
 			get_tree().change_scene_to_packed(mainGameScene)
 	)
-
