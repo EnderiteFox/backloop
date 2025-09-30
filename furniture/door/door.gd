@@ -108,21 +108,15 @@ func _on_interact() -> void:
 	Game.player.can_move = false
 	
 	# Setup camera transition
-	Game.camera_manager.make_transition(Game.player.camera, open_camera.camera, CAMERA_TRANSITION_TIME)
-	Game.camera_manager.transition_interrupted.connect(_on_camera_transition_interrupted, Object.CONNECT_ONE_SHOT)
-	Game.camera_manager.transition_end.connect(_on_camera_transition_end, Object.CONNECT_ONE_SHOT)
-
-
-func _on_camera_transition_interrupted() -> void:
-	if Game.camera_manager.transition_end.is_connected(_on_camera_transition_end):
-		Game.camera_manager.transition_end.disconnect(_on_camera_transition_end)
-	if Game.camera_manager_transition_end.is_conncted(_on_end_camera_transition_end):
-		Game.camera_manager.transition_end.disconnect(_on_end_camera_transition_end)
+	var transition: CameraTransition = Game.camera_manager.make_transition(
+		Game.player.camera,
+		open_camera.camera,
+		CAMERA_TRANSITION_TIME
+	)
+	transition.transition_end.connect(_on_camera_transition_end)
 
 
 func _on_camera_transition_end() -> void:
-	Game.camera_manager.transition_interrupted.disconnect(_on_camera_transition_interrupted)
-
 	# Start opening animation
 	animationPlayer.play("Door/open")
 	animationPlayer.animation_finished.connect(func(_animation): _on_fully_opened(), ConnectFlags.CONNECT_ONE_SHOT)
@@ -130,7 +124,6 @@ func _on_camera_transition_end() -> void:
 	
 func _on_end_camera_transition_end() -> void:
 	Game.player.can_move = true
-	Game.camera_manager.transition_interrupted.disconnect(_on_camera_transition_interrupted)
 
 
 func _on_fully_opened() -> void:
@@ -138,9 +131,12 @@ func _on_fully_opened() -> void:
 	Game.player.rotation = %PlayerTeleport.global_rotation
 	Game.player.camPivot.rotation.x = %OpenCamera.global_rotation.x
 	
-	Game.camera_manager.make_transition(open_camera.camera, Game.player.camera, CAMERA_END_TRANSITION_TIME)
-	Game.camera_manager.transition_interrupted.connect(_on_camera_transition_interrupted, Object.CONNECT_ONE_SHOT)
-	Game.camera_manager.transition_end.connect(_on_end_camera_transition_end, Object.CONNECT_ONE_SHOT)
+	var transition: CameraTransition = Game.camera_manager.make_transition(
+		open_camera.camera,
+		Game.player.camera,
+		CAMERA_END_TRANSITION_TIME
+	)
+	transition.transition_end.connect(_on_end_camera_transition_end)
 	
 	if nextRoom != null:
 		nextRoom.fully_opened.emit()
