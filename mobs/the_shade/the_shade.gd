@@ -7,10 +7,13 @@ enum State {
 	WAITING,
 	FLASHED,
 	CROSSING_DOOR,
+	GRABBING
 }
 
 signal state_changed(prev_state: State, state: State)
 signal impatience_timer_expired
+signal flashed
+signal grab_interrupted
 
 const CHASING_STATE_MOVE_SPEED: float = 4
 const DOOR_CROSSING_MOVE_SPEED: float = 2
@@ -34,6 +37,8 @@ const IMPATIENCE_TIMER_STATES_MULTIPLIER: Dictionary[State, float] = {
 
 const ANIMATION_FLASHED: StringName = &"flashed"
 
+const GRAB_TRANSITION_TIME: float = 0.25
+
 @onready var navagent: NavigationAgent3D = %NavigationAgent3D
 @onready var eye_raycast: RayCast3D = %EyeRaycast
 @onready var front_raycast: RayCast3D = %FrontRaycast
@@ -42,6 +47,9 @@ const ANIMATION_FLASHED: StringName = &"flashed"
 @onready var eye_flash_hitbox: Flashable = %EyeFlashHitbox
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
+
+@onready var grab_camera: CinematicCamera = %GrabCamera
+@onready var grab_hitbox: Area3D = %GrabHitbox
 
 @onready var light_dim_area: Area3D = %LightDimEffect
 @onready var light_dim_area_shape: CollisionShape3D = %LightDimEffectShape
@@ -62,6 +70,9 @@ var current_state := State.MOVING:
 			prev_state = current_state
 			state_changed.emit(current_state, new_state)
 		current_state = new_state
+		
+		
+var game_over_scene: PackedScene = preload("uid://c1hbjeqkobclu")
 
 
 func _ready() -> void:
@@ -73,11 +84,14 @@ func _ready() -> void:
 	light_dim_area.area_exited.connect(_on_light_leave_light_dim)
 	
 	door_cross_hitbox.area_entered.connect(_on_door_cross_area_entered)
-	eye_flash_hitbox.flashed.connect(_on_flash)
+	eye_flash_hitbox.flashed.connect(_on_flash, Object.CONNECT_ONE_SHOT)
 	
 	state_changed.connect(_on_state_change)
 	
 	impatience_timer_expired.connect(_on_impatience_timer_expired)
+	
+	grab_hitbox.body_entered.connect(_on_player_grab)
+	grab_interrupted.connect(_on_grab_interrupted)
 
 
 func _physics_process(delta: float) -> void:
@@ -123,7 +137,7 @@ func _on_light_leave_light_dim(area: Area3D) -> void:
 	
 ## The interpolation function used to determine the strength of the dim effect on nearby lights
 func _get_light_energy_from_distance(distance: float) -> float:
-	if current_state != State.CHASING and (current_state != State.CROSSING_DOOR or prev_state != State.CHASING):
+	if current_state != State.CHASING and (current_state != State.CROSSING_DOOR or prev_state != State.CHASING) and current_state != State.GRABBING:
 		return PASSIVE_LIGHT_DIM_MULTIPLIER
 		
 	if distance <= LIGHT_DIM_DARKNESS_RADIUS:
@@ -255,7 +269,7 @@ func look_toward(pos: Vector3) -> void:
 #region Behavior
 
 func _update_state() -> void:
-	if current_state in [State.CHASING, State.FLASHED, State.CROSSING_DOOR]:
+	if current_state in [State.CHASING, State.FLASHED, State.CROSSING_DOOR, State.GRABBING]:
 		return
 
 	var eye_sees_player: bool = eye_raycast.is_colliding() and eye_raycast.get_collider() is Player
@@ -277,9 +291,59 @@ func _on_flash() -> void:
 		crossing_door_tween.stop()
 		crossing_door_tween = null
 	
+	if current_state == State.GRABBING:
+		grab_interrupted.emit()
+	flashed.emit()
 	current_state = State.FLASHED
 	animation_player.play(ANIMATION_FLASHED)
 	animation_player.animation_finished.connect(self.queue_free.unbind(1))
+	
+	
+func _on_player_grab(body: Node3D) -> void:
+	if not body is Player:
+		return
+	
+	var player: Player = body as Player	
+	current_state = State.GRABBING
+	player.can_move = false
+	var transition: CameraTransition = Game.camera_manager.make_transition(
+		player.camera,
+		grab_camera.camera,
+		GRAB_TRANSITION_TIME
+	)
+	transition.transition_end.connect(_on_grab_transition_finished, Object.CONNECT_ONE_SHOT)
+	
+	
+func _on_grab_transition_finished() -> void:
+	animation_player.play(&"grab")
+	animation_player.animation_finished.connect(_on_grab_anim_finished, Object.CONNECT_ONE_SHOT)
+	
+	
+func _on_grab_anim_finished(anim_name: StringName) -> void:
+	if anim_name != &"grab":
+		return
+		
+	var tree: SceneTree = get_tree()
+	if tree != null:
+		tree.change_scene_to_packed(game_over_scene)
+		
+		
+func _on_grab_interrupted() -> void:
+	# Depending on the type of interruption (during camera transition or grab animation), choose correct starting camera
+	var camera: Camera3D
+	if Game.camera_manager.transition_camera.current:
+		camera = Game.camera_manager.transition_camera
+	elif grab_camera.camera.current:
+		camera = grab_camera.camera
+	else:
+		return
+
+	var transition: CameraTransition = Game.camera_manager.make_transition(
+		camera,
+		Game.player.camera,
+		GRAB_TRANSITION_TIME
+	)
+	transition.transition_end.connect(func(): Game.player.can_move = true)
 	
 	
 func increment_impatience_timer(time: float) -> void:
