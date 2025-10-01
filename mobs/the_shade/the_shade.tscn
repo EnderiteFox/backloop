@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://b7y1pcrm32hly"]
+[gd_scene load_steps=19 format=3 uid="uid://b7y1pcrm32hly"]
 
 [ext_resource type="Script" uid="uid://cefj4mge88uff" path="res://mobs/the_shade/the_shade.gd" id="1_7vchk"]
 [ext_resource type="Script" uid="uid://runiwhm0odjl" path="res://script/flashable/flashable.gd" id="2_gvumm"]
 [ext_resource type="PackedScene" uid="uid://cljvh2p7v80ll" path="res://environment/ingame_environment.tscn" id="3_s6nlr"]
+[ext_resource type="PackedScene" uid="uid://d2ptfiwcpuxdq" path="res://player/cinematic_camera.tscn" id="4_di57o"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7vchk"]
 radius = 0.4
@@ -83,6 +84,30 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GrabCamera:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.613958, -1.6572387)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GrabCamera:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.1415925, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_gvumm"]
 resource_name = "flashed"
@@ -136,15 +161,48 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_u6bi5"]
+resource_name = "grab"
+length = 1.2495
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GrabCamera:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.62475, 1.2495),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.613958, -1.6572387), Vector3(0, 1.9469128, -1.2790507), Vector3(0, 1.3566371, -0.8604941)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GrabCamera:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.62475, 1.2495),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.1415925, 0), Vector3(-0.44122484, -3.1415925, -7.0274524e-08), Vector3(0.35124755, -3.1415925, 5.500688e-08)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s6nlr"]
 _data = {
 &"RESET": SubResource("Animation_s6nlr"),
-&"flashed": SubResource("Animation_gvumm")
+&"flashed": SubResource("Animation_gvumm"),
+&"grab": SubResource("Animation_u6bi5")
 }
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_s6nlr"]
 height = 1.0
 radius = 0.4
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u6bi5"]
+size = Vector3(1, 1.6281738, 1.9525757)
 
 [node name="TheShade" type="CharacterBody3D"]
 collision_layer = 0
@@ -243,3 +301,17 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DoorCrossHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_s6nlr")
+
+[node name="GrabCamera" parent="." instance=ExtResource("4_di57o")]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -1.5099579e-07, 0, 0.99999994, 0, 1.509958e-07, 0, -0.99999994, 0, 1.613958, -1.6572387)
+
+[node name="GrabHitbox" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GrabHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8201904, -0.5567932)
+shape = SubResource("BoxShape3D_u6bi5")
