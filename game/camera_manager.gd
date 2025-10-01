@@ -24,6 +24,9 @@ func _prepare_camera() -> void:
 		
 ## Transfers all child nodes of a camera to another, while keeping their transform
 func _transfer_camera_children(from: Camera3D, to: Camera3D) -> void:
+	if from == to:
+		return
+		
 	for child in from.get_children():
 		if not child is Node3D:
 			continue
@@ -39,10 +42,15 @@ func _transfer_camera_children(from: Camera3D, to: Camera3D) -> void:
 ## Returns a [code]CameraTransition[/code] object, that can be used to safely react to transition end and interruptions
 ## without having to take care of disconnecting signals
 func make_transition(from: Camera3D, to: Camera3D, time: float) -> CameraTransition:
+	if from == to:
+		Game.player.dev_console.print_warning_console("Camera transition origin and destination are the same (Node: %s)" % str(from))
+		return
+
 	_prepare_camera()
 	if current_transition != null:
-		transition_tween.kill()
-		transition_tween = null
+		if transition_tween != null:
+			transition_tween.kill()
+			transition_tween = null
 		current_transition.transition_interrupted.emit()
 		current_transition.free()
 		current_transition = null
