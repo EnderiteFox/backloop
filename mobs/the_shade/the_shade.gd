@@ -137,7 +137,10 @@ func _on_light_leave_light_dim(area: Area3D) -> void:
 	
 ## The interpolation function used to determine the strength of the dim effect on nearby lights
 func _get_light_energy_from_distance(distance: float) -> float:
-	if current_state != State.CHASING and (current_state != State.CROSSING_DOOR or prev_state != State.CHASING) and current_state != State.GRABBING:
+	if current_state != State.CHASING \
+	and (current_state != State.CROSSING_DOOR or prev_state != State.CHASING) \
+	and current_state != State.GRABBING \
+	and current_state != State.FLASHED:
 		return PASSIVE_LIGHT_DIM_MULTIPLIER
 		
 	if distance <= LIGHT_DIM_DARKNESS_RADIUS:
@@ -297,6 +300,10 @@ func _on_flash() -> void:
 	current_state = State.FLASHED
 	animation_player.play(ANIMATION_FLASHED)
 	animation_player.animation_finished.connect(self.queue_free.unbind(1))
+	
+	# Tween light dim effect
+	var tween: Tween = self.create_tween()
+	tween.tween_property(self, "current_light_dim_max_effect", LIGHT_DIM_MIN_EFFECT, animation_player.get_animation(ANIMATION_FLASHED).get_length())
 	
 	
 func _on_player_grab(body: Node3D) -> void:
