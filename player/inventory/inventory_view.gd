@@ -17,6 +17,7 @@ func _ready() -> void:
 	
 	inventory.item_added.connect(update.unbind(1))
 	inventory.item_selected.connect(update.unbind(1))
+	inventory.selected_item_changed.connect(change_selected_slot)
 	
 	update()
 
@@ -41,12 +42,10 @@ func update() -> void:
 		
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("select_next_item") or event.is_action_pressed("select_previous_item"):
-		var old_index: int = inventory.selected_item_index
 		if event.is_action_pressed("select_next_item"):
 			inventory.selected_item_index += 1
 		elif event.is_action_pressed("select_previous_item"):
 			inventory.selected_item_index -= 1
-		change_selected_slot(old_index, inventory.selected_item_index)
 		
 		
 func change_selected_slot(old_slot_index: int, new_slot_index: int) -> void:
