@@ -35,7 +35,7 @@ func _ready() -> void:
 
 	if break_lights:
 		if light_breaker == null:
-			Game.player.dev_console.print_error_console("No light breaker defined for the node monster!")
+			Game.print_error("No light breaker defined for the node monster!")
 		else:
 			light_breaker.area_entered.connect(_on_light_breaker_area_entered)
 

@@ -34,7 +34,7 @@ func _init(
 ## Returns [code]true[/code] if the mob was spawned successfully
 func force_spawn() -> bool:
 	if not supports_force_spawn:
-		Game.player.dev_console.print_error_console("Tried to force spawn with a MobSpawner that doesn't support force_spawn")
+		Game.print_error("Tried to force spawn with a MobSpawner that doesn't support force_spawn")
 		return false
 	return true
 	

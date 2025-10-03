@@ -21,17 +21,17 @@ func _ready() -> void:
 func spawn(entity_id: String) -> void:
 	var entity: EntityManager.EntityType = Game.entity_manager.get_entity_from_id(entity_id)
 	if entity == null:
-		dev_console.print_error_console("Unknown entity: %s" % entity_id)
+		Game.print_error("Unknown entity: ", entity_id)
 		return
 		
 	var mob_manager: MobManager = Game.entity_manager.get_manager(entity)
 	if mob_manager == null:
-		dev_console.print_error_console("%s has no registered manager" % entity_id)
+		Game.print_error(entity_id, " has no registered manager")
 		return
 		
 	var mob_spawner: MobSpawner = mob_manager.mob_spawner
 	if not mob_spawner.supports_force_spawn:
-		dev_console.print_error_console("%s does not support force spawning" % entity_id)
+		Game.print_error(entity_id, " does not support force spawning")
 		return
 		
 	var success: bool = mob_spawner.force_spawn()
@@ -39,21 +39,21 @@ func spawn(entity_id: String) -> void:
 		# Let the MobManager print in the console on success
 		return
 	else:
-		dev_console.print_error_console("Failed to spawn %s" % entity_id)
+		Game.print_error("Failed to spawn ", entity_id)
 	
 	
 func give(item: String) -> void:
 	match item:
 		"battery":
 			Game.player.inventory.add_consumable(Consumable.Type.BATTERY)
-			dev_console.print_console("Gave one battery")
+			Game.print("Gave one battery")
 		_:
-			dev_console.print_error_console("Unknown item: %s" % item)
+			Game.print_error("Unknown item: ", item)
 	
 	
 func force_next_room(room: String) -> void:
 	Game.roomList.forcedNextRoom = room
-	dev_console.print_info_console("Set next forced room to %s" % room)
+	Game.print_info("Set next forced room to ", room)
 	
 	
 func enter_room(room: String) -> void:
@@ -62,7 +62,7 @@ func enter_room(room: String) -> void:
 	
 func _enter_room(room: String, remaining_tries: int) -> void:
 	if Game.roomGenerator.rooms.is_empty():
-		dev_console.print_error_console("No room to generate the new room after!")
+		Game.print_error("No room to generate the new room after!")
 		return
 		
 	# Get last room generated
@@ -99,11 +99,11 @@ func _enter_room(room: String, remaining_tries: int) -> void:
 	# If last_room is null, generation failed, retry
 	if last_room == null:
 		if remaining_tries > 0:
-			dev_console.print_info_console("Failed to generate room to enter, retrying...")
+			Game.print_info("Failed to generate room to enter, retrying...")
 			_enter_room(room, remaining_tries - 1)
 			return
 		else:
-			dev_console.print_error_console("Failed to generate any room, can't recover")
+			Game.print_error("Failed to generate any room, can't recover")
 			return
 		
 	# Close all doors of the previous room
@@ -122,51 +122,51 @@ func _enter_room(room: String, remaining_tries: int) -> void:
 	# If the wanted door is null, the wanted room failed to generate, retry
 	if wanted_door == null:
 		if remaining_tries > 0:
-			dev_console.print_info_console("Failed to generate room to enter, retrying...")
+			Game.print_info("Failed to generate room to enter, retrying...")
 			_enter_room(room, remaining_tries - 1)
 			return
 		elif wanted_door.nextRoom == null:
-			dev_console.print_error_console("Failed to generate wanted room, generating another room")
+			Game.print_error("Failed to generate wanted room, generating another room")
 			_enter_room(room, remaining_tries - 1)
 			return
 		else:
-			dev_console.print_error_console("Failed to generate wanted room, entering another room")
+			Game.print_error("Failed to generate wanted room, entering another room")
 		
 	# Open the wanted door
 	wanted_door.interaction_hitbox.interacted.emit()
 	
 	if remaining_tries >= 0:
-		dev_console.print_info_console("Entered room %s" % room)
+		Game.print_info("Entered room ", room)
 		
 		
 func get_spawn_chance(entity_id: String) -> void:
 	var entity: EntityManager.EntityType = Game.entity_manager.get_entity_from_id(entity_id)
 	if entity == null:
-		dev_console.print_error_console("Unknown entity: %s" % entity_id)
+		Game.print_error("Unknown entity: ", entity_id)
 		return
 		
 	var mob_spawner: MobSpawner = Game.entity_manager.get_manager(entity).mob_spawner
 	if not mob_spawner is RoomOpenedSpawner:
-		dev_console.print_error_console("%s does not spawn on door opening" % entity_id)
+		Game.print_error(entity_id, " does not spawn on door opening")
 		return
 		
 	var room_opened_spawner: RoomOpenedSpawner = mob_spawner as RoomOpenedSpawner
 		
-	dev_console.print_info_console("Current spawn chance for %s: %.3f" % [entity_id, room_opened_spawner.current_spawn_chance])
+	Game.print_info("Current spawn chance for ", entity_id, ": %.3f" % room_opened_spawner.current_spawn_chance)
 	
 	
 func set_spawn_chance(entity_id: String, chance: float) -> void:
 	var entity: EntityManager.EntityType = Game.entity_manager.get_entity_from_id(entity_id)
 	if entity == null:
-		dev_console.print_error_console("Unknown entity: %s" % entity_id)
+		Game.print_error("Unknown entity: ", entity_id)
 		return
 		
 	var mob_spawner: MobSpawner = Game.entity_manager.get_manager(entity).mob_spawner
 	if not mob_spawner is RoomOpenedSpawner:
-		dev_console.print_error_console("%s does not spawn on door opening" % entity_id)
+		Game.print_error(entity_id, " does not spawn on door opening")
 		return
 		
 	var room_opened_spawner: RoomOpenedSpawner = mob_spawner as RoomOpenedSpawner
 	
 	room_opened_spawner.current_spawn_chance = clamp(chance, 0.0, 1.0)
-	dev_console.print_info_console("Set the current spawn chance for %s to %.3f" % [entity_id, clamp(chance, 0.0, 1.0)])
+	Game.print_info("Set the current spawn chance for ", entity_id, " to %.3f" % clamp(chance, 0.0, 1.0))
