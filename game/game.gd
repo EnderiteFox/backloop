@@ -62,3 +62,19 @@ func _on_room_opened(_room: Room) -> void:
 func reset() -> void:
 	Resettable.reset_object(self)
 	_internal_time = START_TIME
+	
+	
+func print(...args: Array) -> void:
+	player.dev_console.print_console.callv(args)
+	
+	
+func print_info(...args: Array) -> void:
+	player.dev_console.print_info_console.callv(args)
+	
+	
+func print_warning(...args: Array) -> void:
+	player.dev_console.print_warning_console.callv(args)
+	
+	
+func print_error(...args: Array) -> void:
+	player.dev_console.print_error_console.callv(args)
