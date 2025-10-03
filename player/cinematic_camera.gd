@@ -29,7 +29,8 @@ func _input(event: InputEvent) -> void:
 	var mouse_event: InputEventMouseMotion = event
 	var mouse_relative: Vector2 = mouse_event.screen_relative
 	var screen_size: Vector2 = get_viewport().get_visible_rect().size
-	var relative_factor: Vector2 = mouse_relative / screen_size
+	var max_screen_size: float = max(screen_size.x, screen_size.y)
+	var relative_factor: Vector2 = mouse_relative / Vector2(max_screen_size, max_screen_size)
 		
 	target_rotation.x = clamp(target_rotation.x + -relative_factor.y * sensibility, center_rotation.x - deg_to_rad(view_angle.x), center_rotation.x + deg_to_rad(view_angle.x))
 	target_rotation.y = clamp(target_rotation.y + -relative_factor.x * sensibility, center_rotation.y - deg_to_rad(view_angle.y), center_rotation.y + deg_to_rad(view_angle.y))
