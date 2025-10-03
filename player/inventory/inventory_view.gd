@@ -26,7 +26,7 @@ func update() -> void:
 		assert(node is InventorySlotUI)
 		node.visible = false
 	
-	assert(inventory.items.size() < Inventory.INVENTORY_SLOT_COUNT)
+	assert(inventory.items.size() <= Inventory.INVENTORY_SLOT_COUNT)
 	
 	var children: Array[Node] = slot_container.get_children()
 	

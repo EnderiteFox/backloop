@@ -10,5 +10,6 @@ func _ready() -> void:
 	
 	
 func _on_pickup() -> void:
-	Game.player.inventory.add_item(item_scene.instantiate())
-	self.queue_free()
+	if Game.player.inventory.items.size() < Inventory.INVENTORY_SLOT_COUNT:
+		Game.player.inventory.add_item(item_scene.instantiate())
+		self.queue_free()
