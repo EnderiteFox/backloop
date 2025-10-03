@@ -203,25 +203,37 @@ func toggle() -> void:
 		line_edit.grab_focus()
 
 
-func print_console(line: String) -> void:
+func print_console(...args: Array) -> void:
+	var text: String = ""
+	for obj in args:
+		text += str(obj)
 	console_text.newline()
-	console_text.append_text(line)
-	print(line)
+	console_text.append_text(text)
+	print(text)
 
 
-func print_error_console(line: String) -> void:
+func print_error_console(...args: Array) -> void:
+	var text: String = ""
+	for obj in args:
+		text += str(obj)
 	console_text.newline()
-	console_text.append_text("[color=red]%s[/color]" % line)
-	push_error(line)
+	console_text.append_text("[color=red]%s[/color]" % text)
+	push_error(text)
 	
 	
-func print_warning_console(line: String) -> void:
+func print_warning_console(...args: Array) -> void:
+	var text: String = ""
+	for obj in args:
+		text += str(obj)
 	console_text.newline()
-	console_text.append_text("[color=gold]%s[/color]" % line)
-	push_warning(line)
+	console_text.append_text("[color=gold]%s[/color]" % text)
+	push_warning(text)
 	
 	
-func print_info_console(line: String) -> void:
+func print_info_console(...args: Array) -> void:
+	var text: String = ""
+	for obj in args:
+		text += str(obj)
 	console_text.newline()
-	console_text.append_text("[color=dim_gray]%s[/color]" % line)
-	print(line)
+	console_text.append_text("[color=dim_gray]%s[/color]" % text)
+	print(text)
