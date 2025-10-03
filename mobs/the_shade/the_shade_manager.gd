@@ -101,7 +101,7 @@ func spawn(room: Room) -> bool:
 		raycast.target_position = Vector3.DOWN
 		raycast.force_raycast_update()
 		if not raycast.is_colliding():
-			Game.player.dev_console.print_info_console("Potential issue: Failed to get ground position from NavMesh position")
+			Game.print_info("Potential issue: Failed to get ground position from NavMesh position")
 			remaining_attempts -= 1
 			continue
 		position = raycast.get_collision_point()
@@ -113,11 +113,11 @@ func spawn(room: Room) -> bool:
 		var the_shade: TheShade = the_shade_scene.instantiate()
 		room.add_sibling(the_shade)
 		the_shade.global_position = position
-		Game.player.dev_console.print_info_console("The Shade spawned")
+		Game.print_info("The Shade spawned")
 		break
 		
 	if remaining_attempts <= 0:
-		Game.player.dev_console.print_info_console("The Shade failed to spawn, max amount of attempts reached")
+		Game.print_info("The Shade failed to spawn, max amount of attempts reached")
 		return false
 
 	return true

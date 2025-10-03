@@ -32,5 +32,5 @@ func spawn() -> void:
 	var outrun: Outrun = outrunScene.instantiate()
 	Game.roomGenerator.lastRoomOpened.add_sibling(outrun)
 	outrun.setup(Game.nodeMonsters.get_node_monster_path())
-	Game.player.dev_console.print_info_console("Outrun spawned")
+	Game.print_info("Outrun spawned")
 	register_active()

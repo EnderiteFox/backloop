@@ -43,7 +43,7 @@ func _transfer_camera_children(from: Camera3D, to: Camera3D) -> void:
 ## without having to take care of disconnecting signals
 func make_transition(from: Camera3D, to: Camera3D, time: float) -> CameraTransition:
 	if from == to:
-		Game.player.dev_console.print_warning_console("Camera transition origin and destination are the same (Node: %s)" % str(from))
+		Game.print_warning("Camera transition origin and destination are the same (Node: ", str(from), ")")
 		return
 
 	_prepare_camera()
