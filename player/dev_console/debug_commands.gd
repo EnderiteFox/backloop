@@ -2,6 +2,7 @@ class_name DebugCommands
 extends Node
 
 const ENTER_ROOM_MAX_TRIES: int = 10
+const GAME_OVER_SCENE: PackedScene = preload("uid://c1hbjeqkobclu")
 
 @export var dev_console: DevConsole
 
@@ -15,7 +16,12 @@ func _ready() -> void:
 			dev_console.command_tree.register_callable(["enter_room"], ["room_name"], enter_room)
 			dev_console.command_tree.register_callable(["get_spawn_chance"], ["entity"], get_spawn_chance)
 			dev_console.command_tree.register_callable(["set_spawn_chance"], ["entity", "chance"], set_spawn_chance)
+			dev_console.command_tree.register_callable(["die"], [], die)
 	)
+	
+	
+func die() -> void:
+	get_tree().change_scene_to_packed(GAME_OVER_SCENE)
 
 
 func spawn(entity_id: String) -> void:

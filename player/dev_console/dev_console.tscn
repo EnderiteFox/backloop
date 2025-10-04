@@ -126,6 +126,11 @@ script = ExtResource("9_s2i2b")
 argument_name = "chance"
 metadata/_custom_type_script = "uid://8o4qdelg1657"
 
+[node name="Die" type="Node" parent="CommandTree"]
+script = ExtResource("3_l62em")
+command_name = "die"
+metadata/_custom_type_script = "uid://cehwf7xbnc5c3"
+
 [node name="AutocompleteMenu" type="PanelContainer" parent="."]
 unique_name_in_owner = true
 z_index = 1
