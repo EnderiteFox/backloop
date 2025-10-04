@@ -14,8 +14,6 @@ const TITLE_MAX_BLINK_COUNT: int = 8
 @onready var playButton: Button = %PlayButton
 @onready var animationPlayer: AnimationPlayer = %AnimationPlayer
 
-@onready var mainGameScene: PackedScene = preload("res://main_game/main_game.tscn")
-
 func _ready() -> void:
 	_blink_title()
 	%StartRoom.visible = true
@@ -52,5 +50,5 @@ func _on_play_button_pressed() -> void:
 	animationPlayer.animation_finished.connect(
 		func(_anim):
 			Game.reset()
-			get_tree().change_scene_to_packed(mainGameScene)
+			get_tree().change_scene_to_file("uid://of56mmim7b8x")
 	)

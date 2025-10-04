@@ -5,8 +5,7 @@ const MAX_FLASHLIGHT_INTENSITY: float = 1.0
 const MIN_FLASHLIGHT_INTERVAL: float = 0.01
 const MAX_FLASHLIGHT_INTERVAL: float = 0.2
 
-const gameScene: PackedScene = preload("res://main_game/main_game.tscn")
-const menuScene: PackedScene = preload("res://menus/main_menu/main_menu.tscn")
+const MAIN_MENU_SCENE: PackedScene = preload("uid://bev5ngmsob6ud")
 
 @onready var retryButton: Button = %RetryButton
 @onready var mainMenuButton: Button = %MainMenuButton
@@ -33,18 +32,17 @@ func _flicker_flashlight() -> void:
 func _on_retry_button_pressed() -> void:
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 	%AnimationPlayer.play("exit_game_over")
-	%AnimationPlayer.animation_finished.connect(func(_anim): _restart_game())
+	%AnimationPlayer.animation_finished.connect(_restart_game.unbind(1))
 
 
 func _on_main_menu_button_pressed() -> void:
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 	%AnimationPlayer.play("exit_game_over")
 	%AnimationPlayer.animation_finished.connect(
-		func(_anim):
-			get_tree().change_scene_to_packed(menuScene)
+		get_tree().change_scene_to_packed.bind(MAIN_MENU_SCENE).unbind(1)
 	)
 
 
 func _restart_game() -> void:
 	Game.reset()
-	get_tree().change_scene_to_packed(gameScene)
+	get_tree().change_scene_to_file("uid://of56mmim7b8x")
