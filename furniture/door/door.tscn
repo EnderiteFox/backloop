@@ -1,16 +1,24 @@
-[gd_scene load_steps=21 format=3 uid="uid://bbjkia2lowqon"]
+[gd_scene load_steps=24 format=3 uid="uid://bbjkia2lowqon"]
 
 [ext_resource type="PackedScene" uid="uid://de6hy5siiftlw" path="res://furniture/door/room_door_animation/scene.gltf" id="1_nu3f6"]
 [ext_resource type="Script" uid="uid://qpihv6rykf0i" path="res://furniture/door/door.gd" id="2_dch8f"]
 [ext_resource type="Script" uid="uid://dnocscyviv226" path="res://script/interactable/interactable.gd" id="2_s446a"]
 [ext_resource type="AudioStream" uid="uid://bj7thlbe65sup" path="res://furniture/door/doorOpen_1.ogg" id="3_2a278"]
+[ext_resource type="Texture2D" uid="uid://cpq3cpg8h4hon" path="res://material/walls/wallpaper/Plaster005_4K-PNG_NormalGL.png" id="3_sho57"]
 [ext_resource type="Animation" uid="uid://bgbnuequyoj03" path="res://furniture/door/door_animation.res" id="3_wdws3"]
+[ext_resource type="Material" uid="uid://ccvnd8pjq2qn2" path="res://furniture/door/textures/door.tres" id="4_ki27v"]
 [ext_resource type="AudioStream" uid="uid://bi46jtvuofedk" path="res://furniture/door/doorOpen_2.ogg" id="4_wfjhv"]
 [ext_resource type="PackedScene" uid="uid://bt7h1m6nl31qa" path="res://furniture/door/planks/plank_1/plank_1.gltf" id="7_gh2qx"]
 [ext_resource type="PackedScene" uid="uid://d2ptfiwcpuxdq" path="res://player/cinematic_camera.tscn" id="7_sho57"]
 [ext_resource type="PackedScene" uid="uid://c6s1a54o3kkrb" path="res://furniture/door/planks/plank_2/plank_2.gltf" id="8_x7r50"]
 [ext_resource type="PackedScene" uid="uid://bspehjg782phi" path="res://furniture/door/planks/plank_3/plank_3.gltf" id="9_xpupl"]
 [ext_resource type="PackedScene" uid="uid://bxdsmfwtlgqm7" path="res://furniture/door/planks/plank_4/plank_4.gltf" id="10_th7kg"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_sho57"]
+albedo_color = Color(0.509286, 0.509286, 0.509286, 1)
+normal_enabled = true
+normal_texture = ExtResource("3_sho57")
+refraction_scale = -0.4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p4dlk"]
 size = Vector3(0.817505, 1.97674, 0.0354614)
@@ -95,7 +103,7 @@ tracks/4/path = NodePath("OpenCamera:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.2, 2.0333),
+"times": PackedFloat32Array(0, 0.2, 2.03333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 1.58451, -0.596645), Vector3(0, 1.58451, -0.482905), Vector3(0, 1.58451, 0.632822)]
@@ -107,7 +115,7 @@ tracks/5/path = NodePath("OpenCamera:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.2, 2.0333),
+"times": PackedFloat32Array(0, 0.2, 2.03333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 3.14159, 0), Vector3(-0.244346, 3.14159, 0), Vector3(0, 3.14159, 0)]
@@ -133,11 +141,17 @@ visible = false
 [node name="Plane_004" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode" index="1"]
 visible = false
 
+[node name="Plane_002_Door__Door_C_jpg_0" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002" index="1"]
+surface_material_override/0 = SubResource("ORMMaterial3D_sho57")
+
 [node name="Plane_005" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002" index="2"]
-transform = Transform3D(1.0000004, 0, 0, 0, 1.0000004, 0, 0, 0, 1, -0.435135, -0.101397, 0.248962)
+transform = Transform3D(1, 0.000827293, 0, -0.000827293, 1, 0, 0, 0, 1, -0.435135, -0.101397, 0.248962)
 
 [node name="Plane_001" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002" index="3"]
-transform = Transform3D(1.0000004, 0, 0, 0, 1.0000004, 0, 0, 0, 1, -0.435135, -0.101397, 0.248962)
+transform = Transform3D(1, 0.000827293, 0, -0.000827293, 1, 0, 0, 0, 1, -0.435135, -0.101397, 0.248962)
+
+[node name="Plane_001_Door__Door_C_jpg_0" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002/Plane_001" index="1"]
+surface_material_override/0 = ExtResource("4_ki27v")
 
 [node name="CollisionHitbox" type="StaticBody3D" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002/Plane_001/Plane_001_Door__Door_C_jpg_0" index="0"]
 unique_name_in_owner = true
@@ -166,10 +180,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000259399, -0.00411987, 0.0
 shape = SubResource("BoxShape3D_7djw8")
 
 [node name="Plane_003" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002/Plane_001" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 2.64698e-23, 0, -2.64698e-23, 1, 0.8517751, 0.016600356, 0.78183967)
+transform = Transform3D(1, 0, 0, 0, 1, 2.64698e-23, 0, -2.64698e-23, 1, 0.850496, 0.0166004, 0.78184)
 
 [node name="Circle_002" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002/Plane_001" index="3"]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0.809703, 0.0427378, 0.802855)
+transform = Transform3D(0.999123, 1.08515e-19, -0.0418756, -1.0842e-19, 1, 4.54415e-21, 0.0418756, -1.73676e-26, 0.999123, 0.809703, 0.0427378, 0.802855)
 
 [node name="AnimationPlayer" parent="." index="1"]
 unique_name_in_owner = true
