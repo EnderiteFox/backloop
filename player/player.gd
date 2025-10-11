@@ -7,7 +7,6 @@ signal died
 const SPEED: float       = 2.0
 const SPRINTSPEED: int   = 5
 const CROUCHSPEED: int   = 1
-const SENSIBILITY: float = 6
 
 const VIEW_BOBBLE_AMOUNT: float = 0.08
 const VIEW_BOBBLE_SPEED: float  = 3.5
@@ -56,6 +55,7 @@ var is_alive: bool = true
 @onready var inventory_view: InventoryView = %InventoryView
 
 @onready var dev_console: DevConsole = %DevConsole
+@onready var pause_menu: PauseMenu = %PauseMenu
 
 
 func _ready() -> void:
@@ -125,6 +125,10 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	# Interact key
 	if event.is_action_pressed(&"interact"):
 		_interact()
+		
+	# Pause menu
+	if event.is_action_pressed(&"pause_game"):
+		pause_menu.open()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -133,11 +137,13 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _mouse_motion(event: InputEventMouseMotion) -> void:
+	var sensibility: float = Settings.get_setting(Settings.Type.SENSIBILITY)
+
 	var motion: Vector2 = event.screen_relative
 	var screen_size: Vector2 = get_viewport().get_visible_rect().size
 	var max_screen_size: float = max(screen_size.x, screen_size.y)
-	self.rotation.y -= (motion.x / max_screen_size) * SENSIBILITY
-	camPivot.rotation.x -= (motion.y / max_screen_size) * SENSIBILITY
+	self.rotation.y -= (motion.x / max_screen_size) * sensibility
+	camPivot.rotation.x -= (motion.y / max_screen_size) * sensibility
 	camPivot.rotation.x = clamp(camPivot.rotation.x, -PI/2, PI/2)
 
 

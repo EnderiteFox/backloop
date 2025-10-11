@@ -1,0 +1,192 @@
+[gd_scene load_steps=9 format=3 uid="uid://drtwhlsoexo23"]
+
+[ext_resource type="Theme" uid="uid://cmkvt8oqilc3e" path="res://themes/menu_theme.tres" id="1_r2f7a"]
+[ext_resource type="Script" uid="uid://bcccpnvxo7o3l" path="res://menus/settings_menu/settings_menu.gd" id="1_twvox"]
+[ext_resource type="Script" uid="uid://gv7gaqm1swlw" path="res://menus/settings_menu/settings_tabbar.gd" id="3_i06k8"]
+[ext_resource type="Script" uid="uid://cj1h26tuybm5v" path="res://menus/settings_menu/setting_controls/setting_range.gd" id="3_r0vi3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2f7a"]
+content_margin_left = 60.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(1, 1, 1, 0)
+draw_center = false
+border_width_left = 10
+border_color = Color(0.7058824, 0.7058824, 0.7058824, 1)
+corner_radius_top_left = 36
+corner_radius_bottom_left = 36
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i06k8"]
+content_margin_left = 60.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(1, 1, 1, 1)
+draw_center = false
+border_width_left = 10
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 36
+corner_radius_bottom_left = 36
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r0vi3"]
+bg_color = Color(0, 0, 0, 0.27450982)
+corner_detail = 1
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="Shortcut" id="Shortcut_i06k8"]
+
+[node name="SettingsMenu" type="Control"]
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_r2f7a")
+script = ExtResource("1_twvox")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.54901963)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TabBar" type="TabBar" parent="MarginContainer/VBoxContainer" node_paths=PackedStringArray("tabs")]
+layout_mode = 2
+size_flags_vertical = 0
+current_tab = 0
+tab_alignment = 1
+clip_tabs = false
+close_with_middle_mouse = false
+tab_count = 2
+tab_0/title = "Controls"
+tab_1/title = "Audio"
+script = ExtResource("3_i06k8")
+tabs = [NodePath("../Control/MarginContainer/ControlsTab"), NodePath("../Control/MarginContainer/AudioTab")]
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/TabBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 30.0
+offset_bottom = 15.0
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("1_r2f7a")
+theme_override_colors/font_color = Color(0.7058824, 0.7058824, 0.7058824, 1)
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_r2f7a")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i06k8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i06k8")
+theme_override_styles/focus = SubResource("StyleBoxFlat_r0vi3")
+shortcut = SubResource("Shortcut_i06k8")
+text = "Back"
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="ControlsTab" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Control/MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/Control/MarginContainer/ControlsTab"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Control/MarginContainer/ControlsTab"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="SensibilitySetting" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Control/MarginContainer/ControlsTab/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="SensibilityLabel" type="Label" parent="MarginContainer/VBoxContainer/Control/MarginContainer/ControlsTab/VBoxContainer/SensibilitySetting"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+theme_type_variation = &"SettingsLabel"
+text = "Sensibility"
+vertical_alignment = 1
+
+[node name="SensibilitySlider" type="HSlider" parent="MarginContainer/VBoxContainer/Control/MarginContainer/ControlsTab/VBoxContainer/SensibilitySetting"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.8
+min_value = 0.5
+max_value = 20.0
+step = 0.1
+value = 6.0
+allow_greater = true
+allow_lesser = true
+script = ExtResource("3_r0vi3")
+
+[node name="SensibilitySpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Control/MarginContainer/ControlsTab/VBoxContainer/SensibilitySetting"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 0.5
+max_value = 20.0
+step = 0.1
+value = 6.0
+allow_greater = true
+allow_lesser = true
+custom_arrow_step = 0.1
+select_all_on_focus = true
+script = ExtResource("3_r0vi3")
+
+[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/Control/MarginContainer/ControlsTab"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="AudioTab" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Control/MarginContainer"]
+visible = false
+layout_mode = 2
