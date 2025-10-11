@@ -10,16 +10,17 @@ const TITLE_MIN_BLINK_COUNT: int = 5
 const TITLE_MAX_BLINK_COUNT: int = 8
 
 @onready var title: Label3D = %Title
-@onready var menuMusicPlayer: AudioStreamPlayer = %MenuMusic
-@onready var playButton: Button = %PlayButton
-@onready var animationPlayer: AnimationPlayer = %AnimationPlayer
+@onready var menu_music_player: AudioStreamPlayer = %MenuMusic
+@onready var play_button: Button = %PlayButton
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
+
 
 func _ready() -> void:
 	_blink_title()
 	%StartRoom.visible = true
-	menuMusicPlayer.play()
-	playButton.pressed.connect(_on_play_button_pressed)
+	menu_music_player.play()
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
+	play_button.pressed.connect(_on_play_button_pressed)
 
 
 func _blink_title() -> void:
@@ -45,9 +46,9 @@ func _blink_title() -> void:
 
 func _on_play_button_pressed() -> void:
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
-	playButton.disabled = true
-	animationPlayer.play("play_fade_out")
-	animationPlayer.animation_finished.connect(
+	play_button.disabled = true
+	animation_player.play("play_fade_out")
+	animation_player.animation_finished.connect(
 		func(_anim):
 			Game.reset()
 			get_tree().change_scene_to_file("uid://of56mmim7b8x")
