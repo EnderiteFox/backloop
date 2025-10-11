@@ -4,6 +4,10 @@ extends Node
 ## editing the variable directly won't correctly emit the setting_changed signal.
 ## Use [code]set_setting[/code] instead
 
+const SAVE_PATH: String = "user://settings.ini"
+
+const SETTINGS_FILE_VERSION: int = 1
+
 const MAIN_BUS_NAME: StringName = &"Master"
 const MUSIC_BUS_NAME: StringName = &"Music"
 const SOUNDS_BUS_NAME: StringName = &"Sounds"
@@ -29,17 +33,55 @@ var ambiance_sounds_volume: float = 1
 
 func _ready() -> void:
 	self.setting_changed.connect(_on_setting_changed)
+	load_settings()
+	
+	
+func _notification(notif: int) -> void:
+	if notif == NOTIFICATION_WM_CLOSE_REQUEST \
+	or notif == NOTIFICATION_WM_GO_BACK_REQUEST \
+	or notif == NOTIFICATION_APPLICATION_PAUSED:
+		save_settings()
 
 
 ## Loads the settings from the save file.
 ## This will emit the [code]setting_changed[/code] signal for each loaded setting.
-func load() -> void:
-	pass
+func load_settings() -> void:
+	var file := ConfigFile.new()
+	var first_load: bool = false
+	var error: int = file.load(SAVE_PATH)
+	if error:
+		if error == Error.ERR_FILE_NOT_FOUND:
+			Game.print_info("Settings file not found, using default settings")
+			first_load = true
+		else:
+			Game.print_error("An error occured while loading settings: ", error_string(error))
+			return
+			
+	var save_file_version: int
+	if first_load:
+		save_file_version = SETTINGS_FILE_VERSION
+	else:
+		save_file_version = file.get_value("Meta", "SETTINGS_FILE_VERSION", 0)
+	if not save_file_version:
+		Game.print_error("Could not read settings file version, errors may occur")
+		
+	for setting_type_name in Type.keys():
+		set_setting(file.get_value("Settings", setting_type_name, get_setting(Type[setting_type_name])), Type[setting_type_name])
 	
 	
 ## Saves the settings to the save file
-func save() -> void:
-	pass
+func save_settings() -> void:
+	var file := ConfigFile.new()
+	
+	file.set_value("Meta", "SETTINGS_FILE_VERSION", SETTINGS_FILE_VERSION)
+	
+	for setting_type_name in Type.keys():
+		file.set_value("Settings", setting_type_name, get_setting(Type[setting_type_name]))
+	
+	var error: int = file.save(SAVE_PATH)
+	if error:
+		Game.print_error("An error occured while saving settings: ", error_string(error))
+		
 	
 	
 ## Returns the setting of the given type

@@ -13,6 +13,11 @@ func open() -> void:
 	super.open()
 	
 	
+func close() -> void:
+	super.close()
+	Settings.save_settings()
+	
+	
 func on_focus() -> void:
 	super.on_focus()
 	tab_bar.grab_focus()
