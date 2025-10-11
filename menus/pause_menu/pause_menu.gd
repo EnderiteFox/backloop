@@ -27,6 +27,11 @@ func open() -> void:
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 	
 	
+func on_focus() -> void:
+	super.on_focus()
+	continue_button.grab_focus()
+	
+	
 func close() -> void:
 	super.close()
 	get_tree().paused = false

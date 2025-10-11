@@ -29,6 +29,7 @@ func _on_menu_close(menu: Menu) -> void:
 	if menu == submenu:
 		submenu = null
 		self.visible = true
+		on_focus()
 
 
 func open() -> void:
@@ -38,6 +39,7 @@ func open() -> void:
 	self.visible = true
 	is_open = true
 	opened.emit()
+	on_focus()
 	
 	
 func close() -> void:
@@ -60,3 +62,9 @@ func open_submenu(menu: Menu) -> void:
 	submenu = menu
 	menu.open()
 	self.visible = false
+	
+
+## Called when entering the page
+## Used to set the focus to the default element of the menu
+func on_focus() -> void:
+	pass
