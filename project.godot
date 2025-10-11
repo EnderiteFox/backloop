@@ -17,6 +17,10 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 run/max_fps=144
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://d3r2gig5gn6ow"
+
 [autoload]
 
 Game="*res://game/game.gd"

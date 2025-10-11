@@ -131,6 +131,7 @@ theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
 [node name="ControlsTab" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Control/MarginContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer/Control/MarginContainer/ControlsTab"]
@@ -138,30 +139,31 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.25
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Control/MarginContainer/ControlsTab"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/Control/MarginContainer/ControlsTab"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 2
 
-[node name="SensibilitySetting" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Control/MarginContainer/ControlsTab/VBoxContainer"]
+[node name="SensibilityLabel" type="Label" parent="MarginContainer/VBoxContainer/Control/MarginContainer/ControlsTab/GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 8
-
-[node name="SensibilityLabel" type="Label" parent="MarginContainer/VBoxContainer/Control/MarginContainer/ControlsTab/VBoxContainer/SensibilitySetting"]
-layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 0
 size_flags_stretch_ratio = 0.2
 theme_type_variation = &"SettingsLabel"
 text = "Sensibility"
 vertical_alignment = 1
 
-[node name="SensibilitySlider" type="HSlider" parent="MarginContainer/VBoxContainer/Control/MarginContainer/ControlsTab/VBoxContainer/SensibilitySetting"]
-unique_name_in_owner = true
+[node name="SensibilitySetting" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Control/MarginContainer/ControlsTab/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="SensibilitySlider" type="HSlider" parent="MarginContainer/VBoxContainer/Control/MarginContainer/ControlsTab/GridContainer/SensibilitySetting"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-size_flags_stretch_ratio = 0.8
 min_value = 0.5
 max_value = 20.0
 step = 0.1
@@ -170,9 +172,9 @@ allow_greater = true
 allow_lesser = true
 script = ExtResource("3_r0vi3")
 
-[node name="SensibilitySpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Control/MarginContainer/ControlsTab/VBoxContainer/SensibilitySetting"]
-unique_name_in_owner = true
+[node name="SensibilitySpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Control/MarginContainer/ControlsTab/GridContainer/SensibilitySetting"]
 layout_mode = 2
+size_flags_horizontal = 8
 min_value = 0.5
 max_value = 20.0
 step = 0.1
@@ -189,5 +191,154 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.25
 
 [node name="AudioTab" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Control/MarginContainer"]
-visible = false
 layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/Control/MarginContainer/AudioTab"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/Control/MarginContainer/AudioTab"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 2
+
+[node name="MainVolumeLabel" type="Label" parent="MarginContainer/VBoxContainer/Control/MarginContainer/AudioTab/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_stretch_ratio = 0.2
+theme_type_variation = &"SettingsLabel"
+text = "Main Volume"
+vertical_alignment = 1
+
+[node name="MainVolumeSetting" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Control/MarginContainer/AudioTab/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MainVolumeSlider" type="HSlider" parent="MarginContainer/VBoxContainer/Control/MarginContainer/AudioTab/GridContainer/MainVolumeSetting"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("3_r0vi3")
+setting = 1
+
+[node name="MainVolumeSpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Control/MarginContainer/AudioTab/GridContainer/MainVolumeSetting"]
+layout_mode = 2
+size_flags_horizontal = 8
+max_value = 1.0
+step = 0.05
+value = 1.0
+custom_arrow_step = 0.1
+select_all_on_focus = true
+script = ExtResource("3_r0vi3")
+setting = 1
+
+[node name="MusicVolumeLabel" type="Label" parent="MarginContainer/VBoxContainer/Control/MarginContainer/AudioTab/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_stretch_ratio = 0.2
+theme_type_variation = &"SettingsLabel"
+text = "Music Volume"
+vertical_alignment = 1
+
+[node name="MusicVolume" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Control/MarginContainer/AudioTab/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MusicVolumeSlider" type="HSlider" parent="MarginContainer/VBoxContainer/Control/MarginContainer/AudioTab/GridContainer/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("3_r0vi3")
+setting = 2
+
+[node name="MusicVolumeSpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Control/MarginContainer/AudioTab/GridContainer/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 8
+max_value = 1.0
+step = 0.05
+value = 1.0
+custom_arrow_step = 0.1
+select_all_on_focus = true
+script = ExtResource("3_r0vi3")
+setting = 2
+
+[node name="SoundsVolumeLabel" type="Label" parent="MarginContainer/VBoxContainer/Control/MarginContainer/AudioTab/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_stretch_ratio = 0.2
+theme_type_variation = &"SettingsLabel"
+text = "Sounds Volume"
+vertical_alignment = 1
+
+[node name="SoundsVolumeSetting" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Control/MarginContainer/AudioTab/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SoundsVolumeLabel2" type="HSlider" parent="MarginContainer/VBoxContainer/Control/MarginContainer/AudioTab/GridContainer/SoundsVolumeSetting"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("3_r0vi3")
+setting = 3
+
+[node name="SoundsVolumeLabel3" type="SpinBox" parent="MarginContainer/VBoxContainer/Control/MarginContainer/AudioTab/GridContainer/SoundsVolumeSetting"]
+layout_mode = 2
+size_flags_horizontal = 8
+max_value = 1.0
+step = 0.05
+value = 1.0
+custom_arrow_step = 0.1
+select_all_on_focus = true
+script = ExtResource("3_r0vi3")
+setting = 3
+
+[node name="AmbianceSoundsVolumeLabel" type="Label" parent="MarginContainer/VBoxContainer/Control/MarginContainer/AudioTab/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_stretch_ratio = 0.2
+theme_type_variation = &"SettingsLabel"
+text = "Ambiance Sounds Volume"
+vertical_alignment = 1
+
+[node name="AmbianceSoundsVolumeSetting" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Control/MarginContainer/AudioTab/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AmbianceSoundsVolumeSlider" type="HSlider" parent="MarginContainer/VBoxContainer/Control/MarginContainer/AudioTab/GridContainer/AmbianceSoundsVolumeSetting"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("3_r0vi3")
+setting = 4
+
+[node name="AmbianceSoundsVolumeSpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Control/MarginContainer/AudioTab/GridContainer/AmbianceSoundsVolumeSetting"]
+layout_mode = 2
+size_flags_horizontal = 8
+max_value = 1.0
+step = 0.05
+value = 1.0
+custom_arrow_step = 0.1
+select_all_on_focus = true
+script = ExtResource("3_r0vi3")
+setting = 4
+
+[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/Control/MarginContainer/AudioTab"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25

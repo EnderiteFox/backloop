@@ -166,6 +166,7 @@ shape = SubResource("BoxShape3D_p4dlk")
 unique_name_in_owner = true
 transform = Transform3D(1.00479, 9.9094e-11, 0.000831261, 0.00083126, -1.1978e-07, -1.00479, 0, 1.00479, -1.1978e-07, 0.435051, 0.101757, 0.744764)
 stream = SubResource("AudioStreamRandomizer_1sj1c")
+bus = &"Sounds"
 
 [node name="InteractionHitbox" type="Area3D" parent="Sketchfab_model/b37afcbbf8564243bc40699160c032e0_fbx/Object_2/RootNode/Plane_002/Plane_001/Plane_001_Door__Door_C_jpg_0" index="2"]
 unique_name_in_owner = true

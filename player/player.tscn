@@ -99,16 +99,19 @@ color = Color(0, 0, 0, 1)
 unique_name_in_owner = true
 stream = ExtResource("4_h4sw0")
 pitch_scale = 0.52
+bus = &"Sounds"
 
 [node name="RunSound" type="AudioStreamPlayer3D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("5_feosj")
 pitch_scale = 0.75
+bus = &"Sounds"
 
 [node name="CrouchSound" type="AudioStreamPlayer3D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("6_3ebys")
 pitch_scale = 0.4
+bus = &"Sounds"
 
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("11_2ieo8")
