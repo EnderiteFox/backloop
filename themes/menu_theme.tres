@@ -1,8 +1,12 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cmkvt8oqilc3e"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cmkvt8oqilc3e"]
 
 [ext_resource type="FontFile" uid="uid://b5um8rdwcggge" path="res://fonts/rubik_glitch/RubikGlitch-Regular.ttf" id="1_kkddi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlxav"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
 bg_color = Color(0, 0, 0, 0.5)
 border_width_left = 2
 border_width_top = 2
@@ -14,10 +18,65 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gbcni"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebccb"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0, 0, 0, 0.27450982)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_funo8"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_funo8"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+
 [resource]
 default_font = ExtResource("1_kkddi")
 Button/colors/font_color = Color(0.800491, 0.800491, 0.800491, 1)
 Button/styles/disabled = SubResource("StyleBoxFlat_xlxav")
+Button/styles/focus = SubResource("StyleBoxFlat_gbcni")
 Button/styles/hover = SubResource("StyleBoxFlat_xlxav")
 Button/styles/normal = SubResource("StyleBoxFlat_xlxav")
 Button/styles/pressed = SubResource("StyleBoxFlat_xlxav")
+SettingsLabel/base_type = &"Label"
+SettingsLabel/font_sizes/font_size = 25
+TabBar/colors/font_hovered_color = Color(0.4700756, 0.4700758, 0.47007674, 1)
+TabBar/colors/font_unselected_color = Color(0.4700758, 0.47007585, 0.47007567, 1)
+TabBar/constants/tab_separation = 20
+TabBar/font_sizes/font_size = 45
+TabBar/styles/tab_focus = SubResource("StyleBoxFlat_ebccb")
+TabBar/styles/tab_hovered = SubResource("StyleBoxFlat_ebccb")
+TabBar/styles/tab_selected = SubResource("StyleBoxFlat_funo8")
+TabBar/styles/tab_unselected = SubResource("StyleBoxEmpty_funo8")

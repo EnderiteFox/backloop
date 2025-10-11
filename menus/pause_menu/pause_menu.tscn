@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://dem86t5nmslto"]
+
+[ext_resource type="FontFile" uid="uid://b5um8rdwcggge" path="res://fonts/rubik_glitch/RubikGlitch-Regular.ttf" id="1_5ndmu"]
+[ext_resource type="Theme" uid="uid://cmkvt8oqilc3e" path="res://themes/menu_theme.tres" id="1_jwttc"]
+[ext_resource type="Script" uid="uid://bvi40evlfcxyp" path="res://menus/pause_menu/pause_menu.gd" id="2_qd56w"]
+[ext_resource type="PackedScene" uid="uid://drtwhlsoexo23" path="res://menus/settings_menu/settings_menu.tscn" id="4_4s7ec"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jwttc"]
+font = ExtResource("1_5ndmu")
+font_size = 128
+
+[node name="PauseMenu" type="Control"]
+process_mode = 2
+top_level = true
+z_index = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jwttc")
+script = ExtResource("2_qd56w")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.54901963)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Paused"
+label_settings = SubResource("LabelSettings_jwttc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 20
+
+[node name="ContinueButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Continue"
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+
+[node name="MainMenuButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Return to main menu"
+
+[node name="Node" type="Node" parent="."]
+
+[node name="SettingsMenu" parent="Node" instance=ExtResource("4_4s7ec")]
+unique_name_in_owner = true
+visible = false
