@@ -64,17 +64,29 @@ func reset() -> void:
 	_internal_time = START_TIME
 	
 	
-func print(...args: Array) -> void:
-	player.dev_console.print_console.callv(args)
+func print_message(...args: Array) -> void:
+	if player != null and player.dev_console != null:
+		player.dev_console.print_console.callv(args)
+	else:
+		print.callv(args)
 	
 	
 func print_info(...args: Array) -> void:
-	player.dev_console.print_info_console.callv(args)
+	if player != null and player.dev_console != null:
+		player.dev_console.print_info_console.callv(args)
+	else:
+		print.callv(args)
 	
 	
 func print_warning(...args: Array) -> void:
-	player.dev_console.print_warning_console.callv(args)
+	if player != null and player.dev_console != null:
+		player.dev_console.print_warning_console.callv(args)
+	else:
+		push_warning.callv(args)
 	
 	
 func print_error(...args: Array) -> void:
-	player.dev_console.print_error_console.callv(args)
+	if player != null and player.dev_console != null:
+		player.dev_console.print_error_console.callv(args)
+	else:
+		push_error.callv(args)
