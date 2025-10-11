@@ -645,6 +645,7 @@ transform = Transform3D(-0.382248, -0.0234313, -0.923763, 6.55535e-09, 0.999678,
 
 [node name="FlashlightSounds" type="AudioStreamPlayer3D" parent="Model/FlashlightModel"]
 transform = Transform3D(0.427873, -4.65661e-09, 2.98023e-08, 1.86265e-09, 0.427874, 1.86265e-09, -4.47035e-08, -4.65661e-10, 0.427873, 0.0330375, 0.0167541, 0.0136663)
+bus = &"Sounds"
 
 [node name="BatteryInFlashlight" parent="Model/FlashlightModel" instance=ExtResource("15_uvco8")]
 transform = Transform3D(-3.3928059e-06, 0.93723804, -0.38438886, -1.013, -3.6670517e-06, 3.9392448e-11, -1.3914469e-06, 0.38438886, 0.93723804, -0.0383755, 0.0138763, -0.0158744)

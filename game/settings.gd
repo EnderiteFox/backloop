@@ -4,14 +4,31 @@ extends Node
 ## editing the variable directly won't correctly emit the setting_changed signal.
 ## Use [code]set_setting[/code] instead
 
+const MAIN_BUS_NAME: StringName = &"Master"
+const MUSIC_BUS_NAME: StringName = &"Music"
+const SOUNDS_BUS_NAME: StringName = &"Sounds"
+const AMBIANCE_SOUNDS_BUS_NAME: StringName = &"Ambiance Sounds"
+
 enum Type {
-	SENSIBILITY
+	SENSIBILITY,
+	MAIN_VOLUME,
+	MUSIC_VOLUME,
+	SOUNDS_VOLUME,
+	AMBIANCE_SOUNDS_VOLUME,
 }
 
 signal setting_changed(type: Type, new_value: Variant)
 
 
 var sensibility: float = 6
+var main_volume: float = 1
+var music_volume: float = 1
+var sounds_volume: float = 1
+var ambiance_sounds_volume: float = 1
+
+
+func _ready() -> void:
+	self.setting_changed.connect(_on_setting_changed)
 
 
 ## Loads the settings from the save file.
@@ -53,3 +70,25 @@ func set_setting(value: Variant, type: Type) -> void:
 			
 	setting_changed.emit(type, value)
 	self.set(varname, value)
+	
+	
+func _on_setting_changed(type: Type, new_value: Variant) -> void:
+	match type:
+		Type.MAIN_VOLUME:
+			var bus_idx: int = AudioServer.get_bus_index(MAIN_BUS_NAME)
+			AudioServer.set_bus_volume_linear(bus_idx, new_value)
+			
+		Type.MUSIC_VOLUME:
+			var bus_idx: int = AudioServer.get_bus_index(MUSIC_BUS_NAME)
+			AudioServer.set_bus_volume_linear(bus_idx, new_value)
+			
+		Type.SOUNDS_VOLUME:
+			var bus_idx: int = AudioServer.get_bus_index(SOUNDS_BUS_NAME)
+			AudioServer.set_bus_volume_linear(bus_idx, new_value)
+			
+		Type.AMBIANCE_SOUNDS_VOLUME:
+			var bus_idx: int = AudioServer.get_bus_index(AMBIANCE_SOUNDS_BUS_NAME)
+			AudioServer.set_bus_volume_linear(bus_idx, new_value)
+
+		_:
+			pass

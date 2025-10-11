@@ -28,10 +28,12 @@ shape = SubResource("BoxShape3D_lbfdp")
 [node name="NormalSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_5m4j4")
 volume_db = -20.0
+bus = &"Ambiance Sounds"
 
 [node name="FlickerSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_j2rl1")
 volume_db = -20.0
+bus = &"Sounds"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.153267, -0.3)
