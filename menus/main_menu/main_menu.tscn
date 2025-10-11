@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bev5ngmsob6ud"]
+[gd_scene load_steps=14 format=3 uid="uid://bev5ngmsob6ud"]
 
 [ext_resource type="Script" uid="uid://d2hfsx2y5sbxe" path="res://menus/main_menu/main_menu.gd" id="1_vntwe"]
 [ext_resource type="PackedScene" uid="uid://clphcywne8elg" path="res://rooms/start.tscn" id="2_0hi3m"]
@@ -6,20 +6,10 @@
 [ext_resource type="VoxelGIData" uid="uid://csh4dfqmd4waj" path="res://menus/main_menu/main_menu.res" id="4_j3s0l"]
 [ext_resource type="FontFile" uid="uid://b5um8rdwcggge" path="res://fonts/rubik_glitch/RubikGlitch-Regular.ttf" id="5_qyewi"]
 [ext_resource type="Theme" uid="uid://cmkvt8oqilc3e" path="res://themes/menu_theme.tres" id="5_xu0xg"]
+[ext_resource type="Script" uid="uid://dg4dc8lb6vtsr" path="res://menus/main_menu/main_menu_ui.gd" id="6_8woyc"]
 [ext_resource type="AudioStream" uid="uid://b66ao2x03atp" path="res://menus/main_menu/sadness.ogg" id="6_q44dr"]
+[ext_resource type="PackedScene" uid="uid://drtwhlsoexo23" path="res://menus/settings_menu/settings_menu.tscn" id="6_t7kvd"]
 [ext_resource type="PackedScene" uid="uid://djxorq18harj3" path="res://player/shader_rect.tscn" id="8_tl8v3"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_eic7i"]
-device = -1
-keycode = 32
-unicode = 32
-
-[sub_resource type="InputEventKey" id="InputEventKey_wm1x7"]
-device = -1
-keycode = 4194309
-
-[sub_resource type="Shortcut" id="Shortcut_tx3ng"]
-events = [SubResource("InputEventKey_eic7i"), SubResource("InputEventKey_wm1x7")]
 
 [sub_resource type="Animation" id="Animation_gl7xk"]
 length = 0.001
@@ -86,7 +76,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("UI/PlayButton:modulate")
+tracks/5/path = NodePath("UI/MainMenuUI:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -162,7 +152,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("UI/PlayButton:modulate")
+tracks/5/path = NodePath("UI/MainMenuUI:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -201,30 +191,97 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_lock_ = true
+theme = ExtResource("5_xu0xg")
 
-[node name="PlayButton" type="Button" parent="UI"]
-unique_name_in_owner = true
+[node name="MainMenuUI" type="Control" parent="UI"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.45
-anchor_top = 0.85
-anchor_right = 0.55
-anchor_bottom = 0.9
-offset_left = -20.5
-offset_top = -23.0
-offset_right = 20.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 0
-focus_mode = 0
+grow_vertical = 2
+script = ExtResource("6_8woyc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainMenuUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control2" type="Control" parent="UI/MainMenuUI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainMenuUI/HBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Separator2" type="Control" parent="UI/MainMenuUI/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.45
+
+[node name="PlayButton" type="Button" parent="UI/MainMenuUI/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_xu0xg")
 theme_override_font_sizes/font_size = 56
-button_mask = 7
-shortcut = SubResource("Shortcut_tx3ng")
-shortcut_feedback = false
-shortcut_in_tooltip = false
 text = "Play"
+
+[node name="Separator4" type="Control" parent="UI/MainMenuUI/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="SettingsButton" type="Button" parent="UI/MainMenuUI/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 56
+text = "Settings"
+
+[node name="Separator3" type="Control" parent="UI/MainMenuUI/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="CreditsButton" type="Button" parent="UI/MainMenuUI/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 56
+text = "Credits"
+
+[node name="Separator" type="Control" parent="UI/MainMenuUI/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.45
+
+[node name="Control" type="Control" parent="UI/MainMenuUI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="SettingsMenu" parent="UI" instance=ExtResource("6_t7kvd")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
 
 [node name="ColorRect" type="ColorRect" parent="UI"]
 layout_mode = 1
