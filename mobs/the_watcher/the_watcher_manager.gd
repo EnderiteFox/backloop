@@ -1,5 +1,5 @@
 class_name TheWatcherManager
-extends Resettable
+extends RefCounted
 
 const SPAWN_CHANCE: float = 0.2
 const REACT_TIME: float = 1.5
@@ -12,6 +12,3 @@ const ENTER_BLACKOUT_TIME: float = 2.5
 const WATCHER_ENTERED_TIME: float = 1.0
 
 var isActive: bool = false
-
-func reset() -> void:
-	isActive = false

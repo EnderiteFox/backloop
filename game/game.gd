@@ -18,15 +18,15 @@ var _internal_time: int = START_TIME
 var player: Player
 
 # Room handlers
-var roomList := RoomList.new()
+var roomList: RoomList
 
 # Camera manager
-var camera_manager := CameraManager.new()
+var camera_manager: CameraManager
 
 # Monster managers
-var theWatcher := TheWatcherManager.new()
+var theWatcher: TheWatcherManager
 
-var nodeMonsters := NodeMonsterManager.new()
+var nodeMonsters: NodeMonsterManager
 
 ## The current in-game time. Starts at START_TIME, and generally progresses when doors are open
 var time: int:
@@ -36,14 +36,25 @@ var time: int:
 		_internal_time = new_time % (24*60)
 		time_changed.emit(new_time)
 
-@onready var outrun := OutrunManager.new()
-@onready var roomGenerator := RoomGenerator.new()
+var roomGenerator: RoomGenerator
 
-@onready var entity_manager := EntityManager.new()
+var entity_manager: EntityManager
+	
 
 func _ready() -> void:
+	reset()	
+	
+	
+func reset() -> void:
+	if not room_opened.is_connected(_on_room_opened):
+		room_opened.connect(_on_room_opened)
 	time = START_TIME
-	room_opened.connect(_on_room_opened)
+	roomList = RoomList.new()
+	camera_manager = CameraManager.new()
+	theWatcher = TheWatcherManager.new()
+	nodeMonsters = NodeMonsterManager.new()
+	roomGenerator = RoomGenerator.new()
+	entity_manager = EntityManager.new()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -57,11 +68,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_room_opened(_room: Room) -> void:
 	time += randi_range(MIN_TIME_PROGRESS, MAX_TIME_PROGRESS)
-
-
-func reset() -> void:
-	Resettable.reset_object(self)
-	_internal_time = START_TIME
 	
 	
 func print_message(...args: Array) -> void:

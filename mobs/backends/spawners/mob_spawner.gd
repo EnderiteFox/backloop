@@ -1,5 +1,5 @@
 class_name MobSpawner
-extends Resettable
+extends RefCounted
 
 
 var entity_type: EntityManager.EntityType
