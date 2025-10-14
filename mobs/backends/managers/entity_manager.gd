@@ -1,5 +1,5 @@
 class_name EntityManager
-extends Resettable
+extends RefCounted
 
 enum EntityType {
 	THE_SHADE,

@@ -23,8 +23,8 @@ buses/default_bus_layout="uid://d3r2gig5gn6ow"
 
 [autoload]
 
-Game="*res://game/game.gd"
 Settings="*res://game/settings.gd"
+Game="*res://game/game.gd"
 
 [display]
 

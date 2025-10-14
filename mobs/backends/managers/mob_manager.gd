@@ -1,5 +1,5 @@
 class_name MobManager
-extends Resettable
+extends RefCounted
 
 var entity_type: EntityManager.EntityType
 var entity_category: EntityManager.EntityCategory

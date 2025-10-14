@@ -1,5 +1,5 @@
 class_name CameraManager
-extends Resettable
+extends RefCounted
 ## A manager that handles camera transitions
 ## Only one camera transition can happen at the same time
 ## If a transition is started while another was ongoing, the previous transition is interrupted and the new transition
