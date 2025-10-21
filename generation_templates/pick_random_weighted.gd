@@ -22,19 +22,17 @@ func _ready() -> void:
 			current_value += node_weight
 		
 	assert(chosen_nodes.size() == kept_nodes_amount)
-			
-	for child in get_children():
-		if child not in chosen_nodes:
-			child.queue_free()
-		elif child is InstancePlaceholder:
-			pass
+	
+	for child in children:
+		child.queue_free()
+	
+	for child in chosen_nodes:
+		if child is InstancePlaceholder:
 			child.create_instance()
 		elif child is RandomWeight:
 			for subchild in child.get_children():
 				if subchild is InstancePlaceholder:
-					pass
 					subchild.create_instance()
-			
 	
 	
 func _get_total_weight(nodes: Array[Node]) -> float:
