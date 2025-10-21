@@ -26,6 +26,14 @@ func _ready() -> void:
 	for child in get_children():
 		if child not in chosen_nodes:
 			child.queue_free()
+		elif child is InstancePlaceholder:
+			pass
+			child.create_instance()
+		elif child is RandomWeight:
+			for subchild in child.get_children():
+				if subchild is InstancePlaceholder:
+					pass
+					subchild.create_instance()
 			
 	
 	

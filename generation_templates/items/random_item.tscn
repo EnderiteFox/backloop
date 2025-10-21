@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://60ie0pfi7q6r"]
+[gd_scene load_steps=6 format=3 uid="uid://60ie0pfi7q6r"]
 
 [ext_resource type="Script" uid="uid://dywgw7sxcfrui" path="res://generation_templates/pick_random_weighted.gd" id="1_pkfv1"]
-[ext_resource type="PackedScene" uid="uid://bchph5xi23fj7" path="res://items/consumable_types/battery/battery_on_ground.tscn" id="2_hygh3"]
 [ext_resource type="Script" uid="uid://cie1kfbu8fqe" path="res://generation_templates/random_weight.gd" id="2_rjcak"]
 [ext_resource type="Script" uid="uid://bx0j3x6espf7t" path="res://script/utils/editor_only.gd" id="4_rjcak"]
 
@@ -33,7 +32,7 @@ script = ExtResource("1_pkfv1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0197076, 0.000683248)
 script = ExtResource("2_rjcak")
 
-[node name="BatteryOnGround" parent="SpawnOrNot/ItemsWeight/Items/Battery" instance=ExtResource("2_hygh3")]
+[node name="BatteryOnGround" parent="SpawnOrNot/ItemsWeight/Items/Battery" instance_placeholder="res://items/consumable_types/battery/battery_on_ground.tscn"]
 
 [node name="EditorMesh" type="MeshInstance3D" parent="."]
 gi_mode = 0
