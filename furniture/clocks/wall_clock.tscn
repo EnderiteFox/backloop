@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cv5nx3qabwnnw"]
+[gd_scene load_steps=5 format=3 uid="uid://cv5nx3qabwnnw"]
 
 [ext_resource type="PackedScene" uid="uid://dspjhaueo3jwm" path="res://furniture/clocks/wall_clock.gltf" id="1_43n50"]
 [ext_resource type="Script" uid="uid://bafso50ol0o5q" path="res://furniture/clocks/wall_clock.gd" id="2_8npct"]
+[ext_resource type="AudioStream" uid="uid://c06upb3iuur4w" path="res://furniture/clocks/tick_sounds/tick_1.ogg" id="3_isoxf"]
+[ext_resource type="AudioStream" uid="uid://bmoq8jnbnqbw0" path="res://furniture/clocks/tick_sounds/tick_2.ogg" id="4_m4c68"]
 
 [node name="wall_clock" instance=ExtResource("1_43n50")]
 transform = Transform3D(0.0329728, 0, 0, 0, 0.0329728, 0, 0, 0, 0.0329728, 0, 0, 0)
@@ -14,3 +16,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.4008)
 [node name="le_2" parent="Sketchfab Model/02_2" index="2"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.4008)
+
+[node name="TickLowSound" type="AudioStreamPlayer3D" parent="." index="2"]
+unique_name_in_owner = true
+stream = ExtResource("3_isoxf")
+volume_db = -16.0
+unit_size = 4.0
+max_distance = 8.0
+max_polyphony = 2
+bus = &"Ambiance Sounds"
+
+[node name="TickHighSound" type="AudioStreamPlayer3D" parent="." index="3"]
+unique_name_in_owner = true
+stream = ExtResource("4_m4c68")
+volume_db = -16.0
+unit_size = 4.0
+max_distance = 8.0
+max_polyphony = 2
+bus = &"Ambiance Sounds"
