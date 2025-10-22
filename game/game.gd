@@ -10,8 +10,8 @@ signal time_changed(new_time: int)
 
 const START_TIME: int = 6 * 60
 
-const MIN_TIME_PROGRESS: int = 30
-const MAX_TIME_PROGRESS: int = 60
+const MIN_TIME_PROGRESS: int = 23
+const MAX_TIME_PROGRESS: int = 33
 
 var _internal_time: int = START_TIME
 
