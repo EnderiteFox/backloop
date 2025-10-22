@@ -17,11 +17,21 @@ func _ready() -> void:
 			dev_console.command_tree.register_callable(["get_spawn_chance"], ["entity"], get_spawn_chance)
 			dev_console.command_tree.register_callable(["set_spawn_chance"], ["entity", "chance"], set_spawn_chance)
 			dev_console.command_tree.register_callable(["die"], [], die)
+			dev_console.command_tree.register_callable(["time", "add"], ["amount"], time_add)
+			dev_console.command_tree.register_callable(["time", "set"], ["amount"], time_set)
 	)
 	
 	
 func die() -> void:
 	get_tree().change_scene_to_packed(GAME_OVER_SCENE)
+	
+	
+func time_add(amount: int) -> void:
+	Game.time += amount
+	
+	
+func time_set(amount: int) -> void:
+	Game.time = amount
 
 
 func spawn(entity_id: String) -> void:
