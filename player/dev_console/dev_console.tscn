@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cj4q8pgqiwrsd"]
+[gd_scene load_steps=14 format=3 uid="uid://cj4q8pgqiwrsd"]
 
 [ext_resource type="Script" uid="uid://5s167l2h7qav" path="res://player/dev_console/dev_console.gd" id="1_mvyso"]
 [ext_resource type="Script" uid="uid://dqwdxxtw4ef1k" path="res://addons/forest/command_tree/command_tree.gd" id="2_nhrba"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://c1oh86tgv0bo0" path="res://player/dev_console/arguments/room_spawning_argument.gd" id="8_s2i2b"]
 [ext_resource type="Script" uid="uid://dwr81tany2fw5" path="res://player/dev_console/arguments/room_argument.gd" id="8_sksdo"]
 [ext_resource type="Script" uid="uid://8o4qdelg1657" path="res://addons/forest/commands/arguments/float_argument.gd" id="9_s2i2b"]
+[ext_resource type="Script" uid="uid://n3ogqpcoklyp" path="res://addons/forest/commands/arguments/int_argument.gd" id="10_x175u"]
 
 [sub_resource type="SystemFont" id="SystemFont_s2i2b"]
 font_names = PackedStringArray("Sans-Serif")
@@ -135,6 +136,31 @@ metadata/_custom_type_script = "uid://8o4qdelg1657"
 script = ExtResource("3_l62em")
 command_name = "die"
 metadata/_custom_type_script = "uid://cehwf7xbnc5c3"
+
+[node name="Time" type="Node" parent="CommandTree"]
+script = ExtResource("3_l62em")
+command_name = "time"
+metadata/_custom_type_script = "uid://cehwf7xbnc5c3"
+
+[node name="Add" type="Node" parent="CommandTree/Time"]
+script = ExtResource("3_l62em")
+command_name = "add"
+metadata/_custom_type_script = "uid://cehwf7xbnc5c3"
+
+[node name="Amount" type="Node" parent="CommandTree/Time/Add"]
+script = ExtResource("10_x175u")
+argument_name = "amount"
+metadata/_custom_type_script = "uid://n3ogqpcoklyp"
+
+[node name="Set" type="Node" parent="CommandTree/Time"]
+script = ExtResource("3_l62em")
+command_name = "set"
+metadata/_custom_type_script = "uid://cehwf7xbnc5c3"
+
+[node name="Amount" type="Node" parent="CommandTree/Time/Set"]
+script = ExtResource("10_x175u")
+argument_name = "amount"
+metadata/_custom_type_script = "uid://n3ogqpcoklyp"
 
 [node name="AutocompleteMenu" type="PanelContainer" parent="."]
 unique_name_in_owner = true
