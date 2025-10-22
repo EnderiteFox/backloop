@@ -33,7 +33,7 @@ var time: int:
 	get:
 		return _internal_time
 	set(new_time):
-		_internal_time = new_time % (24*60)
+		_internal_time = new_time
 		time_changed.emit(new_time)
 
 var roomGenerator: RoomGenerator
