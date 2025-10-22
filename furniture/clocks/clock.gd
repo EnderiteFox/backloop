@@ -1,12 +1,12 @@
 class_name Clock
-extends Node
+extends Node3D
 
-@onready var displayed_time: int = Game.time
+var displayed_time: int = 0
 
 func _ready() -> void:
 	update_time(Game.time, false)
 	Game.time_changed.connect(update_time)
 
-@warning_ignore("unused_parameter")
-func update_time(new_time: int, animate: bool = true) -> void:
+
+func update_time(new_time: int, _animate: bool = true) -> void:
 	displayed_time = new_time
