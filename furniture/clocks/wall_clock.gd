@@ -9,7 +9,7 @@ const HAND_ANIM_TIME: float = 4.0
 const WAIT_AFTER_DOOR: float = 2.0
 const MOVE_SUBDIVISIONS: int = 3
 const SUBDIVISION_WAIT: float = 0.2
-const SUBDIVISION_TIME: float = 0.1
+const SUBDIVISION_TIME: float = 0.2
 
 @onready var minute_hand: Node3D = %la_2
 @onready var hour_hand: Node3D = %le_2
@@ -30,7 +30,7 @@ func update_time(new_time: int, animate: bool = true) -> void:
 				"rotation:z", 
 				minute_rotation_delta / MOVE_SUBDIVISIONS, 
 				SUBDIVISION_TIME
-			).as_relative().set_trans(Tween.TransitionType.TRANS_CUBIC)
+			).as_relative().set_trans(Tween.TransitionType.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 			minute_tween.tween_interval(SUBDIVISION_WAIT)
 			
 		minute_tween.tween_callback(tick_high_sound.play)
@@ -39,7 +39,7 @@ func update_time(new_time: int, animate: bool = true) -> void:
 			"rotation:z",
 			minute_rotation_delta / MOVE_SUBDIVISIONS,
 			SUBDIVISION_TIME
-		).as_relative().set_trans(Tween.TransitionType.TRANS_CUBIC)
+		).as_relative().set_trans(Tween.TransitionType.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 			
 		var hour_rotation_delta: float = ((new_time - displayed_time) / 60.0 / 12.0) * TAU
 	
@@ -51,7 +51,7 @@ func update_time(new_time: int, animate: bool = true) -> void:
 				"rotation:z", 
 				hour_rotation_delta / MOVE_SUBDIVISIONS, 
 				SUBDIVISION_TIME
-			).as_relative().set_trans(Tween.TransitionType.TRANS_CUBIC)
+			).as_relative().set_trans(Tween.TransitionType.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 			hour_tween.tween_interval(SUBDIVISION_WAIT)
 	else:
 		minute_hand.rotation.z = ((new_time % 60) / 60.0) * TAU
