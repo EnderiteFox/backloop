@@ -309,7 +309,11 @@ func _on_flash() -> void:
 func _on_player_grab(body: Node3D) -> void:
 	if not body is Player:
 		return
-	
+		
+	if current_state in [State.GRABBING, State.FLASHED]:
+		return
+		
+	global_rotation.
 	var player: Player = body as Player	
 	current_state = State.GRABBING
 	player.can_move = false
