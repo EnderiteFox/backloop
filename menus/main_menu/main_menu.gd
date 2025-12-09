@@ -51,5 +51,6 @@ func _on_play_button_pressed() -> void:
 	animation_player.animation_finished.connect(
 		func(_anim):
 			Game.reset()
+			Game.room_list.load_room_infos()
 			get_tree().change_scene_to_file("uid://of56mmim7b8x")
 	)

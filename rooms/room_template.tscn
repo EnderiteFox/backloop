@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://di0dsa4lr66ws"]
 
-[ext_resource type="Script" uid="uid://c4opum1tbjfvr" path="res://script/rooms/room.gd" id="1_iduk7"]
+[ext_resource type="Script" uid="uid://c4opum1tbjfvr" path="res://rooms/room.gd" id="1_iduk7"]
 [ext_resource type="Script" uid="uid://dywgw7sxcfrui" path="res://generation_templates/pick_random_weighted.gd" id="8_5xv0u"]
 
 [node name="Room" type="Node3D"]
