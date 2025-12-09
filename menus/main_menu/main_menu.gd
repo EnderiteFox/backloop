@@ -13,11 +13,12 @@ const TITLE_MAX_BLINK_COUNT: int = 8
 @onready var menu_music_player: AudioStreamPlayer = %MenuMusic
 @onready var play_button: Button = %PlayButton
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
+@onready var start_room: Room = %StartRoom
 
 
 func _ready() -> void:
 	_blink_title()
-	%StartRoom.visible = true
+	start_room.visible = true
 	menu_music_player.play()
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 	play_button.pressed.connect(_on_play_button_pressed)

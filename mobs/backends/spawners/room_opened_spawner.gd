@@ -84,5 +84,5 @@ func force_spawn() -> bool:
 	if not super.force_spawn():
 		return false
 		
-	spawn.emit(Game.roomGenerator.lastRoomOpened)
+	spawn.emit(Game.room_generator.last_room_opened)
 	return true

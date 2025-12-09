@@ -18,7 +18,7 @@ var _internal_time: int = START_TIME
 var player: Player
 
 # Room handlers
-var roomList: RoomList
+var room_list := RoomList.new()
 
 # Camera manager
 var camera_manager: CameraManager
@@ -36,10 +36,10 @@ var time: int:
 		_internal_time = new_time
 		time_changed.emit(new_time)
 
-var roomGenerator: RoomGenerator
+var room_generator: RoomGenerator
 
 var entity_manager: EntityManager
-	
+
 
 func _ready() -> void:
 	reset()	
@@ -49,11 +49,10 @@ func reset() -> void:
 	if not room_opened.is_connected(_on_room_opened):
 		room_opened.connect(_on_room_opened)
 	time = START_TIME
-	roomList = RoomList.new()
 	camera_manager = CameraManager.new()
 	theWatcher = TheWatcherManager.new()
 	nodeMonsters = NodeMonsterManager.new()
-	roomGenerator = RoomGenerator.new()
+	room_generator = RoomGenerator.new()
 	entity_manager = EntityManager.new()
 
 

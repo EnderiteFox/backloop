@@ -68,7 +68,7 @@ func give(item: String) -> void:
 	
 	
 func force_next_room(room: String) -> void:
-	Game.roomList.forcedNextRoom = room
+	Game.room_list.forcedNextRoom = room
 	Game.print_info("Set next forced room to ", room)
 	
 	
@@ -77,19 +77,19 @@ func enter_room(room: String) -> void:
 
 	
 func _enter_room(room: String, remaining_tries: int) -> void:
-	if Game.roomGenerator.rooms.is_empty():
+	if Game.room_generator.rooms.is_empty():
 		Game.print_error("No room to generate the new room after!")
 		return
 		
 	# Get last room generated
-	var prev_last_room: Room = Game.roomGenerator.rooms[-1]
+	var prev_last_room: Room = Game.room_generator.rooms[-1]
 	
 	# If the room is not fully generated, generate it
 	if not prev_last_room.fullyGenerated:
-		Game.roomGenerator.fully_generate(prev_last_room)
+		Game.room_generator.fully_generate(prev_last_room)
 
 	# Delete all rooms except one
-	for deleted_room in Game.roomGenerator.rooms:
+	for deleted_room in Game.room_generator.rooms:
 		if deleted_room != prev_last_room:
 			deleted_room.queue_free()
 		
@@ -100,14 +100,14 @@ func _enter_room(room: String, remaining_tries: int) -> void:
 		door.state = Door.State.NORMAL
 		
 	# Update the room list accordingly
-	Game.roomGenerator.rooms.clear()
-	Game.roomGenerator.rooms.append(prev_last_room)
+	Game.room_generator.rooms.clear()
+	Game.room_generator.rooms.append(prev_last_room)
 	
 	# Choose a random door in the remaining room
 	var prev_last_door: Door = prev_last_room.doors.pick_random()
 	
 	# Generate a random room after the chosen door
-	Game.roomGenerator.pregenerate_after_door(prev_last_room, prev_last_door)
+	Game.room_generator.pregenerate_after_door(prev_last_room, prev_last_door)
 	
 	# Get the newly generated room
 	var last_room: Room = prev_last_door.nextRoom
@@ -129,8 +129,8 @@ func _enter_room(room: String, remaining_tries: int) -> void:
 	# Force the next generated room and fully generate the last room
 	# If trying to fallback, don't force the room
 	if remaining_tries >= 0:
-		Game.roomList.forcedNextRoom = room
-	Game.roomGenerator.fully_generate(last_room)
+		Game.room_list.forcedNextRoom = room
+	Game.room_generator.fully_generate(last_room)
 	
 	# The first door of the last room has the wanted room
 	var wanted_door: Door = last_room.doors.front()

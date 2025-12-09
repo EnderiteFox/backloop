@@ -8,7 +8,7 @@ const END_POINT_DISTANCE: float = 10
 ## Returns the rooms that are on the path, from the farthest room to the last room opened
 func _get_path_rooms() -> Array[Room]:
 	var rooms: Array[Room] = []
-	var currentRoom: Room = Game.roomGenerator.lastRoomOpened
+	var currentRoom: Room = Game.room_generator.last_room_opened
 	while currentRoom != null:
 		rooms.append(currentRoom)
 		currentRoom = currentRoom.previousRoom

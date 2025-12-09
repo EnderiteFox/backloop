@@ -5,7 +5,7 @@ const ROOM_PERSISTENCE: int = 4
 
 var rooms: Array[Room]
 
-var lastRoomOpened: Room = null
+var last_room_opened: Room = null
 
 
 func _init() -> void:
@@ -21,7 +21,7 @@ func _delete_forward_rooms(room: Room) -> void:
 
 
 func _on_room_opened(room: Room) -> void:
-	lastRoomOpened = room
+	last_room_opened = room
 	delete_far_rooms(room)
 
 
@@ -31,10 +31,10 @@ func pregenerate_after_door(room: Room, door: Door) -> void:
 	var roomPlacementHitboxLayer: int = room.roomPlacementHitbox.collision_layer
 	room.roomPlacementHitbox.collision_layer = 0
 
-	var possibleRooms: Array[String] = Game.roomList.get_random_rooms()
+	var possibleRooms: Array[StringName] = Game.room_list.get_random_rooms()
 
 	for roomName in possibleRooms:
-		var newRoom: Room = Game.roomList.get_room_scene(roomName).instantiate()
+		var newRoom: Room = Game.room_list.get_room_scene(roomName).instantiate()
 		room.add_sibling(newRoom)
 
 		# Deactivate the hitbox of the new room to prevent self collision
