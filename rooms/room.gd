@@ -34,7 +34,7 @@ func _ready() -> void:
 	if !Engine.is_editor_hint():
 		self.tree_exiting.connect(_on_exit_tree)
 		
-		Game.roomGenerator.rooms.append(self)
+		Game.room_generator.rooms.append(self)
 		
 		# Put the room's navigation mesh on its own map
 		var map: RID = NavigationServer3D.map_create()
@@ -44,7 +44,7 @@ func _ready() -> void:
 		
 		
 func _on_exit_tree() -> void:
-	Game.roomGenerator.rooms.erase(self)
+	Game.room_generator.rooms.erase(self)
 	
 	if self.previousRoom != null:
 		for door in self.previousRoom.doors:

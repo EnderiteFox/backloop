@@ -3,7 +3,9 @@ extends EnumArgument
 
 
 func _get_room_list() -> Array[String]:
-	return Game.roomList.roomsConfig.keys()
+	var room_list: Array[String]
+	room_list.assign(Game.room_list.room_infos.keys())
+	return room_list
 
 	
 func accepts_token(token: String, preparse_mode: bool = false) -> bool:
