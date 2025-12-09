@@ -1,14 +1,14 @@
 [gd_scene load_steps=28 format=3 uid="uid://biwf4j4k8g4us"]
 
-[ext_resource type="PackedScene" uid="uid://di0dsa4lr66ws" path="res://room_template/room_template.tscn" id="1_adn3y"]
+[ext_resource type="PackedScene" uid="uid://di0dsa4lr66ws" path="res://rooms/room_template.tscn" id="1_adn3y"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="2_24hvn"]
 [ext_resource type="Material" uid="uid://mi3tsypobxge" path="res://material/walls/wallpaper/wallpaper.tres" id="3_egf11"]
 [ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://furniture/door/door.tscn" id="4_7ykeq"]
 [ext_resource type="PackedScene" uid="uid://k5g54y6u162p" path="res://lights/ceiling/ceiling_light.tscn" id="6_hhir5"]
 [ext_resource type="Script" uid="uid://bf6mjw15l2dsr" path="res://mobs/node_monsters/monster_node.gd" id="7_eytio"]
-[ext_resource type="VoxelGIData" uid="uid://can7su0aqrumr" path="res://rooms/tShapeTwoWindowsGI.res" id="8_lwosk"]
+[ext_resource type="VoxelGIData" uid="uid://can7su0aqrumr" path="res://room_templates/normal_rooms/t_shape/no_window/one_window.res" id="8_lwosk"]
 [ext_resource type="PackedScene" uid="uid://cv5nx3qabwnnw" path="res://furniture/clocks/wall_clock.tscn" id="9_2xf13"]
-[ext_resource type="ArrayOccluder3D" uid="uid://1xawnjuhk3o5" path="res://rooms/tShapeTwoWindows.occ" id="11_g42u2"]
+[ext_resource type="ArrayOccluder3D" uid="uid://1xawnjuhk3o5" path="res://room_templates/normal_rooms/t_shape/no_window/one_window.occ" id="11_g42u2"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ktra6"]
 vertices = PackedVector3Array(0.90156984, 0.5, -1.0917997, 0.90156984, 0.5, -4.0917997, -0.84843016, 0.5, -4.0917997, -1.0984302, 0.5, -0.84179974, 3.9015698, 0.5, 0.90820026, 3.9015698, 0.5, -0.84179974, -4.09843, 0.5, 0.90820026, -4.09843, 0.5, -0.84179974)
