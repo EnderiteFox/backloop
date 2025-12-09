@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://furniture/door/door.tscn" id="4_ewkiy"]
 [ext_resource type="Script" uid="uid://bf6mjw15l2dsr" path="res://mobs/node_monsters/monster_node.gd" id="7_ecq41"]
 [ext_resource type="PackedScene" uid="uid://k5g54y6u162p" path="res://lights/ceiling/ceiling_light.tscn" id="7_p88k1"]
-[ext_resource type="VoxelGIData" uid="uid://guskpng82rem" path="res://rooms/donutGI.res" id="8_y5n6k"]
+[ext_resource type="VoxelGIData" uid="uid://guskpng82rem" path="res://room_templates/normal_rooms/donut/donutGI.res" id="8_y5n6k"]
 [ext_resource type="PackedScene" uid="uid://cv5nx3qabwnnw" path="res://furniture/clocks/wall_clock.tscn" id="9_cu3hc"]
-[ext_resource type="PackedScene" uid="uid://di0dsa4lr66ws" path="res://room_template/room_template.tscn" id="10_h58ic"]
-[ext_resource type="ArrayOccluder3D" uid="uid://bv70d62kulo57" path="res://rooms/donut.occ" id="11_4e72j"]
+[ext_resource type="PackedScene" uid="uid://di0dsa4lr66ws" path="res://rooms/room_template.tscn" id="10_h58ic"]
+[ext_resource type="ArrayOccluder3D" uid="uid://bv70d62kulo57" path="res://room_templates/normal_rooms/donut/donut.occ" id="11_4e72j"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_lcuic"]
 vertices = PackedVector3Array(-4.9919395, 0.5, 11.27316, -6.4919395, 0.5, 12.77316, 4.7580605, 0.5, 12.77316, 5.0080605, 0.5, 12.27316, 5.2580605, 0.5, 11.02316, 6.7580605, 0.5, 12.27316, 6.7580605, 0.5, 1.0231602, 6.2580605, 0.5, 0.7731602, 5.0080605, 0.5, 0.7731602, 6.2580605, 0.5, -0.7268398, -6.7419395, 0.5, -0.47683978, -5.2419395, 0.5, 1.0231602)

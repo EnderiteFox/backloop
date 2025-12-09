@@ -1,7 +1,7 @@
 [gd_scene load_steps=37 format=3 uid="uid://clphcywne8elg"]
 
-[ext_resource type="PackedScene" uid="uid://di0dsa4lr66ws" path="res://room_template/room_template.tscn" id="1_j81j6"]
-[ext_resource type="ArrayOccluder3D" uid="uid://c3meeuu6hl523" path="res://rooms/start.occ" id="2_2udi2"]
+[ext_resource type="PackedScene" uid="uid://di0dsa4lr66ws" path="res://rooms/room_template.tscn" id="1_j81j6"]
+[ext_resource type="ArrayOccluder3D" uid="uid://c3meeuu6hl523" path="res://room_templates/special_rooms/start.occ" id="2_2udi2"]
 [ext_resource type="Material" uid="uid://decjjahlcv6jr" path="res://material/floor/carpet/floor.tres" id="2_lktxw"]
 [ext_resource type="Material" uid="uid://mi3tsypobxge" path="res://material/walls/wallpaper/wallpaper.tres" id="3_mviyk"]
 [ext_resource type="PackedScene" uid="uid://bbjkia2lowqon" path="res://furniture/door/door.tscn" id="4_e184x"]
@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://85dh5vt2vjd7" path="res://generation_templates/small_furniture/small_furniture.tscn" id="10_s3o2s"]
 [ext_resource type="PackedScene" uid="uid://k5g54y6u162p" path="res://lights/ceiling/ceiling_light.tscn" id="11_btujy"]
 [ext_resource type="Script" uid="uid://bf6mjw15l2dsr" path="res://mobs/node_monsters/monster_node.gd" id="12_ipnww"]
-[ext_resource type="VoxelGIData" uid="uid://c4pqth2roomk3" path="res://rooms/startGI.res" id="13_xjxum"]
+[ext_resource type="VoxelGIData" uid="uid://c4pqth2roomk3" path="res://room_templates/special_rooms/startGI.res" id="13_xjxum"]
 [ext_resource type="PackedScene" uid="uid://842qni0nuca6" path="res://items/item_types/flashlight/flashlight_on_ground.tscn" id="14_tu3u3"]
 [ext_resource type="PackedScene" uid="uid://bchph5xi23fj7" path="res://items/consumable_types/battery/battery_on_ground.tscn" id="15_x00w7"]
 

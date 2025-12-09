@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="RoomInfo" load_steps=2 format=3 uid="uid://dfmylamgyl25u"]
+
+[ext_resource type="Script" uid="uid://d03t8g4ah2ise" path="res://rooms/room_info.gd" id="1_71jts"]
+
+[resource]
+script = ExtResource("1_71jts")
+id = "t_shape_one_window"
+scene = "uid://biwf4j4k8g4us"
+metadata/_custom_type_script = "uid://d03t8g4ah2ise"

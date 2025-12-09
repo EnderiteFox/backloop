@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://bev5ngmsob6ud"]
 
 [ext_resource type="Script" uid="uid://d2hfsx2y5sbxe" path="res://menus/main_menu/main_menu.gd" id="1_vntwe"]
-[ext_resource type="PackedScene" uid="uid://clphcywne8elg" path="res://rooms/start.tscn" id="2_0hi3m"]
+[ext_resource type="PackedScene" uid="uid://clphcywne8elg" path="res://room_templates/special_rooms/start.tscn" id="2_0hi3m"]
 [ext_resource type="PackedScene" uid="uid://cljvh2p7v80ll" path="res://environment/ingame_environment.tscn" id="3_hjqey"]
 [ext_resource type="VoxelGIData" uid="uid://csh4dfqmd4waj" path="res://menus/main_menu/main_menu.res" id="4_j3s0l"]
 [ext_resource type="FontFile" uid="uid://b5um8rdwcggge" path="res://fonts/rubik_glitch/RubikGlitch-Regular.ttf" id="5_qyewi"]
