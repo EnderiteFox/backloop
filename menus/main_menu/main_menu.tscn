@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bev5ngmsob6ud"]
+[gd_scene load_steps=20 format=3 uid="uid://bev5ngmsob6ud"]
 
 [ext_resource type="Script" uid="uid://d2hfsx2y5sbxe" path="res://menus/main_menu/main_menu.gd" id="1_vntwe"]
 [ext_resource type="PackedScene" uid="uid://clphcywne8elg" path="res://room_templates/special_rooms/start.tscn" id="2_0hi3m"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://b66ao2x03atp" path="res://menus/main_menu/sadness.ogg" id="6_q44dr"]
 [ext_resource type="PackedScene" uid="uid://drtwhlsoexo23" path="res://menus/settings_menu/settings_menu.tscn" id="6_t7kvd"]
 [ext_resource type="PackedScene" uid="uid://djxorq18harj3" path="res://player/shader_rect.tscn" id="8_tl8v3"]
+[ext_resource type="Shader" uid="uid://cjb5xyvqjiiwx" path="res://menus/main_menu/easter_egg/monochromatic.gdshader" id="11_d1j5c"]
 
 [sub_resource type="Animation" id="Animation_gl7xk"]
 length = 0.001
@@ -168,6 +169,32 @@ _data = {
 &"play_fade_out": SubResource("Animation_ugbmg")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d1j5c"]
+render_priority = 0
+shader = ExtResource("11_d1j5c")
+
+[sub_resource type="QuadMesh" id="QuadMesh_8woyc"]
+material = SubResource("ShaderMaterial_d1j5c")
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="Gradient" id="Gradient_8woyc"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5126051, 0.85294116, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d1j5c"]
+gradient = SubResource("Gradient_8woyc")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="FogMaterial" id="FogMaterial_d1j5c"]
+density = 2.0
+albedo = Color(0, 0, 0, 1)
+
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_vntwe")
 metadata/_edit_lock_ = true
@@ -185,6 +212,7 @@ current = true
 data = ExtResource("4_j3s0l")
 
 [node name="UI" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -317,3 +345,39 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5878.78, 0, 0)
 current = true
 
 [node name="ShaderRect" parent="." instance=ExtResource("8_tl8v3")]
+
+[node name="EasterEgg" type="Node3D" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="EasterEgg"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0399752, 2.2554798, -2.323663)
+light_negative = true
+omni_range = 1.017
+
+[node name="EasterEggShader" type="MeshInstance3D" parent="EasterEgg"]
+sorting_offset = -9.0
+cast_shadow = 0
+extra_cull_margin = 16384.0
+gi_mode = 0
+mesh = SubResource("QuadMesh_8woyc")
+
+[node name="Shape" type="Node3D" parent="EasterEgg"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0.3675441, 0, -2.441912)
+
+[node name="Sprite3D" type="Sprite3D" parent="EasterEgg/Shape"]
+transform = Transform3D(0.086, 0, 1.8626448e-09, 0, 0.26855436, 0, -1.8626448e-09, 0, 0.086, 0.556251, 2.583823, -0.9991846)
+billboard = 2
+texture = SubResource("GradientTexture2D_d1j5c")
+
+[node name="Sprite3D2" type="Sprite3D" parent="EasterEgg/Shape"]
+transform = Transform3D(0.086, 0, 1.8626448e-09, 0, 0.26855436, 0, -1.8626448e-09, 0, 0.086, 0.9114378, 2.583823, -0.901278)
+billboard = 2
+texture = SubResource("GradientTexture2D_d1j5c")
+
+[node name="FogVolume" type="FogVolume" parent="EasterEgg/Shape"]
+transform = Transform3D(0.9999852, 0, 0, 0, 1, 0, 0, 0, 0.9999852, 0.8309811, 1.4361296, -0.63165736)
+size = Vector3(2.0585938, 3.194336, 2.268982)
+material = SubResource("FogMaterial_d1j5c")
+
+[node name="Timer" type="Timer" parent="EasterEgg"]
