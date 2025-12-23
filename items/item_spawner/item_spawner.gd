@@ -41,6 +41,7 @@ func _ready() -> void:
 		if not item_on_ground is ConsumableOnGround:
 			Game.print_error("On ground scene for ConsumableInfo ", item.id, " was not a ConsumableOnGround")
 		else:
+			item_on_ground.amount = randi_range(item.min_amount, item.max_amount)
 			item_on_ground.consumable_info = item
 	else:
 		Game.print_error("Unknown type of info for item ", item.id)
