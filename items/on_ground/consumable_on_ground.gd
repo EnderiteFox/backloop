@@ -2,9 +2,7 @@ class_name ConsumableOnGround
 extends BaseItemOnGround
 
 
-@export var amount: int = 1
-
-
+var amount: int = 1
 var consumable_info: ConsumableInfo
 
 
