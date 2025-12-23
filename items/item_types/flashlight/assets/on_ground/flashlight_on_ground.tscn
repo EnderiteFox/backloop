@@ -10,7 +10,6 @@ radius = 0.0361328
 
 [node name="FlashlightOnGround" type="Node3D" node_paths=PackedStringArray("hitbox")]
 script = ExtResource("1_5sp14")
-item_id = &"flashlight"
 hitbox = NodePath("Node3D/Interactable")
 
 [node name="Node3D" type="Node3D" parent="."]

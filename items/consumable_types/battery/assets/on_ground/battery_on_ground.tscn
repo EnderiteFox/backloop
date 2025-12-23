@@ -10,7 +10,6 @@ radius = 0.0131836
 
 [node name="BatteryOnGround" type="Node3D" node_paths=PackedStringArray("hitbox")]
 script = ExtResource("1_8ujb5")
-item_id = &"battery"
 hitbox = NodePath("Interactable")
 
 [node name="battery" parent="." instance=ExtResource("2_fhkwk")]

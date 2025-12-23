@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://clphcywne8elg"]
+[gd_scene load_steps=42 format=3 uid="uid://clphcywne8elg"]
 
 [ext_resource type="PackedScene" uid="uid://di0dsa4lr66ws" path="res://rooms/room_template.tscn" id="1_j81j6"]
 [ext_resource type="ArrayOccluder3D" uid="uid://c3meeuu6hl523" path="res://room_templates/special_rooms/start.occ" id="2_2udi2"]
@@ -13,8 +13,11 @@
 [ext_resource type="PackedScene" uid="uid://k5g54y6u162p" path="res://lights/ceiling/ceiling_light.tscn" id="11_btujy"]
 [ext_resource type="Script" uid="uid://bf6mjw15l2dsr" path="res://mobs/node_monsters/monster_node.gd" id="12_ipnww"]
 [ext_resource type="VoxelGIData" uid="uid://c4pqth2roomk3" path="res://room_templates/special_rooms/startGI.res" id="13_xjxum"]
-[ext_resource type="PackedScene" uid="uid://842qni0nuca6" path="res://items/item_types/flashlight/assets/on_ground/flashlight_on_ground.tscn" id="14_tu3u3"]
-[ext_resource type="PackedScene" uid="uid://bchph5xi23fj7" path="res://items/consumable_types/battery/assets/scene/battery_on_ground.tscn" id="15_x00w7"]
+[ext_resource type="PackedScene" uid="uid://60ie0pfi7q6r" path="res://items/item_spawner/item_spawner.tscn" id="14_kfwpm"]
+[ext_resource type="Script" uid="uid://cg7t55c5i1pie" path="res://items/loot_tables/loot_table.gd" id="15_vnsxh"]
+[ext_resource type="Script" uid="uid://4hvn0ot0vgaj" path="res://items/item_info/base_item_info.gd" id="16_pr4ci"]
+[ext_resource type="Resource" uid="uid://da1nnlq4wmjf1" path="res://items/item_types/flashlight/flashlight_info.tres" id="17_vn6eb"]
+[ext_resource type="Resource" uid="uid://cesjuobnlbxts" path="res://items/consumable_types/battery/battery_info.tres" id="18_vnsxh"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_phc0f"]
 vertices = PackedVector3Array(0.31373978, 0.5, -2.2399797, -0.43626022, 0.5, -1.9899797, -0.43626022, 0.5, -1.2399797, 2.0637398, 0.5, -4.2399797, 0.31373978, 0.5, -3.9899797, -2.6862602, 0.5, -0.98997974, -2.6862602, 0.5, 0.26002026, -0.43626022, 0.5, 1.7600203, -3.4362602, 0.5, 3.7600203, -2.6862602, 0.5, 4.2600203, -0.6862602, 0.5, 4.2600203, -3.4362602, 0.5, 0.51002026, 2.0637398, 0.5, 1.7600203)
@@ -90,6 +93,20 @@ size = Vector3(0.1, 6.75419, 10.0538)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nwqkh"]
 size = Vector3(7.39211, 4.92671, 10.6668)
+
+[sub_resource type="Resource" id="Resource_a2q7y"]
+script = ExtResource("15_vnsxh")
+table = Dictionary[ExtResource("16_pr4ci"), float]({
+ExtResource("17_vn6eb"): 1.0
+})
+metadata/_custom_type_script = "uid://cg7t55c5i1pie"
+
+[sub_resource type="Resource" id="Resource_vn6eb"]
+script = ExtResource("15_vnsxh")
+table = Dictionary[ExtResource("16_pr4ci"), float]({
+ExtResource("18_vnsxh"): 1.0
+})
+metadata/_custom_type_script = "uid://cg7t55c5i1pie"
 
 [node name="Start" node_paths=PackedStringArray("doors", "monster_nodes") instance=ExtResource("1_j81j6")]
 doors = [NodePath("GlobalNavigationRegion/LocalNavigationRegion/Doors/Door")]
@@ -251,11 +268,14 @@ avoidance_enabled = false
 
 [node name="StartStuff" type="Node3D" parent="GlobalNavigationRegion/LocalNavigationRegion" index="9"]
 
-[node name="FlashlightOnGround" parent="GlobalNavigationRegion/LocalNavigationRegion/StartStuff" index="0" instance=ExtResource("14_tu3u3")]
-transform = Transform3D(0.83388627, 0, 0.55193716, 0, 0.99999976, 0, -0.55193734, 0, 0.8338861, -1.23911, 0.80296767, -1.78866)
+[node name="Flashlight" parent="GlobalNavigationRegion/LocalNavigationRegion/StartStuff" index="0" instance=ExtResource("14_kfwpm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2169486, 0.7957739, -1.7948937)
+loot_table_override = SubResource("Resource_a2q7y")
 
-[node name="BatteryOnGround" parent="GlobalNavigationRegion/LocalNavigationRegion/StartStuff" index="1" instance=ExtResource("15_x00w7")]
-transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -1.63753, 0.79794, -1.79267)
+[node name="Battery" parent="GlobalNavigationRegion/LocalNavigationRegion/StartStuff" index="1" instance=ExtResource("14_kfwpm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5120205, 0.7957739, -1.9771633)
+loot_table_override = SubResource("Resource_vn6eb")
 
-[node name="BatteryOnGround2" parent="GlobalNavigationRegion/LocalNavigationRegion/StartStuff" index="2" instance=ExtResource("15_x00w7")]
-transform = Transform3D(0.235939, 0, 0.971768, 0, 1, 0, -0.971768, 0, 0.235939, -1.57834, 0.79794, -1.86491)
+[node name="Battery2" parent="GlobalNavigationRegion/LocalNavigationRegion/StartStuff" index="2" instance=ExtResource("14_kfwpm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6591015, 0.7957739, -1.8333691)
+loot_table_override = SubResource("Resource_vn6eb")

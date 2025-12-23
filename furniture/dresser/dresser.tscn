@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://crpj5p4opagrw" path="res://furniture/dresser/Tymba_low_Material_Metallic_1001-Tymba_low_Material_Roughness_1001.png" id="2_jvabr"]
 [ext_resource type="Script" uid="uid://dnocscyviv226" path="res://script/interactable/interactable.gd" id="3_3dk43"]
 [ext_resource type="Texture2D" uid="uid://dfw88vxqyt0mi" path="res://furniture/dresser/Tymba_low_Material_Normal_1001.png" id="3_ijhl4"]
-[ext_resource type="PackedScene" uid="uid://60ie0pfi7q6r" path="res://generation_templates/items/random_item.tscn" id="6_w7qbs"]
+[ext_resource type="PackedScene" uid="uid://60ie0pfi7q6r" path="res://items/item_spawner/item_spawner.tscn" id="6_w7qbs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4hpeq"]
 resource_name = "Material.001.1001"
@@ -245,7 +245,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32178, -0.0435181, -0.34292
 shape = SubResource("BoxShape3D_jnequ")
 
 [node name="RandomItem" parent="Drawer1" instance=ExtResource("6_w7qbs")]
-transform = Transform3D(4.97684, 0, -3.89239, 3.89239, 0, 4.97684, 0, -6.3182, 0, 1.3831, 0.596446, -0.526851)
+transform = Transform3D(6.3181977, 0, 0, 0, -2.7617727e-07, 6.3181977, 0, -6.318199, -2.761772e-07, 1.3830998, 0.5964459, -0.39640903)
 
 [node name="Drawer2" type="MeshInstance3D" parent="." node_paths=PackedStringArray("hitbox")]
 transform = Transform3D(0.158273, 0, 0, 0, 0, -0.158273, 0, 0.158273, 0, -0.258722, 0.357335, 0.000764281)
@@ -271,7 +271,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.062561, -0.00207513, -0.701
 shape = SubResource("BoxShape3D_smpwl")
 
 [node name="RandomItem" parent="Drawer2" instance=ExtResource("6_w7qbs")]
-transform = Transform3D(-1.81792, 0, -6.05101, 6.05101, 0, -1.81792, 0, -6.3182, 0, 1.75019, -0.814357, -0.446012)
+transform = Transform3D(6.3181925, 0, 0, 0, -2.7617727e-07, 6.3181925, 0, -6.318199, -2.7617696e-07, 1.7501897, -0.81435686, -0.2773385)
 
 [node name="Drawer3" type="MeshInstance3D" parent="." node_paths=PackedStringArray("hitbox")]
 transform = Transform3D(0.158273, 0, 0, 0, 0, -0.158273, 0, 0.158273, 0, -0.255642, 0.173717, 0.000764281)
@@ -297,10 +297,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0661621, 0.00384502, -0.724
 shape = SubResource("BoxShape3D_h7bhg")
 
 [node name="RandomItem" parent="Drawer3" instance=ExtResource("6_w7qbs")]
-transform = Transform3D(5.32272, 0, 3.40415, -3.40415, 0, 5.32272, 0, -6.3182, 0, 1.7275, 0.0189642, -0.452924)
+transform = Transform3D(6.3181934, 0, 0, 0, -2.7617725e-07, 6.3181934, 0, -6.318199, -2.7617702e-07, 1.7275, 0.018964197, -0.2888764)
 
 [node name="lags_low" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.158273, 0, 0, 0, 0, -0.158273, 0, 0.158273, 0, -0.203054, -0.0138527, -0.279216)
+transform = Transform3D(0.158273, 0, 0, 0, -6.9183326e-09, -0.158273, 0, 0.158273, -6.9183326e-09, -0.203054, -0.0138527, -0.279216)
 mesh = SubResource("ArrayMesh_rlou2")
 skeleton = NodePath("")
 
@@ -324,4 +324,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23616, 1.7684, -5.13873)
 shape = SubResource("BoxShape3D_a1ew3")
 
 [node name="RandomItem" parent="lags_low" instance=ExtResource("6_w7qbs")]
-transform = Transform3D(6.19311, 0, -1.251, 1.251, 0, 6.19311, 0, -6.3182, 0, 1.98323, 0.92615, -5.45177)
+transform = Transform3D(6.3181953, 0, 0, 0, -2.761772e-07, 6.3181953, 0, -6.318199, -2.7617708e-07, 1.98323, 0.92615, -5.31902)

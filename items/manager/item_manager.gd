@@ -1,6 +1,7 @@
 class_name ItemManager
 extends RefCounted
 
+const DEFAULT_LOOT_TABLE: LootTable = preload("uid://cy13kn27qf4cf")
 
 const ITEM_TYPES_FOLDER: String = "res://items/item_types/"
 const CONSUMABLE_TYPES_FOLDER: String = "res://items/consumable_types/"
@@ -8,15 +9,7 @@ const CONSUMABLE_TYPES_FOLDER: String = "res://items/consumable_types/"
 
 var item_infos: Dictionary[StringName, ItemInfo]
 var consumable_infos: Dictionary[StringName, ConsumableInfo]
-
-
-## Loads item infos and stores them
-func load_item_infos() -> void:
-	if not item_infos.is_empty() or not consumable_infos.is_empty():
-		return
-	
-	_load_items(ITEM_TYPES_FOLDER)
-	_load_consumables(CONSUMABLE_TYPES_FOLDER)
+var current_loot_table: LootTable = DEFAULT_LOOT_TABLE
 	
 	
 ## Loads items from a folder
@@ -57,3 +50,12 @@ func _load_consumables(directory: String) -> void:
 			
 	for dir in subdirs:
 		_load_consumables(dir)
+		
+		
+## Loads item infos and stores them
+func load_item_infos() -> void:
+	if not item_infos.is_empty() or not consumable_infos.is_empty():
+		return
+	
+	_load_items(ITEM_TYPES_FOLDER)
+	_load_consumables(CONSUMABLE_TYPES_FOLDER)

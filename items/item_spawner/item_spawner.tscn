@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://60ie0pfi7q6r"]
+
+[ext_resource type="Script" uid="uid://j1khovdlhi54" path="res://items/item_spawner/item_spawner.gd" id="1_1b3f1"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_l08pv"]
+top_radius = 0.08
+bottom_radius = 0.08
+height = 0.04
+
+[node name="ItemSpawner" type="Node3D"]
+script = ExtResource("1_1b3f1")
+
+[node name="EditorMesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.020967163, 0)
+gi_mode = 0
+mesh = SubResource("CylinderMesh_l08pv")
