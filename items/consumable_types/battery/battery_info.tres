@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="ConsumableInfo" load_steps=2 format=3 uid="uid://cesjuobnlbxts"]
+[gd_resource type="Resource" script_class="ConsumableInfo" load_steps=3 format=3 uid="uid://cesjuobnlbxts"]
 
+[ext_resource type="PackedScene" uid="uid://bchph5xi23fj7" path="res://items/consumable_types/battery/assets/on_ground/battery_on_ground.tscn" id="1_g41er"]
 [ext_resource type="Script" uid="uid://c70v76w4cbsy" path="res://items/item_info/consumable_info.gd" id="1_ityo8"]
 
 [resource]
 script = ExtResource("1_ityo8")
 id = &"battery"
+on_ground_scene = ExtResource("1_g41er")
 metadata/_custom_type_script = "uid://c70v76w4cbsy"
