@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://cj4q8pgqiwrsd"]
+[gd_scene load_steps=15 format=3 uid="uid://cj4q8pgqiwrsd"]
 
 [ext_resource type="Script" uid="uid://5s167l2h7qav" path="res://player/dev_console/dev_console.gd" id="1_mvyso"]
 [ext_resource type="Script" uid="uid://dqwdxxtw4ef1k" path="res://addons/forest/command_tree/command_tree.gd" id="2_nhrba"]
 [ext_resource type="Script" uid="uid://cehwf7xbnc5c3" path="res://addons/forest/commands/command.gd" id="3_l62em"]
 [ext_resource type="Script" uid="uid://cydxwpipb1o3b" path="res://player/dev_console/arguments/force_spawnable_argument.gd" id="4_s2i2b"]
-[ext_resource type="Script" uid="uid://ds2t4tqqrl4g0" path="res://addons/forest/commands/arguments/enum_argument.gd" id="5_s2i2b"]
+[ext_resource type="Script" uid="uid://skvberokdlsc" path="res://player/dev_console/arguments/item_argument.gd" id="5_x175u"]
+[ext_resource type="Script" uid="uid://dpm15fup7fch" path="res://player/dev_console/arguments/consumable_argument.gd" id="6_6xqw7"]
 [ext_resource type="Script" uid="uid://gcgj6m5pfoev" path="res://player/dev_console/debug_commands.gd" id="6_x175u"]
 [ext_resource type="Script" uid="uid://c1oh86tgv0bo0" path="res://player/dev_console/arguments/room_spawning_argument.gd" id="8_s2i2b"]
 [ext_resource type="Script" uid="uid://dwr81tany2fw5" path="res://player/dev_console/arguments/room_argument.gd" id="8_sksdo"]
@@ -75,11 +76,19 @@ script = ExtResource("3_l62em")
 command_name = "give"
 metadata/_custom_type_script = "uid://cehwf7xbnc5c3"
 
-[node name="Item" type="Node" parent="CommandTree/Give"]
-script = ExtResource("5_s2i2b")
-possible_values = Array[String](["battery"])
+[node name="ItemArgument" type="Node" parent="CommandTree/Give"]
+script = ExtResource("5_x175u")
 argument_name = "item"
-metadata/_custom_type_script = "uid://ds2t4tqqrl4g0"
+
+[node name="ConsumableArgument" type="Node" parent="CommandTree/Give"]
+script = ExtResource("6_6xqw7")
+argument_name = "consumable"
+
+[node name="IntArgument" type="Node" parent="CommandTree/Give/ConsumableArgument"]
+script = ExtResource("10_x175u")
+argument_name = "amount"
+optional = true
+metadata/_custom_type_script = "uid://n3ogqpcoklyp"
 
 [node name="DebugCommands" type="Node" parent="CommandTree" node_paths=PackedStringArray("dev_console")]
 unique_name_in_owner = true

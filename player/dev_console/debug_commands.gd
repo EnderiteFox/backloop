@@ -11,7 +11,9 @@ func _ready() -> void:
 	dev_console.ready.connect(
 		func():
 			dev_console.command_tree.register_callable(["spawn"], ["entity"], spawn)
-			dev_console.command_tree.register_callable(["give"], ["item"], give)
+			dev_console.command_tree.register_callable(["give"], ["item"], give_item)
+			dev_console.command_tree.register_callable(["give"], ["consumable", "amount"], give_consumable)
+			dev_console.command_tree.register_callable(["give"], ["consumable"], give_consumable.bind(1))
 			dev_console.command_tree.register_callable(["force_next_room"], ["room_name"], force_next_room)
 			dev_console.command_tree.register_callable(["enter_room"], ["room_name"], enter_room)
 			dev_console.command_tree.register_callable(["get_spawn_chance"], ["entity"], get_spawn_chance)
@@ -56,15 +58,22 @@ func spawn(entity_id: String) -> void:
 		return
 	else:
 		Game.print_error("Failed to spawn ", entity_id)
+		
+		
+func give_item(item: String) -> void:
+	if not Game.item_manager.item_infos.has(item):
+		Game.print_error("Unknown item: ", item)
+		return
+	
+	Game.player.inventory.add_item(Game.item_manager.item_infos[item])
 	
 	
-func give(item: String) -> void:
-	match item:
-		"battery":
-			Game.player.inventory.add_consumable(ConsumableInfo.Type.BATTERY)
-			Game.print_message("Gave one battery")
-		_:
-			Game.print_error("Unknown item: ", item)
+func give_consumable(item: String, amount: int) -> void:
+	if not Game.item_manager.consumable_infos.has(item):
+		Game.print_error("Unknown consumable: ", item)
+		return
+	
+	Game.player.inventory.add_consumable(Game.item_manager.consumable_infos[item].type, amount)
 	
 	
 func force_next_room(room: String) -> void:
