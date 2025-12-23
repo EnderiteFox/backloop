@@ -65,6 +65,10 @@ func _on_item_unselected(item: ItemInstance) -> void:
 	
 ## Adds an already instantiated item to the inventory
 func add_item_instance(item_instance: ItemInstance, _item_in_hand: ItemInHand) -> void:
+	if items.size() >= INVENTORY_SLOT_COUNT:
+		Game.print_error("Couldn't add item ", item_instance.item_info.id, ", no free slots")
+		return
+	
 	items.append(item_instance)
 	add_child(item_instance)
 	item_added.emit(item_instance)
