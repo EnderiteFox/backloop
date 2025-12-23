@@ -61,7 +61,7 @@ func spawn(entity_id: String) -> void:
 func give(item: String) -> void:
 	match item:
 		"battery":
-			Game.player.inventory.add_consumable(Consumable.Type.BATTERY)
+			Game.player.inventory.add_consumable(ConsumableInfo.Type.BATTERY)
 			Game.print_message("Gave one battery")
 		_:
 			Game.print_error("Unknown item: ", item)

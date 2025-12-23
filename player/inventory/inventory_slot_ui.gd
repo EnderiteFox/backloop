@@ -1,13 +1,17 @@
 class_name InventorySlotUI
 extends Control
 
+
+@onready var item_texture_rect: TextureRect = %ItemTexture
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
+
 func set_texture(texture: Texture2D) -> void:
-	%ItemTexture.texture = texture
+	item_texture_rect.texture = texture
 	
 	
 func select() -> void:
-	%AnimationPlayer.play("select")
+	animation_player.play(&"select")
 	
 
 func unselect() -> void:
-	%AnimationPlayer.play("unselect")
+	animation_player.play("unselect")

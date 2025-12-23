@@ -67,6 +67,7 @@ func _on_play_button_pressed() -> void:
 		func(_anim):
 			Game.reset()
 			Game.room_list.load_room_infos()
+			Game.item_manager.load_item_infos()
 			get_tree().change_scene_to_file("uid://of56mmim7b8x")
 	)
 	

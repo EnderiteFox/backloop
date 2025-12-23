@@ -23,6 +23,9 @@ var room_list := RoomList.new()
 # Camera manager
 var camera_manager: CameraManager
 
+# Item manager
+var item_manager := ItemManager.new()
+
 # Monster managers
 var theWatcher: TheWatcherManager
 

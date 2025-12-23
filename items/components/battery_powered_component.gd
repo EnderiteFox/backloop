@@ -39,9 +39,9 @@ func set_current_battery(battery: float) -> void:
 		
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("flashlight_recharge")\
-	and Game.player.inventory.get_consumable_count(Consumable.Type.BATTERY) > 0\
+	and Game.player.inventory.get_consumable_count(ConsumableInfo.Type.BATTERY) > 0\
 	and item.is_selected\
 	and can_reload_callable.call():
 		current_battery += battery_recharge_amount
-		Game.player.inventory.add_consumable(Consumable.Type.BATTERY, -1)
+		Game.player.inventory.add_consumable(ConsumableInfo.Type.BATTERY, -1)
 		battery_reloaded.emit()

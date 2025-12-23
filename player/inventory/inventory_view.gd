@@ -36,7 +36,8 @@ func update() -> void:
 	for i in range(inventory.items.size()):
 		assert(children[i] is InventorySlotUI)
 		var slot: InventorySlotUI = children[i]
-		slot.set_texture(inventory.items[i].inventory_texture)
+		var item_info: ItemInfo = inventory.items[i].item_info
+		slot.set_texture(item_info.inventory_texture)
 		slot.visible = true
 		
 		
