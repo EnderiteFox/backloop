@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://2grwnge13lda"]
+
+[ext_resource type="Script" uid="uid://b10ovd1x6a2sg" path="res://items/item_types/flashlight/assets/instance/flashlight_instance.gd" id="1_1fcu3"]
+[ext_resource type="Script" uid="uid://cv03ob7bjx58g" path="res://items/components/toggleable_component.gd" id="1_ya547"]
+[ext_resource type="Script" uid="uid://dbw8ccs3wetgd" path="res://items/components/battery_powered_component.gd" id="2_1fcu3"]
+
+[node name="FlashlightInstance" type="Node" node_paths=PackedStringArray("battery_component", "toggleable_component")]
+script = ExtResource("1_1fcu3")
+battery_component = NodePath("BatteryPoweredComponent")
+toggleable_component = NodePath("ToggleableComponent")
+
+[node name="ToggleableComponent" type="Node" parent="." node_paths=PackedStringArray("battery_component")]
+script = ExtResource("1_ya547")
+toggle_on_action = &"item_use"
+toggle_off_action = &"item_use"
+global_item = true
+toggle_on_global_action = &"toggle_flashlight"
+toggle_off_global_action = &"toggle_flashlight"
+battery_component = NodePath("../BatteryPoweredComponent")
+battery_consumption = 1.0
+metadata/_custom_type_script = "uid://cv03ob7bjx58g"
+
+[node name="BatteryPoweredComponent" type="Node" parent="."]
+script = ExtResource("2_1fcu3")
+max_battery = 120.0
+current_battery = 120.0
+battery_recharge_amount = 120.0
+metadata/_custom_type_script = "uid://dbw8ccs3wetgd"

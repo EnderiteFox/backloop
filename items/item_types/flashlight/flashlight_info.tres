@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemInfo" load_steps=6 format=3 uid="uid://da1nnlq4wmjf1"]
+
+[ext_resource type="PackedScene" uid="uid://d0pwkaakif8sj" path="res://items/item_types/flashlight/assets/in_hand/flashlight_in_hand.tscn" id="1_irmvh"]
+[ext_resource type="Texture2D" uid="uid://nlremdiasw71" path="res://items/item_types/flashlight/assets/slot_texture.png" id="1_p26nk"]
+[ext_resource type="PackedScene" uid="uid://2grwnge13lda" path="res://items/item_types/flashlight/assets/instance/flashlight_instance.tscn" id="3_mx6ty"]
+[ext_resource type="PackedScene" uid="uid://842qni0nuca6" path="res://items/item_types/flashlight/assets/on_ground/flashlight_on_ground.tscn" id="4_ab5m5"]
+[ext_resource type="Script" uid="uid://b4c7y2efithgq" path="res://items/item_info/item_info.gd" id="5_irmvh"]
+
+[resource]
+script = ExtResource("5_irmvh")
+item_scene = ExtResource("3_mx6ty")
+in_hand_scene = ExtResource("1_irmvh")
+inventory_texture = ExtResource("1_p26nk")
+id = &"flashlight"
+on_ground_scene = ExtResource("4_ab5m5")
+metadata/_custom_type_script = "uid://b4c7y2efithgq"

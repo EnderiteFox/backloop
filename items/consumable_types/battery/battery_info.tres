@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ConsumableInfo" load_steps=2 format=3 uid="uid://cesjuobnlbxts"]
+
+[ext_resource type="Script" uid="uid://c70v76w4cbsy" path="res://items/item_info/consumable_info.gd" id="1_ityo8"]
+
+[resource]
+script = ExtResource("1_ityo8")
+id = &"battery"
+metadata/_custom_type_script = "uid://c70v76w4cbsy"

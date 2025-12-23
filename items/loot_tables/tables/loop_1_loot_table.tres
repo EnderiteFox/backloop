@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=3 format=3 uid="uid://cy13kn27qf4cf"]
+
+[ext_resource type="Script" uid="uid://cg7t55c5i1pie" path="res://items/loot_tables/loot_table.gd" id="1_hiice"]
+[ext_resource type="Script" uid="uid://4hvn0ot0vgaj" path="res://items/item_info/base_item_info.gd" id="2_hiice"]
+
+[resource]
+script = ExtResource("1_hiice")
+metadata/_custom_type_script = "uid://cg7t55c5i1pie"

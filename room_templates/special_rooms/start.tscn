@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://k5g54y6u162p" path="res://lights/ceiling/ceiling_light.tscn" id="11_btujy"]
 [ext_resource type="Script" uid="uid://bf6mjw15l2dsr" path="res://mobs/node_monsters/monster_node.gd" id="12_ipnww"]
 [ext_resource type="VoxelGIData" uid="uid://c4pqth2roomk3" path="res://room_templates/special_rooms/startGI.res" id="13_xjxum"]
-[ext_resource type="PackedScene" uid="uid://842qni0nuca6" path="res://items/item_types/flashlight/flashlight_on_ground.tscn" id="14_tu3u3"]
-[ext_resource type="PackedScene" uid="uid://bchph5xi23fj7" path="res://items/consumable_types/battery/battery_on_ground.tscn" id="15_x00w7"]
+[ext_resource type="PackedScene" uid="uid://842qni0nuca6" path="res://items/item_types/flashlight/assets/on_ground/flashlight_on_ground.tscn" id="14_tu3u3"]
+[ext_resource type="PackedScene" uid="uid://bchph5xi23fj7" path="res://items/consumable_types/battery/assets/scene/battery_on_ground.tscn" id="15_x00w7"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_phc0f"]
 vertices = PackedVector3Array(0.31373978, 0.5, -2.2399797, -0.43626022, 0.5, -1.9899797, -0.43626022, 0.5, -1.2399797, 2.0637398, 0.5, -4.2399797, 0.31373978, 0.5, -3.9899797, -2.6862602, 0.5, -0.98997974, -2.6862602, 0.5, 0.26002026, -0.43626022, 0.5, 1.7600203, -3.4362602, 0.5, 3.7600203, -2.6862602, 0.5, 4.2600203, -0.6862602, 0.5, 4.2600203, -3.4362602, 0.5, 0.51002026, 2.0637398, 0.5, 1.7600203)
@@ -252,7 +252,7 @@ avoidance_enabled = false
 [node name="StartStuff" type="Node3D" parent="GlobalNavigationRegion/LocalNavigationRegion" index="9"]
 
 [node name="FlashlightOnGround" parent="GlobalNavigationRegion/LocalNavigationRegion/StartStuff" index="0" instance=ExtResource("14_tu3u3")]
-transform = Transform3D(0.833288, -0.0335557, 0.551821, 0.0402364, 0.99919, 1.74623e-09, -0.551374, 0.0222033, 0.833963, -1.23911, 0.828818, -1.78866)
+transform = Transform3D(0.83388627, 0, 0.55193716, 0, 0.99999976, 0, -0.55193734, 0, 0.8338861, -1.23911, 0.80296767, -1.78866)
 
 [node name="BatteryOnGround" parent="GlobalNavigationRegion/LocalNavigationRegion/StartStuff" index="1" instance=ExtResource("15_x00w7")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -1.63753, 0.79794, -1.79267)

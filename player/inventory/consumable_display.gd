@@ -4,7 +4,7 @@ extends Control
 
 @export var consumable_texture: Texture2D
 
-@export var consumable_type: Consumable.Type
+@export var consumable_type: ConsumableInfo.Type
 
 @onready var texture_rect: TextureRect = %ConsumableTexture
 @onready var label: Label = %ConsumableCount
