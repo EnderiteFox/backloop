@@ -2,24 +2,31 @@ class_name LootTable
 extends Resource
 
 
-@export var table: Dictionary[BaseItemInfo, float]
+@export var table: Dictionary[LootTableEntry, float]
 
 
 ## Returns a random item based on this loot table
-## Returns null if no item was selected
-func poll() -> BaseItemInfo:
+## Returns an empty array if no item was selected
+## Returns an array containing the selected item if the element is an item
+## Returns an array containing the selected consumable and its amount if the element is a consumable
+func poll() -> Array:
 	if table.is_empty():
 		Game.print_warning("Loot table is empty")
-		return null
+		return []
 		
 	var sum: float = table.values().reduce(func(acc, val): return acc + val, 0)
-	var keys: Array[BaseItemInfo] = table.keys()
+	var keys: Array[LootTableEntry] = table.keys()
 	var selected: float = randf_range(0.0, sum)
 	var current: float = 0.0
+	var selected_entry: LootTableEntry = null
 	
-	for key: BaseItemInfo in keys:
+	for key: LootTableEntry in keys:
 		current += table[key]
 		if selected <= current:
-			return key
+			selected_entry = key
+			break
 			
-	return keys[-1]
+	if selected_entry == null:
+		return []
+		
+	return selected_entry.get_item()

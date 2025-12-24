@@ -6,5 +6,3 @@ enum Type {
 }
 
 @export var type: Type
-@export var min_amount: int = 1
-@export var max_amount: int = 1

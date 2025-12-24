@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://clphcywne8elg"]
+[gd_scene load_steps=46 format=3 uid="uid://clphcywne8elg"]
 
 [ext_resource type="PackedScene" uid="uid://di0dsa4lr66ws" path="res://rooms/room_template.tscn" id="1_j81j6"]
 [ext_resource type="ArrayOccluder3D" uid="uid://c3meeuu6hl523" path="res://room_templates/special_rooms/start.occ" id="2_2udi2"]
@@ -15,8 +15,10 @@
 [ext_resource type="VoxelGIData" uid="uid://c4pqth2roomk3" path="res://room_templates/special_rooms/startGI.res" id="13_xjxum"]
 [ext_resource type="PackedScene" uid="uid://60ie0pfi7q6r" path="res://items/item_spawner/item_spawner.tscn" id="14_kfwpm"]
 [ext_resource type="Script" uid="uid://cg7t55c5i1pie" path="res://items/loot_tables/loot_table.gd" id="15_vnsxh"]
-[ext_resource type="Script" uid="uid://4hvn0ot0vgaj" path="res://items/item_info/base_item_info.gd" id="16_pr4ci"]
+[ext_resource type="Script" uid="uid://bxj1hdv4iel1y" path="res://items/loot_tables/entries/loot_table_entry.gd" id="16_vnsxh"]
 [ext_resource type="Resource" uid="uid://da1nnlq4wmjf1" path="res://items/item_types/flashlight/flashlight_info.tres" id="17_vn6eb"]
+[ext_resource type="Script" uid="uid://c3vwpx2jhvv3s" path="res://items/loot_tables/entries/item_entry.gd" id="18_a2q7y"]
+[ext_resource type="Script" uid="uid://c2tf2yrvitego" path="res://items/loot_tables/entries/consumable_entry.gd" id="18_pr4ci"]
 [ext_resource type="Resource" uid="uid://cesjuobnlbxts" path="res://items/consumable_types/battery/battery_info.tres" id="18_vnsxh"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_phc0f"]
@@ -94,17 +96,27 @@ size = Vector3(0.1, 6.75419, 10.0538)
 [sub_resource type="BoxShape3D" id="BoxShape3D_nwqkh"]
 size = Vector3(7.39211, 4.92671, 10.6668)
 
-[sub_resource type="Resource" id="Resource_a2q7y"]
+[sub_resource type="Resource" id="Resource_kfooy"]
+script = ExtResource("18_a2q7y")
+item = ExtResource("17_vn6eb")
+metadata/_custom_type_script = "uid://c3vwpx2jhvv3s"
+
+[sub_resource type="Resource" id="Resource_pr4ci"]
 script = ExtResource("15_vnsxh")
-table = Dictionary[ExtResource("16_pr4ci"), float]({
-ExtResource("17_vn6eb"): 1.0
+table = Dictionary[ExtResource("16_vnsxh"), float]({
+SubResource("Resource_kfooy"): 1.0
 })
 metadata/_custom_type_script = "uid://cg7t55c5i1pie"
 
+[sub_resource type="Resource" id="Resource_a2q7y"]
+script = ExtResource("18_pr4ci")
+consumable = ExtResource("18_vnsxh")
+metadata/_custom_type_script = "uid://c2tf2yrvitego"
+
 [sub_resource type="Resource" id="Resource_vn6eb"]
 script = ExtResource("15_vnsxh")
-table = Dictionary[ExtResource("16_pr4ci"), float]({
-ExtResource("18_vnsxh"): 1.0
+table = Dictionary[ExtResource("16_vnsxh"), float]({
+SubResource("Resource_a2q7y"): 1.0
 })
 metadata/_custom_type_script = "uid://cg7t55c5i1pie"
 
@@ -270,7 +282,7 @@ avoidance_enabled = false
 
 [node name="Flashlight" parent="GlobalNavigationRegion/LocalNavigationRegion/StartStuff" index="0" instance=ExtResource("14_kfwpm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2169486, 0.7957739, -1.7948937)
-loot_table_override = SubResource("Resource_a2q7y")
+loot_table_override = SubResource("Resource_pr4ci")
 
 [node name="Battery" parent="GlobalNavigationRegion/LocalNavigationRegion/StartStuff" index="1" instance=ExtResource("14_kfwpm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5120205, 0.7957739, -1.9771633)
