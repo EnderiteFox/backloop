@@ -84,6 +84,8 @@ navigation_mesh = SubResource("NavigationMesh_ktra6")
 [node name="LocalNavigationRegion" parent="GlobalNavigationRegion" index="0"]
 navigation_mesh = SubResource("NavigationMesh_ypqlm")
 
+[node name="Walls" parent="GlobalNavigationRegion/LocalNavigationRegion" index="0" groups=["wall"]]
+
 [node name="OccluderInstance3D" parent="GlobalNavigationRegion/LocalNavigationRegion/Walls" index="0"]
 occluder = ExtResource("11_g42u2")
 

@@ -8,10 +8,20 @@ signal lights_flicker(duration: float)
 
 signal time_changed(new_time: int)
 
+#region Time Settings
+
 const START_TIME: int = 6 * 60
 
 const MIN_TIME_PROGRESS: int = 23
 const MAX_TIME_PROGRESS: int = 33
+
+#endregion
+
+#region Node Groups
+
+const WALLS_GROUP: StringName = "wall"
+
+#endregion
 
 var _internal_time: int = START_TIME
 
