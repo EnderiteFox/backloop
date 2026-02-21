@@ -2,7 +2,7 @@ class_name TheShadeManager
 extends MobManager
 
 const SPAWN_CHANCE: float = 0.1
-const SPAWN_FAIL_CHANCE_BONUS: float = 0.2
+const SPAWN_CHANCE_FAIL_BONUS: float = 0.2
 const SPAWN_TIMEOUT: float = 1.5
 
 const ROOM_COOLDOWN: int = 5
@@ -19,13 +19,13 @@ var spawn_raycasts_scene: PackedScene = preload("uid://ciwbfrfyc0x4x")
 func _init() -> void:
 	super._init(
 		EntityManager.EntityType.THE_SHADE,
-		EntityManager.EntityCategory.AMBIENT,
+		EntityManager.EntityCategory.ROAMING,
 		RoomOpenedSpawner.new(
 			EntityManager.EntityType.THE_SHADE,
-			EntityManager.EntityCategory.AMBIENT,
+			EntityManager.EntityCategory.ROAMING,
 			true,
 			SPAWN_CHANCE,
-			SPAWN_FAIL_CHANCE_BONUS,
+			SPAWN_CHANCE_FAIL_BONUS,
 			ROOM_COOLDOWN
 		)
 	)

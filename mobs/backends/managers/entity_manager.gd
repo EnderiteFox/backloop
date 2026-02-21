@@ -4,11 +4,18 @@ extends RefCounted
 enum EntityType {
 	THE_SHADE,
 	THE_WATCHER,
-	OUTRUN
+	OUTRUN,
+	GRIN
 }
 	
 enum EntityCategory {
+	## A mob that rushes through rooms
 	RUSHER,
+	
+	## A mob that can move around rooms
+	ROAMING,
+	
+	## Generic mob type
 	AMBIENT
 }
 
@@ -26,10 +33,12 @@ var active_entities: Dictionary[EntityType, int]
 
 var the_shade_manager := TheShadeManager.new()
 var outrun_manager := OutrunManager.new()
+var grin_manager := GrinManager.new()
 
 var mob_managers: Dictionary[EntityType, MobManager] = {
 	EntityType.THE_SHADE: the_shade_manager,
-	EntityType.OUTRUN: outrun_manager
+	EntityType.OUTRUN: outrun_manager,
+	EntityType.GRIN: grin_manager
 }
 
 #endregion
