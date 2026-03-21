@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://c470vup8fia17"]
+[gd_scene format=4 uid="uid://c470vup8fia17"]
 
 [ext_resource type="PackedScene" uid="uid://cd1j5w4sb7i4w" path="res://mobs/the_watcher/window_model/scene.gltf" id="1_r2whe"]
 [ext_resource type="Script" uid="uid://b17il5po871e6" path="res://mobs/the_watcher/window.gd" id="2_uicrv"]
@@ -139,7 +139,7 @@ noise = SubResource("FastNoiseLite_qj54t")
 edge_fade = 1.36603e-05
 density_texture = SubResource("NoiseTexture3D_nbbal")
 
-[node name="Window" instance=ExtResource("1_r2whe")]
+[node name="Window" unique_id=646875349 instance=ExtResource("1_r2whe")]
 script = ExtResource("2_uicrv")
 watcherSpawnSounds = Array[AudioStream]([ExtResource("3_ra4c4"), ExtResource("4_u4sul")])
 
@@ -170,13 +170,11 @@ mesh = SubResource("ArrayMesh_uujny")
 [node name="02" parent="Sketchfab_model/955b5cf0327f4626a3bfcfe5545111d1_fbx/Object_2/RootNode" index="2"]
 visible = false
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="2"]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="2" unique_id=319110074]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_0cv7h")
-}
+libraries/ = SubResource("AnimationLibrary_0cv7h")
 
-[node name="FakeSun" type="SpotLight3D" parent="." index="3"]
+[node name="FakeSun" type="SpotLight3D" parent="." index="3" unique_id=483204371]
 transform = Transform3D(1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107, 0, 2.40736, -0.633934)
 light_color = Color(0.552956, 0.552956, 0.552956, 1)
 light_energy = 10.0
@@ -184,64 +182,64 @@ light_bake_mode = 1
 light_cull_mask = 4294967293
 shadow_enabled = true
 
-[node name="FakeSky" type="Node3D" parent="." index="4"]
+[node name="FakeSky" type="Node3D" parent="." index="4" unique_id=2121432061]
 metadata/_edit_lock_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="FakeSky" index="0"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FakeSky" index="0" unique_id=2067631897]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0.156771, -0.777845)
 mesh = SubResource("PlaneMesh_4cb8w")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="FakeSky" index="1"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="FakeSky" index="1" unique_id=674540947]
 transform = Transform3D(1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107, 0, 2.86084, -0.777845)
 mesh = SubResource("PlaneMesh_4cb8w")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="FakeSky" index="2"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="FakeSky" index="2" unique_id=1882966658]
 transform = Transform3D(2.98023e-08, -1, 1.19209e-07, 0, 1.19209e-07, 1, -1, 5.96046e-08, -7.10543e-15, 0.762939, 1.52418, -1.05126)
 mesh = SubResource("PlaneMesh_jmwmd")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="FakeSky" index="3"]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="FakeSky" index="3" unique_id=418279395]
 transform = Transform3D(5.76204e-08, 1, -1.19209e-07, 0, 1.19209e-07, 1, 1, -1.47027e-07, 1.7527e-14, -0.738893, 1.52418, -1.03659)
 mesh = SubResource("PlaneMesh_jmwmd")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="FakeSky" index="4"]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="FakeSky" index="4" unique_id=896976357]
 transform = Transform3D(-1, 1.49012e-07, -1.77636e-14, 0, 1.19209e-07, 1, 5.96046e-08, 1, -1.19209e-07, -0.0338969, 1.52418, -1.39104)
 mesh = SubResource("PlaneMesh_0q4d7")
 skeleton = NodePath("../..")
 
-[node name="TheWatcher" type="Node3D" parent="." index="5"]
+[node name="TheWatcher" type="Node3D" parent="." index="5" unique_id=1522227307]
 metadata/_edit_lock_ = true
 
-[node name="TheWatcherRaycast" type="RayCast3D" parent="TheWatcher" index="0"]
+[node name="TheWatcherRaycast" type="RayCast3D" parent="TheWatcher" index="0" unique_id=769519607]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50541, -0.511509)
 enabled = false
 collision_mask = 3
 script = ExtResource("3_wd4p8")
 
-[node name="EnterSound" type="AudioStreamPlayer3D" parent="TheWatcher" index="1"]
+[node name="EnterSound" type="AudioStreamPlayer3D" parent="TheWatcher" index="1" unique_id=1730262020]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.408554, 1.03263, 0)
 stream = ExtResource("3_tgfje")
 bus = &"Sounds"
 
-[node name="SpawnSound" type="AudioStreamPlayer3D" parent="TheWatcher" index="2"]
+[node name="SpawnSound" type="AudioStreamPlayer3D" parent="TheWatcher" index="2" unique_id=1775359142]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5169, -0.639805)
 bus = &"Sounds"
 
-[node name="TheWatcherActiveTimer" type="Timer" parent="TheWatcher" index="3"]
+[node name="TheWatcherActiveTimer" type="Timer" parent="TheWatcher" index="3" unique_id=1741759213]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="TheWatcherModel" parent="TheWatcher" index="4" instance=ExtResource("7_45wot")]
+[node name="TheWatcherModel" parent="TheWatcher" index="4" unique_id=602562912 instance=ExtResource("7_45wot")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.456827)
 
-[node name="FogVolume" type="FogVolume" parent="." index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53938, -0.95166)
-size = Vector3(2, 3.97232, 1.7998)
+[node name="FogVolume" type="FogVolume" parent="." index="6" unique_id=1889251807]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53938, -1.0712872)
+size = Vector3(2, 3.97232, 1.5605457)
 material = SubResource("FogMaterial_s1f1u")
