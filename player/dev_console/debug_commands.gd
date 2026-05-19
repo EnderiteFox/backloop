@@ -21,6 +21,7 @@ func _ready() -> void:
 			dev_console.command_tree.register_callable(["die"], [], die)
 			dev_console.command_tree.register_callable(["time", "add"], ["amount"], time_add)
 			dev_console.command_tree.register_callable(["time", "set"], ["amount"], time_set)
+			dev_console.command_tree.register_callable(["flicker"], ["time"], flicker)
 	)
 	
 	
@@ -195,3 +196,7 @@ func set_spawn_chance(entity_id: String, chance: float) -> void:
 	
 	room_opened_spawner.current_spawn_chance = clamp(chance, 0.0, 1.0)
 	Game.print_info("Set the current spawn chance for ", entity_id, " to %.3f" % clamp(chance, 0.0, 1.0))
+	
+	
+func flicker(time: float) -> void:
+	Game.lights_flicker.emit(time)
