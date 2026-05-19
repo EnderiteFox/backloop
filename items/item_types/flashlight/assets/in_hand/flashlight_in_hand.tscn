@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d0pwkaakif8sj"]
+[gd_scene format=3 uid="uid://d0pwkaakif8sj"]
 
 [ext_resource type="Script" uid="uid://ishnesbou10q" path="res://items/item_types/flashlight/assets/in_hand/flashlight_in_hand.gd" id="1_uxtfm"]
 [ext_resource type="Script" uid="uid://dweiut1euqc8c" path="res://script/node_3d/soft_follow.gd" id="2_rk25c"]
@@ -364,6 +364,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_u26ke"]
 resource_name = "toggle_on"
+length = 0.5
 step = 0.01
 capture_included = true
 tracks/0/type = "audio"
@@ -424,10 +425,10 @@ tracks/4/path = NodePath("%FlashlightSpotLight:light_energy")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.08, 0.1, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 0.0, 1.0, 0.5]
+"values": [0.0, 0.5]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -436,10 +437,10 @@ tracks/5/path = NodePath("%FlashlightSpotLight/FlashArea:monitorable")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false, true, false]
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_uvco8"]
@@ -530,38 +531,36 @@ fill_to = Vector2(0, 0.525641)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uvco8"]
 points = PackedVector3Array(0, 0, 0, -4.76, 0, -5.72, -3.366, 3.366, -5.72, 0, 4.76, -5.72, 3.366, 3.366, -5.72, 4.76, 0, -5.72, 3.366, -3.366, -5.72, 0, -4.76, -5.72, -3.366, -3.366, -5.72)
 
-[node name="Flashlight" type="Node3D"]
+[node name="Flashlight" type="Node3D" unique_id=12120029]
 script = ExtResource("1_uxtfm")
 
-[node name="Model" type="Node3D" parent="."]
+[node name="Model" type="Node3D" parent="." unique_id=1822185578]
 script = ExtResource("2_rk25c")
 follow_factor = 15.0
 
-[node name="FlashlightModel" parent="Model" instance=ExtResource("3_tcn3b")]
+[node name="FlashlightModel" parent="Model" unique_id=307235142 instance=ExtResource("3_tcn3b")]
 unique_name_in_owner = true
 transform = Transform3D(-0.8933648, -1.7413061e-08, 2.15966, -0.054762278, 2.33639, -0.022653054, -2.15896, -0.059262805, -0.8930798, 0.282044, -0.294306, -0.232839)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Model/FlashlightModel"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Model/FlashlightModel" unique_id=289992100]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_uduni")
-}
+libraries/ = SubResource("AnimationLibrary_uduni")
 playback_auto_capture_transition_type = 7
 playback_auto_capture_ease_type = 2
 
-[node name="SpotlightPosition" type="Node3D" parent="Model/FlashlightModel"]
+[node name="SpotlightPosition" type="Node3D" parent="Model/FlashlightModel" unique_id=1311243648]
 transform = Transform3D(-0.382248, -0.0234313, -0.923763, 6.55535e-09, 0.999678, -0.0253569, 0.92406, -0.00969262, -0.382125, 0.0764372, 0.0153043, 0.0308273)
 
-[node name="FlashlightSounds" type="AudioStreamPlayer3D" parent="Model/FlashlightModel"]
+[node name="FlashlightSounds" type="AudioStreamPlayer3D" parent="Model/FlashlightModel" unique_id=2114976628]
 transform = Transform3D(0.427873, -4.65661e-09, 2.98023e-08, 1.86265e-09, 0.427874, 1.86265e-09, -4.47035e-08, -4.65661e-10, 0.427873, 0.0330375, 0.0167541, 0.0136663)
 bus = &"Sounds"
 
-[node name="BatteryInFlashlight" parent="Model/FlashlightModel" instance=ExtResource("12_x0b67")]
+[node name="BatteryInFlashlight" parent="Model/FlashlightModel" unique_id=345228940 instance=ExtResource("12_x0b67")]
 transform = Transform3D(-3.3928059e-06, 0.93723804, -0.38438886, -1.013, -3.6670517e-06, 3.9392448e-11, -1.3914469e-06, 0.38438886, 0.93723804, -0.0383755, 0.0138763, -0.0158744)
 
-[node name="Node" type="Node" parent="Model/FlashlightModel"]
+[node name="Node" type="Node" parent="Model/FlashlightModel" unique_id=1391586458]
 
-[node name="FlashlightSpotLight" type="SpotLight3D" parent="Model/FlashlightModel/Node" node_paths=PackedStringArray("position_parent")]
+[node name="FlashlightSpotLight" type="SpotLight3D" parent="Model/FlashlightModel/Node" unique_id=1457685177 node_paths=PackedStringArray("position_parent")]
 unique_name_in_owner = true
 transform = Transform3D(1, 1.86264e-09, 2.98023e-08, -1.86265e-09, 1, 8.3819e-09, -2.98023e-08, -8.3819e-09, 1, 0.280334, -0.263433, -0.426302)
 light_projector = SubResource("GradientTexture2D_pkemv")
@@ -572,13 +571,13 @@ spot_angle = 40.0
 script = ExtResource("13_hx58h")
 position_parent = NodePath("../../SpotlightPosition")
 
-[node name="FlashArea" type="Area3D" parent="Model/FlashlightModel/Node/FlashlightSpotLight"]
+[node name="FlashArea" type="Area3D" parent="Model/FlashlightModel/Node/FlashlightSpotLight" unique_id=1661460189]
 collision_layer = 128
 collision_mask = 0
 monitoring = false
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/FlashlightModel/Node/FlashlightSpotLight/FlashArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/FlashlightModel/Node/FlashlightSpotLight/FlashArea" unique_id=191800773]
 shape = SubResource("ConvexPolygonShape3D_uvco8")
 
-[node name="Dummy" type="Camera3D" parent="."]
+[node name="Dummy" type="Camera3D" parent="." unique_id=109499277]

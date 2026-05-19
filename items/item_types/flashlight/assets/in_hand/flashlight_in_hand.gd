@@ -31,7 +31,6 @@ func _ready() -> void:
 	flashlight.picked_up.connect(animation_player.play.bind(ANIM_PICKUP))
 	flashlight.selected.connect(animation_player.play.bind(ANIM_SELECT))
 	flashlight.unselected.connect(animation_player.play.bind(ANIM_UNSELECT))
-	flashlight.flash_finished.connect(_flicker)
 	
 	var battery_component: BatteryPoweredComponent = flashlight.battery_component
 	battery_component.battery_ran_out.connect(_on_battery_ran_out)
@@ -58,6 +57,8 @@ func _on_turn_off() -> void:
 func _on_animation_finished(animation_name: StringName) -> void:
 	if animation_name == ANIM_BATTERY_RELOAD:
 		flashlight.battery_reload_finished.emit()
+	elif animation_name == ANIM_TOGGLE_ON:
+		_flicker()
 		
 		
 func _interrupt_flicker_tween() -> void:
