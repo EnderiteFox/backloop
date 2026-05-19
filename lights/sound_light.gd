@@ -7,8 +7,8 @@ func _ready() -> void:
 	super._ready()
 	normalSound.play()
 	flickerSound.stop()
-	flicker_start.connect(_on_flicker)
-	flicker_end.connect(_on_flicker_end)
+	light_energy_component.flicker_start.connect(_on_flicker)
+	light_energy_component.flicker_end.connect(_on_flicker_end)
 
 
 func _on_flicker() -> void:
