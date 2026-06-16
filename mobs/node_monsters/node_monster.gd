@@ -37,7 +37,8 @@ func _ready() -> void:
 		if light_breaker == null:
 			Game.print_error("No light breaker defined for the node monster!")
 		else:
-			light_breaker.area_entered.connect(_on_light_breaker_area_entered)
+			light_breaker.area_entered.connect(_on_light_entered)
+			light_breaker.body_entered.connect(_on_light_entered)
 
 
 func _physics_process(delta: float) -> void:
@@ -57,10 +58,16 @@ func _physics_process(delta: float) -> void:
 		self.global_position += self.global_position.direction_to(path[currentPathPoint]) * moveSpeed * delta
 
 
-func _on_light_breaker_area_entered(area: Area3D) -> void:
-	var node: Node3D = area as Node3D
-	if node is RoomLight and node.room.fullyGenerated:
-		area.break_light()
+func _on_light_entered(object: CollisionObject3D) -> void:
+	var component_manager: ComponentManager = ComponentManager.get_from_node(object)
+	if component_manager == null:
+		return
+	
+	var light_energy_component: LightEnergyComponent = component_manager.get_from_id(ComponentId.LightEnergy, LightEnergyComponent)
+	if light_energy_component == null:
+		return
+		
+	light_energy_component.break_light()
 
 
 ## Sets the path that the monster will take, teleporting it to the first point, and starts the timer to make activate it

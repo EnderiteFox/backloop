@@ -1,8 +1,8 @@
 class_name GenericComponent
-extends RefCounted
+extends Resource
 
 
-var component_id: StringName
+@export var component_id: StringName
 var manager: ComponentManager
 
 

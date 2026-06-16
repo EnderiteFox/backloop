@@ -2,7 +2,7 @@ class_name ComponentManager
 extends Node
 
 
-@onready var components: Dictionary[StringName, GenericComponent] = {}
+@export var components: Dictionary[StringName, GenericComponent] = {}
 
 
 func _ready() -> void:
@@ -33,6 +33,8 @@ func _verify_component(id: StringName, component: GenericComponent) -> void:
 			Game.print_error("Incorrect script for component %s: %s", id, script.get_global_name())
 	
 	
+## Registers a component
+## It will be accessible from an id
 func register(id: StringName, component: GenericComponent) -> void:
 	_verify_component(id, component)
 	components[id] = component

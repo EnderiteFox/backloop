@@ -29,6 +29,8 @@ func _ready() -> void:
 	for light in lights:
 		default_energies[light] = light.light_energy
 		
+	self.room.room_opened.connect(_on_room_opened)
+		
 		
 func _on_light_energy_change() -> void:
 	var mult: float = light_energy_component.get_effect()
@@ -61,3 +63,7 @@ func _get_default_emissions(node: Node) -> void:
 				
 	for child: Node in node.get_children():
 		_get_default_emissions(child)
+		
+		
+func _on_room_opened() -> void:
+	light_energy_component.can_break = true

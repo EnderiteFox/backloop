@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://k5g54y6u162p"]
+[gd_scene format=3 uid="uid://k5g54y6u162p"]
 
 [ext_resource type="Script" uid="uid://w8b15a3ccary" path="res://lights/sound_light.gd" id="1_vprai"]
 [ext_resource type="PackedScene" uid="uid://dbnx20jy152lr" path="res://lights/ceiling/ceiling_light_model.tscn" id="2_3ilc7"]
@@ -8,7 +8,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_lbfdp"]
 size = Vector3(0.209412, 0.105225, 1.29272)
 
-[node name="CeilingLight" type="Area3D" node_paths=PackedStringArray("normalSound", "flickerSound", "lights", "model")]
+[node name="CeilingLight" type="Area3D" unique_id=320183017 node_paths=PackedStringArray("normalSound", "flickerSound", "lights", "model")]
 collision_layer = 32
 collision_mask = 0
 monitoring = false
@@ -18,31 +18,31 @@ flickerSound = NodePath("FlickerSound")
 lights = [NodePath("OmniLight3D"), NodePath("OmniLight3D2")]
 model = NodePath("Model")
 
-[node name="Model" parent="." instance=ExtResource("2_3ilc7")]
+[node name="Model" parent="." unique_id=834353509 instance=ExtResource("2_3ilc7")]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 1.41896, 0)
 
-[node name="Hitbox" type="CollisionShape3D" parent="."]
+[node name="Hitbox" type="CollisionShape3D" parent="." unique_id=504770255]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.15527e-05, -0.0487061, 0.000610352)
 shape = SubResource("BoxShape3D_lbfdp")
 
-[node name="NormalSound" type="AudioStreamPlayer3D" parent="."]
+[node name="NormalSound" type="AudioStreamPlayer3D" parent="." unique_id=1080354862]
 stream = ExtResource("3_5m4j4")
 volume_db = -20.0
 bus = &"Ambiance Sounds"
 
-[node name="FlickerSound" type="AudioStreamPlayer3D" parent="."]
+[node name="FlickerSound" type="AudioStreamPlayer3D" parent="." unique_id=971509676]
 stream = ExtResource("4_j2rl1")
 volume_db = -20.0
 bus = &"Sounds"
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=517649669]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.153267, -0.3)
 light_color = Color(1, 1, 0.878431, 1)
 light_energy = 0.55
 shadow_enabled = true
 omni_attenuation = 2.0
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+[node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=546660399]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.153267, 0.3)
 light_color = Color(1, 1, 0.878431, 1)
 light_energy = 0.55

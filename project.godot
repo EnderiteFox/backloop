@@ -232,7 +232,7 @@ pause_game={
 3d_physics/layer_3="killHitBox"
 3d_physics/layer_4="interactable"
 3d_physics/layer_5="roomPlacement"
-3d_physics/layer_6="lightHitbox"
+3d_physics/layer_6="props"
 3d_physics/layer_8="flash"
 3d_physics/layer_9="door_cross"
 
