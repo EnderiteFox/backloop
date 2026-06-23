@@ -27,7 +27,6 @@ const LIGHT_DIM_DARKNESS_RADIUS: float = 4.5
 const LIGHT_DIM_MIN_EFFECT: float = 1.0
 const LIGHT_DIM_MAX_EFFECT: float = 0.0
 const LIGHT_DIM_ACTIVATION_TIME: float = 1.0
-const PASSIVE_LIGHT_DIM_MULTIPLIER: float = 0.75
 
 const FLASHLIGHT_MIN_DISTURBANCE: int = 4
 const FLASHLIGHT_MAX_DISTURBANCE: int = 6
@@ -58,7 +57,9 @@ const GRAB_TRANSITION_TIME: float = 0.25
 
 @onready var light_dim_area: Area3D = %LightDimEffect
 @onready var light_dim_area_shape: CollisionShape3D = %LightDimEffectShape
-var light_dim_affected: Array[RoomLight]
+
+var light_dim_affected: Dictionary[CollisionObject3D, LightEnergyComponent]
+
 var current_light_dim_max_effect: float = 0.0
 
 var crossing_door_end_pos: Vector3
@@ -85,8 +86,11 @@ func _ready() -> void:
 	
 	assert(light_dim_area_shape.shape is SphereShape3D)
 	(light_dim_area_shape.shape as SphereShape3D).radius = LIGHT_DIM_RADIUS
+	
 	light_dim_area.area_entered.connect(_on_light_enter_light_dim)
+	light_dim_area.body_entered.connect(_on_light_enter_light_dim)
 	light_dim_area.area_exited.connect(_on_light_leave_light_dim)
+	light_dim_area.body_exited.connect(_on_light_leave_light_dim)
 	
 	door_cross_hitbox.area_entered.connect(_on_door_cross_area_entered)
 	eye_flash_hitbox.flashed.connect(_on_flash, Object.CONNECT_ONE_SHOT)
@@ -122,22 +126,39 @@ func _update_raycasts() -> void:
 #region Light dimming
 
 func _process_dim_lights() -> void:
-	for light in light_dim_affected:
-		var distance: float = light.global_position.distance_to(self.light_dim_area_shape.global_position)
-		light.set_multiplier(self.get_instance_id(), _get_light_energy_from_distance(distance))
+	for body in light_dim_affected:
+		var light_energy: LightEnergyComponent = light_dim_affected[body]
+	
+		var distance: float = body.global_position.distance_to(self.light_dim_area_shape.global_position)
+		var effect: float = _get_light_energy_from_distance(distance)
+		light_energy.set_effect(self, effect)
+		light_energy.set_flicker(self, effect < 1.0)
 
 
-func _on_light_enter_light_dim(area: Area3D) -> void:
-	var node: Node = area as Node
-	if node is RoomLight:
-		light_dim_affected.append(node)
+func _on_light_enter_light_dim(body: CollisionObject3D) -> void:
+	var manager: ComponentManager = ComponentManager.get_from_node(body)
+	if manager == null:
+		return
+	
+	var light_component: LightEnergyComponent = manager.get_from_id(ComponentId.LightEnergy, LightEnergyComponent)
+	if light_component == null:
+		return
+	
+	light_dim_affected[body] = light_component
+	
+	if not body.tree_exiting.is_connected(_on_light_leave_light_dim):
+		body.tree_exiting.connect(_on_light_leave_light_dim.bind(body))
 	
 	
-func _on_light_leave_light_dim(area: Area3D) -> void:
-	var node: Node = area as Node
-	if node is RoomLight:
-		light_dim_affected.erase(node)
-		node.energy_multipliers.erase(self.get_instance_id())
+func _on_light_leave_light_dim(body: CollisionObject3D) -> void:
+	if not body in light_dim_affected:
+		return
+
+	var light_energy: LightEnergyComponent = light_dim_affected[body]
+	light_dim_affected.erase(body)
+	
+	light_energy.set_flicker(self, false)
+	light_energy.set_effect(self, 1.0)
 	
 	
 ## The interpolation function used to determine the strength of the dim effect on nearby lights
@@ -146,15 +167,19 @@ func _get_light_energy_from_distance(distance: float) -> float:
 	and (current_state != State.CROSSING_DOOR or prev_state != State.CHASING) \
 	and current_state != State.GRABBING \
 	and current_state != State.FLASHED:
-		return PASSIVE_LIGHT_DIM_MULTIPLIER
+		return LIGHT_DIM_MIN_EFFECT
 		
 	if distance <= LIGHT_DIM_DARKNESS_RADIUS:
 		return current_light_dim_max_effect
 		
-	return lerp(
-		current_light_dim_max_effect, 
-		LIGHT_DIM_MIN_EFFECT, 
-		(distance - LIGHT_DIM_DARKNESS_RADIUS) / (LIGHT_DIM_RADIUS - LIGHT_DIM_DARKNESS_RADIUS)
+	return clamp(
+		lerp(
+			current_light_dim_max_effect, 
+			LIGHT_DIM_MIN_EFFECT,
+			(distance - LIGHT_DIM_DARKNESS_RADIUS) / (LIGHT_DIM_RADIUS - LIGHT_DIM_DARKNESS_RADIUS)
+		),
+		0.0,
+		1.0
 	)
 
 #endregion

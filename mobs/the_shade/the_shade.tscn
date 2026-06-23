@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b7y1pcrm32hly"]
+[gd_scene format=3 uid="uid://b7y1pcrm32hly"]
 
 [ext_resource type="Script" uid="uid://cefj4mge88uff" path="res://mobs/the_shade/the_shade.gd" id="1_7vchk"]
 [ext_resource type="Script" uid="uid://runiwhm0odjl" path="res://script/flashable/flashable.gd" id="2_gvumm"]
@@ -204,64 +204,64 @@ radius = 0.4
 [sub_resource type="BoxShape3D" id="BoxShape3D_u6bi5"]
 size = Vector3(1, 1.6281738, 1.9525757)
 
-[node name="TheShade" type="CharacterBody3D"]
+[node name="TheShade" type="CharacterBody3D" unique_id=1862744317]
 collision_layer = 0
 collision_mask = 9
 script = ExtResource("1_7vchk")
 
-[node name="Hitbox" type="CollisionShape3D" parent="."]
+[node name="Hitbox" type="CollisionShape3D" parent="." unique_id=127704967]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_7vchk")
 
-[node name="Bean" type="MeshInstance3D" parent="."]
+[node name="Bean" type="MeshInstance3D" parent="." unique_id=867565121]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00617, 0)
 mesh = SubResource("CapsuleMesh_52n7y")
 
-[node name="EyeRaycast" type="RayCast3D" parent="Bean"]
+[node name="EyeRaycast" type="RayCast3D" parent="Bean" unique_id=1443112620]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.129827, 0.5933, 0)
 collision_mask = 11
 collide_with_areas = true
 
-[node name="FrontRaycast" type="RayCast3D" parent="Bean"]
+[node name="FrontRaycast" type="RayCast3D" parent="Bean" unique_id=1707866069]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59283, -1.676)
 collision_mask = 11
 collide_with_areas = true
 
-[node name="LightDimEffect" type="Area3D" parent="Bean"]
+[node name="LightDimEffect" type="Area3D" parent="Bean" unique_id=2022140336]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.00617, 0)
 collision_layer = 0
 collision_mask = 32
 monitorable = false
 
-[node name="LightDimEffectShape" type="CollisionShape3D" parent="Bean/LightDimEffect"]
+[node name="LightDimEffectShape" type="CollisionShape3D" parent="Bean/LightDimEffect" unique_id=1305613362]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10159, 0)
 shape = SubResource("SphereShape3D_7vchk")
 
-[node name="LeftEye" type="MeshInstance3D" parent="Bean"]
+[node name="LeftEye" type="MeshInstance3D" parent="Bean" unique_id=970004500]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.131513, 0.546432, -0.362408)
 mesh = SubResource("SphereMesh_7vchk")
 skeleton = NodePath("../..")
 
-[node name="Pupil" type="MeshInstance3D" parent="Bean/LeftEye"]
+[node name="Pupil" type="MeshInstance3D" parent="Bean/LeftEye" unique_id=1681220517]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0358261)
 mesh = SubResource("SphereMesh_s6nlr")
 skeleton = NodePath("../../..")
 
-[node name="RightEye" type="MeshInstance3D" parent="Bean"]
+[node name="RightEye" type="MeshInstance3D" parent="Bean" unique_id=1186088683]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132, 0.54683, -0.362)
 mesh = SubResource("SphereMesh_7vchk")
 skeleton = NodePath("../..")
 
-[node name="Pupil" type="MeshInstance3D" parent="Bean/RightEye"]
+[node name="Pupil" type="MeshInstance3D" parent="Bean/RightEye" unique_id=992628867]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0358261)
 mesh = SubResource("SphereMesh_s6nlr")
 skeleton = NodePath("../../..")
 
-[node name="EyeFlashHitbox" type="Area3D" parent="Bean"]
+[node name="EyeFlashHitbox" type="Area3D" parent="Bean" unique_id=711234182]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.539266, -0.396023)
 collision_layer = 0
@@ -269,49 +269,47 @@ collision_mask = 128
 monitorable = false
 script = ExtResource("2_gvumm")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bean/EyeFlashHitbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bean/EyeFlashHitbox" unique_id=368827288]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_s6nlr")
 
-[node name="Fog" type="FogVolume" parent="."]
+[node name="Fog" type="FogVolume" parent="." unique_id=1408748458]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.299782, 1.09778, 4.6158)
 size = Vector3(5.91371, 4.40112, 3.8075)
 material = SubResource("FogMaterial_s6nlr")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1164550415]
 unique_name_in_owner = true
 path_desired_distance = 0.4
 path_height_offset = 0.5
 path_max_distance = 100.01
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=216288492]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_s6nlr")
-}
+libraries/ = SubResource("AnimationLibrary_s6nlr")
 
-[node name="WorldEnvironment" parent="." instance=ExtResource("3_s6nlr")]
+[node name="WorldEnvironment" parent="." unique_id=922152041 instance=ExtResource("3_s6nlr")]
 
-[node name="DoorCrossHitbox" type="Area3D" parent="."]
+[node name="DoorCrossHitbox" type="Area3D" parent="." unique_id=1197602265]
 unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 256
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorCrossHitbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorCrossHitbox" unique_id=2135774195]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_s6nlr")
 
-[node name="GrabCamera" parent="." instance=ExtResource("4_di57o")]
+[node name="GrabCamera" parent="." unique_id=1196266888 instance=ExtResource("4_di57o")]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -1.5099579e-07, 0, 0.99999994, 0, 1.509958e-07, 0, -0.99999994, 0, 1.613958, -1.6572387)
 
-[node name="GrabHitbox" type="Area3D" parent="."]
+[node name="GrabHitbox" type="Area3D" parent="." unique_id=1210495997]
 unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GrabHitbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GrabHitbox" unique_id=396141317]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8201904, -0.5567932)
 shape = SubResource("BoxShape3D_u6bi5")
