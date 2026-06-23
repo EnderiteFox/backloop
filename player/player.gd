@@ -57,6 +57,8 @@ var is_alive: bool = true
 @onready var dev_console: DevConsole = %DevConsole
 @onready var pause_menu: PauseMenu = %PauseMenu
 
+@onready var shader_rect: Node3D = %ShaderRect
+
 
 func _ready() -> void:
 	Game.player = self

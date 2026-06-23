@@ -22,6 +22,7 @@ func _ready() -> void:
 			dev_console.command_tree.register_callable(["time", "add"], ["amount"], time_add)
 			dev_console.command_tree.register_callable(["time", "set"], ["amount"], time_set)
 			dev_console.command_tree.register_callable(["flicker"], ["time"], flicker)
+			dev_console.command_tree.register_callable(["shader"], ["shader_on"], shader)
 	)
 	
 	
@@ -200,3 +201,7 @@ func set_spawn_chance(entity_id: String, chance: float) -> void:
 	
 func flicker(time: float) -> void:
 	Game.lights_flicker.emit(time)
+	
+	
+func shader(shader_on: bool) -> void:
+	Game.player.shader_rect.visible = shader_on

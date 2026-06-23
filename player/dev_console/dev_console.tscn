@@ -11,9 +11,11 @@
 [ext_resource type="Script" uid="uid://dwr81tany2fw5" path="res://player/dev_console/arguments/room_argument.gd" id="8_sksdo"]
 [ext_resource type="Script" uid="uid://8o4qdelg1657" path="res://addons/forest/commands/arguments/float_argument.gd" id="9_s2i2b"]
 [ext_resource type="Script" uid="uid://n3ogqpcoklyp" path="res://addons/forest/commands/arguments/int_argument.gd" id="10_x175u"]
+[ext_resource type="Script" uid="uid://4b5wbero8jbr" path="res://addons/forest/commands/arguments/bool_argument.gd" id="12_8u5ep"]
 
 [sub_resource type="SystemFont" id="SystemFont_s2i2b"]
 font_names = PackedStringArray("Sans-Serif")
+subpixel_positioning = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cepbk"]
 bg_color = Color(0, 0, 0, 0.27451)
@@ -180,6 +182,16 @@ metadata/_custom_type_script = "uid://cehwf7xbnc5c3"
 script = ExtResource("9_s2i2b")
 argument_name = "time"
 metadata/_custom_type_script = "uid://8o4qdelg1657"
+
+[node name="Shader" type="Node" parent="CommandTree" unique_id=406624584]
+script = ExtResource("3_l62em")
+command_name = "shader"
+metadata/_custom_type_script = "uid://cehwf7xbnc5c3"
+
+[node name="BoolArgument" type="Node" parent="CommandTree/Shader" unique_id=2144105127]
+script = ExtResource("12_8u5ep")
+argument_name = "shader_on"
+metadata/_custom_type_script = "uid://4b5wbero8jbr"
 
 [node name="AutocompleteMenu" type="PanelContainer" parent="." unique_id=1318844955]
 unique_name_in_owner = true
