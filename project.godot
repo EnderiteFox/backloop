@@ -17,7 +17,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="Backloop"
 config/version="alpha-0.1"
 run/main_scene="uid://bev5ngmsob6ud"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 run/max_fps=144
 config/icon="res://icon.svg"
 

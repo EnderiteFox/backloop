@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b2vyca0is7h3p"]
+[gd_scene format=3 uid="uid://b2vyca0is7h3p"]
 
 [ext_resource type="Script" uid="uid://b6qok45yrbdnj" path="res://player/player.gd" id="1_8t03j"]
 [ext_resource type="PackedScene" uid="uid://da1u52edx88kc" path="res://player/stamina_ui.tscn" id="2_k4avh"]
@@ -25,47 +25,48 @@ radius = 0.3
 
 [sub_resource type="Environment" id="Environment_hdujp"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("inventory")]
+[node name="Player" type="CharacterBody3D" unique_id=2013854071 node_paths=PackedStringArray("inventory")]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_8t03j")
 inventory = NodePath("Inventory")
 metadata/_edit_lock_ = true
 
-[node name="DevConsole" parent="." instance=ExtResource("12_yllr7")]
+[node name="DevConsole" parent="." unique_id=779362485 instance=ExtResource("12_yllr7")]
 unique_name_in_owner = true
 
-[node name="ShaderRect" parent="." instance=ExtResource("8_rnoib")]
+[node name="ShaderRect" parent="." unique_id=1046608544 instance=ExtResource("8_rnoib")]
+unique_name_in_owner = true
 
-[node name="Hitbox" type="CollisionShape3D" parent="."]
+[node name="Hitbox" type="CollisionShape3D" parent="." unique_id=264871883]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.935, 0)
 shape = SubResource("CylinderShape3D_5kqbu")
 
-[node name="HitboxCrouched" type="CollisionShape3D" parent="."]
+[node name="HitboxCrouched" type="CollisionShape3D" parent="." unique_id=1742469115]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46854, 0)
 shape = SubResource("CylinderShape3D_eojp2")
 disabled = true
 
-[node name="CamPivot" type="Node3D" parent="."]
+[node name="CamPivot" type="Node3D" parent="." unique_id=805866155]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60548, 0)
 
-[node name="PlayerCamera" parent="CamPivot" instance=ExtResource("4_yllr7")]
+[node name="PlayerCamera" parent="CamPivot" unique_id=1642157805 instance=ExtResource("4_yllr7")]
 unique_name_in_owner = true
 
-[node name="InteractionRaycast" type="RayCast3D" parent="CamPivot/PlayerCamera"]
+[node name="InteractionRaycast" type="RayCast3D" parent="CamPivot/PlayerCamera" unique_id=2053271916]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 collision_mask = 9
 hit_from_inside = true
 collide_with_areas = true
 
-[node name="HeldItems" type="Node3D" parent="CamPivot/PlayerCamera"]
+[node name="HeldItems" type="Node3D" parent="CamPivot/PlayerCamera" unique_id=1026933455]
 unique_name_in_owner = true
 
-[node name="ProximityLight" type="OmniLight3D" parent="CamPivot/PlayerCamera"]
+[node name="ProximityLight" type="OmniLight3D" parent="CamPivot/PlayerCamera" unique_id=159626060]
 light_color = Color(0.894118, 1, 1, 1)
 light_energy = 0.01
 light_indirect_energy = 0.0
@@ -73,18 +74,18 @@ light_volumetric_fog_energy = 0.0
 light_specular = 0.0
 omni_range = 0.7
 
-[node name="Crosshair" parent="." instance=ExtResource("4_oypl4")]
+[node name="Crosshair" parent="." unique_id=2141989043 instance=ExtResource("4_oypl4")]
 unique_name_in_owner = true
 
-[node name="StaminaUi" parent="." instance=ExtResource("2_k4avh")]
+[node name="StaminaUi" parent="." unique_id=577928801 instance=ExtResource("2_k4avh")]
 anchor_top = 0.925
 
-[node name="WorldEnvironment" parent="." instance=ExtResource("3_pagxp")]
+[node name="WorldEnvironment" parent="." unique_id=1746100611 instance=ExtResource("3_pagxp")]
 
-[node name="DebugCamera" parent="." instance=ExtResource("3_kurhd")]
+[node name="DebugCamera" parent="." unique_id=907785197 instance=ExtResource("3_kurhd")]
 environment = SubResource("Environment_hdujp")
 
-[node name="BlackoutRect" type="ColorRect" parent="."]
+[node name="BlackoutRect" type="ColorRect" parent="." unique_id=1435963220]
 unique_name_in_owner = true
 visible = false
 anchors_preset = 15
@@ -95,32 +96,32 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="WalkSound" type="AudioStreamPlayer3D" parent="."]
+[node name="WalkSound" type="AudioStreamPlayer3D" parent="." unique_id=1209364404]
 unique_name_in_owner = true
 stream = ExtResource("4_h4sw0")
 pitch_scale = 0.52
 bus = &"Sounds"
 
-[node name="RunSound" type="AudioStreamPlayer3D" parent="."]
+[node name="RunSound" type="AudioStreamPlayer3D" parent="." unique_id=1315544051]
 unique_name_in_owner = true
 stream = ExtResource("5_feosj")
 pitch_scale = 0.75
 bus = &"Sounds"
 
-[node name="CrouchSound" type="AudioStreamPlayer3D" parent="."]
+[node name="CrouchSound" type="AudioStreamPlayer3D" parent="." unique_id=1723349453]
 unique_name_in_owner = true
 stream = ExtResource("6_3ebys")
 pitch_scale = 0.4
 bus = &"Sounds"
 
-[node name="Inventory" type="Node" parent="."]
+[node name="Inventory" type="Node" parent="." unique_id=1849784079]
 script = ExtResource("11_2ieo8")
 metadata/_custom_type_script = "uid://d1phijy3uq15j"
 
-[node name="InventoryView" parent="." node_paths=PackedStringArray("inventory") instance=ExtResource("12_ebec5")]
+[node name="InventoryView" parent="." unique_id=814143290 node_paths=PackedStringArray("inventory") instance=ExtResource("12_ebec5")]
 unique_name_in_owner = true
 inventory = NodePath("../Inventory")
 
-[node name="PauseMenu" parent="." instance=ExtResource("14_kb6p2")]
+[node name="PauseMenu" parent="." unique_id=1316840673 instance=ExtResource("14_kb6p2")]
 unique_name_in_owner = true
 visible = false
